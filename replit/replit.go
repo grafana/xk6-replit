@@ -27,8 +27,8 @@ type API struct {
 	Block    func()
 }
 
-// NewModuleInstance returns a new module instance for each VU.
-func (rm *RootModule) NewModuleInstance(vu modules.VU) modules.Instance {
+// NewAPI returns a new API instance.
+func NewAPI(vu modules.VU) *API {
 	api := &API{
 		Greeting: "WELCOME TO REPLIT!",
 		Run: func(code string) (sobek.Value, error) {
@@ -38,10 +38,7 @@ func (rm *RootModule) NewModuleInstance(vu modules.VU) modules.Instance {
 	api.Block = func() {
 		startREPLServer(api)
 	}
-
-	return &ModuleInstance{
-		module: &Module{API: api},
-	}
+	return api
 }
 
 // Start a TCP REPL server to accept and execute commands.
