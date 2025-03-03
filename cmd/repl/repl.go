@@ -32,5 +32,9 @@ func main() {
 
 		response, _ := serverReader.ReadString('\n')
 		fmt.Print(response)
+
+		if input == "exit\n" {
+			return
+		}
 	}
 }
