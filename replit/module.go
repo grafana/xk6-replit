@@ -4,17 +4,23 @@ import (
 	"go.k6.io/k6/js/modules"
 )
 
-// API is the REPLIT module's API.
 type API struct {
-	Replit string
+	Greeting string
+	Run      func(string) error
 }
 
 // NewModuleInstance returns a new [ModuleInstance].
 func (rm *RootModule) NewModuleInstance(vu modules.VU) modules.Instance {
-	return &ModuleInstance{
-		module: &API{
-			Replit: "Hello, world!",
+	api := &API{
+		Greeting: "WELCOME TO REPLIT!",
+		Run: func(code string) error {
+			v, err := vu.Runtime().RunString(code)
+			_ = v
+			return err
 		},
+	}
+	return &ModuleInstance{
+		module: &Module{API: api},
 	}
 }
 
@@ -29,10 +35,15 @@ type RootModule struct{}
 func New() *RootModule { return new(RootModule) }
 
 // ModuleInstance is created for each VU.
-type ModuleInstance struct{ module *API }
+type ModuleInstance struct{ module *Module }
 
 // Exports implements the [modules.Instance] interface.
 // It exports the module's API to the JS runtime.
 func (mi *ModuleInstance) Exports() modules.Exports {
 	return modules.Exports{Default: mi.module}
+}
+
+// Module is the REPLIT module's Module.
+type Module struct {
+	API *API `js:"replit"`
 }
