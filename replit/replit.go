@@ -2,6 +2,7 @@ package replit
 
 import (
 	"bufio"
+	"encoding/json"
 	"fmt"
 	"net"
 	"strings"
@@ -10,6 +11,14 @@ import (
 	"github.com/grafana/sobek"
 	"go.k6.io/k6/js/modules"
 )
+
+// Response struct for JSON serialization
+type Response struct {
+	Status  string `json:"status"`
+	Output  string `json:"output,omitempty"`
+	Message string `json:"message,omitempty"`
+	Error   string `json:"error,omitempty"`
+}
 
 // API is the exposed JS module with a REPL backend.
 type API struct {
@@ -46,7 +55,7 @@ func startREPLServer(api *API) {
 
 	var wg sync.WaitGroup
 	shutdown := make(chan struct{})
-	once := new(sync.Once) // Ensures shutdown is only triggered once
+	once := &sync.Once{} // Ensures shutdown is only triggered once
 
 	go func() {
 		<-shutdown
@@ -81,25 +90,30 @@ func handleConnection(conn net.Conn, api *API, shutdown chan struct{}, once *syn
 	reader := bufio.NewReader(conn)
 
 	for {
-		conn.Write([]byte("> ")) // REPL prompt
 		cmd, err := reader.ReadString('\n')
 		if err != nil {
-			fmt.Println("Connection closed:", err)
+			sendResponse(conn, Response{Status: "error", Message: "Connection closed"})
 			return
 		}
 
 		cmd = strings.TrimSpace(cmd)
 		if cmd == "exit" {
-			conn.Write([]byte("Exiting REPL...\n"))
+			sendResponse(conn, Response{Status: "exit", Message: "Shutting down REPL..."})
 			once.Do(func() { close(shutdown) }) // Close only once
 			return
 		}
 
 		result, err := api.Run(cmd)
 		if err != nil {
-			conn.Write([]byte(fmt.Sprintf("Error: %s\n", err)))
+			sendResponse(conn, Response{Status: "error", Error: err.Error()})
 		} else {
-			conn.Write([]byte(fmt.Sprintf("%v\n", result)))
+			sendResponse(conn, Response{Status: "ok", Output: result.String()})
 		}
 	}
+}
+
+// sendResponse encodes the response as JSON and writes it to the connection.
+func sendResponse(conn net.Conn, response Response) {
+	data, _ := json.Marshal(response)
+	conn.Write(append(data, '\n')) // Append newline for easy parsing
 }
