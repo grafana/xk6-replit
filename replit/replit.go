@@ -45,23 +45,38 @@ func startREPLServer(api *API) {
 	fmt.Println("REPL server running on port 8089...")
 
 	var wg sync.WaitGroup
+	shutdown := make(chan struct{})
+	once := new(sync.Once) // Ensures shutdown is only triggered once
+
+	go func() {
+		<-shutdown
+		ln.Close()
+		wg.Wait() // Ensure all goroutines finish before exiting
+		fmt.Println("Server shutting down...")
+	}()
 
 	for {
 		conn, err := ln.Accept()
 		if err != nil {
-			fmt.Println("Error accepting connection:", err)
+			select {
+			case <-shutdown:
+				return // Stop accepting new connections on shutdown
+			default:
+				fmt.Println("Error accepting connection:", err)
+			}
 			continue
 		}
+
 		wg.Add(1)
 		go func() {
-			handleConnection(conn, api)
+			handleConnection(conn, api, shutdown, once)
 			wg.Done()
 		}()
 	}
 }
 
 // Handle incoming REPL commands.
-func handleConnection(conn net.Conn, api *API) {
+func handleConnection(conn net.Conn, api *API, shutdown chan struct{}, once *sync.Once) {
 	defer conn.Close()
 	reader := bufio.NewReader(conn)
 
@@ -76,6 +91,7 @@ func handleConnection(conn net.Conn, api *API) {
 		cmd = strings.TrimSpace(cmd)
 		if cmd == "exit" {
 			conn.Write([]byte("Exiting REPL...\n"))
+			once.Do(func() { close(shutdown) }) // Close only once
 			return
 		}
 
