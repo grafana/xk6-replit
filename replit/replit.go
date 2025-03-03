@@ -92,7 +92,7 @@ func handleConnection(conn net.Conn, api *API, shutdown chan struct{}, once *syn
 	for {
 		cmd, err := reader.ReadString('\n')
 		if err != nil {
-			sendResponse(conn, Response{Status: "error", Message: "Connection closed"})
+			sendResponse(conn, Response{Status: "error", Error: "Connection closed"})
 			return
 		}
 
