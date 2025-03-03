@@ -7,6 +7,8 @@ import (
 	"net"
 	"os"
 	"strings"
+
+	"github.com/fatih/color"
 )
 
 // Response struct for JSON parsing
@@ -20,12 +22,12 @@ type Response struct {
 func main() {
 	conn, err := net.Dial("tcp", "localhost:8089")
 	if err != nil {
-		fmt.Println("Failed to connect to REPL server:", err)
+		color.Red("Failed to connect to REPL server: %v", err)
 		return
 	}
 	defer conn.Close()
 
-	fmt.Println("Connected to k6 REPL. Type 'exit' to quit.")
+	color.Cyan("Connected to k6 REPL. Type 'exit' to quit.")
 
 	reader := bufio.NewReader(os.Stdin)
 	serverReader := bufio.NewReader(conn)
@@ -37,30 +39,31 @@ func main() {
 
 		_, err := conn.Write([]byte(input + "\n"))
 		if err != nil {
-			fmt.Println("Error sending command:", err)
+			color.Red("Error sending command: %v", err)
 			return
 		}
 
 		response, err := serverReader.ReadString('\n')
 		if err != nil {
-			fmt.Println("Server disconnected. Exiting REPL.")
+			color.Red("Server disconnected. Exiting REPL.")
 			return
 		}
 
 		var res Response
 		err = json.Unmarshal([]byte(response), &res)
 		if err != nil {
-			fmt.Println("Error parsing response:", err)
+			color.Red("Error parsing response: %v | Raw: %s", err, response)
 			continue
 		}
 
-		// Handle response based on status
-		if res.Status == "ok" {
-			fmt.Println(res.Output)
-		} else if res.Status == "error" {
-			fmt.Println("Error:", res.Error) // Now correctly displaying the Error field
-		} else if res.Status == "exit" {
-			fmt.Println(res.Message)
+		// Handle response based on status with color output
+		switch res.Status {
+		case "ok":
+			color.Green(res.Output) // Green for success
+		case "error":
+			color.Red("Error: %s", res.Error) // Red for errors
+		case "exit":
+			color.Yellow(res.Message) // Yellow for exit message
 			return
 		}
 	}
