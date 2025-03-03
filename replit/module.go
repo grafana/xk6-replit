@@ -27,3 +27,10 @@ func (mi *ModuleInstance) Exports() modules.Exports {
 type Module struct {
 	API *API `js:"replit"`
 }
+
+// NewModuleInstance returns a new module instance for each VU.
+func (rm *RootModule) NewModuleInstance(vu modules.VU) modules.Instance {
+	return &ModuleInstance{
+		module: &Module{API: NewAPI(vu)},
+	}
+}
