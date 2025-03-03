@@ -111,7 +111,7 @@ func handleConnection(conn net.Conn, api *API, shutdown chan struct{}, once *syn
 		if result.String() != "undefined" {
 			sendResponse(conn, Response{Status: "ok", Output: result.String()})
 		} else {
-			sendResponse(conn, Response{Status: "ok"})
+			sendResponse(conn, Response{})
 		}
 	}
 }

@@ -59,7 +59,9 @@ func main() {
 		// Handle response based on status with color output
 		switch res.Status {
 		case "ok":
-			color.Green(res.Output) // Green for success
+			if res.Output != "" {
+				color.Green(res.Output) // Green for success
+			}
 		case "error":
 			color.Red("Error: %s", res.Error) // Red for errors
 		case "exit":
