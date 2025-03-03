@@ -44,7 +44,7 @@ func repl(w http.ResponseWriter, r *http.Request) {
 func main() {
 	http.HandleFunc("/repl", repl)
 	go func() {
-		err := exec.Command("xk6", "run", "-q", "replit.js").Run()
+		err := exec.Command("xk6", "run", "-q", "ws/replit.js").Run()
 		if err != nil {
 			panic(err)
 		}
