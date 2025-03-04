@@ -8,6 +8,7 @@ import (
 	"strings"
 	"sync"
 
+	"github.com/chzyer/readline"
 	"github.com/grafana/sobek"
 	"go.k6.io/k6/js/modules"
 )
@@ -25,6 +26,7 @@ type API struct {
 	Greeting string
 	Run      func(string) (sobek.Value, error)
 	Block    func()
+	Read     func() (string, error)
 }
 
 // NewAPI returns a new API instance.
@@ -35,9 +37,28 @@ func NewAPI(vu modules.VU) *API {
 			return vu.Runtime().RunString(code)
 		},
 	}
+
 	api.Block = func() {
 		startREPLServer(api)
 	}
+
+	rl, err := readline.NewEx(&readline.Config{
+		Prompt:          "> ",
+		HistoryFile:     "/tmp/k6-repl-history",
+		InterruptPrompt: "^C",
+		EOFPrompt:       "exit",
+	})
+	if err != nil {
+		panic(err)
+	}
+	api.Read = func() (string, error) {
+		line, err := rl.Readline()
+		if err != nil {
+			return "", err
+		}
+		return line, nil
+	}
+
 	return api
 }
 
