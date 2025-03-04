@@ -29,7 +29,7 @@ export default async function () {
 
     while (true) {
         try {
-            var input = replit.read("> ");
+            var input = replit.read();
             if (input === "exit") {
                 break;
             }
