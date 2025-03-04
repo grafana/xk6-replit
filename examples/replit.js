@@ -43,14 +43,15 @@ export default async function () {
                 fn = AsyncFunction(input)
             }
 
-            var result = await fn();
+            var result = await fn(); // the user's code result
+            if (result !== undefined && result !== null) {
+                // Fall back to .toString() if it's a primitive or can't be stringified
+                // Or do a quick test to see if it's an object
+                replit.log(typeof result === "object" ? inspect(result) : result.toString());
+            }
 
             // Easily access the last expression result with '_'.
             global._ = result;
-
-            if (result !== undefined && result !== null) {
-                replit.log(result.toString(), 'green');
-            }
         } catch (error) {
             if (error.toString() == "GoError: EOF") {
                 break;
@@ -65,3 +66,23 @@ export default async function () {
         }
     }
 }
+
+function inspect(obj) {
+  // NOTE: Circular references will throw an error unless we handle them,
+  // so let's do a naive replacer that short-circuits circular refs.
+  const seen = new WeakSet();
+  return JSON.stringify(
+    obj,
+    (key, value) => {
+      if (typeof value === "object" && value !== null) {
+        if (seen.has(value)) {
+          return "[Circular]";
+        }
+        seen.add(value);
+      }
+      return value;
+    },
+    2 // indentation
+  );
+}
+
