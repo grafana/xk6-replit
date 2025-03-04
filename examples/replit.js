@@ -49,19 +49,19 @@ export default async function () {
             global._ = result;
 
             if (result !== undefined && result !== null) {
-                console.log(result.toString());
+                replit.log(result.toString(), 'green');
             }
         } catch (error) {
             if (error.toString() == "GoError: EOF") {
                 break;
             }
-            console.error(error.toString());
+            replit.error(error.toString(), 'red');
         }
 
         input = input.trim();
         if (input.startsWith("let ") || input.startsWith("const ") || input.startsWith("var ")) {
-            console.error("Invalid assignment in REPL context.");
-            console.info("Hint: In order to set a variable globally, use `foo = 123`.");
+            replit.error("Invalid assignment in REPL context.", 'red');
+            replit.error("Hint: In order to set a variable globally, use `foo = 123`.", 'red');
         }
     }
 }

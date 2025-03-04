@@ -9,6 +9,7 @@ import (
 	"sync"
 
 	"github.com/chzyer/readline"
+	"github.com/fatih/color"
 	"github.com/grafana/sobek"
 	"go.k6.io/k6/js/modules"
 )
@@ -27,6 +28,9 @@ type API struct {
 	Run      func(string) (sobek.Value, error)
 	Block    func()
 	Read     func() (string, error)
+
+	Log   func(msg string)
+	Error func(msg string)
 }
 
 // NewAPI returns a new API instance.
@@ -57,6 +61,12 @@ func NewAPI(vu modules.VU) *API {
 			return "", err
 		}
 		return line, nil
+	}
+	api.Log = func(msg string) {
+		color.Green(msg)
+	}
+	api.Error = func(msg string) {
+		color.Red(msg)
 	}
 
 	return api
