@@ -1,6 +1,8 @@
 package replit
 
 import (
+	"os"
+
 	"github.com/chzyer/readline"
 	"github.com/fatih/color"
 	"github.com/grafana/sobek"
@@ -55,6 +57,9 @@ func NewAPI(vu modules.VU) *API {
 		line, err := rl.Readline()
 		if err != nil {
 			return "", err
+		}
+		if line == "clear" {
+			readline.ClearScreen(os.Stdout)
 		}
 		return line, nil
 	}
