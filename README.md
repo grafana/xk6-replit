@@ -28,8 +28,8 @@ xk6 build --with github.com/grafana/xk6-replit=.
 ## Running a REPL inside an existing k6 test
 
 You can drop into a REPL from within an existing k6 test via the following methods.
-You will need to modify your script so that it includes the `replit` import, and await the `replit.repl` function.
-The `replit.repl` function takes as its first argument the `replit` module itself, and as a second (optional) argument an object containing a context to make available for use in the REPL. This object can contain variables and modules. Here's an example:
+You will need to modify your script so that it includes the `replit` import, and await the `replit.with` function.
+The `replit.with` function takes an (optional) argument an object containing a context to make available for use in the REPL. This object can contain variables and modules. Here's an example:
 
 ```js
 // You can find this example in examples/http.js
@@ -39,10 +39,9 @@ import http from "k6/http";
 export default async function () {
     let result = http.get("https://quickpizza.grafana.com");
 
-    // The first argument to 'repl' is the replit module itself.
     // As context, we pass 'result', and the http module in case
     // we want to make additional requests.
-    await replit.repl(replit, {result: result, http: http});
+    await replit.with({result: result, http: http});
 
     console.log("All done.")
 }
