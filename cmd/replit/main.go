@@ -11,8 +11,8 @@ import (
 	_ "embed"
 )
 
-//go:embed assets/replit.js
-var replitJS []byte
+//go:embed assets/repl.js
+var replJS []byte
 
 // Where to store the custom k6 binary once built.
 var customK6Path = filepath.Join(".", "k6")
@@ -39,20 +39,18 @@ func main() {
 		log.Println("Custom k6 build complete.")
 	}
 
-	// 2. Now run the custom k6 binary with replit.js.
+	// 2. Now run the custom k6 binary with repl.js.
 	fmt.Printf("Welcome to REPLIT!\n")
 
 	// write repl to a temp file
-	if err := os.WriteFile("replit.js", replitJS, 0644); err != nil {
-		log.Fatalf("Error writing replit.js: %v", err)
+	if err := os.WriteFile("repl.js", replJS, 0644); err != nil {
+		log.Fatalf("Error writing repl.js: %v", err)
 	}
 	defer func() {
-		if err := os.Remove("replit.js"); err != nil {
-			log.Printf("Error removing replit.js: %v", err)
-		}
+		_ = os.Remove("repl.js");
 	}()
 
-	runCmd := exec.Command("./k6", "run", "-q", "--no-summary", "replit.js")
+	runCmd := exec.Command("./k6", "run", "-q", "--no-summary", "repl.js")
 	runCmd.Stdin = os.Stdin   // so we can type commands interactively
 	runCmd.Stdout = os.Stdout // send REPL output to our terminal
 	runCmd.Stderr = os.Stderr // send errors directly to our terminal
