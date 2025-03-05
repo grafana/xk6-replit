@@ -3,6 +3,7 @@ package replit
 import (
 	_ "embed"
 	"os"
+	"strings"
 
 	"github.com/chzyer/readline"
 	"github.com/fatih/color"
@@ -39,7 +40,11 @@ func NewAPI(vu modules.VU) *API {
 		panic(err)
 	}
 	api.Read = func() (string, error) {
-		line, err := rl.Readline()
+		line, err := readMultiLine(rl, multilineOpts{
+			promptSingleline: ">>> ",
+			promptMultiline:  "... ",
+			eolMarker:        ";",
+		})
 		if err != nil {
 			return "", err
 		}
@@ -66,4 +71,37 @@ func NewAPI(vu modules.VU) *API {
 	api.Repl = jsValues.ToObject(vu.Runtime()).Get("repl")
 
 	return api
+}
+
+type multilineOpts struct {
+	promptSingleline string
+	promptMultiline  string
+	eolMarker        string // end of line marker (e.g. ";")
+}
+
+func readMultiLine(rl *readline.Instance, opts multilineOpts) (string, error) {
+	prompt := opts.promptSingleline           // start with single-line prompt
+	defer rl.SetPrompt(opts.promptSingleline) // reset prompt
+
+	var lines []string
+	for {
+		rl.SetPrompt(prompt)
+
+		line, err := rl.Readline()
+		if err != nil {
+			return "", err
+		}
+		line = strings.TrimSpace(line)
+		if strings.TrimSpace(line) == "" { // skip empty lines
+			continue
+		}
+		lines = append(lines, line)
+		if strings.HasSuffix(line, opts.eolMarker) { // saw the marker; stop accumulation
+			break
+		}
+
+		prompt = opts.promptMultiline // switch to multiline prompt
+	}
+
+	return strings.Join(lines, "\n"), nil
 }
