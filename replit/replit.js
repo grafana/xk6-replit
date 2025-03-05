@@ -54,10 +54,13 @@
                 }
 
                 var result = await fn(...args); // the user's code result
-                if (result !== undefined && result !== null) {
+
+                if (result !== undefined) {
                     // Fall back to .toString() if it's a primitive or can't be stringified
                     // Or do a quick test to see if it's an object
                     replit.log(typeof result === "object" ? _inspect(result) : result.toString());
+                } else {
+                    replit.log("undefined")
                 }
 
                 // Easily access the last expression result with '_'.
