@@ -1,12 +1,14 @@
 package replit
 
 import (
+	"bytes"
 	_ "embed"
 	"errors"
 	"fmt"
 	"os"
 	"strings"
 
+	"github.com/alecthomas/chroma/quick"
 	"github.com/chzyer/readline"
 	"github.com/fatih/color"
 	"github.com/grafana/sobek"
@@ -19,10 +21,11 @@ var replitJS string
 // API is the exposed JS module with a REPL backend.
 type API struct {
 	// NEW API
-	Read  func() (string, error)
-	Log   func(msg string)
-	Warn  func(msg string)
-	Error func(msg string)
+	Read      func() (string, error)
+	Log       func(msg string)
+	Warn      func(msg string)
+	Error     func(msg string)
+	Highlight func(msg string)
 
 	// Read from JS code
 	Repl sobek.Value `js:"with"`
@@ -72,6 +75,9 @@ func NewAPI(vu modules.VU) *API {
 	}
 	api.Error = func(msg string) {
 		color.Red(msg)
+	}
+	api.Highlight = func(msg string) {
+		fmt.Println(highlight(msg, "json"))
 	}
 
 	rt := vu.Runtime()
@@ -161,4 +167,14 @@ func (hc *historyAutoCompleter) Do(line []rune, pos int) ([][]rune, int) {
 	}
 	// Return the suggestions and the length of the common prefix.
 	return suggestions, pos
+}
+
+// highlight formats code with ANSI escape codes.
+func highlight(code, lang string) string {
+	var buf bytes.Buffer
+	err := quick.Highlight(&buf, code, lang, "terminal", "monokai")
+	if err != nil {
+		return code
+	}
+	return buf.String()
 }
