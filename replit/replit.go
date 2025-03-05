@@ -18,6 +18,7 @@ type API struct {
 	// NEW API
 	Read  func() (string, error)
 	Log   func(msg string)
+	Warn  func(msg string)
 	Error func(msg string)
 
 	// Read from JS code
@@ -49,6 +50,9 @@ func NewAPI(vu modules.VU) *API {
 	}
 	api.Log = func(msg string) {
 		color.Green(msg)
+	}
+	api.Warn = func(msg string) {
+		color.Yellow(msg)
 	}
 	api.Error = func(msg string) {
 		color.Red(msg)

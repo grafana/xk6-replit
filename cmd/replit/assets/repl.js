@@ -16,6 +16,10 @@ export const options = {
     },
 };
 
+// TODO:
+// We want to import more modules by default (maybe even all of them?)
+// or allow the user to somehow specify this via the CLI helper.
+
 export default async function () {
     await replit.repl(replit, {http: http, browser: browser, sleep: sleep});
 }

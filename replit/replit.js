@@ -60,13 +60,13 @@
                 if (error.toString() == "GoError: EOF") {
                     break;
                 }
-                replit.error(error.toString(), 'red');
+                replit.error(error.toString());
             }
 
             input = input.trim();
             if (input.startsWith("let ") || input.startsWith("const ") || input.startsWith("var ")) {
-                replit.error("Invalid assignment in REPL context.", 'red');
-                replit.error("Hint: In order to set a variable globally, use `foo = 123`.", 'red');
+                replit.warn("Variable assignment had no effect in REPL context.");
+                replit.log("Hint: in order to assign a variable globally, use `foo = 123`.");
             }
         }
     };
