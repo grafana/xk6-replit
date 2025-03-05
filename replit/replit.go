@@ -1,30 +1,25 @@
 package replit
 
 import (
-	"bufio"
-	"encoding/json"
-	"fmt"
-	"net"
-	"strings"
-	"sync"
+	"os"
 
+	"github.com/chzyer/readline"
+	"github.com/fatih/color"
 	"github.com/grafana/sobek"
 	"go.k6.io/k6/js/modules"
 )
 
-// Response struct for JSON serialization
-type Response struct {
-	Status  string `json:"status"`
-	Output  string `json:"output,omitempty"`
-	Message string `json:"message,omitempty"`
-	Error   string `json:"error,omitempty"`
-}
-
 // API is the exposed JS module with a REPL backend.
 type API struct {
+	// OLD API
 	Greeting string
 	Run      func(string) (sobek.Value, error)
 	Block    func()
+
+	// NEW API
+	Read  func() (string, error)
+	Log   func(msg string)
+	Error func(msg string)
 }
 
 // NewAPI returns a new API instance.
@@ -38,83 +33,34 @@ func NewAPI(vu modules.VU) *API {
 	api.Block = func() {
 		startREPLServer(api)
 	}
-	return api
-}
 
-// Start a TCP REPL server to accept and execute commands.
-func startREPLServer(api *API) {
-	ln, err := net.Listen("tcp", ":8089") // Listen on port 8089
+	// NEW API
+
+	rl, err := readline.NewEx(&readline.Config{
+		Prompt:          "> ",
+		HistoryFile:     "/tmp/k6-repl-history",
+		InterruptPrompt: "^C",
+		EOFPrompt:       "exit",
+	})
 	if err != nil {
-		fmt.Println("Error starting REPL server:", err)
-		return
+		panic(err)
 	}
-	fmt.Println("REPL server running on port 8089...")
-
-	var wg sync.WaitGroup
-	shutdown := make(chan struct{})
-	once := &sync.Once{} // Ensures shutdown is only triggered once
-
-	go func() {
-		<-shutdown
-		ln.Close()
-		wg.Wait() // Ensure all goroutines finish before exiting
-		fmt.Println("Server shutting down...")
-	}()
-
-	for {
-		conn, err := ln.Accept()
+	api.Read = func() (string, error) {
+		line, err := rl.Readline()
 		if err != nil {
-			select {
-			case <-shutdown:
-				return // Stop accepting new connections on shutdown
-			default:
-				fmt.Println("Error accepting connection:", err)
-			}
-			continue
+			return "", err
 		}
-
-		wg.Add(1)
-		go func() {
-			handleConnection(conn, api, shutdown, once)
-			wg.Done()
-		}()
+		if line == "clear" {
+			readline.ClearScreen(os.Stdout)
+		}
+		return line, nil
 	}
-}
-
-// Handle incoming REPL commands.
-func handleConnection(conn net.Conn, api *API, shutdown chan struct{}, once *sync.Once) {
-	defer conn.Close()
-	reader := bufio.NewReader(conn)
-
-	for {
-		cmd, err := reader.ReadString('\n')
-		if err != nil {
-			sendResponse(conn, Response{Status: "error", Error: "Connection closed"})
-			return
-		}
-
-		cmd = strings.TrimSpace(cmd)
-		if cmd == "exit" {
-			sendResponse(conn, Response{Status: "exit", Message: "Shutting down REPL..."})
-			once.Do(func() { close(shutdown) }) // Close only once
-			return
-		}
-
-		result, err := api.Run(cmd)
-		if err != nil {
-			sendResponse(conn, Response{Status: "error", Error: err.Error()})
-			continue
-		}
-		if result.String() != "undefined" {
-			sendResponse(conn, Response{Status: "ok", Output: result.String()})
-		} else {
-			sendResponse(conn, Response{})
-		}
+	api.Log = func(msg string) {
+		color.Green(msg)
 	}
-}
+	api.Error = func(msg string) {
+		color.Red(msg)
+	}
 
-// sendResponse encodes the response as JSON and writes it to the connection.
-func sendResponse(conn net.Conn, response Response) {
-	data, _ := json.Marshal(response)
-	conn.Write(append(data, '\n')) // Append newline for easy parsing
+	return api
 }

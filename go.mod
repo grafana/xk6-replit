@@ -10,6 +10,7 @@ require (
 
 require (
 	github.com/cenkalti/backoff/v4 v4.3.0 // indirect
+	github.com/chzyer/readline v1.5.1 // indirect
 	github.com/dlclark/regexp2 v1.11.4 // indirect
 	github.com/evanw/esbuild v0.24.2 // indirect
 	github.com/fatih/color v1.18.0 // indirect
