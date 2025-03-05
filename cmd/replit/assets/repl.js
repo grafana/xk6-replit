@@ -17,12 +17,6 @@ export const options = {
 };
 
 export default async function () {
-    // We need to copy these over to the global context otherwise they
-    // are not accessible from the newly created AsyncFunction below.
-    global.http = http
-    global.browser = browser
-    global.sleep = sleep
-
-    replit.repl(replit);
+    await replit.repl(replit, {http: http, browser: browser, sleep: sleep});
 }
 

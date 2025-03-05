@@ -4,6 +4,8 @@
 // In particular, Immediately Invoked Function Expressions (IIFE) are used here.
 
 (function() {
+    const AsyncFunction = Object.getPrototypeOf(async function(){}).constructor;
+
     function _inspect(obj) {
         // NOTE: Circular references will throw an error unless we handle them,
         // so let's do a naive replacer that short-circuits circular refs.
@@ -24,8 +26,10 @@
     }
 
     async function repl(replit, context) {
-        context = context || {};
-        const AsyncFunction = Object.getPrototypeOf(async function(){}).constructor;
+        // Set some global properties, from context, for the user to use.
+        for (const [k, v] of Object.entries(context || {})) {
+            global[k] = v
+        }
 
         while (true) {
             try {
@@ -37,13 +41,13 @@
                 var fn = undefined;
                 try {
                     // Input was an expression
-                    fn = AsyncFunction("context", "return " + input)
+                    fn = AsyncFunction("return " + input)
                 } catch (error) {
                     // Input was a statement
-                    fn = AsyncFunction("context", input)
+                    fn = AsyncFunction(input)
                 }
 
-                var result = await fn(context); // the user's code result
+                var result = await fn(); // the user's code result
                 if (result !== undefined && result !== null) {
                     // Fall back to .toString() if it's a primitive or can't be stringified
                     // Or do a quick test to see if it's an object
