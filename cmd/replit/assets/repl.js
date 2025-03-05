@@ -23,6 +23,6 @@ export default async function () {
     global.browser = browser
     global.sleep = sleep
 
-    await replit.repl(replit);
+    replit.repl(replit);
 }
 

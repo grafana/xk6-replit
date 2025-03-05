@@ -23,7 +23,8 @@
         );
     }
 
-    async function repl(replit) {
+    async function repl(replit, context) {
+        context = context || {};
         const AsyncFunction = Object.getPrototypeOf(async function(){}).constructor;
 
         while (true) {
@@ -36,13 +37,13 @@
                 var fn = undefined;
                 try {
                     // Input was an expression
-                    fn = AsyncFunction("return " + input)
+                    fn = AsyncFunction("context", "return " + input)
                 } catch (error) {
                     // Input was a statement
-                    fn = AsyncFunction(input)
+                    fn = AsyncFunction("context", input)
                 }
 
-                var result = await fn(); // the user's code result
+                var result = await fn(context); // the user's code result
                 if (result !== undefined && result !== null) {
                     // Fall back to .toString() if it's a primitive or can't be stringified
                     // Or do a quick test to see if it's an object

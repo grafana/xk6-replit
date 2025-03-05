@@ -19,7 +19,7 @@ type API struct {
 	Read  func() (string, error)
 	Log   func(msg string)
 	Error func(msg string)
-	Repl  func(sobek.Value) (sobek.Value, error)
+	Repl  func(...sobek.Value) (sobek.Value, error)
 }
 
 // NewAPI returns a new API instance.
@@ -58,13 +58,13 @@ func NewAPI(vu modules.VU) *API {
 	}
 	replFn := jsValues.ToObject(vu.Runtime()).Get("repl")
 
-	api.Repl = func(v sobek.Value) (sobek.Value, error) {
+	api.Repl = func(v ...sobek.Value) (sobek.Value, error) {
 		result, ok := sobek.AssertFunction(replFn)
 		if !ok {
 			panic("replit.js is incorrectly defined")
 		}
 
-		return result(replFn, v)
+		return result(replFn, v...)
 	}
 
 	return api
