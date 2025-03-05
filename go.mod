@@ -3,22 +3,21 @@ module github.com/grafana/xk6-replit
 go 1.24.0
 
 require (
-	github.com/gorilla/websocket v1.5.3
-	github.com/grafana/sobek v0.0.0-20241024150027-d91f02b05e9b
+	github.com/chzyer/readline v1.5.1
+	github.com/fatih/color v1.18.0
 	go.k6.io/k6 v0.57.0
 )
 
 require (
 	github.com/cenkalti/backoff/v4 v4.3.0 // indirect
-	github.com/chzyer/readline v1.5.1 // indirect
 	github.com/dlclark/regexp2 v1.11.4 // indirect
 	github.com/evanw/esbuild v0.24.2 // indirect
-	github.com/fatih/color v1.18.0 // indirect
 	github.com/go-logr/logr v1.4.2 // indirect
 	github.com/go-logr/stdr v1.2.2 // indirect
 	github.com/go-sourcemap/sourcemap v2.1.4+incompatible // indirect
 	github.com/google/pprof v0.0.0-20230728192033-2ba5b33183c6 // indirect
 	github.com/google/uuid v1.6.0 // indirect
+	github.com/grafana/sobek v0.0.0-20241024150027-d91f02b05e9b // indirect
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.22.0 // indirect
 	github.com/josharian/intern v1.0.0 // indirect
 	github.com/mailru/easyjson v0.9.0 // indirect

@@ -5,17 +5,11 @@ import (
 
 	"github.com/chzyer/readline"
 	"github.com/fatih/color"
-	"github.com/grafana/sobek"
 	"go.k6.io/k6/js/modules"
 )
 
 // API is the exposed JS module with a REPL backend.
 type API struct {
-	// OLD API
-	Greeting string
-	Run      func(string) (sobek.Value, error)
-	Block    func()
-
 	// NEW API
 	Read  func() (string, error)
 	Log   func(msg string)
@@ -24,17 +18,7 @@ type API struct {
 
 // NewAPI returns a new API instance.
 func NewAPI(vu modules.VU) *API {
-	api := &API{
-		Greeting: "WELCOME TO REPLIT!",
-		Run: func(code string) (sobek.Value, error) {
-			return vu.Runtime().RunString(code)
-		},
-	}
-	api.Block = func() {
-		startREPLServer(api)
-	}
-
-	// NEW API
+	api := &API{}
 
 	rl, err := readline.NewEx(&readline.Config{
 		Prompt:          "> ",
