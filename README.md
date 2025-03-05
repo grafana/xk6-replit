@@ -13,7 +13,7 @@ go build -o repl ./cmd/replit
 ## Run as an extension
 
 ```bash
-xk6 run -q --no-summary cmd/replit/assets/replit.js
+xk6 run -q --no-summary cmd/replit/assets/repl.js
 ```
 
 ## Build the extension
@@ -21,6 +21,6 @@ xk6 run -q --no-summary cmd/replit/assets/replit.js
 ```bash
 xk6 build --with github.com/grafana/xk6-replit=.
 # run
-./k6 run -q --no-summary cmd/replit/assets/replit.js
+./k6 run -q --no-summary cmd/replit/assets/repl.js
 ```
 
