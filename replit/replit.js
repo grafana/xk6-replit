@@ -26,10 +26,15 @@
     }
 
     async function repl(replit, context) {
+        if (!replit) {
+            throw new Error("Usage: replit.repl(replit, [context])")
+        }
+
         // Set some global properties, from context, for the user to use.
         for (const [k, v] of Object.entries(context || {})) {
-            global[k] = v
+            global[k] = v;
         }
+        global.replit = replit;
 
         while (true) {
             try {
@@ -41,10 +46,10 @@
                 var fn = undefined;
                 try {
                     // Input was an expression
-                    fn = AsyncFunction("return " + input)
+                    fn = AsyncFunction("return " + input);
                 } catch (error) {
                     // Input was a statement
-                    fn = AsyncFunction(input)
+                    fn = AsyncFunction(input);
                 }
 
                 var result = await fn(); // the user's code result
