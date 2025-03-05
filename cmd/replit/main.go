@@ -3,10 +3,12 @@ package main
 import (
 	"bytes"
 	"fmt"
+	"io"
 	"log"
 	"os"
 	"os/exec"
 	"path/filepath"
+	"strings"
 
 	_ "embed"
 )
@@ -17,9 +19,39 @@ var customK6Path = filepath.Join(".", "k6")
 func main() {
 	var scriptPath string
 	if len(os.Args) < 2 {
-		log.Fatalf("Usage: replit <script.js>", os.Args[0])
+		exit(1, "Usage: replit <script.js>")
 	}
 	scriptPath = os.Args[1]
+
+	// check if the script imports k6/replit
+	scriptFile, err := os.Open(scriptPath)
+	if err != nil {
+		exit(1, fmt.Sprintf("Error opening script file: %v", err))
+	}
+	defer scriptFile.Close()
+
+	buf, err := io.ReadAll(scriptFile)
+	if err != nil {
+		exit(1, fmt.Sprintf("Error reading script file: %v", err))
+	}
+	if !bytes.Contains(buf, []byte(`import { replit } from "k6/x/replit";`)) {
+		exit(1, strings.TrimSpace(`
+The script must import k6/x/replit to use the replit feature.
+
+Usage:
+	import { replit } from "k6/x/replit";
+	// other imports...
+	// your script code...`))
+	}
+	if !bytes.Contains(buf, []byte(`await replit.with(`)) {
+		exit(1, strings.TrimSpace(`
+The script must use replit.with() to start the REPL.
+
+Usage:
+	await replit.with();
+	// or:
+	await replit.with({myVariable: 42});`))
+	}
 
 	// 1. Check if the custom k6 binary already exists.
 	if _, err := os.Stat(customK6Path); os.IsNotExist(err) {
@@ -53,4 +85,9 @@ func main() {
 	if err := runCmd.Run(); err != nil {
 		log.Fatalf("Error running k6: %v", err)
 	}
+}
+
+func exit(status int, message string) {
+	fmt.Fprintln(os.Stderr, message)
+	os.Exit(status)
 }
