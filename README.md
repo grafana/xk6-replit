@@ -2,30 +2,7 @@
 
 Your REPL to k6.
 
-## Running a standalone REPL
-
-You can run a standalone REPL (i.e. without any context) via the following methods:
-
-### Run using CLI helper
-
-```bash
-go run ./cmd/replit
-```
-
-### Run as an extension
-
-```bash
-xk6 run -q --no-summary cmd/replit/assets/repl.js
-```
-
-### Build the extension and run the k6 binary separately
-
-```bash
-xk6 build --with github.com/grafana/xk6-replit=.
-./k6 run -q --no-summary cmd/replit/assets/repl.js
-```
-
-## Running a REPL inside an existing k6 test
+## Using REPLIT inside an existing k6 test
 
 You can drop into a REPL from within an existing k6 test via the following methods.
 You will need to modify your script so that it includes the `replit` import, and await the `replit.with` function.
@@ -49,6 +26,27 @@ export default async function () {
 
 > [!NOTE]
 > Your exported default function will need to be `async` for `replit` to work.
+
+## Running
+
+You can run a standalone REPL (i.e. without any context) via the following methods:
+
+### Run using CLI helper
+
+```bash
+go run ./cmd/replit examples/http.js
+```
+
+### Build the CLI tool and run it separately
+
+```bash
+go build ./cmd/replit
+./replit examples/http.js
+```
+
+> [!NOTE]
+> The CLI tool requires [Go](https://go.dev/doc/install) and [xk6](https://github.com/grafana/xk6) to be installed.
+
 
 ### Run as an extension
 
