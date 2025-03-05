@@ -2,6 +2,7 @@ package replit
 
 import (
 	_ "embed"
+	"fmt"
 	"os"
 	"strings"
 
@@ -39,6 +40,15 @@ func NewAPI(vu modules.VU) *API {
 	if err != nil {
 		panic(err)
 	}
+	// setup autocomplete
+	var hc historyAutoCompleter
+	if rl.Config.HistoryFile != "" {
+		if err := hc.loadFromFile(rl.Config.HistoryFile); err != nil {
+			panic(err)
+		}
+	}
+	rl.Config.AutoComplete = &hc
+
 	api.Read = func() (string, error) {
 		line, err := readMultiLine(rl, multilineOpts{
 			promptSingleline: ">>> ",
@@ -107,4 +117,41 @@ func readMultiLine(rl *readline.Instance, opts multilineOpts) (string, error) {
 	}
 
 	return strings.Join(lines, "\n"), nil
+}
+
+// historyAutoCompleter implements the readline.Completer interface.
+// It suggests completions from the history slice.
+type historyAutoCompleter struct {
+	history []string
+}
+
+func (hc *historyAutoCompleter) loadFromFile(filename string) error {
+	buf, err := os.ReadFile(filename)
+	if err != nil {
+		return fmt.Errorf("failed to open history file: %w", err)
+	}
+	hc.history = strings.Split(string(buf), "\n")
+	return nil
+}
+
+// Do returns, for each candidate in history that starts with the current input (up to pos),
+// the suffix beyond that shared prefix. The returned length (pos) indicates how many characters
+// of the line are common and should be replaced.
+func (hc *historyAutoCompleter) Do(line []rune, pos int) ([][]rune, int) {
+	// Skip completing empty lines.
+	if strings.TrimSpace(string(line)) == "" {
+		return nil, 0
+	}
+	// Use the input up to pos as the prefix to complete.
+	prefix := string(line[:pos])
+	var suggestions [][]rune
+	for _, entry := range hc.history {
+		if strings.HasPrefix(entry, prefix) {
+			// Append the remainder of the entry (the part after the prefix).
+			remainder := entry[len(prefix):]
+			suggestions = append(suggestions, []rune(remainder))
+		}
+	}
+	// Return the suggestions and the length of the common prefix.
+	return suggestions, pos
 }
