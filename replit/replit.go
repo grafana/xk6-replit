@@ -2,6 +2,7 @@ package replit
 
 import (
 	_ "embed"
+	"errors"
 	"fmt"
 	"os"
 	"strings"
@@ -101,6 +102,12 @@ func readMultiLine(rl *readline.Instance, opts multilineOpts) (string, error) {
 		rl.SetPrompt(prompt)
 
 		line, err := rl.Readline()
+		if errors.Is(err, readline.ErrInterrupt) {
+			if len(line) != 0 {
+				continue // skip partially typed input
+			}
+			continue // skip empty lines
+		}
 		if err != nil {
 			return "", err
 		}
