@@ -23,7 +23,7 @@ type API struct {
 	Error func(msg string)
 
 	// Read from JS code
-	Repl sobek.Value
+	Repl sobek.Value `js:"with"`
 }
 
 // NewAPI returns a new API instance.
