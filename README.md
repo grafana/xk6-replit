@@ -32,6 +32,7 @@ You will need to modify your script so that it includes the `replit` import, and
 The `replit.repl` function takes as its first argument the `replit` module itself, and as a second (optional) argument an object containing a context to make available for use in the REPL. This object can contain variables and modules. Here's an example:
 
 ```js
+// You can find this example in examples/http.js
 import { replit } from "k6/x/replit";
 import http from "k6/http";
 
@@ -53,12 +54,12 @@ export default async function () {
 ### Run as an extension
 
 ```bash
-xk6 run -q --no-summary my_script.js
+xk6 run -q --no-summary examples/http.js
 ```
 
 ### Build the extension and run the k6 binary separately
 
 ```bash
 xk6 build --with github.com/grafana/xk6-replit=.
-./k6 run -q --no-summary my_script.js
+./k6 run -q --no-summary examples/http.js
 ```
