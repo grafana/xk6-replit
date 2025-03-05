@@ -63,12 +63,16 @@ func NewAPI(vu modules.VU) *API {
 		color.Red(msg)
 	}
 
-	jsValues, err := vu.Runtime().RunString(jsCode)
+	rt := vu.Runtime()
+	if err := rt.GlobalObject().Set("replit", api); err != nil {
+		panic(err)
+	}
+	jsValues, err := rt.RunString(jsCode)
 	if err != nil {
 		panic(err)
 	}
 
-	api.Repl = jsValues.ToObject(vu.Runtime()).Get("repl")
+	api.Repl = jsValues.ToObject(rt).Get("repl")
 
 	return api
 }

@@ -3,6 +3,8 @@
 // Other functions are defined in Go as well.
 // In particular, Immediately Invoked Function Expressions (IIFE) are used here.
 
+var replit; // replit module will be injected by the module itself
+
 (function() {
     const AsyncFunction = Object.getPrototypeOf(async function(){}).constructor;
 
@@ -25,11 +27,7 @@
         );
     }
 
-    async function repl(replit, context) {
-        if (!replit) {
-            throw new Error("Usage: replit.repl(replit, [context])")
-        }
-
+    async function repl(context) {
         let params = [];
         let args = [];
         for (const [k, v] of Object.entries(context || {})) {
