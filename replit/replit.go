@@ -12,7 +12,7 @@ import (
 )
 
 //go:embed replit.js
-var jsCode string
+var replitJS string
 
 // API is the exposed JS module with a REPL backend.
 type API struct {
@@ -67,12 +67,11 @@ func NewAPI(vu modules.VU) *API {
 	if err := rt.GlobalObject().Set("replit", api); err != nil {
 		panic(err)
 	}
-	jsValues, err := rt.RunString(jsCode)
+	rjs, err := rt.RunString(replitJS)
 	if err != nil {
 		panic(err)
 	}
-
-	api.Repl = jsValues.ToObject(rt).Get("repl")
+	api.Repl = rjs.ToObject(rt).Get("repl") // get the repl function in the script
 
 	return api
 }
