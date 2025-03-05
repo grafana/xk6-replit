@@ -9,6 +9,14 @@ import (
 	"sync"
 )
 
+// Response struct for JSON serialization
+type Response struct {
+	Status  string `json:"status"`
+	Output  string `json:"output,omitempty"`
+	Message string `json:"message,omitempty"`
+	Error   string `json:"error,omitempty"`
+}
+
 // Start a TCP REPL server to accept and execute commands.
 func startREPLServer(api *API) {
 	ln, err := net.Listen("tcp", ":8089") // Listen on port 8089

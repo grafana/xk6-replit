@@ -9,14 +9,6 @@ import (
 	"go.k6.io/k6/js/modules"
 )
 
-// Response struct for JSON serialization
-type Response struct {
-	Status  string `json:"status"`
-	Output  string `json:"output,omitempty"`
-	Message string `json:"message,omitempty"`
-	Error   string `json:"error,omitempty"`
-}
-
 // API is the exposed JS module with a REPL backend.
 type API struct {
 	// OLD API
