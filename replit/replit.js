@@ -30,11 +30,12 @@
             throw new Error("Usage: replit.repl(replit, [context])")
         }
 
-        // Set some global properties, from context, for the user to use.
+        let params = [];
+        let args = [];
         for (const [k, v] of Object.entries(context || {})) {
-            global[k] = v;
+            params.push(k);
+            args.push(v);
         }
-        global.replit = replit;
 
         while (true) {
             try {
@@ -46,13 +47,13 @@
                 var fn = undefined;
                 try {
                     // Input was an expression
-                    fn = AsyncFunction("return " + input);
+                    fn = AsyncFunction(...params.concat(["return " + input]));
                 } catch (error) {
                     // Input was a statement
-                    fn = AsyncFunction(input);
+                    fn = AsyncFunction(...params.concat([input]));
                 }
 
-                var result = await fn(); // the user's code result
+                var result = await fn(...args); // the user's code result
                 if (result !== undefined && result !== null) {
                     // Fall back to .toString() if it's a primitive or can't be stringified
                     // Or do a quick test to see if it's an object
