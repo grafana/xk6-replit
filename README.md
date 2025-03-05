@@ -5,15 +5,15 @@ Your REPL to k6.
 ## Run from CLI
 
 ```bash
-go build ./cmd/replit
+go build -o repl ./cmd/replit
 # run
-./replit
+./repl
 ```
 
 ## Run as an extension
 
 ```bash
-xk6 run -q --no-summary examples/replit.js
+xk6 run -q --no-summary cmd/replit/assets/replit.js
 ```
 
 ## Build the extension
@@ -21,6 +21,6 @@ xk6 run -q --no-summary examples/replit.js
 ```bash
 xk6 build --with github.com/grafana/xk6-replit=.
 # run
-./k6 run -q --no-summary examples/replit.js
+./k6 run -q --no-summary cmd/replit/assets/replit.js
 ```
 

@@ -25,7 +25,7 @@ func main() {
 		// We'll capture xk6's output, but won't show it unless there's an error.
 		var out bytes.Buffer
 		buildCmd := exec.Command("xk6", "build",
-			"--with", "github.com/grafana/xk6-replit@latest",
+			"--with", "github.com/grafana/xk6-replit=.",
 		)
 		// Capture stdout/stderr in the same buffer:
 		buildCmd.Stdout = &out
