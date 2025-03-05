@@ -39,9 +39,11 @@ go run ./cmd/replit examples/http.js
 
 ### Build the CLI tool and run it separately
 
+This will allow you to re-run the CLI tool much faster.
+
 ```bash
-go build ./cmd/replit
-./replit examples/http.js
+go build -o bin/replit ./cmd/replit
+./bin/replit examples/http.js
 ```
 
 > [!NOTE]
@@ -55,6 +57,8 @@ xk6 run -q --no-summary examples/http.js
 ```
 
 ### Build the extension and run the k6 binary separately
+
+This will allow you to re-run the k6 binary much faster.
 
 ```bash
 xk6 build --with github.com/grafana/xk6-replit=.
