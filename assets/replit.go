@@ -17,10 +17,22 @@ var embeddedK6 []byte
 // We want to import more modules by default (maybe even all of them?)
 // or allow the user to somehow specify modules via CLI args.
 const standalonejs = `
-import http from "k6/http";
-import { browser } from "k6/browser";
 import { replit } from "k6/x/replit";
-import { sleep } from "k6";
+import http from "k6/http";
+import html from "k6/html";
+import { browser } from "k6/browser";
+import crypto from "k6/crypto";
+import { SharedArray } from "k6/data";
+import encoding from "k6/encoding";
+import exec from "k6/execution";
+import { Counter, Rate, Gauge, Trend } from "k6/metrics";
+import grpc from "k6/net/grpc";
+import ws from "k6/ws";
+
+import fs from "k6/experimental/fs";
+import redis from "k6/experimental/redis";
+import streams from "k6/experimental/streams";
+import csv from "k6/experimental/csv";
 
 export const options = {
     scenarios: {
@@ -36,7 +48,25 @@ export const options = {
 };
 
 export default async function () {
-    await replit.with({http: http, browser: browser, sleep: sleep});
+    await replit.with({
+        http: http,
+        html: html,
+        browser: browser,
+        crypto: crypto,
+        SharedArray: SharedArray,
+        encoding: encoding,
+        exec: exec,
+        Counter: Counter,
+        Rate: Rate,
+        Gauge: Gauge,
+        Trend: Trend,
+        grpc: grpc,
+        ws: ws,
+        fs: fs,
+        redis: redis,
+        streams: streams,
+        csv: csv,
+    });
 }
 `
 
@@ -61,7 +91,7 @@ func main() {
 		log.Fatalf("Error writing embedded k6 binary: %v", err)
 	}
 
-	fmt.Println("Welcome to REPLIT!")
+	fmt.Println("Welcome to k6 REPLIT!")
 	// Execute the custom k6 binary with the provided script.
 	runCmd := exec.Command(customK6Path, "run", "-q", "--no-summary", scriptPath)
 	runCmd.Stdin = os.Stdin

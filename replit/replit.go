@@ -77,7 +77,7 @@ func NewAPI(vu modules.VU) *API {
 		color.Red(msg)
 	}
 	api.Highlight = func(msg string) {
-		fmt.Println(highlight(msg, "json"))
+		fmt.Println(highlight(msg, "javascript"))
 	}
 
 	rt := vu.Runtime()
