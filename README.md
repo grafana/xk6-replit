@@ -8,15 +8,35 @@ REPLIT allows you to interact with your k6 script in real-time, inspecting varia
 - Instead of running the whole script, you send each script line through the REPL.
 - Benefit: Interactive environment to speed up test creation process. It also helps while learning the k6 APIs.
 
-## Using REPLIT inside an existing k6 test
+## Install REPLIT
 
-You can drop into a REPL from within an existing k6 test via the following methods.
+There's two ways of getting REPLIT:
 
+### Via prebuilt `replit` binaries
+
+You can find REPLIT binaries in the [releases](https://github.com/grafana/xk6-replit/releases/tag/v0.1) section. These binaries simply wrap an extended `k6` binary with some additional utilities and pre-set CLI arguments.
+
+### Via xk6
+
+Clone this repository and build the extended `k6` binary manually, using [xk6](https://github.com/grafana/xk6):
+```bash
+git clone git@github.com:grafana/xk6-replit.git
+cd xk6-replit
+xk6 build --with github.com/grafana/xk6-replit=.
+./k6 version
+```
+
+## Use REPLIT
+
+You can use REPLIT in two different ways: either from within an existing k6 script, or as a standalone application.
+
+### REPLIT in your k6 script
+
+You can drop into a REPL from within an existing k6 test by doing the following:
 1. Import from `k6/x/replit`.
-1. Use the `replit.with` function to block the script execution.
-1. Optionally pass an object containing the context you want to interact with (including variables, modules, etc.).
-1. Run the script as explained in the [running](#running-replit) section.
-1. Interact with the REPL as explained in the [interacting](#interacting-with-the-repl) section.
+2. Use the `replit.with` function to block the script execution.
+3. Optionally pass an object containing the context you want to interact with (including variables, modules, etc.).
+4. Run REPLIT.
 
 Here's an example:
 
@@ -42,9 +62,7 @@ export default async function () {
 > [!TIP]
 > You can add as many `replit.with` calls as you want in your script, and you can pass different contexts to each one.
 
-### Interacting with the REPL
-
-Once you [run](#running) the above script, you will be dropped into a REPL where you can interact with the context you passed in.
+To run the script, use either `./replit my_script.js` (in case you downloaded the REPLIT binary) or `./k6 run my_script.js` (if you built `k6` locally using xk6). You will then be able to do the following:
 
 ```bash
 >>> result
@@ -58,6 +76,11 @@ Once you [run](#running) the above script, you will be dropped into a REPL where
 { status: 200, statusText: 'OK', headers: {...}, body: ... }
 ```
 
+### REPLIT Standalone
+
+In order to run REPLIT as as a standalone application (for example, to experiment with different k6 JS libraries), download one of the REPLIT binaries and run it without any arguments (`./replit`).
+
+## Features
 ### Multi-line input
 
 REPLIT supports basic multi-line input. Once it sees a semicolon, it will execute the code. Otherwise, it will wait for more input. This allows you to copy and paste code snippets into the REPL directly and execute them.
@@ -84,55 +107,3 @@ result                        result.timings                result.blocked
 
 > [!TIP]
 > Press CTRL+D (or CMD+D on macOS) to exit the REPL and continue running the script.
-
-## Running REPLIT
-
-You can run a standalone REPL via the following methods:
-
-### Run using the release binaries
-
-You can find the standalone binaries in the [releases](https://github.com/grafana/xk6-replit/releases/tag/v0.1) section.
-
-```bash
-# Just run the binary
-./replit examples/http.js
-```
-
-> [!TIP]
-> Running the binary this way won't require you to have Go, k6, or xk6 installed.
-
-Read on if you want to run or build from source.
-
-### Run using CLI helper
-
-```bash
-go run ./cmd/replit examples/http.js
-```
-
-### Build the CLI tool and run it separately
-
-This will allow you to re-run the CLI tool much faster.
-
-```bash
-go build -o bin/replit ./cmd/replit
-./bin/replit examples/http.js
-```
-
-> [!NOTE]
-> The CLI tool requires [Go](https://go.dev/doc/install) and [xk6](https://github.com/grafana/xk6) to be installed.
-
-
-### Run as an extension
-
-```bash
-xk6 run -q --no-summary examples/http.js
-```
-
-### Build the extension and run the k6 binary separately
-
-This will allow you to re-run the k6 binary much faster.
-
-```bash
-xk6 build --with github.com/grafana/xk6-replit=.
-./k6 run -q --no-summary examples/http.js
-```
