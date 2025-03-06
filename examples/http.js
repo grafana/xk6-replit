@@ -6,7 +6,7 @@ export default async function () {
 
     // As context, we pass 'result', and the http module in case
     // we want to make additional requests.
-    await replit.with({result: result, http: http});
+    await replit.run({result: result, http: http});
 
     console.log("All done.")
 }

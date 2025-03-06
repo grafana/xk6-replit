@@ -48,7 +48,7 @@ export const options = {
 };
 
 export default async function () {
-    await replit.with({
+    await replit.run({
         http: http,
         html: html,
         browser: browser,

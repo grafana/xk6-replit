@@ -15,5 +15,5 @@ export const options = {
 };
 
 export default async function () {
-    await replit.with({browser: browser});
+    await replit.run({browser: browser});
 }

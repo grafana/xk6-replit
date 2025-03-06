@@ -28,7 +28,7 @@ type API struct {
 	Highlight func(msg string)
 
 	// Read from JS code
-	Repl sobek.Value `js:"with"`
+	Repl sobek.Value `js:"run"`
 }
 
 // NewAPI returns a new API instance.
