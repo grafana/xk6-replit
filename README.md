@@ -89,6 +89,20 @@ result                        result.timings                result.blocked
 
 You can run a standalone REPL (i.e. without any context) via the following methods:
 
+### Run using the release binaries
+
+You can find the standalone binaries in the [releases](https://github.com/grafana/xk6-replit/releases/tag/v0.1) section.
+
+```bash
+# Just run the binary
+./replit examples/http.js
+```
+
+> [!TIP]
+> Running the binary this way won't require you to have Go, k6, or xk6 installed.
+
+Read on if you want to run or build from source.
+
 ### Run using CLI helper
 
 ```bash
