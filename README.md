@@ -82,6 +82,14 @@ In order to run REPLIT as as a standalone application (for example, to experimen
 
 ## Features
 
+### Explore any k6 module APIs
+
+You can explore any k6 module just by including it in the context object passed to `replit.run`. See the [examples](./examples) folder for module exploration examples.
+
+### Colorized output
+
+REPLIT colorizes the output, making it easier to read and understand. It outputs differently depending on the output type (e.g., objects, strings, etc.). For objects, it uses JSON syntax highlighting, and for others, it uses JavaScript syntax highlighting.
+
 ### Multi-line input
 
 REPLIT supports multi-line input. It waits to execute the code until your input is compilable. This allows you to copy and paste code snippets directly into the REPL.
@@ -108,3 +116,4 @@ result                        result.timings                result.blocked
 
 > [!TIP]
 > Press CTRL+D (or CMD+D on macOS) to exit the REPL and continue running the script.
+
