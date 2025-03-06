@@ -81,9 +81,10 @@ To run the script, use either `./replit my_script.js` (in case you downloaded th
 In order to run REPLIT as as a standalone application (for example, to experiment with different k6 JS libraries), download one of the REPLIT binaries and run it without any arguments (`./replit`).
 
 ## Features
+
 ### Multi-line input
 
-REPLIT supports basic multi-line input. Once it sees a semicolon, it will execute the code. Otherwise, it will wait for more input. This allows you to copy and paste code snippets into the REPL directly and execute them.
+REPLIT supports multi-line input. It waits to execute the code until your input is compilable. This allows you to copy and paste code snippets directly into the REPL.
 
 ```bash
 >>> await new Promise(
