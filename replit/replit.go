@@ -57,7 +57,6 @@ func NewAPI(vu modules.VU) *API {
 		line, err := readMultiLine(rl, multilineOpts{
 			promptSingleline: ">>> ",
 			promptMultiline:  "... ",
-			eolMarker:        ";",
 		})
 		if err != nil {
 			return "", err
@@ -96,7 +95,6 @@ func NewAPI(vu modules.VU) *API {
 type multilineOpts struct {
 	promptSingleline string
 	promptMultiline  string
-	eolMarker        string // end of line marker (e.g. ";")
 }
 
 func readMultiLine(rl *readline.Instance, opts multilineOpts) (string, error) {
@@ -109,8 +107,10 @@ func readMultiLine(rl *readline.Instance, opts multilineOpts) (string, error) {
 
 		line, err := rl.Readline()
 		if errors.Is(err, readline.ErrInterrupt) {
-			if len(line) != 0 {
-				continue // skip partially typed input
+			if len(line) >= 0 {
+				// user interrupted multiline input, return
+				// whatever we've got so far
+				break
 			}
 			continue // skip empty lines
 		}
@@ -122,7 +122,10 @@ func readMultiLine(rl *readline.Instance, opts multilineOpts) (string, error) {
 			continue
 		}
 		lines = append(lines, line)
-		if strings.HasSuffix(line, opts.eolMarker) { // saw the marker; stop accumulation
+
+		// We need the function wrapper in order to enable 'await'
+		_, err = sobek.Compile("", "(async function(){"+strings.Join(lines, "\n")+"}())", false)
+		if err == nil {
 			break
 		}
 
