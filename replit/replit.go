@@ -123,7 +123,16 @@ func readMultiLine(rl *readline.Instance, opts multilineOpts) (string, error) {
 		}
 		lines = append(lines, line)
 
-		// We need the function wrapper in order to enable 'await'
+		// FIXME: The compiling logic here kind of needs to match whatever replit.js tries
+		// to run later (use or not of async, return, etc.). Ideally the logic should only
+		// be in one place.
+
+		// Try lines as an expression
+		_, err = sobek.Compile("", "(async function(){return "+strings.Join(lines, "\n")+"}())", false)
+		if err == nil {
+			break
+		}
+		// Try lines as a statement
 		_, err = sobek.Compile("", "(async function(){"+strings.Join(lines, "\n")+"}())", false)
 		if err == nil {
 			break

@@ -11,6 +11,8 @@ var replit; // replit module will be injected by the module itself
     function _inspect(obj) {
         // NOTE: Circular references will throw an error unless we handle them,
         // so let's do a naive replacer that short-circuits circular refs.
+        // FIXME: JSON has some limitations in representing objects, a bespoke solution
+        // would be better in order to properly print undefined, Symbols, Functions, etc.
         const seen = new WeakSet();
         return JSON.stringify(
             obj,
@@ -43,6 +45,8 @@ var replit; // replit module will be injected by the module itself
                 if (input === "exit") {
                     break;
                 }
+
+                // FIXME: See comment in replit.go readMultiLine.
 
                 var fn = undefined;
                 try {
