@@ -16,7 +16,7 @@ var embeddedK6 []byte
 // TODO:
 // We want to import more modules by default (maybe even all of them?)
 // or allow the user to somehow specify modules via CLI args.
-const repljs = `
+const standalonejs = `
 import http from "k6/http";
 import { browser } from "k6/browser";
 import { replit } from "k6/x/replit";
@@ -48,7 +48,7 @@ func main() {
 		// If no script was specified, then run a default one which just
 		// runs a standalone REPL.
 		scriptPath = filepath.Join(tmpDir, "repl.js")
-		if err := os.WriteFile(scriptPath, []byte(repljs), 0644); err != nil {
+		if err := os.WriteFile(scriptPath, []byte(standalonejs), 0644); err != nil {
 			log.Fatalf("Error writing embedded repl.js: %v", err)
 		}
 	} else {
