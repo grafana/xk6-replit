@@ -20,6 +20,8 @@ var replit; // replit module will be injected by the module itself
                         return "[Circular]";
                     }
                     seen.add(value);
+                } else if (typeof value === "function") {
+                    return value.toString();
                 }
                 return value;
             },
