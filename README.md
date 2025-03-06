@@ -73,7 +73,7 @@ REPLIT supports basic multi-line input. Once it sees a semicolon, it will execut
 
 ### Auto-completion
 
-REPLIT also supports auto-completion, so you can press `Tab` to see available properties and methods.
+REPLIT also supports auto-completion, so you can press `Tab` to see the relevant commands you previously typed in (from the history).
 
 ```bash
 >>> result <- pressed the tab key
@@ -87,7 +87,7 @@ result                        result.timings                result.blocked
 
 ## Running REPLIT
 
-You can run a standalone REPL (i.e. without any context) via the following methods:
+You can run a standalone REPL via the following methods:
 
 ### Run using the release binaries
 
