@@ -1,0 +1,166 @@
+{
+  "randomBytes": {
+    "kind": "declaration",
+    "name": "randomBytes",
+    "signature": "function randomBytes(size: number): ArrayBuffer;",
+    "documentation": "Generate random bytes."
+  },
+  "hmac": {
+    "kind": "declaration",
+    "name": "hmac",
+    "signature": "function hmac<OE extends OutputEncoding>( algorithm: Algorithm, secret: string | ArrayBuffer, input: string | ArrayBuffer, outputEncoding: OE, ): Output<OE>;",
+    "documentation": "Produce HMAC. https://grafana.com/docs/k6/latest/javascript-api/k6-crypto/hmac/"
+  },
+  "md4": {
+    "kind": "declaration",
+    "name": "md4",
+    "signature": "function md4<OE extends OutputEncoding>(input: string | ArrayBuffer, outputEncoding: OE): Output<OE>;",
+    "documentation": "Hash with MD4. https://grafana.com/docs/k6/latest/javascript-api/k6-crypto/md4/"
+  },
+  "md5": {
+    "kind": "declaration",
+    "name": "md5",
+    "signature": "function md5<OE extends OutputEncoding>(input: string | ArrayBuffer, outputEncoding: OE): Output<OE>;",
+    "documentation": "Hash with MD5. https://grafana.com/docs/k6/latest/javascript-api/k6-crypto/md5/"
+  },
+  "sha1": {
+    "kind": "declaration",
+    "name": "sha1",
+    "signature": "function sha1<OE extends OutputEncoding>(input: string | ArrayBuffer, outputEncoding: OE): Output<OE>;",
+    "documentation": "Hash with SHA-1. https://grafana.com/docs/k6/latest/javascript-api/k6-crypto/sha1/"
+  },
+  "sha256": {
+    "kind": "declaration",
+    "name": "sha256",
+    "signature": "function sha256<OE extends OutputEncoding>(input: string | ArrayBuffer, outputEncoding: OE): Output<OE>;",
+    "documentation": "Hash with SHA-256. https://grafana.com/docs/k6/latest/javascript-api/k6-crypto/sha256/"
+  },
+  "sha384": {
+    "kind": "declaration",
+    "name": "sha384",
+    "signature": "function sha384<OE extends OutputEncoding>(input: string | ArrayBuffer, outputEncoding: OE): Output<OE>;",
+    "documentation": "Hash with SHA-384. https://grafana.com/docs/k6/latest/javascript-api/k6-crypto/sha384/"
+  },
+  "sha512": {
+    "kind": "declaration",
+    "name": "sha512",
+    "signature": "function sha512<OE extends OutputEncoding>(input: string | ArrayBuffer, outputEncoding: OE): Output<OE>;",
+    "documentation": "Hash with SHA-512. https://grafana.com/docs/k6/latest/javascript-api/k6-crypto/sha512/"
+  },
+  "sha512_224": {
+    "kind": "declaration",
+    "name": "sha512_224",
+    "signature": "function sha512_224<OE extends OutputEncoding>(input: string | ArrayBuffer, outputEncoding: OE): Output<OE>;",
+    "documentation": "Hash with SHA-512/224. https://grafana.com/docs/k6/latest/javascript-api/k6-crypto/sha512_224/"
+  },
+  "sha512_256": {
+    "kind": "declaration",
+    "name": "sha512_256",
+    "signature": "function sha512_256<OE extends OutputEncoding>(input: string | ArrayBuffer, outputEncoding: OE): Output<OE>;",
+    "documentation": "Hash with SHA-512/256. https://grafana.com/docs/k6/latest/javascript-api/k6-crypto/sha512_256/"
+  },
+  "ripemd160": {
+    "kind": "declaration",
+    "name": "ripemd160",
+    "signature": "function ripemd160<OE extends OutputEncoding>(input: string | ArrayBuffer, outputEncoding: OE): Output<OE>;",
+    "documentation": "Hash with RIPEMD-160. https://grafana.com/docs/k6/latest/javascript-api/k6-crypto/ripemd160/"
+  },
+  "createHash": {
+    "kind": "declaration",
+    "name": "createHash",
+    "signature": "function createHash(algorithm: Algorithm): Hasher;",
+    "documentation": "Create a hashing object. https://grafana.com/docs/k6/latest/javascript-api/k6-crypto/createhash/"
+  },
+  "createHMAC": {
+    "kind": "declaration",
+    "name": "createHMAC",
+    "signature": "function createHMAC(algorithm: Algorithm, secret: string | ArrayBuffer): Hasher;",
+    "documentation": "Create an HMAC hashing object. https://grafana.com/docs/k6/latest/javascript-api/k6-crypto/createhmac/"
+  },
+  "Algorithm": {
+    "kind": "declaration",
+    "name": "Algorithm",
+    "signature": "type Algorithm = | \"md4\" | \"md5\" | \"sha1\" | \"sha256\" | \"sha384\" | \"sha512\" | \"sha512_224\" | \"sha512_256\" | \"ripemd160\";",
+    "documentation": "Hash algorithm."
+  },
+  "StringEncoding": {
+    "kind": "declaration",
+    "name": "StringEncoding",
+    "signature": "type StringEncoding = \"hex\" | \"base64\" | \"base64url\" | \"base64rawurl\";",
+    "documentation": "String output encoding."
+  },
+  "BinaryEncoding": {
+    "kind": "declaration",
+    "name": "BinaryEncoding",
+    "signature": "type BinaryEncoding = \"binary\";",
+    "documentation": "Binary output encoding."
+  },
+  "OutputEncoding": {
+    "kind": "declaration",
+    "name": "OutputEncoding",
+    "signature": "type OutputEncoding = StringEncoding | BinaryEncoding;",
+    "documentation": "Output encoding."
+  },
+  "Output": {
+    "kind": "declaration",
+    "name": "Output",
+    "signature": "type Output<OE extends OutputEncoding> = OE extends StringEncoding ? string : OE extends BinaryEncoding ? ArrayBuffer : never;",
+    "documentation": "Output type. Varies with output encoding."
+  },
+  "Hasher": {
+    "kind": "class",
+    "name": "Hasher",
+    "documentation": "Hashing object. https://grafana.com/docs/k6/latest/javascript-api/k6-crypto/hasher/",
+    "constructors": [],
+    "members": {
+      "__brand": {
+        "kind": "property",
+        "name": "__brand",
+        "signature": "protected __brand: never;",
+        "documentation": "",
+        "type": "never"
+      },
+      "update": {
+        "kind": "method",
+        "name": "update",
+        "signature": "update(input: string | ArrayBuffer)",
+        "documentation": "Add more data to the string we want to create a hash of. https://grafana.com/docs/k6/latest/javascript-api/k6-crypto/hasher/",
+        "params": [
+          {
+            "name": "input",
+            "type": "string | ArrayBuffer",
+            "documentation": "- Data to add."
+          }
+        ],
+        "returns": {
+          "type": "void",
+          "documentation": ""
+        }
+      },
+      "digest": {
+        "kind": "method",
+        "name": "digest",
+        "signature": "digest(outputEncoding: OE)",
+        "documentation": "Return a digest from the data added so far. https://grafana.com/docs/k6/latest/javascript-api/k6-crypto/hasher/",
+        "params": [
+          {
+            "name": "outputEncoding",
+            "type": "OE",
+            "documentation": "- Output encoding."
+          }
+        ],
+        "returns": {
+          "type": "Output<OE>",
+          "documentation": "of data added so far."
+        }
+      }
+    },
+    "signature": "Hasher"
+  },
+  "default": {
+    "kind": "declaration",
+    "name": "default",
+    "signature": "* as default",
+    "documentation": ""
+  }
+}

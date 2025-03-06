@@ -1,0 +1,5182 @@
+{
+  "EvaluationArgument": {
+    "kind": "declaration",
+    "name": "EvaluationArgument",
+    "signature": "type EvaluationArgument = object;",
+    "documentation": "Represents event-specific properties. Refer to the events documentation for the lists of initial properties: - [DragEvent](https://developer.mozilla.org/en-US/docs/Web/API/DragEvent/DragEvent) - [FocusEvent](https://developer.mozilla.org/en-US/docs/Web/API/FocusEvent/FocusEvent) - [KeyboardEvent](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/KeyboardEvent) - [MouseEvent](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/MouseEvent) - [PointerEvent](https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent/PointerEvent) - [TouchEvent](https://developer.mozilla.org/en-US/docs/Web/API/TouchEvent/TouchEvent) - [Event](https://developer.mozilla.org/en-US/docs/Web/API/Event/Event)"
+  },
+  "PageFunction": {
+    "kind": "declaration",
+    "name": "PageFunction",
+    "signature": "type PageFunction<Arg, R> = string | ((arg: Unboxed<Arg>) => R);",
+    "documentation": ""
+  },
+  "Unboxed": {
+    "kind": "declaration",
+    "name": "Unboxed",
+    "signature": "type Unboxed<Arg> = Arg extends [infer A0, infer A1] ? [Unboxed<A0>, Unboxed<A1>] : Arg extends [infer A0, infer A1, infer A2] ? [Unboxed<A0>, Unboxed<A1>, Unboxed<A2>] : Arg extends [infer A0, infer A1, infer A2, infer A3] ? [Unboxed<A0>, Unboxed<A1>, Unboxed<A2>, Unboxed<A3>] : Arg extends Array<infer T> ? Array<Unboxed<T>> : Arg extends object ? { [Key in keyof Arg]: Unboxed<Arg[Key]> } : Arg;",
+    "documentation": ""
+  },
+  "CPUProfile": {
+    "kind": "interface",
+    "name": "CPUProfile",
+    "documentation": "CPUProfile is the mandatory input to be passed into Page's `throttleCPU` method.",
+    "members": {
+      "rate": {
+        "kind": "property",
+        "name": "rate",
+        "signature": "rate: number;",
+        "documentation": "rate as a slowdown factor (1 is no throttle, 2 is 2x slowdown, etc).",
+        "type": "number"
+      }
+    },
+    "signature": "CPUProfile"
+  },
+  "NetworkProfile": {
+    "kind": "interface",
+    "name": "NetworkProfile",
+    "documentation": "NetworkProfile is the mandatory input to be passed into Page's `throttleNetwork` method.",
+    "members": {
+      "latency": {
+        "kind": "property",
+        "name": "latency",
+        "signature": "latency: number;",
+        "documentation": "Minimum latency from request sent to response headers received (ms).",
+        "type": "number"
+      },
+      "download": {
+        "kind": "property",
+        "name": "download",
+        "signature": "download: number;",
+        "documentation": "Maximal aggregated download throughput (bytes/sec). -1 disables download throttling.",
+        "type": "number"
+      },
+      "upload": {
+        "kind": "property",
+        "name": "upload",
+        "signature": "upload: number;",
+        "documentation": "Maximal aggregated upload throughput (bytes/sec). -1 disables upload throttling.",
+        "type": "number"
+      }
+    },
+    "signature": "NetworkProfile"
+  },
+  "SelectOptionsObject": {
+    "kind": "interface",
+    "name": "SelectOptionsObject",
+    "documentation": "",
+    "members": {
+      "value": {
+        "kind": "property",
+        "name": "value",
+        "signature": "value?: string;",
+        "documentation": "Matches by `option.value`.",
+        "type": "string"
+      },
+      "label": {
+        "kind": "property",
+        "name": "label",
+        "signature": "label?: string;",
+        "documentation": "Matches by `option.label`.",
+        "type": "string"
+      },
+      "index": {
+        "kind": "property",
+        "name": "index",
+        "signature": "index?: number;",
+        "documentation": "Matches by the index.",
+        "type": "number"
+      }
+    },
+    "signature": "SelectOptionsObject"
+  },
+  "ResourceType": {
+    "kind": "declaration",
+    "name": "ResourceType",
+    "signature": "type ResourceType = | \"document\" | \"stylesheet\" | \"image\" | \"media\" | \"font\" | \"script\" | \"texttrack\" | \"xhr\" | \"fetch\" | \"eventsource\" | \"websocket\" | \"manifest\" | \"other\";",
+    "documentation": ""
+  },
+  "MouseButton": {
+    "kind": "declaration",
+    "name": "MouseButton",
+    "signature": "type MouseButton = \"left\" | \"right\" | \"middle\";",
+    "documentation": ""
+  },
+  "KeyboardModifier": {
+    "kind": "declaration",
+    "name": "KeyboardModifier",
+    "signature": "type KeyboardModifier = \"Alt\" | \"Control\" | \"Meta\" | \"Shift\";",
+    "documentation": ""
+  },
+  "ElementState": {
+    "kind": "declaration",
+    "name": "ElementState",
+    "signature": "type ElementState = \"attached\" | \"detached\" | \"visible\" | \"hidden\";",
+    "documentation": ""
+  },
+  "InputElementState": {
+    "kind": "declaration",
+    "name": "InputElementState",
+    "signature": "type InputElementState = ElementState | \"enabled\" | \"disabled\" | \"editable\";",
+    "documentation": ""
+  },
+  "LifecycleEvent": {
+    "kind": "declaration",
+    "name": "LifecycleEvent",
+    "signature": "type LifecycleEvent = \"load\" | \"domcontentloaded\" | \"networkidle\";",
+    "documentation": ""
+  },
+  "TimeoutOptions": {
+    "kind": "interface",
+    "name": "TimeoutOptions",
+    "documentation": "",
+    "members": {
+      "timeout": {
+        "kind": "property",
+        "name": "timeout",
+        "signature": "timeout?: number;",
+        "documentation": "Maximum time in milliseconds. Pass 0 to disable the timeout. Default is overridden by the setDefaultTimeout option on `BrowserContext` or `Page`. Defaults to 30000.",
+        "type": "number"
+      }
+    },
+    "signature": "TimeoutOptions"
+  },
+  "StrictnessOptions": {
+    "kind": "interface",
+    "name": "StrictnessOptions",
+    "documentation": "",
+    "members": {
+      "strict": {
+        "kind": "property",
+        "name": "strict",
+        "signature": "strict?: boolean;",
+        "documentation": "When `true`, the call requires selector to resolve to a single element. If given selector resolves to more than one element, the call throws an exception. Defaults to `false`.",
+        "type": "boolean"
+      }
+    },
+    "signature": "StrictnessOptions"
+  },
+  "EventSequenceOptions": {
+    "kind": "interface",
+    "name": "EventSequenceOptions",
+    "documentation": "",
+    "members": {
+      "delay": {
+        "kind": "property",
+        "name": "delay",
+        "signature": "delay?: number;",
+        "documentation": "Delay between events in milliseconds. Defaults to 0.",
+        "type": "number"
+      }
+    },
+    "signature": "EventSequenceOptions"
+  },
+  "File": {
+    "kind": "interface",
+    "name": "File",
+    "documentation": "",
+    "members": {
+      "name": {
+        "kind": "property",
+        "name": "name",
+        "signature": "name: string;",
+        "documentation": "File name",
+        "type": "string"
+      },
+      "mimeType": {
+        "kind": "property",
+        "name": "mimeType",
+        "signature": "mimeType: string;",
+        "documentation": "File type",
+        "type": "string"
+      },
+      "buffer": {
+        "kind": "property",
+        "name": "buffer",
+        "signature": "buffer: ArrayBuffer;",
+        "documentation": "File content",
+        "type": "ArrayBuffer"
+      }
+    },
+    "signature": "File"
+  },
+  "ElementHandleOptions": {
+    "kind": "declaration",
+    "name": "ElementHandleOptions",
+    "signature": "type ElementHandleOptions = { /** * Setting this to `true` will bypass the actionability checks (visible, * stable, enabled). Defaults to `false`. */ force?: boolean; /** * If set to `true` and a navigation occurs from performing this action, it will not wait for it to complete. * Defaults to `false`. */ noWaitAfter?: boolean; } & TimeoutOptions;",
+    "documentation": ""
+  },
+  "ElementHandlePointerOptions": {
+    "kind": "declaration",
+    "name": "ElementHandlePointerOptions",
+    "signature": "type ElementHandlePointerOptions = ElementHandleOptions & { /** * Setting this to `true` will perform the actionability checks without * performing the action. Useful to wait until the element is ready for the * action without performing it. Defaults to `false`. */ trial?: boolean; };",
+    "documentation": ""
+  },
+  "ElementClickOptions": {
+    "kind": "declaration",
+    "name": "ElementClickOptions",
+    "signature": "type ElementClickOptions = ElementHandlePointerOptions & { /** * A point to use relative to the top left corner of the element. If not supplied, * a visible point of the element is used. */ position?: { x: number; y: number }; };",
+    "documentation": ""
+  },
+  "FrameCheckOptions": {
+    "kind": "declaration",
+    "name": "FrameCheckOptions",
+    "signature": "type FrameCheckOptions = ElementClickOptions;",
+    "documentation": ""
+  },
+  "KeyboardModifierOptions": {
+    "kind": "interface",
+    "name": "KeyboardModifierOptions",
+    "documentation": "",
+    "members": {
+      "modifiers": {
+        "kind": "property",
+        "name": "modifiers",
+        "signature": "modifiers?: KeyboardModifier[];",
+        "documentation": "`Alt`, `Control`, `Meta` or `Shift` modifiers keys pressed during the action. If not specified, currently pressed modifiers are used.",
+        "type": "KeyboardModifier[]"
+      }
+    },
+    "signature": "KeyboardModifierOptions"
+  },
+  "KeyboardPressOptions": {
+    "kind": "declaration",
+    "name": "KeyboardPressOptions",
+    "signature": "type KeyboardPressOptions = & { /** * If set to `true` and a navigation occurs from performing this action, it * will not wait for it to complete. Defaults to `false`. */ noWaitAfter?: boolean; } & EventSequenceOptions & TimeoutOptions;",
+    "documentation": ""
+  },
+  "MouseMoveOptions": {
+    "kind": "declaration",
+    "name": "MouseMoveOptions",
+    "signature": "type MouseMoveOptions = ElementClickOptions & KeyboardModifierOptions;",
+    "documentation": ""
+  },
+  "MouseClickOptions": {
+    "kind": "declaration",
+    "name": "MouseClickOptions",
+    "signature": "type MouseClickOptions = { /** * The mouse button to use during the action. * Defaults to `left`. */ button?: MouseButton; } & EventSequenceOptions;",
+    "documentation": ""
+  },
+  "MouseMultiClickOptions": {
+    "kind": "declaration",
+    "name": "MouseMultiClickOptions",
+    "signature": "type MouseMultiClickOptions = MouseClickOptions & { /** * The number of times the action is performed. * Defaults to 1. */ clickCount?: number; };",
+    "documentation": ""
+  },
+  "MouseDownUpOptions": {
+    "kind": "interface",
+    "name": "MouseDownUpOptions",
+    "documentation": "",
+    "members": {
+      "button": {
+        "kind": "property",
+        "name": "button",
+        "signature": "button?: MouseButton;",
+        "documentation": "The mouse button to use during the action. Defaults to `left`.",
+        "type": "MouseButton"
+      },
+      "clickCount": {
+        "kind": "property",
+        "name": "clickCount",
+        "signature": "clickCount?: number;",
+        "documentation": "Defaults to 1.",
+        "type": "number"
+      }
+    },
+    "signature": "MouseDownUpOptions"
+  },
+  "ContentLoadOptions": {
+    "kind": "declaration",
+    "name": "ContentLoadOptions",
+    "signature": "type ContentLoadOptions = { /** * When to consider operation succeeded, defaults to `load`. Events can be * either: * - `'domcontentloaded'` - consider operation to be finished when the * `DOMContentLoaded` event is fired. * - `'load'` - consider operation to be finished when the `load` event is * fired. * - `'networkidle'` - **DISCOURAGED** consider operation to be finished * when there are no network connections for at least `500` ms. Don't use * this method for testing especially with chatty websites where the event * may never fire, rely on web assertions to assess readiness instead. */ waitUntil?: LifecycleEvent; } & TimeoutOptions;",
+    "documentation": ""
+  },
+  "NavigationOptions": {
+    "kind": "declaration",
+    "name": "NavigationOptions",
+    "signature": "type NavigationOptions = { /** * Referer header value. */ referer?: string; } & ContentLoadOptions;",
+    "documentation": ""
+  },
+  "ResourceTiming": {
+    "kind": "interface",
+    "name": "ResourceTiming",
+    "documentation": "",
+    "members": {
+      "startTime": {
+        "kind": "property",
+        "name": "startTime",
+        "signature": "startTime: number;",
+        "documentation": "Request start time in milliseconds elapsed since January 1, 1970 00:00:00 UTC",
+        "type": "number"
+      },
+      "domainLookupStart": {
+        "kind": "property",
+        "name": "domainLookupStart",
+        "signature": "domainLookupStart: number;",
+        "documentation": "Time immediately before the browser starts the domain name lookup for the resource. The value is given in milliseconds relative to `startTime`, -1 if not available.",
+        "type": "number"
+      },
+      "domainLookupEnd": {
+        "kind": "property",
+        "name": "domainLookupEnd",
+        "signature": "domainLookupEnd: number;",
+        "documentation": "Time immediately after the browser ends the domain name lookup for the resource. The value is given in milliseconds relative to `startTime`, -1 if not available.",
+        "type": "number"
+      },
+      "connectStart": {
+        "kind": "property",
+        "name": "connectStart",
+        "signature": "connectStart: number;",
+        "documentation": "Time immediately before the user agent starts establishing the connection to the server to retrieve the resource. The value is given in milliseconds relative to `startTime`, -1 if not available.",
+        "type": "number"
+      },
+      "secureConnectionStart": {
+        "kind": "property",
+        "name": "secureConnectionStart",
+        "signature": "secureConnectionStart: number;",
+        "documentation": "Time immediately before the browser starts the handshake process to secure the current connection. The value is given in milliseconds relative to `startTime`, -1 if not available.",
+        "type": "number"
+      },
+      "connectEnd": {
+        "kind": "property",
+        "name": "connectEnd",
+        "signature": "connectEnd: number;",
+        "documentation": "Time immediately after the user agent establishes the connection to the server to retrieve the resource. The value is given in milliseconds relative to `startTime`, -1 if not available.",
+        "type": "number"
+      },
+      "requestStart": {
+        "kind": "property",
+        "name": "requestStart",
+        "signature": "requestStart: number;",
+        "documentation": "Time immediately before the browser starts requesting the resource from the server, cache, or local resource. The value is given in milliseconds relative to `startTime`, -1 if not available.",
+        "type": "number"
+      },
+      "responseStart": {
+        "kind": "property",
+        "name": "responseStart",
+        "signature": "responseStart: number;",
+        "documentation": "Time immediately after the browser receives the first byte of the response from the server, cache, or local resource. The value is given in milliseconds relative to `startTime`, -1 if not available.",
+        "type": "number"
+      },
+      "responseEnd": {
+        "kind": "property",
+        "name": "responseEnd",
+        "signature": "responseEnd: number;",
+        "documentation": "Time immediately after the browser receives the last byte of the resource or immediately before the transport connection is closed, whichever comes first. The value is given in milliseconds relative to `startTime`, -1 if not available.",
+        "type": "number"
+      }
+    },
+    "signature": "ResourceTiming"
+  },
+  "SecurityDetailsObject": {
+    "kind": "interface",
+    "name": "SecurityDetailsObject",
+    "documentation": "",
+    "members": {
+      "issuer": {
+        "kind": "property",
+        "name": "issuer",
+        "signature": "issuer?: string;",
+        "documentation": "Common Name component of the Issuer field. The value is extracted from the certificate. This should only be used for informational purposes.",
+        "type": "string"
+      },
+      "protocol": {
+        "kind": "property",
+        "name": "protocol",
+        "signature": "protocol?: string;",
+        "documentation": "The specific TLS protocol used. For example `TLS 1.3`.",
+        "type": "string"
+      },
+      "subjectName": {
+        "kind": "property",
+        "name": "subjectName",
+        "signature": "subjectName?: string;",
+        "documentation": "Common Name component of the Subject field. The value is extracted from the certificate. This should only be used for informational purposes.",
+        "type": "string"
+      },
+      "validFrom": {
+        "kind": "property",
+        "name": "validFrom",
+        "signature": "validFrom?: number;",
+        "documentation": "Unix timestamp (in seconds) specifying the exact date/time when this cert becomes valid.",
+        "type": "number"
+      },
+      "validTo": {
+        "kind": "property",
+        "name": "validTo",
+        "signature": "validTo?: number;",
+        "documentation": "Unix timestamp (in seconds) specifying the exact date/time when this cert becomes invalid.",
+        "type": "number"
+      },
+      "sanList": {
+        "kind": "property",
+        "name": "sanList",
+        "signature": "sanList?: string[];",
+        "documentation": "String with hex encoded SHA256 fingerprint of the certificate. The value is extracted from the certificate.",
+        "type": "string[]"
+      }
+    },
+    "signature": "SecurityDetailsObject"
+  },
+  "Rect": {
+    "kind": "interface",
+    "name": "Rect",
+    "documentation": "",
+    "members": {
+      "x": {
+        "kind": "property",
+        "name": "x",
+        "signature": "x: number;",
+        "documentation": "The x coordinate of the element in pixels. (0, 0) is the top left corner of the viewport.",
+        "type": "number"
+      },
+      "y": {
+        "kind": "property",
+        "name": "y",
+        "signature": "y: number;",
+        "documentation": "The y coordinate of the element in pixels. (0, 0) is the top left corner of the viewport.",
+        "type": "number"
+      },
+      "width": {
+        "kind": "property",
+        "name": "width",
+        "signature": "width: number;",
+        "documentation": "The width of the element in pixels.",
+        "type": "number"
+      },
+      "height": {
+        "kind": "property",
+        "name": "height",
+        "signature": "height: number;",
+        "documentation": "The height of the element in pixels.",
+        "type": "number"
+      }
+    },
+    "signature": "Rect"
+  },
+  "ImageFormat": {
+    "kind": "declaration",
+    "name": "ImageFormat",
+    "signature": "type ImageFormat = \"jpeg\" | \"png\";",
+    "documentation": ""
+  },
+  "ScreenshotOptions": {
+    "kind": "interface",
+    "name": "ScreenshotOptions",
+    "documentation": "",
+    "members": {
+      "path": {
+        "kind": "property",
+        "name": "path",
+        "signature": "path?: string;",
+        "documentation": "The file path to save the image to. The screenshot type will be inferred from file extension.",
+        "type": "string"
+      },
+      "type": {
+        "kind": "property",
+        "name": "type",
+        "signature": "type?: ImageFormat;",
+        "documentation": "The screenshot format.",
+        "type": "ImageFormat"
+      },
+      "omitBackground": {
+        "kind": "property",
+        "name": "omitBackground",
+        "signature": "omitBackground?: boolean;",
+        "documentation": "Hide default white background and allow capturing screenshots with transparency. Not applicable to `jpeg` images.",
+        "type": "boolean"
+      },
+      "quality": {
+        "kind": "property",
+        "name": "quality",
+        "signature": "quality?: number;",
+        "documentation": "The quality of the image, between 0-100. Not applicable to `png` images.",
+        "type": "number"
+      }
+    },
+    "signature": "ScreenshotOptions"
+  },
+  "PollingMethod": {
+    "kind": "declaration",
+    "name": "PollingMethod",
+    "signature": "type PollingMethod = number | \"raf\" | \"mutation\";",
+    "documentation": "Methods to periodically check for a value. - `raf` - use `requestAnimationFrame` callback to poll - `mutation` - use a mutation observer - `interval` - use a polling interval"
+  },
+  "PollingOptions": {
+    "kind": "interface",
+    "name": "PollingOptions",
+    "documentation": "",
+    "members": {
+      "polling": {
+        "kind": "property",
+        "name": "polling",
+        "signature": "polling?: PollingMethod;",
+        "documentation": "If `polling` is `'raf'`, then `pageFunction` is constantly executed in `requestAnimationFrame` callback. If the `polling` is `'mutation'` it will be called when a change is made to the DOM tree. If `polling` is a number, then it is treated as an interval in milliseconds at which the function would be executed. Defaults to `raf`.",
+        "type": "PollingMethod"
+      }
+    },
+    "signature": "PollingOptions"
+  },
+  "ElementStateFilter": {
+    "kind": "interface",
+    "name": "ElementStateFilter",
+    "documentation": "",
+    "members": {
+      "state": {
+        "kind": "property",
+        "name": "state",
+        "signature": "state?: ElementState;",
+        "documentation": "The element state to filter for.",
+        "type": "ElementState"
+      }
+    },
+    "signature": "ElementStateFilter"
+  },
+  "BrowserPermissions": {
+    "kind": "declaration",
+    "name": "BrowserPermissions",
+    "signature": "type BrowserPermissions = | \"geolocation\" | \"midi\" | \"midi-sysex\" | \"notifications\" | \"camera\" | \"microphone\" | \"background-sync\" | \"ambient-light-sensor\" | \"accelerometer\" | \"gyroscope\" | \"magnetometer\" | \"accessibility-events\" | \"clipboard-read\" | \"clipboard-write\" | \"payment-handler\";",
+    "documentation": "BrowserPermissions defines all the possible permissions that can be granted to the browser application."
+  },
+  "NewBrowserContextOptions": {
+    "kind": "interface",
+    "name": "NewBrowserContextOptions",
+    "documentation": "",
+    "members": {
+      "bypassCSP": {
+        "kind": "property",
+        "name": "bypassCSP",
+        "signature": "bypassCSP?: boolean;",
+        "documentation": "Setting this to `true` will bypass a page's Content-Security-Policy. Defaults to `false`.",
+        "type": "boolean"
+      },
+      "colorScheme": {
+        "kind": "property",
+        "name": "colorScheme",
+        "signature": "colorScheme?: \"light\" | \"dark\" | \"no-preference\";",
+        "documentation": "Emulates `'prefers-colors-scheme'` media feature, supported values are `'light'`, `'dark'`, and `'no-preference'`. Default to `'light'`.",
+        "type": "\"light\" | \"dark\" | \"no-preference\""
+      },
+      "deviceScaleFactor": {
+        "kind": "property",
+        "name": "deviceScaleFactor",
+        "signature": "deviceScaleFactor?: number;",
+        "documentation": "Sets the resolution ratio in physical pixels to the resolution in CSS pixels i.e. if set higher than 1, then images will look sharper on high pixel density screens. Defaults to 1.",
+        "type": "number"
+      },
+      "extraHTTPHeaders": {
+        "kind": "property",
+        "name": "extraHTTPHeaders",
+        "signature": "extraHTTPHeaders?: { [key: string]: string };",
+        "documentation": "Contains additional HTTP headers to be sent with every request, where the keys are HTTP headers and values are HTTP header values. Defaults to null.",
+        "type": "{ [key: string]: string; }"
+      },
+      "geolocation": {
+        "kind": "property",
+        "name": "geolocation",
+        "signature": "geolocation?: { /** * latitude should be between -90 and 90. */ latitude: number; /** * longitude should be between -180 and 180. */ longitude: number; /** * accuracy should only be a non-negative number. Defaults to 0. */ accuracy: number; };",
+        "documentation": "Sets the user's geographical location. Defaults to null.",
+        "type": "{ latitude: number; longitude: number; accuracy: number; }"
+      },
+      "hasTouch": {
+        "kind": "property",
+        "name": "hasTouch",
+        "signature": "hasTouch?: boolean;",
+        "documentation": "Whether to simulate a device with touch events. Defaults to `false`.",
+        "type": "boolean"
+      },
+      "httpCredentials": {
+        "kind": "property",
+        "name": "httpCredentials",
+        "signature": "httpCredentials?: { username: string; password: string; };",
+        "documentation": "Sets the credentials for HTTP authentication using Basic Auth.",
+        "type": "{ username: string; password: string; }"
+      },
+      "ignoreHTTPSErrors": {
+        "kind": "property",
+        "name": "ignoreHTTPSErrors",
+        "signature": "ignoreHTTPSErrors?: boolean;",
+        "documentation": "Whether to ignore HTTPS errors that may be caused by invalid certificates. Defaults to `false`.",
+        "type": "boolean"
+      },
+      "isMobile": {
+        "kind": "property",
+        "name": "isMobile",
+        "signature": "isMobile?: boolean;",
+        "documentation": "Whether to simulate a mobile device. Defaults to `false`.",
+        "type": "boolean"
+      },
+      "javaScriptEnabled": {
+        "kind": "property",
+        "name": "javaScriptEnabled",
+        "signature": "javaScriptEnabled?: boolean;",
+        "documentation": "Whether to activate JavaScript support for the context. Defaults to `false`.",
+        "type": "boolean"
+      },
+      "locale": {
+        "kind": "property",
+        "name": "locale",
+        "signature": "locale?: string;",
+        "documentation": "Specifies the user's locale following ICU locale (e.g. 'en_US'). Defaults to host system locale.",
+        "type": "string"
+      },
+      "offline": {
+        "kind": "property",
+        "name": "offline",
+        "signature": "offline?: boolean;",
+        "documentation": "Whether to emulate an offline network. Defaults to `false`.",
+        "type": "boolean"
+      },
+      "permissions": {
+        "kind": "property",
+        "name": "permissions",
+        "signature": "permissions?: BrowserPermissions[];",
+        "documentation": "Permissions to grant for the context's pages. Defaults to null.",
+        "type": "BrowserPermissions[]"
+      },
+      "reducedMotion": {
+        "kind": "property",
+        "name": "reducedMotion",
+        "signature": "reducedMotion?: \"reduce\" | \"no-preference\";",
+        "documentation": "Minimizes the amount of motion by emulating the 'prefers-reduced-motion' media feature. Defaults to `'no-preference'`.",
+        "type": "\"no-preference\" | \"reduce\""
+      },
+      "screen": {
+        "kind": "property",
+        "name": "screen",
+        "signature": "screen?: { /** * Page width in pixels. */ width: number; /** * Page height in pixels. */ height: number; };",
+        "documentation": "Sets a window screen size for all pages in the context. It can only be used when the viewport is set. Defaults to `{'width': 1280, 'height': 720}`.",
+        "type": "{ width: number; height: number; }"
+      },
+      "timezoneID": {
+        "kind": "property",
+        "name": "timezoneID",
+        "signature": "timezoneID?: string;",
+        "documentation": "Changes the context's timezone. See ICU's metaZones.txt for a list of supported timezone IDs. Defaults to what is set on the system.",
+        "type": "string"
+      },
+      "userAgent": {
+        "kind": "property",
+        "name": "userAgent",
+        "signature": "userAgent?: string;",
+        "documentation": "Specifies the user agent to use in the context. Defaults to what is set on the by the browser.",
+        "type": "string"
+      },
+      "viewport": {
+        "kind": "property",
+        "name": "viewport",
+        "signature": "viewport?: { /** * Page width in pixels. */ width: number; /** * Page height in pixels. */ height: number; };",
+        "documentation": "Sets a viewport size for all pages in the context. null disables the default viewport. Defaults to `{'width': 1280, 'height': 720}`.",
+        "type": "{ width: number; height: number; }"
+      }
+    },
+    "signature": "NewBrowserContextOptions"
+  },
+  "browser": {
+    "kind": "variable",
+    "name": "browser",
+    "documentation": "",
+    "signature": "browser",
+    "type": "Browser",
+    "members": {
+      "closeContext": {
+        "kind": "method",
+        "name": "closeContext",
+        "signature": "closeContext()",
+        "documentation": "Closes the current `BrowserContext`. If there is no active `BrowserContext`, this method will throw an error.",
+        "params": [],
+        "returns": {
+          "type": "void",
+          "documentation": ""
+        }
+      },
+      "context": {
+        "kind": "method",
+        "name": "context",
+        "signature": "context()",
+        "documentation": "Returns the current `BrowserContext`. There is a 1-to-1 mapping between `Browser` and `BrowserContext`. If no `BrowserContext` has been initialized, it will return null.",
+        "params": [],
+        "returns": {
+          "type": "BrowserContext",
+          "documentation": ""
+        }
+      },
+      "isConnected": {
+        "kind": "method",
+        "name": "isConnected",
+        "signature": "isConnected()",
+        "documentation": "Indicates whether the CDP connection to the browser process is active or not.",
+        "params": [],
+        "returns": {
+          "type": "boolean",
+          "documentation": ""
+        }
+      },
+      "newContext": {
+        "kind": "method",
+        "name": "newContext",
+        "signature": "newContext(options: NewBrowserContextOptions)",
+        "documentation": "Creates and returns a new `BrowserContext` if one hasn't already been initialized for the `Browser`. If one has already been initialized an error is thrown. There is a 1-to-1 mapping between `Browser` and `BrowserContext`. Due to this restriction, if one already exists, it must be closed first before creating a new one.",
+        "params": [
+          {
+            "name": "options",
+            "type": "NewBrowserContextOptions",
+            "documentation": ""
+          }
+        ],
+        "returns": {
+          "type": "Promise<BrowserContext>",
+          "documentation": ""
+        }
+      },
+      "newPage": {
+        "kind": "method",
+        "name": "newPage",
+        "signature": "newPage(options: NewBrowserContextOptions)",
+        "documentation": "Creates and returns a new `Page` in a new `BrowserContext` if a `BrowserContext` hasn't already been initialized for the `Browser`. If a `BrowserContext` has already been initialized an error is thrown. There is a 1-to-1 mapping between `Browser` and `BrowserContext`. Due to this restriction, if one already exists, it must be closed first before creating a new one.",
+        "params": [
+          {
+            "name": "options",
+            "type": "NewBrowserContextOptions",
+            "documentation": ""
+          }
+        ],
+        "returns": {
+          "type": "Promise<Page>",
+          "documentation": ""
+        }
+      },
+      "userAgent": {
+        "kind": "method",
+        "name": "userAgent",
+        "signature": "userAgent()",
+        "documentation": "Returns the browser application's user agent.",
+        "params": [],
+        "returns": {
+          "type": "string",
+          "documentation": ""
+        }
+      },
+      "version": {
+        "kind": "method",
+        "name": "version",
+        "signature": "version()",
+        "documentation": "Returns the browser application's version.",
+        "params": [],
+        "returns": {
+          "type": "string",
+          "documentation": ""
+        }
+      }
+    }
+  },
+  "Browser": {
+    "kind": "interface",
+    "name": "Browser",
+    "documentation": "`Browser` represents the main web browser instance.",
+    "members": {
+      "closeContext": {
+        "kind": "method",
+        "name": "closeContext",
+        "signature": "closeContext()",
+        "documentation": "Closes the current `BrowserContext`. If there is no active `BrowserContext`, this method will throw an error.",
+        "params": [],
+        "returns": {
+          "type": "void",
+          "documentation": ""
+        }
+      },
+      "context": {
+        "kind": "method",
+        "name": "context",
+        "signature": "context()",
+        "documentation": "Returns the current `BrowserContext`. There is a 1-to-1 mapping between `Browser` and `BrowserContext`. If no `BrowserContext` has been initialized, it will return null.",
+        "params": [],
+        "returns": {
+          "type": "BrowserContext",
+          "documentation": ""
+        }
+      },
+      "isConnected": {
+        "kind": "method",
+        "name": "isConnected",
+        "signature": "isConnected()",
+        "documentation": "Indicates whether the CDP connection to the browser process is active or not.",
+        "params": [],
+        "returns": {
+          "type": "boolean",
+          "documentation": ""
+        }
+      },
+      "newContext": {
+        "kind": "method",
+        "name": "newContext",
+        "signature": "newContext(options: NewBrowserContextOptions)",
+        "documentation": "Creates and returns a new `BrowserContext` if one hasn't already been initialized for the `Browser`. If one has already been initialized an error is thrown. There is a 1-to-1 mapping between `Browser` and `BrowserContext`. Due to this restriction, if one already exists, it must be closed first before creating a new one.",
+        "params": [
+          {
+            "name": "options",
+            "type": "NewBrowserContextOptions",
+            "documentation": ""
+          }
+        ],
+        "returns": {
+          "type": "Promise<BrowserContext>",
+          "documentation": ""
+        }
+      },
+      "newPage": {
+        "kind": "method",
+        "name": "newPage",
+        "signature": "newPage(options: NewBrowserContextOptions)",
+        "documentation": "Creates and returns a new `Page` in a new `BrowserContext` if a `BrowserContext` hasn't already been initialized for the `Browser`. If a `BrowserContext` has already been initialized an error is thrown. There is a 1-to-1 mapping between `Browser` and `BrowserContext`. Due to this restriction, if one already exists, it must be closed first before creating a new one.",
+        "params": [
+          {
+            "name": "options",
+            "type": "NewBrowserContextOptions",
+            "documentation": ""
+          }
+        ],
+        "returns": {
+          "type": "Promise<Page>",
+          "documentation": ""
+        }
+      },
+      "userAgent": {
+        "kind": "method",
+        "name": "userAgent",
+        "signature": "userAgent()",
+        "documentation": "Returns the browser application's user agent.",
+        "params": [],
+        "returns": {
+          "type": "string",
+          "documentation": ""
+        }
+      },
+      "version": {
+        "kind": "method",
+        "name": "version",
+        "signature": "version()",
+        "documentation": "Returns the browser application's version.",
+        "params": [],
+        "returns": {
+          "type": "string",
+          "documentation": ""
+        }
+      }
+    },
+    "signature": "Browser"
+  },
+  "BrowserContext": {
+    "kind": "interface",
+    "name": "BrowserContext",
+    "documentation": "`BrowserContext` provides a way to operate multiple independent sessions, with separate pages, cache, and cookies.",
+    "members": {
+      "addInitScript": {
+        "kind": "method",
+        "name": "addInitScript",
+        "signature": "addInitScript(script: string | { content?: string; })",
+        "documentation": "Adds a script which will be evaluated in one of the following scenarios: - Whenever a page is created in the browser context or is navigated. - Whenever a child frame is attached or navigated in any page in the browser context. In this case, the script is evaluated in the context of the newly attached frame. The script is evaluated after the document is created but before any of its scripts were run. This is useful to amend the JavaScript environment, e.g. to override `Math.random`. **Usage** An example of overriding `Math.random` before the page loads: ```js const browserContext = await browser.newContext(); await browserContext.addInitScript(\"Math.random = function(){return 0}\"); const page = await browserContext.newPage(); await page.goto(url); ```",
+        "params": [
+          {
+            "name": "script",
+            "type": "string | { content?: string; }",
+            "documentation": "Script to be evaluated in all pages in the browser context."
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "browser": {
+        "kind": "method",
+        "name": "browser",
+        "signature": "browser()",
+        "documentation": "Returns the `Browser` instance that this `BrowserContext` belongs to.",
+        "params": [],
+        "returns": {
+          "type": "Browser",
+          "documentation": ""
+        }
+      },
+      "addCookies": {
+        "kind": "method",
+        "name": "addCookies",
+        "signature": "addCookies(cookies: Cookie[])",
+        "documentation": "Adds cookies into this BrowserContext.",
+        "params": [
+          {
+            "name": "cookies",
+            "type": "Cookie[]",
+            "documentation": "The cookies to add to this BrowserContext."
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "clearCookies": {
+        "kind": "method",
+        "name": "clearCookies",
+        "signature": "clearCookies()",
+        "documentation": "Clears the cookies in this BrowserContext.",
+        "params": [],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "cookies": {
+        "kind": "method",
+        "name": "cookies",
+        "signature": "cookies(urls: string[])",
+        "documentation": "Retrieves the cookies in this cookies if no URLs are provided.",
+        "params": [
+          {
+            "name": "urls",
+            "type": "string[]",
+            "documentation": "URLs to filter cookies by."
+          }
+        ],
+        "returns": {
+          "type": "Promise<Cookie[]>",
+          "documentation": ""
+        }
+      },
+      "clearPermissions": {
+        "kind": "method",
+        "name": "clearPermissions",
+        "signature": "clearPermissions()",
+        "documentation": "Clears all permission overrides for the BrowserContext. ```js await context.clearPermissions(); ```",
+        "params": [],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "close": {
+        "kind": "method",
+        "name": "close",
+        "signature": "close()",
+        "documentation": "Close the `BrowserContext` and all its `Page`s.",
+        "params": [],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "grantPermissions": {
+        "kind": "method",
+        "name": "grantPermissions",
+        "signature": "grantPermissions(permissions: BrowserPermissions[], options: { origin: string; })",
+        "documentation": "Grants specified permissions to the BrowserContext. ```js await context.grantPermissions(['geolocation']); ```",
+        "params": [
+          {
+            "name": "permissions",
+            "type": "BrowserPermissions[]",
+            "documentation": ""
+          },
+          {
+            "name": "options",
+            "type": "{ origin: string; }",
+            "documentation": ""
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "newPage": {
+        "kind": "method",
+        "name": "newPage",
+        "signature": "newPage()",
+        "documentation": "Creates a new `Page` in the `BrowserContext`.",
+        "params": [],
+        "returns": {
+          "type": "Promise<Page>",
+          "documentation": ""
+        }
+      },
+      "pages": {
+        "kind": "method",
+        "name": "pages",
+        "signature": "pages()",
+        "documentation": "Returns a list of `Page`s that belongs to the `BrowserContext`.",
+        "params": [],
+        "returns": {
+          "type": "Page[]",
+          "documentation": ""
+        }
+      },
+      "setDefaultNavigationTimeout": {
+        "kind": "method",
+        "name": "setDefaultNavigationTimeout",
+        "signature": "setDefaultNavigationTimeout(timeout: number)",
+        "documentation": "Sets the default navigation timeout in milliseconds.",
+        "params": [
+          {
+            "name": "timeout",
+            "type": "number",
+            "documentation": ""
+          }
+        ],
+        "returns": {
+          "type": "void",
+          "documentation": ""
+        }
+      },
+      "setDefaultTimeout": {
+        "kind": "method",
+        "name": "setDefaultTimeout",
+        "signature": "setDefaultTimeout(timeout: number)",
+        "documentation": "Sets the default maximum timeout for all methods accepting a timeout option in milliseconds.",
+        "params": [
+          {
+            "name": "timeout",
+            "type": "number",
+            "documentation": ""
+          }
+        ],
+        "returns": {
+          "type": "void",
+          "documentation": ""
+        }
+      },
+      "setGeolocation": {
+        "kind": "method",
+        "name": "setGeolocation",
+        "signature": "setGeolocation(geolocation: { latitude: number; longitude: number; accuracy: number; })",
+        "documentation": "Sets the `BrowserContext`'s geolocation.",
+        "params": [
+          {
+            "name": "geolocation",
+            "type": "{ latitude: number; longitude: number; accuracy: number; }",
+            "documentation": ""
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "setOffline": {
+        "kind": "method",
+        "name": "setOffline",
+        "signature": "setOffline(offline: boolean)",
+        "documentation": "Toggles the `BrowserContext`'s connectivity on/off.",
+        "params": [
+          {
+            "name": "offline",
+            "type": "boolean",
+            "documentation": ""
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "waitForEvent": {
+        "kind": "method",
+        "name": "waitForEvent",
+        "signature": "waitForEvent(event: \"page\", optionsOrPredicate: { predicate?: (page: Page) => boolean; timeout?: number; } | ((page: Page) => boolean))",
+        "documentation": "Waits for the event to fire and passes its value into the predicate function. Currently the only supported event is 'page' which when used will return the new Page that was created after `waitForEvent` was called.",
+        "params": [
+          {
+            "name": "event",
+            "type": "\"page\"",
+            "documentation": ""
+          },
+          {
+            "name": "optionsOrPredicate",
+            "type": "{ predicate?: (page: Page) => boolean; timeout?: number; } | ((page: Page) => boolean)",
+            "documentation": ""
+          }
+        ],
+        "returns": {
+          "type": "Promise<Page>",
+          "documentation": ""
+        }
+      }
+    },
+    "signature": "BrowserContext"
+  },
+  "ConsoleMessage": {
+    "kind": "interface",
+    "name": "ConsoleMessage",
+    "documentation": "ConsoleMessage objects are dispatched by page via the `page.on('console')` event. For each console message logged in the page, k6 browser delivers it to the registered handlers. ```js // Listen for all console log messages in the browser page and output them // in the test logs page.on('console', msg => console.log(msg.text())); // Listen for all console events and handle errors page.on('console', msg => { if (msg.type() === 'error') console.log(`Error text: \"${msg.text()}\"`); }); // Deconstruct console log arguments await msg.args()[0].jsonValue(); // hello await msg.args()[1].jsonValue(); // 42 ```",
+    "members": {
+      "args": {
+        "kind": "method",
+        "name": "args",
+        "signature": "args()",
+        "documentation": "List of arguments passed to a `console` function call. See also `page.on('console')`.",
+        "params": [],
+        "returns": {
+          "type": "JSHandle<any>[]",
+          "documentation": ""
+        }
+      },
+      "page": {
+        "kind": "method",
+        "name": "page",
+        "signature": "page()",
+        "documentation": "The page that produced this console message, if any.",
+        "params": [],
+        "returns": {
+          "type": "Page",
+          "documentation": ""
+        }
+      },
+      "text": {
+        "kind": "method",
+        "name": "text",
+        "signature": "text()",
+        "documentation": "The text of the console message.",
+        "params": [],
+        "returns": {
+          "type": "string",
+          "documentation": ""
+        }
+      },
+      "type": {
+        "kind": "method",
+        "name": "type",
+        "signature": "type()",
+        "documentation": "One of the following values: `'log'`, `'debug'`, `'info'`, `'error'`, `'warning'`, `'dir'`, `'dirxml'`, `'table'`, `'trace'`, `'clear'`, `'startGroup'`, `'startGroupCollapsed'`, `'endGroup'`, `'assert'`, `'profile'`, `'profileEnd'`, `'count'`, `'timeEnd'`.",
+        "params": [],
+        "returns": {
+          "type": "string",
+          "documentation": ""
+        }
+      }
+    },
+    "signature": "ConsoleMessage"
+  },
+  "MetricMessage": {
+    "kind": "interface",
+    "name": "MetricMessage",
+    "documentation": "MetricMessage objects are dispatched by page via the `page.on('metric')` event. For each metric that it measured and emitted for the page, k6 browser delivers it to the registered handlers. ```js // Listen for all metric messages in the page and call its tag method to // tag matching URLs with the new tag name. page.on('metric', (metric) => { metric.tag({ name: 'test', matches: [ {url: /^https:\\/\\/test\\.k6\\.io\\/\\?q=[0-9a-z]+$/, method: 'GET'}, ] }); }); ```",
+    "members": {
+      "tag": {
+        "kind": "method",
+        "name": "tag",
+        "signature": "tag(tagMatch: { name: string; matches: { url: RegExp; method?: \"GET\" | \"POST\" | \"PUT\" | \"DELETE\" | \"PATCH\" | \"OPTIONS\" | \"HEAD\" | \"TRACE\" | \"CONNECT\"; }[]; })",
+        "documentation": "tag will match the given `tagMatch.matches` with the current metric's URL and name tags. When a match is found it will use `tagMatch.name` to replace the existing URL and name tag values. Doing this helps group metrics with different URL and name tags that, in fact, reference the same resource, allowing for correlation over time and reducing the cardinality of the metrics.",
+        "params": [
+          {
+            "name": "tagMatch",
+            "type": "{ name: string; matches: { url: RegExp; method?: \"GET\" | \"POST\" | \"PUT\" | \"DELETE\" | \"PATCH\" | \"OPTIONS\" | \"HEAD\" | \"TRACE\" | \"CONNECT\"; }[]; }",
+            "documentation": ""
+          }
+        ],
+        "returns": {
+          "type": "void",
+          "documentation": ""
+        }
+      }
+    },
+    "signature": "MetricMessage"
+  },
+  "Cookie": {
+    "kind": "interface",
+    "name": "Cookie",
+    "documentation": "Cookie represents a cookie in a BrowserContext.",
+    "members": {
+      "name": {
+        "kind": "property",
+        "name": "name",
+        "signature": "name: string;",
+        "documentation": "The cookie's name.",
+        "type": "string"
+      },
+      "value": {
+        "kind": "property",
+        "name": "value",
+        "signature": "value: string;",
+        "documentation": "The cookie's value.",
+        "type": "string"
+      },
+      "url": {
+        "kind": "property",
+        "name": "url",
+        "signature": "url?: string;",
+        "documentation": "The cookie's URL. Required unless one of domain or path are specified.",
+        "type": "string"
+      },
+      "domain": {
+        "kind": "property",
+        "name": "domain",
+        "signature": "domain?: string;",
+        "documentation": "The cookie's domain. Required unless one of url or path are specified.",
+        "type": "string"
+      },
+      "path": {
+        "kind": "property",
+        "name": "path",
+        "signature": "path?: string;",
+        "documentation": "The cookie's path. Required unless one of url or domain are specified.",
+        "type": "string"
+      },
+      "expires": {
+        "kind": "property",
+        "name": "expires",
+        "signature": "expires?: number;",
+        "documentation": "The cookie's expiration date as the number of seconds since the UNIX epoch. If omitted, the cookie becomes a session cookie.",
+        "type": "number"
+      },
+      "httpOnly": {
+        "kind": "property",
+        "name": "httpOnly",
+        "signature": "httpOnly?: boolean;",
+        "documentation": "Whether the cookie is http-only.",
+        "type": "boolean"
+      },
+      "secure": {
+        "kind": "property",
+        "name": "secure",
+        "signature": "secure?: boolean;",
+        "documentation": "Whether the cookie is secure.",
+        "type": "boolean"
+      },
+      "sameSite": {
+        "kind": "property",
+        "name": "sameSite",
+        "signature": "sameSite?: CookieSameSite;",
+        "documentation": "The cookie's same-site status. It can be one of `'Strict'`, `'Lax'`, or `'None'`.",
+        "type": "CookieSameSite"
+      }
+    },
+    "signature": "Cookie"
+  },
+  "CookieSameSite": {
+    "kind": "declaration",
+    "name": "CookieSameSite",
+    "signature": "type CookieSameSite = \"Strict\" | \"Lax\" | \"None\";",
+    "documentation": "CookieSameSite represents the same-site status of a cookie."
+  },
+  "ElementHandle": {
+    "kind": "interface",
+    "name": "ElementHandle",
+    "documentation": "ElementHandle represents an in-page DOM element.",
+    "members": {
+      "$": {
+        "kind": "method",
+        "name": "$",
+        "signature": "$(selector: string)",
+        "documentation": "Finds an element matching the specified selector in the `ElementHandle`'s subtree.",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "A selector to query element for."
+          }
+        ],
+        "returns": {
+          "type": "Promise<ElementHandle>",
+          "documentation": "`ElementHandle` pointing to the result element or `null`."
+        }
+      },
+      "$$": {
+        "kind": "method",
+        "name": "$$",
+        "signature": "$$(selector: string)",
+        "documentation": "Finds all elements matching the specified selector in the `ElementHandle`'s subtree.",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "A selector to query element for."
+          }
+        ],
+        "returns": {
+          "type": "Promise<ElementHandle[]>",
+          "documentation": "list of `ElementHandle`s pointing to the result elements."
+        }
+      },
+      "boundingBox": {
+        "kind": "method",
+        "name": "boundingBox",
+        "signature": "boundingBox()",
+        "documentation": "This method returns the bounding box of the element.",
+        "params": [],
+        "returns": {
+          "type": "Promise<Rect>",
+          "documentation": "bounding box."
+        }
+      },
+      "check": {
+        "kind": "method",
+        "name": "check",
+        "signature": "check(options: { force?: boolean; noWaitAfter?: boolean; } & TimeoutOptions & { trial?: boolean; } & { position?: { x: number; y: number; }; } & StrictnessOptions)",
+        "documentation": "Checks the checkbox element.",
+        "params": [
+          {
+            "name": "options",
+            "type": "{ force?: boolean; noWaitAfter?: boolean; } & TimeoutOptions & { trial?: boolean; } & { position?: { x: number; y: number; }; } & StrictnessOptions",
+            "documentation": "The options to use."
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "click": {
+        "kind": "method",
+        "name": "click",
+        "signature": "click(options: { button?: MouseButton; clickCount?: number; delay?: number; force?: boolean; modifiers?: KeyboardModifier[]; noWaitAfter?: boolean; position?: { x: number; y: number; }; timeout?: number; trial?: boolean; })",
+        "documentation": "Clicks the element.",
+        "params": [
+          {
+            "name": "options",
+            "type": "{ button?: MouseButton; clickCount?: number; delay?: number; force?: boolean; modifiers?: KeyboardModifier[]; noWaitAfter?: boolean; position?: { x: number; y: number; }; timeout?: number; trial?: boolean; }",
+            "documentation": "The options to use."
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": "promise that resolves when the element is clicked."
+        }
+      },
+      "contentFrame": {
+        "kind": "method",
+        "name": "contentFrame",
+        "signature": "contentFrame()",
+        "documentation": "Get the content frame for element handles.",
+        "params": [],
+        "returns": {
+          "type": "Promise<Frame>",
+          "documentation": "content frame handle of the element handle."
+        }
+      },
+      "dblclick": {
+        "kind": "method",
+        "name": "dblclick",
+        "signature": "dblclick(options: { button?: MouseButton; delay?: number; force?: boolean; modifiers?: KeyboardModifier[]; noWaitAfter?: boolean; position?: { x: number; y: number; }; timeout?: number; trial?: boolean; })",
+        "documentation": "Double clicks the element.",
+        "params": [
+          {
+            "name": "options",
+            "type": "{ button?: MouseButton; delay?: number; force?: boolean; modifiers?: KeyboardModifier[]; noWaitAfter?: boolean; position?: { x: number; y: number; }; timeout?: number; trial?: boolean; }",
+            "documentation": "The options to use."
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "dispatchEvent": {
+        "kind": "method",
+        "name": "dispatchEvent",
+        "signature": "dispatchEvent(type: string, eventInit: object)",
+        "documentation": "Dispatches a DOM event to the element.",
+        "params": [
+          {
+            "name": "type",
+            "type": "string",
+            "documentation": "DOM event type: `\"click\"` etc."
+          },
+          {
+            "name": "eventInit",
+            "type": "object",
+            "documentation": "Optional event-specific initialization properties."
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "fill": {
+        "kind": "method",
+        "name": "fill",
+        "signature": "fill(value: string, options: ElementHandleOptions)",
+        "documentation": "Fill the `input` or `textarea` element with the provided `value`.",
+        "params": [
+          {
+            "name": "value",
+            "type": "string",
+            "documentation": "Value to fill for the `input` or `textarea` element."
+          },
+          {
+            "name": "options",
+            "type": "ElementHandleOptions",
+            "documentation": "Element handle options."
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "focus": {
+        "kind": "method",
+        "name": "focus",
+        "signature": "focus()",
+        "documentation": "Focuses the element.",
+        "params": [],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "getAttribute": {
+        "kind": "method",
+        "name": "getAttribute",
+        "signature": "getAttribute(name: string)",
+        "documentation": "Fetch the element's attribute value.",
+        "params": [
+          {
+            "name": "name",
+            "type": "string",
+            "documentation": "Attribute name to get the value for."
+          }
+        ],
+        "returns": {
+          "type": "Promise<string>",
+          "documentation": "value."
+        }
+      },
+      "hover": {
+        "kind": "method",
+        "name": "hover",
+        "signature": "hover(options: { force?: boolean; noWaitAfter?: boolean; } & TimeoutOptions & { trial?: boolean; } & { position?: { x: number; y: number; }; } & KeyboardModifierOptions)",
+        "documentation": "Scrolls element into view and hovers over its center point.",
+        "params": [
+          {
+            "name": "options",
+            "type": "{ force?: boolean; noWaitAfter?: boolean; } & TimeoutOptions & { trial?: boolean; } & { position?: { x: number; y: number; }; } & KeyboardModifierOptions",
+            "documentation": "Hover options."
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "innerHTML": {
+        "kind": "method",
+        "name": "innerHTML",
+        "signature": "innerHTML()",
+        "documentation": "Returns the `element.innerHTML`.",
+        "params": [],
+        "returns": {
+          "type": "Promise<string>",
+          "documentation": "innerHTML."
+        }
+      },
+      "innerText": {
+        "kind": "method",
+        "name": "innerText",
+        "signature": "innerText()",
+        "documentation": "Returns the `element.innerText`.",
+        "params": [],
+        "returns": {
+          "type": "Promise<string>",
+          "documentation": "innerText."
+        }
+      },
+      "inputValue": {
+        "kind": "method",
+        "name": "inputValue",
+        "signature": "inputValue(options: TimeoutOptions)",
+        "documentation": "Returns `input.value` for the selected `input`, `textarea` or `select` element.",
+        "params": [
+          {
+            "name": "options",
+            "type": "TimeoutOptions",
+            "documentation": ""
+          }
+        ],
+        "returns": {
+          "type": "Promise<string>",
+          "documentation": "input value of the element."
+        }
+      },
+      "isChecked": {
+        "kind": "method",
+        "name": "isChecked",
+        "signature": "isChecked()",
+        "documentation": "Checks if a checkbox or radio is checked.",
+        "params": [],
+        "returns": {
+          "type": "Promise<boolean>",
+          "documentation": "the element is checked."
+        }
+      },
+      "isDisabled": {
+        "kind": "method",
+        "name": "isDisabled",
+        "signature": "isDisabled()",
+        "documentation": "Checks if the element is disabled.",
+        "params": [],
+        "returns": {
+          "type": "Promise<boolean>",
+          "documentation": "the element is disabled."
+        }
+      },
+      "isEditable": {
+        "kind": "method",
+        "name": "isEditable",
+        "signature": "isEditable()",
+        "documentation": "Checks if the element is editable.",
+        "params": [],
+        "returns": {
+          "type": "Promise<boolean>",
+          "documentation": "the element is editable."
+        }
+      },
+      "isEnabled": {
+        "kind": "method",
+        "name": "isEnabled",
+        "signature": "isEnabled()",
+        "documentation": "Checks if the element is enabled.",
+        "params": [],
+        "returns": {
+          "type": "Promise<boolean>",
+          "documentation": "the element is enabled."
+        }
+      },
+      "isHidden": {
+        "kind": "method",
+        "name": "isHidden",
+        "signature": "isHidden()",
+        "documentation": "Checks if the element is hidden.",
+        "params": [],
+        "returns": {
+          "type": "Promise<boolean>",
+          "documentation": "the element is hidden."
+        }
+      },
+      "isVisible": {
+        "kind": "method",
+        "name": "isVisible",
+        "signature": "isVisible()",
+        "documentation": "Checks if the element is visible.",
+        "params": [],
+        "returns": {
+          "type": "Promise<boolean>",
+          "documentation": "the element is visible."
+        }
+      },
+      "ownerFrame": {
+        "kind": "method",
+        "name": "ownerFrame",
+        "signature": "ownerFrame()",
+        "documentation": "Returns the frame containing the given element.",
+        "params": [],
+        "returns": {
+          "type": "Promise<Frame>",
+          "documentation": "frame that contains the element handle."
+        }
+      },
+      "press": {
+        "kind": "method",
+        "name": "press",
+        "signature": "press(key: string, options: KeyboardPressOptions)",
+        "documentation": "Focuses the element, and then uses `keyboard.down` and `keyboard.up` with the specified key.",
+        "params": [
+          {
+            "name": "key",
+            "type": "string",
+            "documentation": "A keyboard key name or a single character to press."
+          },
+          {
+            "name": "options",
+            "type": "KeyboardPressOptions",
+            "documentation": "Keyboard press options."
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "screenshot": {
+        "kind": "method",
+        "name": "screenshot",
+        "signature": "screenshot(options: ScreenshotOptions & TimeoutOptions)",
+        "documentation": "This method scrolls element into view, if needed, and then captures a screenshot of it.",
+        "params": [
+          {
+            "name": "options",
+            "type": "ScreenshotOptions & TimeoutOptions",
+            "documentation": "Screenshot options."
+          }
+        ],
+        "returns": {
+          "type": "Promise<ArrayBuffer>",
+          "documentation": "`ArrayBuffer` with the screenshot data."
+        }
+      },
+      "scrollIntoViewIfNeeded": {
+        "kind": "method",
+        "name": "scrollIntoViewIfNeeded",
+        "signature": "scrollIntoViewIfNeeded(options: ElementHandleOptions)",
+        "documentation": "This method checks whether the element is actionable using provided options, and then tries to scroll it into view, unless it is completely visible.",
+        "params": [
+          {
+            "name": "options",
+            "type": "ElementHandleOptions",
+            "documentation": "Element handle options."
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "selectOption": {
+        "kind": "method",
+        "name": "selectOption",
+        "signature": "selectOption(values: string | string[] | ElementHandle | ElementHandle[] | SelectOptionsObject | SelectOptionsObject[], options: ElementHandleOptions)",
+        "documentation": "Select one or more options of a `<select>` element which match the values.",
+        "params": [
+          {
+            "name": "values",
+            "type": "string | string[] | ElementHandle | ElementHandle[] | SelectOptionsObject | SelectOptionsObject[]",
+            "documentation": "Values of options to select."
+          },
+          {
+            "name": "options",
+            "type": "ElementHandleOptions",
+            "documentation": "Element handle options."
+          }
+        ],
+        "returns": {
+          "type": "Promise<string[]>",
+          "documentation": "of selected options."
+        }
+      },
+      "selectText": {
+        "kind": "method",
+        "name": "selectText",
+        "signature": "selectText(options: ElementHandleOptions)",
+        "documentation": "Focuses the element and selects all its text content.",
+        "params": [
+          {
+            "name": "options",
+            "type": "ElementHandleOptions",
+            "documentation": "Element handle options."
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "setChecked": {
+        "kind": "method",
+        "name": "setChecked",
+        "signature": "setChecked(checked: boolean, options: { force?: boolean; noWaitAfter?: boolean; } & TimeoutOptions & { trial?: boolean; } & { position?: { x: number; y: number; }; } & StrictnessOptions)",
+        "documentation": "Checks or unchecks the input checkbox element.",
+        "params": [
+          {
+            "name": "checked",
+            "type": "boolean",
+            "documentation": "Whether to check or uncheck the element."
+          },
+          {
+            "name": "options",
+            "type": "{ force?: boolean; noWaitAfter?: boolean; } & TimeoutOptions & { trial?: boolean; } & { position?: { x: number; y: number; }; } & StrictnessOptions",
+            "documentation": "Options to customize the check action."
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": "promise that resolves when the element is checked or unchecked."
+        }
+      },
+      "setInputFiles": {
+        "kind": "method",
+        "name": "setInputFiles",
+        "signature": "setInputFiles(files: File | File[], options: { timeout?: number; noWaitAfter?: boolean; })",
+        "documentation": "Sets the file input element's value to the specified files. To work with local files on the file system, use the experimental fs module to load and read the file contents. The element handle must be an [input element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input).",
+        "params": [
+          {
+            "name": "files",
+            "type": "File | File[]",
+            "documentation": ""
+          },
+          {
+            "name": "options",
+            "type": "{ timeout?: number; noWaitAfter?: boolean; }",
+            "documentation": ""
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "tap": {
+        "kind": "method",
+        "name": "tap",
+        "signature": "tap(options: MouseMoveOptions)",
+        "documentation": "Scrolls element into view if needed, and then uses `page.tapscreen` to tap in the center of the element or at the specified position.",
+        "params": [
+          {
+            "name": "options",
+            "type": "MouseMoveOptions",
+            "documentation": "Tap options."
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "textContent": {
+        "kind": "method",
+        "name": "textContent",
+        "signature": "textContent()",
+        "documentation": "Returns the `node.textContent`.",
+        "params": [],
+        "returns": {
+          "type": "Promise<string>",
+          "documentation": "text content of the element."
+        }
+      },
+      "type": {
+        "kind": "method",
+        "name": "type",
+        "signature": "type(text: string, options: KeyboardPressOptions)",
+        "documentation": "Scrolls element into view, focuses element and types text.",
+        "params": [
+          {
+            "name": "text",
+            "type": "string",
+            "documentation": "Text to type into the element."
+          },
+          {
+            "name": "options",
+            "type": "KeyboardPressOptions",
+            "documentation": "Typing options."
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "uncheck": {
+        "kind": "method",
+        "name": "uncheck",
+        "signature": "uncheck(options: { force?: boolean; noWaitAfter?: boolean; } & TimeoutOptions & { trial?: boolean; } & { position?: { x: number; y: number; }; } & StrictnessOptions)",
+        "documentation": "Scrolls element into view, and if it's an input element of type checkbox that is already checked, clicks on it to mark it as unchecked.",
+        "params": [
+          {
+            "name": "options",
+            "type": "{ force?: boolean; noWaitAfter?: boolean; } & TimeoutOptions & { trial?: boolean; } & { position?: { x: number; y: number; }; } & StrictnessOptions",
+            "documentation": "Click options."
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "waitForElementState": {
+        "kind": "method",
+        "name": "waitForElementState",
+        "signature": "waitForElementState(state: InputElementState, options: TimeoutOptions)",
+        "documentation": "Returns when the element satisfies the `state`.",
+        "params": [
+          {
+            "name": "state",
+            "type": "InputElementState",
+            "documentation": "Wait for element to satisfy this state."
+          },
+          {
+            "name": "options",
+            "type": "TimeoutOptions",
+            "documentation": "Wait options."
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "waitForSelector": {
+        "kind": "method",
+        "name": "waitForSelector",
+        "signature": "waitForSelector(selector: string, options: { state?: ElementState; } & StrictnessOptions & TimeoutOptions)",
+        "documentation": "Returns when the child element matching `selector` satisfies the `state`.",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "A selector to query for."
+          },
+          {
+            "name": "options",
+            "type": "{ state?: ElementState; } & StrictnessOptions & TimeoutOptions",
+            "documentation": "Wait options."
+          }
+        ],
+        "returns": {
+          "type": "Promise<ElementHandle>",
+          "documentation": ""
+        }
+      }
+    },
+    "signature": "ElementHandle"
+  },
+  "Frame": {
+    "kind": "interface",
+    "name": "Frame",
+    "documentation": "Frame represents the frame within a page. A page is made up of hierarchy of frames.",
+    "members": {
+      "$": {
+        "kind": "method",
+        "name": "$",
+        "signature": "$(selector: string)",
+        "documentation": "Finds an element matching the specified selector within the `Frame`.",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "A selector to query element for."
+          }
+        ],
+        "returns": {
+          "type": "Promise<ElementHandle>",
+          "documentation": "`ElementHandle` pointing to the result element or `null`."
+        }
+      },
+      "$$": {
+        "kind": "method",
+        "name": "$$",
+        "signature": "$$(selector: string)",
+        "documentation": "Finds all elements matching the specified selector within the `Frame`.",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "A selector to query element for."
+          }
+        ],
+        "returns": {
+          "type": "Promise<ElementHandle[]>",
+          "documentation": "list of `ElementHandle`s pointing to the result elements."
+        }
+      },
+      "check": {
+        "kind": "method",
+        "name": "check",
+        "signature": "check(selector: string, options: { force?: boolean; noWaitAfter?: boolean; } & TimeoutOptions & { trial?: boolean; } & { position?: { x: number; y: number; }; } & StrictnessOptions)",
+        "documentation": "Checks the first checkbox element found that matches selector.",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "The selector to use."
+          },
+          {
+            "name": "options",
+            "type": "{ force?: boolean; noWaitAfter?: boolean; } & TimeoutOptions & { trial?: boolean; } & { position?: { x: number; y: number; }; } & StrictnessOptions",
+            "documentation": "The options to use."
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "uncheck": {
+        "kind": "method",
+        "name": "uncheck",
+        "signature": "uncheck(selector: string, options: { force?: boolean; noWaitAfter?: boolean; } & TimeoutOptions & { trial?: boolean; } & { position?: { x: number; y: number; }; } & StrictnessOptions)",
+        "documentation": "Uncheck the first found element that matches the selector.",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "The selector to use."
+          },
+          {
+            "name": "options",
+            "type": "{ force?: boolean; noWaitAfter?: boolean; } & TimeoutOptions & { trial?: boolean; } & { position?: { x: number; y: number; }; } & StrictnessOptions",
+            "documentation": "The options to use."
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "click": {
+        "kind": "method",
+        "name": "click",
+        "signature": "click(selector: string, options: { button?: MouseButton; } & EventSequenceOptions & { clickCount?: number; } & StrictnessOptions)",
+        "documentation": "Clicks the element.",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "The selector to use."
+          },
+          {
+            "name": "options",
+            "type": "{ button?: MouseButton; } & EventSequenceOptions & { clickCount?: number; } & StrictnessOptions",
+            "documentation": "The options to use."
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": "promise that resolves when the element is clicked."
+        }
+      },
+      "dblclick": {
+        "kind": "method",
+        "name": "dblclick",
+        "signature": "dblclick(selector: string, options: { button?: MouseButton; } & EventSequenceOptions & { force?: boolean; noWaitAfter?: boolean; } & TimeoutOptions & { trial?: boolean; } & { position?: { x: number; y: number; }; } & KeyboardModifierOptions & StrictnessOptions)",
+        "documentation": "Double clicks the element.",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "The selector to use."
+          },
+          {
+            "name": "options",
+            "type": "{ button?: MouseButton; } & EventSequenceOptions & { force?: boolean; noWaitAfter?: boolean; } & TimeoutOptions & { trial?: boolean; } & { position?: { x: number; y: number; }; } & KeyboardModifierOptions & StrictnessOptions",
+            "documentation": "The options to use."
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "fill": {
+        "kind": "method",
+        "name": "fill",
+        "signature": "fill(selector: string, value: string, options: { force?: boolean; noWaitAfter?: boolean; } & TimeoutOptions & StrictnessOptions)",
+        "documentation": "Fills out the first element found that matches the selector.",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "The selector to use."
+          },
+          {
+            "name": "value",
+            "type": "string",
+            "documentation": "The value to fill."
+          },
+          {
+            "name": "options",
+            "type": "{ force?: boolean; noWaitAfter?: boolean; } & TimeoutOptions & StrictnessOptions",
+            "documentation": "The options to use."
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "focus": {
+        "kind": "method",
+        "name": "focus",
+        "signature": "focus(selector: string, options: TimeoutOptions & StrictnessOptions)",
+        "documentation": "Focuses the first element found that matches the selector.",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "The selector to use."
+          },
+          {
+            "name": "options",
+            "type": "TimeoutOptions & StrictnessOptions",
+            "documentation": "The options to use."
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "hover": {
+        "kind": "method",
+        "name": "hover",
+        "signature": "hover(selector: string, options: { force?: boolean; noWaitAfter?: boolean; } & TimeoutOptions & { trial?: boolean; } & { position?: { x: number; y: number; }; } & KeyboardModifierOptions & StrictnessOptions)",
+        "documentation": "Hovers the first element found that matches the selector.",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "The selector to use."
+          },
+          {
+            "name": "options",
+            "type": "{ force?: boolean; noWaitAfter?: boolean; } & TimeoutOptions & { trial?: boolean; } & { position?: { x: number; y: number; }; } & KeyboardModifierOptions & StrictnessOptions",
+            "documentation": "The options to use."
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "tap": {
+        "kind": "method",
+        "name": "tap",
+        "signature": "tap(selector: string, options: { force?: boolean; noWaitAfter?: boolean; } & TimeoutOptions & { trial?: boolean; } & { position?: { x: number; y: number; }; } & KeyboardModifierOptions & StrictnessOptions)",
+        "documentation": "Taps the first element found that matches the selector.",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "The selector to use."
+          },
+          {
+            "name": "options",
+            "type": "{ force?: boolean; noWaitAfter?: boolean; } & TimeoutOptions & { trial?: boolean; } & { position?: { x: number; y: number; }; } & KeyboardModifierOptions & StrictnessOptions",
+            "documentation": "The options to use."
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "press": {
+        "kind": "method",
+        "name": "press",
+        "signature": "press(selector: string, key: string, options: { noWaitAfter?: boolean; } & EventSequenceOptions & TimeoutOptions & StrictnessOptions)",
+        "documentation": "Press the given key for the first element found that matches the selector.",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "The selector to use."
+          },
+          {
+            "name": "key",
+            "type": "string",
+            "documentation": "The key to press."
+          },
+          {
+            "name": "options",
+            "type": "{ noWaitAfter?: boolean; } & EventSequenceOptions & TimeoutOptions & StrictnessOptions",
+            "documentation": "The options to use."
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "type": {
+        "kind": "method",
+        "name": "type",
+        "signature": "type(selector: string, text: string, options: { noWaitAfter?: boolean; } & EventSequenceOptions & TimeoutOptions & StrictnessOptions)",
+        "documentation": "Type the given text for the first element found that matches the selector.",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "The selector to use."
+          },
+          {
+            "name": "text",
+            "type": "string",
+            "documentation": "The text to type."
+          },
+          {
+            "name": "options",
+            "type": "{ noWaitAfter?: boolean; } & EventSequenceOptions & TimeoutOptions & StrictnessOptions",
+            "documentation": "The options to use."
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "selectOption": {
+        "kind": "method",
+        "name": "selectOption",
+        "signature": "selectOption(selector: string, values: string | string[] | ElementHandle | ElementHandle[] | SelectOptionsObject | SelectOptionsObject[], options: { force?: boolean; noWaitAfter?: boolean; } & TimeoutOptions & StrictnessOptions)",
+        "documentation": "Select the given options and return the array of option values of the first element found that matches the selector.",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "The selector to use."
+          },
+          {
+            "name": "values",
+            "type": "string | string[] | ElementHandle | ElementHandle[] | SelectOptionsObject | SelectOptionsObject[]",
+            "documentation": "The values to select."
+          },
+          {
+            "name": "options",
+            "type": "{ force?: boolean; noWaitAfter?: boolean; } & TimeoutOptions & StrictnessOptions",
+            "documentation": ""
+          }
+        ],
+        "returns": {
+          "type": "Promise<string[]>",
+          "documentation": "array of option values of the first element found."
+        }
+      },
+      "dispatchEvent": {
+        "kind": "method",
+        "name": "dispatchEvent",
+        "signature": "dispatchEvent(selector: string, type: string, eventInit: object, options: TimeoutOptions & StrictnessOptions)",
+        "documentation": "Dispatches an event for the first element matching the selector.",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "The selector to use."
+          },
+          {
+            "name": "type",
+            "type": "string",
+            "documentation": "The type of event to dispatch."
+          },
+          {
+            "name": "eventInit",
+            "type": "object",
+            "documentation": "The event initialization properties."
+          },
+          {
+            "name": "options",
+            "type": "TimeoutOptions & StrictnessOptions",
+            "documentation": "The options to use."
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "evaluate": {
+        "kind": "method",
+        "name": "evaluate",
+        "signature": "evaluate(pageFunction: PageFunction<Arg, R>, arg: Arg)",
+        "documentation": "Returns the value of the `pageFunction` invocation. A string can also be passed in instead of a function.",
+        "params": [
+          {
+            "name": "pageFunction",
+            "type": "PageFunction<Arg, R>",
+            "documentation": "Function to be evaluated in the page context."
+          },
+          {
+            "name": "arg",
+            "type": "Arg",
+            "documentation": "Optional argument to pass to `pageFunction`."
+          }
+        ],
+        "returns": {
+          "type": "Promise<R>",
+          "documentation": ""
+        }
+      },
+      "evaluateHandle": {
+        "kind": "method",
+        "name": "evaluateHandle",
+        "signature": "evaluateHandle(pageFunction: PageFunction<Arg, R>, arg: Arg)",
+        "documentation": "Returns the value of the `pageFunction` invocation as a [JSHandle]. The only difference between page.evaluate(pageFunction[, arg]) and page.evaluateHandle(pageFunction[, arg]) is that page.evaluateHandle(pageFunction[, arg])returns [JSHandle].",
+        "params": [
+          {
+            "name": "pageFunction",
+            "type": "PageFunction<Arg, R>",
+            "documentation": "Function to be evaluated in the page context."
+          },
+          {
+            "name": "arg",
+            "type": "Arg",
+            "documentation": "Optional argument to pass to `pageFunction`."
+          }
+        ],
+        "returns": {
+          "type": "Promise<JSHandle<R>>",
+          "documentation": ""
+        }
+      },
+      "page": {
+        "kind": "method",
+        "name": "page",
+        "signature": "page()",
+        "documentation": "Get the page that owns frame.",
+        "params": [],
+        "returns": {
+          "type": "Page",
+          "documentation": "page that owns frame."
+        }
+      },
+      "parentFrame": {
+        "kind": "method",
+        "name": "parentFrame",
+        "signature": "parentFrame()",
+        "documentation": "Get the parent frame.",
+        "params": [],
+        "returns": {
+          "type": "Frame",
+          "documentation": "parent frame, or `null` if there is no parent frame."
+        }
+      },
+      "childFrames": {
+        "kind": "method",
+        "name": "childFrames",
+        "signature": "childFrames()",
+        "documentation": "Get a list of all child frames.",
+        "params": [],
+        "returns": {
+          "type": "Frame[]",
+          "documentation": "list of all child frames."
+        }
+      },
+      "frameElement": {
+        "kind": "method",
+        "name": "frameElement",
+        "signature": "frameElement()",
+        "documentation": "Get the `ElementHandle` for this frame.",
+        "params": [],
+        "returns": {
+          "type": "Promise<ElementHandle>",
+          "documentation": "`ElementHandle` for this frame."
+        }
+      },
+      "goto": {
+        "kind": "method",
+        "name": "goto",
+        "signature": "goto(url: string, options: NavigationOptions)",
+        "documentation": "Navigate the frame to the specified URL and return a HTTP response object.",
+        "params": [
+          {
+            "name": "url",
+            "type": "string",
+            "documentation": "The URL to navigate to."
+          },
+          {
+            "name": "options",
+            "type": "NavigationOptions",
+            "documentation": "The options to use."
+          }
+        ],
+        "returns": {
+          "type": "Promise<Response>",
+          "documentation": "promise that resolves to the HTTP response object."
+        }
+      },
+      "setChecked": {
+        "kind": "method",
+        "name": "setChecked",
+        "signature": "setChecked(selector: string, checked: boolean, options: { force?: boolean; noWaitAfter?: boolean; } & TimeoutOptions & { trial?: boolean; } & { position?: { x: number; y: number; }; } & StrictnessOptions)",
+        "documentation": "Checks or unchecks the input checkbox element.",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "A selector to search for an element."
+          },
+          {
+            "name": "checked",
+            "type": "boolean",
+            "documentation": "Whether to check or uncheck the element."
+          },
+          {
+            "name": "options",
+            "type": "{ force?: boolean; noWaitAfter?: boolean; } & TimeoutOptions & { trial?: boolean; } & { position?: { x: number; y: number; }; } & StrictnessOptions",
+            "documentation": "Options to customize the check action."
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": "promise that resolves when the element is checked or unchecked."
+        }
+      },
+      "setContent": {
+        "kind": "method",
+        "name": "setContent",
+        "signature": "setContent(html: string, options: ContentLoadOptions)",
+        "documentation": "Replace the entire HTML document content.",
+        "params": [
+          {
+            "name": "html",
+            "type": "string",
+            "documentation": "The HTML to use."
+          },
+          {
+            "name": "options",
+            "type": "ContentLoadOptions",
+            "documentation": "The options to use."
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "name": {
+        "kind": "method",
+        "name": "name",
+        "signature": "name()",
+        "documentation": "Get the name of the frame.",
+        "params": [],
+        "returns": {
+          "type": "string",
+          "documentation": "name of the frame."
+        }
+      },
+      "title": {
+        "kind": "method",
+        "name": "title",
+        "signature": "title()",
+        "documentation": "Get the title of the frame.",
+        "params": [],
+        "returns": {
+          "type": "Promise<string>",
+          "documentation": "title of the frame."
+        }
+      },
+      "url": {
+        "kind": "method",
+        "name": "url",
+        "signature": "url()",
+        "documentation": "Get the URL of the frame.",
+        "params": [],
+        "returns": {
+          "type": "string",
+          "documentation": "URL of the frame."
+        }
+      },
+      "content": {
+        "kind": "method",
+        "name": "content",
+        "signature": "content()",
+        "documentation": "Get the HTML content of the frame.",
+        "params": [],
+        "returns": {
+          "type": "Promise<string>",
+          "documentation": "HTML content of the frame."
+        }
+      },
+      "isDetached": {
+        "kind": "method",
+        "name": "isDetached",
+        "signature": "isDetached()",
+        "documentation": "Get whether the frame is detached or not.",
+        "params": [],
+        "returns": {
+          "type": "boolean",
+          "documentation": "if the frame is detached, `false` otherwise."
+        }
+      },
+      "locator": {
+        "kind": "method",
+        "name": "locator",
+        "signature": "locator(selector: string)",
+        "documentation": "Сreates and returns a new locator for this frame.",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "The selector to use."
+          }
+        ],
+        "returns": {
+          "type": "Locator",
+          "documentation": "new locator."
+        }
+      },
+      "innerHTML": {
+        "kind": "method",
+        "name": "innerHTML",
+        "signature": "innerHTML(selector: string, options: TimeoutOptions & StrictnessOptions)",
+        "documentation": "Get the `innerHTML` attribute of the first element found that matches the selector.",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "The selector to use."
+          },
+          {
+            "name": "options",
+            "type": "TimeoutOptions & StrictnessOptions",
+            "documentation": "The options to use."
+          }
+        ],
+        "returns": {
+          "type": "Promise<string>",
+          "documentation": "`innerHTML` attribute of the first element found."
+        }
+      },
+      "innerText": {
+        "kind": "method",
+        "name": "innerText",
+        "signature": "innerText(selector: string, options: TimeoutOptions & StrictnessOptions)",
+        "documentation": "Get the `innerText` attribute of the first element found that matches the selector.",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "The selector to use."
+          },
+          {
+            "name": "options",
+            "type": "TimeoutOptions & StrictnessOptions",
+            "documentation": "The options to use."
+          }
+        ],
+        "returns": {
+          "type": "Promise<string>",
+          "documentation": "`innerText` attribute of the first element found."
+        }
+      },
+      "textContent": {
+        "kind": "method",
+        "name": "textContent",
+        "signature": "textContent(selector: string, options: TimeoutOptions & StrictnessOptions)",
+        "documentation": "Get the text content of the first element found that matches the selector.",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "The selector to use."
+          },
+          {
+            "name": "options",
+            "type": "TimeoutOptions & StrictnessOptions",
+            "documentation": "The options to use."
+          }
+        ],
+        "returns": {
+          "type": "Promise<string>",
+          "documentation": "text content of the first element found."
+        }
+      },
+      "getAttribute": {
+        "kind": "method",
+        "name": "getAttribute",
+        "signature": "getAttribute(selector: string, name: string, options: TimeoutOptions & StrictnessOptions)",
+        "documentation": "Get the value of an attribute of the first element found that matches the selector.",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "The selector to use."
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "documentation": "The name of the attribute to get."
+          },
+          {
+            "name": "options",
+            "type": "TimeoutOptions & StrictnessOptions",
+            "documentation": "The options to use."
+          }
+        ],
+        "returns": {
+          "type": "Promise<string>",
+          "documentation": "value of the attribute."
+        }
+      },
+      "inputValue": {
+        "kind": "method",
+        "name": "inputValue",
+        "signature": "inputValue(selector: string, options: TimeoutOptions & StrictnessOptions)",
+        "documentation": "Get the input value of the first element found that matches the selector.",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "The selector to use."
+          },
+          {
+            "name": "options",
+            "type": "TimeoutOptions & StrictnessOptions",
+            "documentation": "The options to use."
+          }
+        ],
+        "returns": {
+          "type": "Promise<string>",
+          "documentation": "input value of the first element found."
+        }
+      },
+      "isChecked": {
+        "kind": "method",
+        "name": "isChecked",
+        "signature": "isChecked(selector: string, options: TimeoutOptions & StrictnessOptions)",
+        "documentation": "Get the `checked` attribute of the first checkbox element found that matches the selector.",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "The selector to use."
+          },
+          {
+            "name": "options",
+            "type": "TimeoutOptions & StrictnessOptions",
+            "documentation": "The options to use."
+          }
+        ],
+        "returns": {
+          "type": "Promise<boolean>",
+          "documentation": "if the checkbox is checked, `false` otherwise."
+        }
+      },
+      "isDisabled": {
+        "kind": "method",
+        "name": "isDisabled",
+        "signature": "isDisabled(selector: string, options: TimeoutOptions & StrictnessOptions)",
+        "documentation": "Get whether the first element found that matches the selector is disabled or not.",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "The selector to use."
+          },
+          {
+            "name": "options",
+            "type": "TimeoutOptions & StrictnessOptions",
+            "documentation": "The options to use."
+          }
+        ],
+        "returns": {
+          "type": "Promise<boolean>",
+          "documentation": "if the element is disabled, `false` otherwise."
+        }
+      },
+      "isEnabled": {
+        "kind": "method",
+        "name": "isEnabled",
+        "signature": "isEnabled(selector: string, options: TimeoutOptions & StrictnessOptions)",
+        "documentation": "Get whether the first element found that matches the selector is enabled or not.",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "The selector to use."
+          },
+          {
+            "name": "options",
+            "type": "TimeoutOptions & StrictnessOptions",
+            "documentation": "The options to use."
+          }
+        ],
+        "returns": {
+          "type": "Promise<boolean>",
+          "documentation": "if the element is enabled, `false` otherwise."
+        }
+      },
+      "isEditable": {
+        "kind": "method",
+        "name": "isEditable",
+        "signature": "isEditable(selector: string, options: TimeoutOptions & StrictnessOptions)",
+        "documentation": "Get whether the first element found that matches the selector is editable or not.",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "The selector to use."
+          },
+          {
+            "name": "options",
+            "type": "TimeoutOptions & StrictnessOptions",
+            "documentation": "The options to use."
+          }
+        ],
+        "returns": {
+          "type": "Promise<boolean>",
+          "documentation": "if the element is editable, `false` otherwise."
+        }
+      },
+      "isHidden": {
+        "kind": "method",
+        "name": "isHidden",
+        "signature": "isHidden(selector: string, options: StrictnessOptions)",
+        "documentation": "Get whether the first element found that matches the selector is hidden or not.",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "The selector to use."
+          },
+          {
+            "name": "options",
+            "type": "StrictnessOptions",
+            "documentation": "The options to use."
+          }
+        ],
+        "returns": {
+          "type": "Promise<boolean>",
+          "documentation": "if the element is hidden, `false` otherwise."
+        }
+      },
+      "isVisible": {
+        "kind": "method",
+        "name": "isVisible",
+        "signature": "isVisible(selector: string, options: StrictnessOptions)",
+        "documentation": "Get whether the first element found that matches the selector is visible or not.",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "The selector to use."
+          },
+          {
+            "name": "options",
+            "type": "StrictnessOptions",
+            "documentation": "The options to use."
+          }
+        ],
+        "returns": {
+          "type": "Promise<boolean>",
+          "documentation": "if the element is visible, `false` otherwise."
+        }
+      },
+      "setInputFiles": {
+        "kind": "method",
+        "name": "setInputFiles",
+        "signature": "setInputFiles(selector: string, files: File | File[], options: { timeout?: number; noWaitAfter?: boolean; })",
+        "documentation": "Sets the file input element's value to the specified files. To work with local files on the file system, use the experimental fs module to load and read the file contents. This method expects a `selector` to point to an [input element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input).",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "A selector to search for an element. If there are multiple elements satisfying the selector, the first will be used."
+          },
+          {
+            "name": "files",
+            "type": "File | File[]",
+            "documentation": ""
+          },
+          {
+            "name": "options",
+            "type": "{ timeout?: number; noWaitAfter?: boolean; }",
+            "documentation": ""
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "waitForFunction": {
+        "kind": "method",
+        "name": "waitForFunction",
+        "signature": "waitForFunction(pageFunction: PageFunction<Arg, R>, options: PollingOptions & TimeoutOptions, arg: Arg)",
+        "documentation": "Wait for the given function to return a truthy value.",
+        "params": [
+          {
+            "name": "pageFunction",
+            "type": "PageFunction<Arg, R>",
+            "documentation": ""
+          },
+          {
+            "name": "options",
+            "type": "PollingOptions & TimeoutOptions",
+            "documentation": "The options to use."
+          },
+          {
+            "name": "arg",
+            "type": "Arg",
+            "documentation": ""
+          }
+        ],
+        "returns": {
+          "type": "Promise<JSHandle<R>>",
+          "documentation": ""
+        }
+      },
+      "waitForLoadState": {
+        "kind": "method",
+        "name": "waitForLoadState",
+        "signature": "waitForLoadState(state: LifecycleEvent, options: TimeoutOptions)",
+        "documentation": "Wait for the given load state to be reached. This will unblock if that lifecycle event has already been received.",
+        "params": [
+          {
+            "name": "state",
+            "type": "LifecycleEvent",
+            "documentation": "The load state to wait for, defaults to `load`."
+          },
+          {
+            "name": "options",
+            "type": "TimeoutOptions",
+            "documentation": "The options to use."
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "waitForNavigation": {
+        "kind": "method",
+        "name": "waitForNavigation",
+        "signature": "waitForNavigation(options: ContentLoadOptions)",
+        "documentation": "Waits for the navigation event to happen.",
+        "params": [
+          {
+            "name": "options",
+            "type": "ContentLoadOptions",
+            "documentation": "The options to use."
+          }
+        ],
+        "returns": {
+          "type": "Promise<Response>",
+          "documentation": "promise that resolves to the response of the navigation when it happens."
+        }
+      },
+      "waitForSelector": {
+        "kind": "method",
+        "name": "waitForSelector",
+        "signature": "waitForSelector(selector: string, options: ElementStateFilter & TimeoutOptions & StrictnessOptions)",
+        "documentation": "Wait for the given selector to match the waiting criteria.",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "The selector to use."
+          },
+          {
+            "name": "options",
+            "type": "ElementStateFilter & TimeoutOptions & StrictnessOptions",
+            "documentation": "The options to use."
+          }
+        ],
+        "returns": {
+          "type": "Promise<ElementHandle>",
+          "documentation": "first element found that matches the selector."
+        }
+      },
+      "waitForTimeout": {
+        "kind": "method",
+        "name": "waitForTimeout",
+        "signature": "waitForTimeout(timeout: number)",
+        "documentation": "Wait for the given timeout to elapse.",
+        "params": [
+          {
+            "name": "timeout",
+            "type": "number",
+            "documentation": "The timeout to wait for."
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      }
+    },
+    "signature": "Frame"
+  },
+  "JSHandle": {
+    "kind": "interface",
+    "name": "JSHandle",
+    "documentation": "JSHandle represents an in-page JavaScript object.",
+    "members": {
+      "asElement": {
+        "kind": "method",
+        "name": "asElement",
+        "signature": "asElement()",
+        "documentation": "Returns either `null` or the object handle itself, if the object handle is an instance of `ElementHandle`.",
+        "params": [],
+        "returns": {
+          "type": "Promise<ElementHandle>",
+          "documentation": "ElementHandle if available."
+        }
+      },
+      "dispose": {
+        "kind": "method",
+        "name": "dispose",
+        "signature": "dispose()",
+        "documentation": "Stops referencing the element handle.",
+        "params": [],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "evaluate": {
+        "kind": "method",
+        "name": "evaluate",
+        "signature": "evaluate(pageFunction: PageFunction<Arg, R>, arg: Arg)",
+        "documentation": "Evaluates the page function and returns its return value. This method passes this handle as the first argument to the page function.",
+        "params": [
+          {
+            "name": "pageFunction",
+            "type": "PageFunction<Arg, R>",
+            "documentation": "The function to be evaluated."
+          },
+          {
+            "name": "arg",
+            "type": "Arg",
+            "documentation": ""
+          }
+        ],
+        "returns": {
+          "type": "Promise<R>",
+          "documentation": "return value of `pageFunction`."
+        }
+      },
+      "evaluateHandle": {
+        "kind": "method",
+        "name": "evaluateHandle",
+        "signature": "evaluateHandle(pageFunction: PageFunction<Arg, R>, arg: Arg)",
+        "documentation": "Evaluates the page function and returns a `JSHandle`. This method passes this handle as the first argument to the page function. Unlike `evaluate`, `evaluateHandle` returns the value as a `JSHandle`",
+        "params": [
+          {
+            "name": "pageFunction",
+            "type": "PageFunction<Arg, R>",
+            "documentation": "The function to be evaluated."
+          },
+          {
+            "name": "arg",
+            "type": "Arg",
+            "documentation": ""
+          }
+        ],
+        "returns": {
+          "type": "Promise<JSHandle<R>>",
+          "documentation": "JSHandle of the return value of `pageFunction`."
+        }
+      },
+      "getProperties": {
+        "kind": "method",
+        "name": "getProperties",
+        "signature": "getProperties()",
+        "documentation": "Fetches a map with own property names of of the `JSHandle` with their values as `JSHandle` instances.",
+        "params": [],
+        "returns": {
+          "type": "Promise<Map<string, JSHandle<any>>>",
+          "documentation": "map with property names as keys and `JSHandle` instances for the property values."
+        }
+      },
+      "jsonValue": {
+        "kind": "method",
+        "name": "jsonValue",
+        "signature": "jsonValue()",
+        "documentation": "Fetches a JSON representation of the object.",
+        "params": [],
+        "returns": {
+          "type": "Promise<any>",
+          "documentation": "JSON representation of the object."
+        }
+      }
+    },
+    "signature": "JSHandle"
+  },
+  "Keyboard": {
+    "kind": "interface",
+    "name": "Keyboard",
+    "documentation": "Keyboard provides an API for managing a virtual keyboard.",
+    "members": {
+      "down": {
+        "kind": "method",
+        "name": "down",
+        "signature": "down(key: string)",
+        "documentation": "Sends a key down message to a session target. A superset of the key values can be found [here](https://developer.mozilla.org/en-US/docs/Web/API/UI_Events/Keyboard_event_key_values).",
+        "params": [
+          {
+            "name": "key",
+            "type": "string",
+            "documentation": "Name of key to press, such as `ArrowLeft`."
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "insertText": {
+        "kind": "method",
+        "name": "insertText",
+        "signature": "insertText(text: string)",
+        "documentation": "Dispatches an `input` event with the given `text`. This method does not emit `keyDown`, `keyUp` or `keyPress` events.",
+        "params": [
+          {
+            "name": "text",
+            "type": "string",
+            "documentation": "Event text."
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "press": {
+        "kind": "method",
+        "name": "press",
+        "signature": "press(key: string, options: { delay?: number; })",
+        "documentation": "Sends a key press message to a session target. A press message consists of successive key down and up messages.",
+        "params": [
+          {
+            "name": "key",
+            "type": "string",
+            "documentation": "Sequence of keys to press."
+          },
+          {
+            "name": "options",
+            "type": "{ delay?: number; }",
+            "documentation": "Specifies the typing options."
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "type": {
+        "kind": "method",
+        "name": "type",
+        "signature": "type(text: string, options: { delay?: number; })",
+        "documentation": "Type sends a `press` message to a session target for each character in text. It sends an insertText message if a character is not among valid characters in the keyboard's layout. Modifier keys `Shift`, `Control`, `Alt`, `Meta` are _not_ respected.",
+        "params": [
+          {
+            "name": "text",
+            "type": "string",
+            "documentation": "A text to type into a focused element."
+          },
+          {
+            "name": "options",
+            "type": "{ delay?: number; }",
+            "documentation": "Specifies the typing options."
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "up": {
+        "kind": "method",
+        "name": "up",
+        "signature": "up(key: string)",
+        "documentation": "Sends a key up message to a session target. A superset of the key values can be found [here](https://developer.mozilla.org/en-US/docs/Web/API/UI_Events/Keyboard_event_key_values).",
+        "params": [
+          {
+            "name": "key",
+            "type": "string",
+            "documentation": "Name of key to release, such as `ArrowLeft`."
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      }
+    },
+    "signature": "Keyboard"
+  },
+  "Locator": {
+    "kind": "interface",
+    "name": "Locator",
+    "documentation": "The Locator API makes it easier to work with dynamically changing elements. Some of the benefits of using it over existing ways to locate an element (e.g. Page.$()) include: - Helps with writing robust tests by finding an element even if the underlying frame navigates. - Makes it easier to work with dynamic web pages and SPAs built with Svelte, React, Vue, etc.",
+    "members": {
+      "clear": {
+        "kind": "method",
+        "name": "clear",
+        "signature": "clear(options: ElementHandleOptions)",
+        "documentation": "Clears text boxes and input fields of any existing values. **Usage** ```js // Clears the input field matching the selector. page.locator('input[name=\"login\"]').clear(); ```",
+        "params": [
+          {
+            "name": "options",
+            "type": "ElementHandleOptions",
+            "documentation": "Options to use."
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "click": {
+        "kind": "method",
+        "name": "click",
+        "signature": "click(options: { force?: boolean; noWaitAfter?: boolean; } & TimeoutOptions & { trial?: boolean; } & { position?: { x: number; y: number; }; } & KeyboardModifierOptions & { button?: MouseButton; } & EventSequenceOptions & { clickCount?: number; })",
+        "documentation": "Mouse click on the chosen element.",
+        "params": [
+          {
+            "name": "options",
+            "type": "{ force?: boolean; noWaitAfter?: boolean; } & TimeoutOptions & { trial?: boolean; } & { position?: { x: number; y: number; }; } & KeyboardModifierOptions & { button?: MouseButton; } & EventSequenceOptions & { clickCount?: number; }",
+            "documentation": "Options to use."
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": "which resolves when the element is successfully clicked."
+        }
+      },
+      "dblclick": {
+        "kind": "method",
+        "name": "dblclick",
+        "signature": "dblclick(options: { force?: boolean; noWaitAfter?: boolean; } & TimeoutOptions & { trial?: boolean; } & { position?: { x: number; y: number; }; } & KeyboardModifierOptions & { button?: MouseButton; } & EventSequenceOptions & { clickCount?: number; })",
+        "documentation": "Mouse double click on the chosen element.",
+        "params": [
+          {
+            "name": "options",
+            "type": "{ force?: boolean; noWaitAfter?: boolean; } & TimeoutOptions & { trial?: boolean; } & { position?: { x: number; y: number; }; } & KeyboardModifierOptions & { button?: MouseButton; } & EventSequenceOptions & { clickCount?: number; }",
+            "documentation": "Options to use."
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "check": {
+        "kind": "method",
+        "name": "check",
+        "signature": "check(options: ElementClickOptions)",
+        "documentation": "Use this method to select an `input type=\"checkbox\"`.",
+        "params": [
+          {
+            "name": "options",
+            "type": "ElementClickOptions",
+            "documentation": "Options to use."
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "uncheck": {
+        "kind": "method",
+        "name": "uncheck",
+        "signature": "uncheck(options: ElementClickOptions)",
+        "documentation": "Use this method to unselect an `input type=\"checkbox\"`.",
+        "params": [
+          {
+            "name": "options",
+            "type": "ElementClickOptions",
+            "documentation": "Options to use."
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "isChecked": {
+        "kind": "method",
+        "name": "isChecked",
+        "signature": "isChecked(options: TimeoutOptions)",
+        "documentation": "Checks to see if the `input type=\"checkbox\"` is selected or not.",
+        "params": [
+          {
+            "name": "options",
+            "type": "TimeoutOptions",
+            "documentation": "Options to use."
+          }
+        ],
+        "returns": {
+          "type": "Promise<boolean>",
+          "documentation": "if the element is checked, `false` otherwise."
+        }
+      },
+      "isEditable": {
+        "kind": "method",
+        "name": "isEditable",
+        "signature": "isEditable(options: TimeoutOptions)",
+        "documentation": "Checks if the element is editable.",
+        "params": [
+          {
+            "name": "options",
+            "type": "TimeoutOptions",
+            "documentation": "Options to use."
+          }
+        ],
+        "returns": {
+          "type": "Promise<boolean>",
+          "documentation": "if the element is editable, `false` otherwise."
+        }
+      },
+      "isEnabled": {
+        "kind": "method",
+        "name": "isEnabled",
+        "signature": "isEnabled(options: TimeoutOptions)",
+        "documentation": "Checks if the element is `enabled`.",
+        "params": [
+          {
+            "name": "options",
+            "type": "TimeoutOptions",
+            "documentation": "Options to use."
+          }
+        ],
+        "returns": {
+          "type": "Promise<boolean>",
+          "documentation": "if the element is enabled, `false` otherwise."
+        }
+      },
+      "isDisabled": {
+        "kind": "method",
+        "name": "isDisabled",
+        "signature": "isDisabled(options: TimeoutOptions)",
+        "documentation": "Checks if the element is `disabled`.",
+        "params": [
+          {
+            "name": "options",
+            "type": "TimeoutOptions",
+            "documentation": "Options to use."
+          }
+        ],
+        "returns": {
+          "type": "Promise<boolean>",
+          "documentation": "if the element is disabled, `false` otherwise."
+        }
+      },
+      "isVisible": {
+        "kind": "method",
+        "name": "isVisible",
+        "signature": "isVisible()",
+        "documentation": "Checks if the element is `visible`.",
+        "params": [],
+        "returns": {
+          "type": "Promise<boolean>",
+          "documentation": "if the element is visible, `false` otherwise."
+        }
+      },
+      "isHidden": {
+        "kind": "method",
+        "name": "isHidden",
+        "signature": "isHidden()",
+        "documentation": "Checks if the element is `hidden`.",
+        "params": [],
+        "returns": {
+          "type": "Promise<boolean>",
+          "documentation": "if the element is hidden, `false` otherwise."
+        }
+      },
+      "fill": {
+        "kind": "method",
+        "name": "fill",
+        "signature": "fill(value: string, options: ElementHandleOptions)",
+        "documentation": "Fill an `input`, `textarea` or `contenteditable` element with the provided value.",
+        "params": [
+          {
+            "name": "value",
+            "type": "string",
+            "documentation": "Value to fill for the `input` or `textarea` element."
+          },
+          {
+            "name": "options",
+            "type": "ElementHandleOptions",
+            "documentation": "Options to use."
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "focus": {
+        "kind": "method",
+        "name": "focus",
+        "signature": "focus(options: TimeoutOptions)",
+        "documentation": "Focuses the element using locator's selector.",
+        "params": [
+          {
+            "name": "options",
+            "type": "TimeoutOptions",
+            "documentation": "Options to use."
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "getAttribute": {
+        "kind": "method",
+        "name": "getAttribute",
+        "signature": "getAttribute(name: string, options: TimeoutOptions)",
+        "documentation": "Returns the element attribute value for the given attribute name.",
+        "params": [
+          {
+            "name": "name",
+            "type": "string",
+            "documentation": "Attribute name to retrieve value for."
+          },
+          {
+            "name": "options",
+            "type": "TimeoutOptions",
+            "documentation": "Options to use."
+          }
+        ],
+        "returns": {
+          "type": "Promise<string>",
+          "documentation": "value."
+        }
+      },
+      "innerHTML": {
+        "kind": "method",
+        "name": "innerHTML",
+        "signature": "innerHTML(options: TimeoutOptions)",
+        "documentation": "Returns the `element.innerHTML`.",
+        "params": [
+          {
+            "name": "options",
+            "type": "TimeoutOptions",
+            "documentation": "Options to use."
+          }
+        ],
+        "returns": {
+          "type": "Promise<string>",
+          "documentation": "innerHTML."
+        }
+      },
+      "innerText": {
+        "kind": "method",
+        "name": "innerText",
+        "signature": "innerText(options: TimeoutOptions)",
+        "documentation": "Returns the `element.innerText`.",
+        "params": [
+          {
+            "name": "options",
+            "type": "TimeoutOptions",
+            "documentation": "Options to use."
+          }
+        ],
+        "returns": {
+          "type": "Promise<string>",
+          "documentation": "innerText."
+        }
+      },
+      "textContent": {
+        "kind": "method",
+        "name": "textContent",
+        "signature": "textContent(options: TimeoutOptions)",
+        "documentation": "Returns the `element.textContent`.",
+        "params": [
+          {
+            "name": "options",
+            "type": "TimeoutOptions",
+            "documentation": "Options to use."
+          }
+        ],
+        "returns": {
+          "type": "Promise<string>",
+          "documentation": "textContent."
+        }
+      },
+      "inputValue": {
+        "kind": "method",
+        "name": "inputValue",
+        "signature": "inputValue(options: TimeoutOptions)",
+        "documentation": "Returns `input.value` for the selected `input`, `textarea` or `select` element.",
+        "params": [
+          {
+            "name": "options",
+            "type": "TimeoutOptions",
+            "documentation": "Options to use."
+          }
+        ],
+        "returns": {
+          "type": "Promise<string>",
+          "documentation": "input value of the element."
+        }
+      },
+      "selectOption": {
+        "kind": "method",
+        "name": "selectOption",
+        "signature": "selectOption(values: string | string[] | { value?: string; label?: string; index?: number; }, options: ElementHandleOptions)",
+        "documentation": "Select one or more options which match the values. If the select has the multiple attribute, all matching options are selected, otherwise only the first option matching one of the passed options is selected.",
+        "params": [
+          {
+            "name": "values",
+            "type": "string | string[] | { value?: string; label?: string; index?: number; }",
+            "documentation": "Values of options to select."
+          },
+          {
+            "name": "options",
+            "type": "ElementHandleOptions",
+            "documentation": "Options to use."
+          }
+        ],
+        "returns": {
+          "type": "Promise<string[]>",
+          "documentation": "of selected options."
+        }
+      },
+      "setChecked": {
+        "kind": "method",
+        "name": "setChecked",
+        "signature": "setChecked(checked: boolean, options: ElementClickOptions)",
+        "documentation": "Checks or unchecks the input checkbox element.",
+        "params": [
+          {
+            "name": "checked",
+            "type": "boolean",
+            "documentation": "Whether to check or uncheck the element."
+          },
+          {
+            "name": "options",
+            "type": "ElementClickOptions",
+            "documentation": "Options to customize the check action."
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": "promise that resolves when the element is checked or unchecked."
+        }
+      },
+      "press": {
+        "kind": "method",
+        "name": "press",
+        "signature": "press(key: string, options: KeyboardPressOptions)",
+        "documentation": "Press a single key on the keyboard or a combination of keys. A superset of the key values can be found [here](https://developer.mozilla.org/en-US/docs/Web/API/UI_Events/Keyboard_event_key_values).",
+        "params": [
+          {
+            "name": "key",
+            "type": "string",
+            "documentation": "Name of the key to press or a character to generate, such as `ArrowLeft` or `a`."
+          },
+          {
+            "name": "options",
+            "type": "KeyboardPressOptions",
+            "documentation": "Keyboard press options."
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "type": {
+        "kind": "method",
+        "name": "type",
+        "signature": "type(text: string, options: KeyboardPressOptions)",
+        "documentation": "Type a text into the input field.",
+        "params": [
+          {
+            "name": "text",
+            "type": "string",
+            "documentation": "Text to type into the input field."
+          },
+          {
+            "name": "options",
+            "type": "KeyboardPressOptions",
+            "documentation": "Typing options."
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "hover": {
+        "kind": "method",
+        "name": "hover",
+        "signature": "hover(options: MouseMoveOptions)",
+        "documentation": "Hover over the element.",
+        "params": [
+          {
+            "name": "options",
+            "type": "MouseMoveOptions",
+            "documentation": "Options to use."
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "tap": {
+        "kind": "method",
+        "name": "tap",
+        "signature": "tap(options: MouseMoveOptions)",
+        "documentation": "Tap on the chosen element.",
+        "params": [
+          {
+            "name": "options",
+            "type": "MouseMoveOptions",
+            "documentation": "Options to use."
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "dispatchEvent": {
+        "kind": "method",
+        "name": "dispatchEvent",
+        "signature": "dispatchEvent(type: string, eventInit: object, options: TimeoutOptions)",
+        "documentation": "Dispatches HTML DOM event types e.g. `click`.",
+        "params": [
+          {
+            "name": "type",
+            "type": "string",
+            "documentation": "DOM event type."
+          },
+          {
+            "name": "eventInit",
+            "type": "object",
+            "documentation": "Event-specific properties."
+          },
+          {
+            "name": "options",
+            "type": "TimeoutOptions",
+            "documentation": "Options to use."
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "waitFor": {
+        "kind": "method",
+        "name": "waitFor",
+        "signature": "waitFor(options: { state?: ElementState; } & TimeoutOptions)",
+        "documentation": "Wait for the element to be in a particular state e.g. `visible`.",
+        "params": [
+          {
+            "name": "options",
+            "type": "{ state?: ElementState; } & TimeoutOptions",
+            "documentation": "Wait options."
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      }
+    },
+    "signature": "Locator"
+  },
+  "Mouse": {
+    "kind": "interface",
+    "name": "Mouse",
+    "documentation": "Mouse provides an API for managing a virtual mouse.",
+    "members": {
+      "click": {
+        "kind": "method",
+        "name": "click",
+        "signature": "click(x: number, y: number, options: MouseMultiClickOptions)",
+        "documentation": "Shortcut for `mouse.move(x, y)`, `mouse.down()`, `mouse.up()`.",
+        "params": [
+          {
+            "name": "x",
+            "type": "number",
+            "documentation": "The x position."
+          },
+          {
+            "name": "y",
+            "type": "number",
+            "documentation": "The y position."
+          },
+          {
+            "name": "options",
+            "type": "MouseMultiClickOptions",
+            "documentation": "The click options."
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "dblclick": {
+        "kind": "method",
+        "name": "dblclick",
+        "signature": "dblclick(x: number, y: number, options: MouseClickOptions)",
+        "documentation": "Shortcut for `mouse.move(x, y)`, `mouse.down()`, `mouse.up()`, `mouse.down()`, `mouse.up()`.",
+        "params": [
+          {
+            "name": "x",
+            "type": "number",
+            "documentation": "The x position."
+          },
+          {
+            "name": "y",
+            "type": "number",
+            "documentation": "The y position."
+          },
+          {
+            "name": "options",
+            "type": "MouseClickOptions",
+            "documentation": "The click options."
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "down": {
+        "kind": "method",
+        "name": "down",
+        "signature": "down(options: MouseDownUpOptions)",
+        "documentation": "Dispatches a `mousedown` event.",
+        "params": [
+          {
+            "name": "options",
+            "type": "MouseDownUpOptions",
+            "documentation": "The mouse down options."
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "move": {
+        "kind": "method",
+        "name": "move",
+        "signature": "move(x: number, y: number, options: { steps?: number; })",
+        "documentation": "Dispatches a `mousemove` event.",
+        "params": [
+          {
+            "name": "x",
+            "type": "number",
+            "documentation": "The x position."
+          },
+          {
+            "name": "y",
+            "type": "number",
+            "documentation": "The y position."
+          },
+          {
+            "name": "options",
+            "type": "{ steps?: number; }",
+            "documentation": "The mouse move options."
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "up": {
+        "kind": "method",
+        "name": "up",
+        "signature": "up(options: MouseDownUpOptions)",
+        "documentation": "Dispatches a `mouseup` event.",
+        "params": [
+          {
+            "name": "options",
+            "type": "MouseDownUpOptions",
+            "documentation": "The mouse up options."
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      }
+    },
+    "signature": "Mouse"
+  },
+  "Page": {
+    "kind": "interface",
+    "name": "Page",
+    "documentation": "Page provides methods to interact with a single tab in a running web browser instance. One instance of the browser can have many page instances.",
+    "members": {
+      "bringToFront": {
+        "kind": "method",
+        "name": "bringToFront",
+        "signature": "bringToFront()",
+        "documentation": "Activates the browser tab so that it comes into focus and actions can be performed against it.",
+        "params": [],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "check": {
+        "kind": "method",
+        "name": "check",
+        "signature": "check(selector: string, options: { force?: boolean; noWaitAfter?: boolean; position?: { x: number; y: number; }; strict?: boolean; timeout?: number; trial?: boolean; })",
+        "documentation": "*NOTE** Use locator-based `locator.check([options])` instead. This method is used to select an input checkbox.",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "A selector to search for an element. If there are multiple elements satisfying the selector, the first will be used."
+          },
+          {
+            "name": "options",
+            "type": "{ force?: boolean; noWaitAfter?: boolean; position?: { x: number; y: number; }; strict?: boolean; timeout?: number; trial?: boolean; }",
+            "documentation": ""
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "click": {
+        "kind": "method",
+        "name": "click",
+        "signature": "click(selector: string, options: { button?: MouseButton; clickCount?: number; delay?: number; force?: boolean; modifiers?: KeyboardModifier[]; noWaitAfter?: boolean; position?: { x: number; y: number; }; strict?: boolean; timeout?: number; trial?: boolean; })",
+        "documentation": "*NOTE** Use locator-based `locator.click([options])` instead. This method clicks an element matching `selector`.",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "A selector to search for an element. If there are multiple elements satisfying the selector, the first will be used."
+          },
+          {
+            "name": "options",
+            "type": "{ button?: MouseButton; clickCount?: number; delay?: number; force?: boolean; modifiers?: KeyboardModifier[]; noWaitAfter?: boolean; position?: { x: number; y: number; }; strict?: boolean; timeout?: number; trial?: boolean; }",
+            "documentation": ""
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "close": {
+        "kind": "method",
+        "name": "close",
+        "signature": "close()",
+        "documentation": "This will close the tab that this page is associated with.",
+        "params": [],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "content": {
+        "kind": "method",
+        "name": "content",
+        "signature": "content()",
+        "documentation": "Gets the HTML contents of the page.",
+        "params": [],
+        "returns": {
+          "type": "Promise<string>",
+          "documentation": ""
+        }
+      },
+      "context": {
+        "kind": "method",
+        "name": "context",
+        "signature": "context()",
+        "documentation": "Gets the `BrowserContext` that the page belongs to.",
+        "params": [],
+        "returns": {
+          "type": "BrowserContext",
+          "documentation": ""
+        }
+      },
+      "dblclick": {
+        "kind": "method",
+        "name": "dblclick",
+        "signature": "dblclick(selector: string, options: { button?: MouseButton; delay?: number; force?: boolean; modifiers?: KeyboardModifier[]; noWaitAfter?: boolean; position?: { x: number; y: number; }; strict?: boolean; timeout?: number; trial?: boolean; })",
+        "documentation": "*NOTE** Use locator-based `locator.dblclick([options])` instead. Mouse double clicks an element matching provided selector.",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "A selector to search for an element. If there are multiple elements satisfying the selector, the first will be used."
+          },
+          {
+            "name": "options",
+            "type": "{ button?: MouseButton; delay?: number; force?: boolean; modifiers?: KeyboardModifier[]; noWaitAfter?: boolean; position?: { x: number; y: number; }; strict?: boolean; timeout?: number; trial?: boolean; }",
+            "documentation": ""
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "dispatchEvent": {
+        "kind": "method",
+        "name": "dispatchEvent",
+        "signature": "dispatchEvent(selector: string, type: string, eventInit: object, options: { strict?: boolean; timeout?: number; })",
+        "documentation": "*NOTE** Use locator-based locator.dispatchEvent([options]) instead.",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "A selector to search for an element. If there are multiple elements satisfying the selector, the first will be used."
+          },
+          {
+            "name": "type",
+            "type": "string",
+            "documentation": "DOM event type: `\"click\"` etc."
+          },
+          {
+            "name": "eventInit",
+            "type": "object",
+            "documentation": "Optional event-specific initialization properties."
+          },
+          {
+            "name": "options",
+            "type": "{ strict?: boolean; timeout?: number; }",
+            "documentation": ""
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "emulateMedia": {
+        "kind": "method",
+        "name": "emulateMedia",
+        "signature": "emulateMedia(options: { colorScheme?: \"light\" | \"dark\" | \"no-preference\"; media?: \"screen\" | \"print\"; reducedMotion?: \"no-preference\" | \"reduce\"; })",
+        "documentation": "This method changes the `CSS media type` through the `media` argument, and/or the `'prefers-colors-scheme'` media feature, using the `colorScheme` argument.",
+        "params": [
+          {
+            "name": "options",
+            "type": "{ colorScheme?: \"light\" | \"dark\" | \"no-preference\"; media?: \"screen\" | \"print\"; reducedMotion?: \"no-preference\" | \"reduce\"; }",
+            "documentation": ""
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "emulateVisionDeficiency": {
+        "kind": "method",
+        "name": "emulateVisionDeficiency",
+        "signature": "emulateVisionDeficiency(type: \"none\" | \"blurredVision\" | \"deuteranopia\" | \"protanopia\" | \"tritanopia\" | \"achromatopsia\")",
+        "documentation": "This emulates your website with the specified vision deficiency type. The supported types are: - none: default. - blurredVision: where vision is less precise. - protanopia: the inability to perceive any red light. - deuteranopia: the inability to perceive any green light. - tritanopia: the inability to perceive any blue light. - achromatopsia: the inability to perceive any color except for shades of grey (extremely rare).",
+        "params": [
+          {
+            "name": "type",
+            "type": "\"none\" | \"blurredVision\" | \"deuteranopia\" | \"protanopia\" | \"tritanopia\" | \"achromatopsia\"",
+            "documentation": ""
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "evaluate": {
+        "kind": "method",
+        "name": "evaluate",
+        "signature": "evaluate(pageFunction: PageFunction<Arg, R>, arg: Arg)",
+        "documentation": "Returns the value of the `pageFunction` invocation. A string can also be passed in instead of a function.",
+        "params": [
+          {
+            "name": "pageFunction",
+            "type": "PageFunction<Arg, R>",
+            "documentation": "Function to be evaluated in the page context."
+          },
+          {
+            "name": "arg",
+            "type": "Arg",
+            "documentation": "Optional argument to pass to `pageFunction`."
+          }
+        ],
+        "returns": {
+          "type": "Promise<R>",
+          "documentation": ""
+        }
+      },
+      "evaluateHandle": {
+        "kind": "method",
+        "name": "evaluateHandle",
+        "signature": "evaluateHandle(pageFunction: PageFunction<Arg, R>, arg: Arg)",
+        "documentation": "Returns the value of the `pageFunction` invocation as a [JSHandle]. The only difference between page.evaluate(pageFunction[, arg]) and page.evaluateHandle(pageFunction[, arg]) is that page.evaluateHandle(pageFunction[, arg])returns [JSHandle].",
+        "params": [
+          {
+            "name": "pageFunction",
+            "type": "PageFunction<Arg, R>",
+            "documentation": "Function to be evaluated in the page context."
+          },
+          {
+            "name": "arg",
+            "type": "Arg",
+            "documentation": "Optional argument to pass to `pageFunction`."
+          }
+        ],
+        "returns": {
+          "type": "Promise<JSHandle<R>>",
+          "documentation": ""
+        }
+      },
+      "fill": {
+        "kind": "method",
+        "name": "fill",
+        "signature": "fill(selector: string, value: string, options: { force?: boolean; noWaitAfter?: boolean; strict?: boolean; timeout?: number; })",
+        "documentation": "*NOTE** Use locator-based `locator.fill(value[, options])` instead. Fill an `input`, `textarea` or `[contenteditable]` element with the provided value.",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "A selector to search for an element. If there are multiple elements satisfying the selector, the first will be used."
+          },
+          {
+            "name": "value",
+            "type": "string",
+            "documentation": "Value to fill for the `<input>`, `<textarea>` or `[contenteditable]` element."
+          },
+          {
+            "name": "options",
+            "type": "{ force?: boolean; noWaitAfter?: boolean; strict?: boolean; timeout?: number; }",
+            "documentation": ""
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "focus": {
+        "kind": "method",
+        "name": "focus",
+        "signature": "focus(selector: string, options: { strict?: boolean; timeout?: number; })",
+        "documentation": "*NOTE** Use locator-based `locator.focus([options])` instead. This method fetches an element with `selector` and focuses it.",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "A selector to search for an element. If there are multiple elements satisfying the selector, the first will be used."
+          },
+          {
+            "name": "options",
+            "type": "{ strict?: boolean; timeout?: number; }",
+            "documentation": ""
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "frames": {
+        "kind": "method",
+        "name": "frames",
+        "signature": "frames()",
+        "documentation": "Frames returns an array of frames on the page.",
+        "params": [],
+        "returns": {
+          "type": "Frame[]",
+          "documentation": ""
+        }
+      },
+      "getAttribute": {
+        "kind": "method",
+        "name": "getAttribute",
+        "signature": "getAttribute(selector: string, name: string, options: { strict?: boolean; timeout?: number; })",
+        "documentation": "*NOTE** Use locator-based locator.getAttribute(name[, options]) instead. Returns the element attribute value for the given attribute name.",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "A selector to search for an element. If there are multiple elements satisfying the selector, the first will be used."
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "documentation": "Attribute name to get the value for."
+          },
+          {
+            "name": "options",
+            "type": "{ strict?: boolean; timeout?: number; }",
+            "documentation": ""
+          }
+        ],
+        "returns": {
+          "type": "Promise<string>",
+          "documentation": ""
+        }
+      },
+      "goto": {
+        "kind": "method",
+        "name": "goto",
+        "signature": "goto(url: string, options: NavigationOptions)",
+        "documentation": "Navigates to the specified url and returns the main resource response. navigating to `about:blank` or navigation to the same URL with a different hash, will succeed and return `null`.",
+        "params": [
+          {
+            "name": "url",
+            "type": "string",
+            "documentation": "URL to navigate page to. The url should include scheme, e.g. `https://`."
+          },
+          {
+            "name": "options",
+            "type": "NavigationOptions",
+            "documentation": ""
+          }
+        ],
+        "returns": {
+          "type": "Promise<Response>",
+          "documentation": ""
+        }
+      },
+      "hover": {
+        "kind": "method",
+        "name": "hover",
+        "signature": "hover(selector: string, options: { force?: boolean; modifiers?: KeyboardModifier[]; noWaitAfter?: boolean; position?: { x: number; y: number; }; strict?: boolean; timeout?: number; trial?: boolean; })",
+        "documentation": "*NOTE** Use locator-based locator.hover([options]) instead. This method hovers over an element matching `selector`.",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "A selector to search for an element. If there are multiple elements satisfying the selector, the first will be used."
+          },
+          {
+            "name": "options",
+            "type": "{ force?: boolean; modifiers?: KeyboardModifier[]; noWaitAfter?: boolean; position?: { x: number; y: number; }; strict?: boolean; timeout?: number; trial?: boolean; }",
+            "documentation": ""
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "innerHTML": {
+        "kind": "method",
+        "name": "innerHTML",
+        "signature": "innerHTML(selector: string, options: { strict?: boolean; timeout?: number; })",
+        "documentation": "*NOTE** Use locator-based locator.innerHTML([options]) instead. Returns `element.innerHTML`.",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "A selector to search for an element. If there are multiple elements satisfying the selector, the first will be used."
+          },
+          {
+            "name": "options",
+            "type": "{ strict?: boolean; timeout?: number; }",
+            "documentation": ""
+          }
+        ],
+        "returns": {
+          "type": "Promise<string>",
+          "documentation": ""
+        }
+      },
+      "innerText": {
+        "kind": "method",
+        "name": "innerText",
+        "signature": "innerText(selector: string, options: { strict?: boolean; timeout?: number; })",
+        "documentation": "*NOTE** Use locator-based locator.innerText([options]) instead. Returns `element.innerText`.",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "A selector to search for an element. If there are multiple elements satisfying the selector, the first will be used."
+          },
+          {
+            "name": "options",
+            "type": "{ strict?: boolean; timeout?: number; }",
+            "documentation": ""
+          }
+        ],
+        "returns": {
+          "type": "Promise<string>",
+          "documentation": ""
+        }
+      },
+      "inputValue": {
+        "kind": "method",
+        "name": "inputValue",
+        "signature": "inputValue(selector: string, options: { strict?: boolean; timeout?: number; })",
+        "documentation": "*NOTE** Use locator-based locator.inputValue([options]) instead. Returns `input.value` for the selected `<input>` or `<textarea>` or `<select>` element.",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "A selector to search for an element. If there are multiple elements satisfying the selector, the first will be used."
+          },
+          {
+            "name": "options",
+            "type": "{ strict?: boolean; timeout?: number; }",
+            "documentation": ""
+          }
+        ],
+        "returns": {
+          "type": "Promise<string>",
+          "documentation": ""
+        }
+      },
+      "isChecked": {
+        "kind": "method",
+        "name": "isChecked",
+        "signature": "isChecked(selector: string, options: { strict?: boolean; timeout?: number; })",
+        "documentation": "*NOTE** Use locator-based locator.isChecked([options]) instead. Checks to see if the `checkbox` `input` type is selected or not.",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "A selector to search for an element. If there are multiple elements satisfying the selector, the first will be used."
+          },
+          {
+            "name": "options",
+            "type": "{ strict?: boolean; timeout?: number; }",
+            "documentation": ""
+          }
+        ],
+        "returns": {
+          "type": "Promise<boolean>",
+          "documentation": ""
+        }
+      },
+      "isClosed": {
+        "kind": "method",
+        "name": "isClosed",
+        "signature": "isClosed()",
+        "documentation": "Indicates that the page has been closed.",
+        "params": [],
+        "returns": {
+          "type": "boolean",
+          "documentation": ""
+        }
+      },
+      "isDisabled": {
+        "kind": "method",
+        "name": "isDisabled",
+        "signature": "isDisabled(selector: string, options: { strict?: boolean; timeout?: number; })",
+        "documentation": "*NOTE** Use locator-based locator.isDisabled([options]) instead. Returns whether the element is disabled.",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "A selector to search for an element. If there are multiple elements satisfying the selector, the first will be used."
+          },
+          {
+            "name": "options",
+            "type": "{ strict?: boolean; timeout?: number; }",
+            "documentation": ""
+          }
+        ],
+        "returns": {
+          "type": "Promise<boolean>",
+          "documentation": ""
+        }
+      },
+      "isEditable": {
+        "kind": "method",
+        "name": "isEditable",
+        "signature": "isEditable(selector: string, options: { strict?: boolean; timeout?: number; })",
+        "documentation": "*NOTE** Use locator-based locator.isEditable([options]) instead. Returns whether the element is editable.",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "A selector to search for an element. If there are multiple elements satisfying the selector, the first will be used."
+          },
+          {
+            "name": "options",
+            "type": "{ strict?: boolean; timeout?: number; }",
+            "documentation": ""
+          }
+        ],
+        "returns": {
+          "type": "Promise<boolean>",
+          "documentation": ""
+        }
+      },
+      "isEnabled": {
+        "kind": "method",
+        "name": "isEnabled",
+        "signature": "isEnabled(selector: string, options: { strict?: boolean; timeout?: number; })",
+        "documentation": "*NOTE** Use locator-based locator.isEnabled([options]) instead. Returns whether the element is enabled.",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "A selector to search for an element. If there are multiple elements satisfying the selector, the first will be used."
+          },
+          {
+            "name": "options",
+            "type": "{ strict?: boolean; timeout?: number; }",
+            "documentation": ""
+          }
+        ],
+        "returns": {
+          "type": "Promise<boolean>",
+          "documentation": ""
+        }
+      },
+      "isHidden": {
+        "kind": "method",
+        "name": "isHidden",
+        "signature": "isHidden(selector: string, options: StrictnessOptions)",
+        "documentation": "*NOTE** Use locator-based locator.isHidden() instead. Returns whether the element is hidden.",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "A selector to search for an element. If there are multiple elements satisfying the selector, the first will be used."
+          },
+          {
+            "name": "options",
+            "type": "StrictnessOptions",
+            "documentation": ""
+          }
+        ],
+        "returns": {
+          "type": "Promise<boolean>",
+          "documentation": ""
+        }
+      },
+      "isVisible": {
+        "kind": "method",
+        "name": "isVisible",
+        "signature": "isVisible(selector: string, options: StrictnessOptions)",
+        "documentation": "*NOTE** Use locator-based locator.isVisible() instead. Returns whether the element is visible.",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "A selector to search for an element. If there are multiple elements satisfying the selector, the first will be used."
+          },
+          {
+            "name": "options",
+            "type": "StrictnessOptions",
+            "documentation": ""
+          }
+        ],
+        "returns": {
+          "type": "Promise<boolean>",
+          "documentation": ""
+        }
+      },
+      "keyboard": {
+        "kind": "property",
+        "name": "keyboard",
+        "signature": "keyboard: Keyboard;",
+        "documentation": "Returns the keyboard instance to interact with a virtual keyboard on the page.",
+        "type": "Keyboard"
+      },
+      "locator": {
+        "kind": "method",
+        "name": "locator",
+        "signature": "locator(selector: string)",
+        "documentation": "The method returns an element locator. Locators resolve to the element when the action takes place, which means locators can span over navigations where the underlying dom changes.",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "A selector to use when resolving DOM element."
+          }
+        ],
+        "returns": {
+          "type": "Locator",
+          "documentation": ""
+        }
+      },
+      "mainFrame": {
+        "kind": "method",
+        "name": "mainFrame",
+        "signature": "mainFrame()",
+        "documentation": "The page's main frame. Page is made up of frames in a hierarchical. At the top is mainFrame. A page is guaranteed to have a mainFrame.",
+        "params": [],
+        "returns": {
+          "type": "Frame",
+          "documentation": ""
+        }
+      },
+      "mouse": {
+        "kind": "property",
+        "name": "mouse",
+        "signature": "mouse: Mouse;",
+        "documentation": "Returns the mouse instance to interact with a virtual mouse on the page.",
+        "type": "Mouse"
+      },
+      "on": {
+        "kind": "method",
+        "name": "on",
+        "signature": "on(event: \"metric\", listener: (metricMessage: MetricMessage) => void)",
+        "documentation": "page.on('metric') will register a background handler that will listen out for metrics that are measured and emitted for the page. When a MetricMessage is received by the handler, it can be used to group different metrics tagged with URL and name so that a correlation can be found and to reduce the cardinality of the metrics. **Usage** ```js // Listen for all metric messages in the page and call its tag method to // tag matching URLs with the new tag name. page.on('metric', (metric) => { metric.tag({ name: 'test', matches: [ {url: /^https:\\/\\/test\\.k6\\.io\\/\\?q=[0-9a-z]+$/, method: 'GET'}, ] }); }); ```",
+        "params": [
+          {
+            "name": "event",
+            "type": "\"metric\"",
+            "documentation": ""
+          },
+          {
+            "name": "listener",
+            "type": "(metricMessage: MetricMessage) => void",
+            "documentation": ""
+          }
+        ],
+        "returns": {
+          "type": "void",
+          "documentation": ""
+        }
+      },
+      "opener": {
+        "kind": "method",
+        "name": "opener",
+        "signature": "opener()",
+        "documentation": "Returns the page that opened the current page. The first page that is navigated to will have a null opener.",
+        "params": [],
+        "returns": {
+          "type": "Promise<Page>",
+          "documentation": ""
+        }
+      },
+      "press": {
+        "kind": "method",
+        "name": "press",
+        "signature": "press(selector: string, key: string, options: { delay?: number; noWaitAfter?: boolean; strict?: boolean; timeout?: number; })",
+        "documentation": "*NOTE** Use locator-based locator.press(key[, options]) instead. Focuses the element, and then uses keyboard.down(key) and keyboard.up(key). A superset of the `key` values can be found [here](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key/Key_Values). Following modification shortcuts are also supported: `Shift`, `Control`, `Alt`, `Meta`, `ShiftLeft`. Holding down `Shift` will type the text that corresponds to the `key` in the upper case. If `key` is a single character, it is case-sensitive, so the values `a` and `A` will generate different respective texts. Shortcuts such as `key: \"Control+o\"` or `key: \"Control+Shift+T\"` are supported as well. When specified with the modifier, modifier is pressed and being held while the subsequent key is being pressed.",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "A selector to search for an element. If there are multiple elements satisfying the selector, the first will be used."
+          },
+          {
+            "name": "key",
+            "type": "string",
+            "documentation": "Name of the key to press or a character to generate, such as `ArrowLeft` or `a`."
+          },
+          {
+            "name": "options",
+            "type": "{ delay?: number; noWaitAfter?: boolean; strict?: boolean; timeout?: number; }",
+            "documentation": ""
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "reload": {
+        "kind": "method",
+        "name": "reload",
+        "signature": "reload(options: { timeout?: number; waitUntil?: \"load\" | \"domcontentloaded\" | \"networkidle\"; })",
+        "documentation": "This reloads the current page Returns the main resource response.",
+        "params": [
+          {
+            "name": "options",
+            "type": "{ timeout?: number; waitUntil?: \"load\" | \"domcontentloaded\" | \"networkidle\"; }",
+            "documentation": ""
+          }
+        ],
+        "returns": {
+          "type": "Promise<Response>",
+          "documentation": ""
+        }
+      },
+      "screenshot": {
+        "kind": "method",
+        "name": "screenshot",
+        "signature": "screenshot(options: { clip?: { x: number; y: number; width: number; height: number; }; fullPage?: boolean; } & ScreenshotOptions)",
+        "documentation": "Returns the buffer with the captured screenshot from the browser.",
+        "params": [
+          {
+            "name": "options",
+            "type": "{ clip?: { x: number; y: number; width: number; height: number; }; fullPage?: boolean; } & ScreenshotOptions",
+            "documentation": ""
+          }
+        ],
+        "returns": {
+          "type": "Promise<ArrayBuffer>",
+          "documentation": ""
+        }
+      },
+      "setChecked": {
+        "kind": "method",
+        "name": "setChecked",
+        "signature": "setChecked(selector: string, checked: boolean, options: { force?: boolean; noWaitAfter?: boolean; } & TimeoutOptions & { trial?: boolean; } & { position?: { x: number; y: number; }; } & StrictnessOptions)",
+        "documentation": "Checks or unchecks the input checkbox element.",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "A selector to search for an element."
+          },
+          {
+            "name": "checked",
+            "type": "boolean",
+            "documentation": "Whether to check or uncheck the element."
+          },
+          {
+            "name": "options",
+            "type": "{ force?: boolean; noWaitAfter?: boolean; } & TimeoutOptions & { trial?: boolean; } & { position?: { x: number; y: number; }; } & StrictnessOptions",
+            "documentation": "Options to customize the check action."
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": "promise that resolves when the element is checked or unchecked."
+        }
+      },
+      "selectOption": {
+        "kind": "method",
+        "name": "selectOption",
+        "signature": "selectOption(selector: string, values: string | string[] | ElementHandle | ElementHandle[] | SelectOptionsObject | SelectOptionsObject[], options: { force?: boolean; noWaitAfter?: boolean; strict?: boolean; timeout?: number; })",
+        "documentation": "*NOTE** Use locator-based locator.selectOption(values[, options]) instead. This select one or more options which match the values from a <select> element.",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "A selector to search for an element. If there are multiple elements satisfying the selector, the first will be used."
+          },
+          {
+            "name": "values",
+            "type": "string | string[] | ElementHandle | ElementHandle[] | SelectOptionsObject | SelectOptionsObject[]",
+            "documentation": "Options to select. If the select has multiple attribute, all matching options are selected, otherwise only the first option matching one of the passed options is selected. Object can be made up of keys with value, label or index."
+          },
+          {
+            "name": "options",
+            "type": "{ force?: boolean; noWaitAfter?: boolean; strict?: boolean; timeout?: number; }",
+            "documentation": ""
+          }
+        ],
+        "returns": {
+          "type": "Promise<string[]>",
+          "documentation": ""
+        }
+      },
+      "setContent": {
+        "kind": "method",
+        "name": "setContent",
+        "signature": "setContent(html: string, options: { timeout?: number; waitUntil?: \"load\" | \"domcontentloaded\" | \"networkidle\"; })",
+        "documentation": "Set the supplied html string to the current page.",
+        "params": [
+          {
+            "name": "html",
+            "type": "string",
+            "documentation": "HTML markup to assign to the page."
+          },
+          {
+            "name": "options",
+            "type": "{ timeout?: number; waitUntil?: \"load\" | \"domcontentloaded\" | \"networkidle\"; }",
+            "documentation": ""
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "setDefaultNavigationTimeout": {
+        "kind": "method",
+        "name": "setDefaultNavigationTimeout",
+        "signature": "setDefaultNavigationTimeout(timeout: number)",
+        "documentation": "This setting will change the navigation timeout for the following methods: - page.goto(url[, options]) - page.reload([options]) - page.setContent(html[, options]) - page.waitForNavigation([options])",
+        "params": [
+          {
+            "name": "timeout",
+            "type": "number",
+            "documentation": "in milliseconds"
+          }
+        ],
+        "returns": {
+          "type": "void",
+          "documentation": ""
+        }
+      },
+      "setDefaultTimeout": {
+        "kind": "method",
+        "name": "setDefaultTimeout",
+        "signature": "setDefaultTimeout(timeout: number)",
+        "documentation": "This setting will change the timeout for all the methods accepting a `timeout` option.",
+        "params": [
+          {
+            "name": "timeout",
+            "type": "number",
+            "documentation": "in milliseconds"
+          }
+        ],
+        "returns": {
+          "type": "void",
+          "documentation": ""
+        }
+      },
+      "setExtraHTTPHeaders": {
+        "kind": "method",
+        "name": "setExtraHTTPHeaders",
+        "signature": "setExtraHTTPHeaders(headers: { [key: string]: string; })",
+        "documentation": "This sets extra HTTP headers which will be sent with subsequent HTTP requests.",
+        "params": [
+          {
+            "name": "headers",
+            "type": "{ [key: string]: string; }",
+            "documentation": "An object containing the additional HTTP headers. All header values must be strings."
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "setInputFiles": {
+        "kind": "method",
+        "name": "setInputFiles",
+        "signature": "setInputFiles(selector: string, files: File | File[], options: { timeout?: number; noWaitAfter?: boolean; })",
+        "documentation": "Sets the file input element's value to the specified files. To work with local files on the file system, use the experimental fs module to load and read the file contents. This method expects a `selector` to point to an [input element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input).",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "A selector to search for an element. If there are multiple elements satisfying the selector, the first will be used."
+          },
+          {
+            "name": "files",
+            "type": "File | File[]",
+            "documentation": ""
+          },
+          {
+            "name": "options",
+            "type": "{ timeout?: number; noWaitAfter?: boolean; }",
+            "documentation": ""
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "setViewportSize": {
+        "kind": "method",
+        "name": "setViewportSize",
+        "signature": "setViewportSize(viewportSize: { width: number; height: number; })",
+        "documentation": "This will update the page's width and height.",
+        "params": [
+          {
+            "name": "viewportSize",
+            "type": "{ width: number; height: number; }",
+            "documentation": ""
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "tap": {
+        "kind": "method",
+        "name": "tap",
+        "signature": "tap(selector: string, options: { force?: boolean; modifiers?: KeyboardModifier[]; noWaitAfter?: boolean; position?: { x: number; y: number; }; strict?: boolean; timeout?: number; trial?: boolean; })",
+        "documentation": "*NOTE** Use locator-based locator.tap([options]) instead. Tap the first element that matches the selector.",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "A selector to search for an element. If there are multiple elements satisfying the selector, the first will be used."
+          },
+          {
+            "name": "options",
+            "type": "{ force?: boolean; modifiers?: KeyboardModifier[]; noWaitAfter?: boolean; position?: { x: number; y: number; }; strict?: boolean; timeout?: number; trial?: boolean; }",
+            "documentation": ""
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "textContent": {
+        "kind": "method",
+        "name": "textContent",
+        "signature": "textContent(selector: string, options: { strict?: boolean; timeout?: number; })",
+        "documentation": "*NOTE** Use locator-based locator.textContent([options]) instead. Returns `element.textContent`.",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "A selector to search for an element. If there are multiple elements satisfying the selector, the first will be used."
+          },
+          {
+            "name": "options",
+            "type": "{ strict?: boolean; timeout?: number; }",
+            "documentation": ""
+          }
+        ],
+        "returns": {
+          "type": "Promise<string>",
+          "documentation": ""
+        }
+      },
+      "throttleCPU": {
+        "kind": "method",
+        "name": "throttleCPU",
+        "signature": "throttleCPU(profile: CPUProfile)",
+        "documentation": "Throttles the CPU in Chrome/Chromium to slow it down by the specified `rate` in CPUProfile. CPUProfile is a mandatory input argument. The default `rate` is `1`. **Usage** ```js page.throttleCPU({ rate: 4 }); ```",
+        "params": [
+          {
+            "name": "profile",
+            "type": "CPUProfile",
+            "documentation": ""
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "throttleNetwork": {
+        "kind": "method",
+        "name": "throttleNetwork",
+        "signature": "throttleNetwork(profile: NetworkProfile)",
+        "documentation": "Throttles the network in Chrome/Chromium to slow it down by the specified fields in NetworkProfile. NetworkProfile is a mandatory input argument. **Usage** ```js page.throttleNetwork({ latency: 750, download: 250, upload: 250, }); ``` To work with the most commonly tested network profiles, import `networkProfiles` from the browser module. There are three profiles available: - `'No Throttling'` (default) - `'Fast 3G'` - `'Slow 3G'` **Usage** ```js import { browser, networkProfiles } from 'k6/browser'; ... // redacted const context = browser.newContext(); const page = context.newPage(); try { page.throttleNetwork(networkProfiles['Slow 3G']); ... // redacted ```",
+        "params": [
+          {
+            "name": "profile",
+            "type": "NetworkProfile",
+            "documentation": ""
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "title": {
+        "kind": "method",
+        "name": "title",
+        "signature": "title()",
+        "documentation": "Returns the page's title.",
+        "params": [],
+        "returns": {
+          "type": "Promise<string>",
+          "documentation": ""
+        }
+      },
+      "touchscreen": {
+        "kind": "property",
+        "name": "touchscreen",
+        "signature": "touchscreen: Touchscreen;",
+        "documentation": "Returns the touchscreen instance to interact with a virtual touchscreen on the page.",
+        "type": "Touchscreen"
+      },
+      "type": {
+        "kind": "method",
+        "name": "type",
+        "signature": "type(selector: string, text: string, options: { delay?: number; noWaitAfter?: boolean; strict?: boolean; timeout?: number; })",
+        "documentation": "*NOTE** Use locator-based locator.type(text[, options]) instead. Type the `text` in the first element found that matches the selector.",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "A selector to search for an element. If there are multiple elements satisfying the selector, the first will be used."
+          },
+          {
+            "name": "text",
+            "type": "string",
+            "documentation": "The text to type into the element."
+          },
+          {
+            "name": "options",
+            "type": "{ delay?: number; noWaitAfter?: boolean; strict?: boolean; timeout?: number; }",
+            "documentation": ""
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "uncheck": {
+        "kind": "method",
+        "name": "uncheck",
+        "signature": "uncheck(selector: string, options: { force?: boolean; noWaitAfter?: boolean; position?: { x: number; y: number; }; strict?: boolean; timeout?: number; trial?: boolean; })",
+        "documentation": "*NOTE** Use locator-based `locator.uncheck([options])` instead. This method is used to unselect an input checkbox.",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "A selector to search for an element. If there are multiple elements satisfying the selector, the first will be used."
+          },
+          {
+            "name": "options",
+            "type": "{ force?: boolean; noWaitAfter?: boolean; position?: { x: number; y: number; }; strict?: boolean; timeout?: number; trial?: boolean; }",
+            "documentation": ""
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "url": {
+        "kind": "method",
+        "name": "url",
+        "signature": "url()",
+        "documentation": "Returns the page's URL.",
+        "params": [],
+        "returns": {
+          "type": "string",
+          "documentation": ""
+        }
+      },
+      "viewportSize": {
+        "kind": "method",
+        "name": "viewportSize",
+        "signature": "viewportSize()",
+        "documentation": "Returns the page's size (width and height).",
+        "params": [],
+        "returns": {
+          "type": "{ width: number; height: number; }",
+          "documentation": ""
+        }
+      },
+      "waitForFunction": {
+        "kind": "method",
+        "name": "waitForFunction",
+        "signature": "waitForFunction(pageFunction: PageFunction<Arg, R>, options: { polling?: PollingMethod; timeout?: number; }, arg: Arg)",
+        "documentation": "Returns when the `pageFunction` returns a truthy value.",
+        "params": [
+          {
+            "name": "pageFunction",
+            "type": "PageFunction<Arg, R>",
+            "documentation": "Function to be evaluated in the page context."
+          },
+          {
+            "name": "options",
+            "type": "{ polling?: PollingMethod; timeout?: number; }",
+            "documentation": ""
+          },
+          {
+            "name": "arg",
+            "type": "Arg",
+            "documentation": "Optional argument to pass to `pageFunction`."
+          }
+        ],
+        "returns": {
+          "type": "Promise<JSHandle<R>>",
+          "documentation": ""
+        }
+      },
+      "waitForLoadState": {
+        "kind": "method",
+        "name": "waitForLoadState",
+        "signature": "waitForLoadState(state: \"load\" | \"domcontentloaded\" | \"networkidle\", options: { timeout?: number; })",
+        "documentation": "This waits for the given load state to be reached. It will immediately unblock if that lifecycle event has already been received.",
+        "params": [
+          {
+            "name": "state",
+            "type": "\"load\" | \"domcontentloaded\" | \"networkidle\"",
+            "documentation": "Optional load state to wait for, defaults to `load`: - `'domcontentloaded'` - consider operation to be finished when the `DOMContentLoaded` event is fired. - `'load'` - consider operation to be finished when the `load` event is fired. - `'networkidle'` - **DISCOURAGED** consider operation to be finished when there are no network connections for at least `500` ms. Don't use this method for testing especially with chatty websites where the event may never fire, rely on web assertions to assess readiness instead."
+          },
+          {
+            "name": "options",
+            "type": "{ timeout?: number; }",
+            "documentation": ""
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "waitForNavigation": {
+        "kind": "method",
+        "name": "waitForNavigation",
+        "signature": "waitForNavigation(options: { timeout?: number; waitUntil?: \"load\" | \"domcontentloaded\" | \"networkidle\"; })",
+        "documentation": "Waits for the given navigation lifecycle event to occur and returns the main resource response.",
+        "params": [
+          {
+            "name": "options",
+            "type": "{ timeout?: number; waitUntil?: \"load\" | \"domcontentloaded\" | \"networkidle\"; }",
+            "documentation": ""
+          }
+        ],
+        "returns": {
+          "type": "Promise<Response>",
+          "documentation": ""
+        }
+      },
+      "waitForSelector": {
+        "kind": "method",
+        "name": "waitForSelector",
+        "signature": "waitForSelector(selector: string, options: { state?: \"attached\" | \"detached\" | \"visible\" | \"hidden\"; strict?: boolean; timeout?: number; })",
+        "documentation": "*NOTE** Use web assertions that assert visibility or a locator-based locator.waitFor([options]) instead. Returns when element specified by selector satisfies `state` option.",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "A selector to query for."
+          },
+          {
+            "name": "options",
+            "type": "{ state?: \"attached\" | \"detached\" | \"visible\" | \"hidden\"; strict?: boolean; timeout?: number; }",
+            "documentation": ""
+          }
+        ],
+        "returns": {
+          "type": "Promise<ElementHandle>",
+          "documentation": ""
+        }
+      },
+      "waitForTimeout": {
+        "kind": "method",
+        "name": "waitForTimeout",
+        "signature": "waitForTimeout(timeout: number)",
+        "documentation": "*NOTE** Never wait for timeout in production, use this only for debugging. Tests that wait for time are inherently flaky. Use `Locator` actions and web assertions that wait automatically. Waits for the given `timeout` in milliseconds.",
+        "params": [
+          {
+            "name": "timeout",
+            "type": "number",
+            "documentation": "A timeout to wait for"
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "workers": {
+        "kind": "method",
+        "name": "workers",
+        "signature": "workers()",
+        "documentation": "This method returns all of the dedicated WebWorkers associated with the page.",
+        "params": [],
+        "returns": {
+          "type": "Worker[]",
+          "documentation": ""
+        }
+      },
+      "$": {
+        "kind": "method",
+        "name": "$",
+        "signature": "$(selector: string)",
+        "documentation": "*NOTE** Use locator-based page.locator(selector[, options]) instead. The method finds an element matching the specified selector within the page. If no elements match the selector, the return value resolves to `null`. To wait for an element on the page, use locator.waitFor([options]).",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "A selector to query for."
+          }
+        ],
+        "returns": {
+          "type": "Promise<ElementHandle>",
+          "documentation": ""
+        }
+      },
+      "$$": {
+        "kind": "method",
+        "name": "$$",
+        "signature": "$$(selector: string)",
+        "documentation": "*NOTE** Use locator-based page.locator(selector[, options]) instead. The method finds all elements matching the specified selector within the page. If no elements match the selector, the return value resolves to `[]`.",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "A selector to query for."
+          }
+        ],
+        "returns": {
+          "type": "Promise<ElementHandle[]>",
+          "documentation": ""
+        }
+      }
+    },
+    "signature": "Page"
+  },
+  "Request": {
+    "kind": "interface",
+    "name": "Request",
+    "documentation": "Request represents requests which are sent by a page.",
+    "members": {
+      "allHeaders": {
+        "kind": "method",
+        "name": "allHeaders",
+        "signature": "allHeaders()",
+        "documentation": "An object with HTTP headers associated with the request. All header names are lower-case.",
+        "params": [],
+        "returns": {
+          "type": "Promise<Record<string, string>>",
+          "documentation": "headers object."
+        }
+      },
+      "frame": {
+        "kind": "method",
+        "name": "frame",
+        "signature": "frame()",
+        "documentation": "",
+        "params": [],
+        "returns": {
+          "type": "Frame",
+          "documentation": "Frame that initiated this request"
+        }
+      },
+      "headers": {
+        "kind": "method",
+        "name": "headers",
+        "signature": "headers()",
+        "documentation": "An object with HTTP headers associated with the request. All header names are lower-case.",
+        "params": [],
+        "returns": {
+          "type": "Record<string, string>",
+          "documentation": "object with HTTP headers associated with the request."
+        }
+      },
+      "headersArray": {
+        "kind": "method",
+        "name": "headersArray",
+        "signature": "headersArray()",
+        "documentation": "An array with all the request HTTP headers. Unlike `Request.allHeaders()`, header names are not lower-cased. Headers with multiple entries, such as `Set-Cookie`, appear in the array multiple times.",
+        "params": [],
+        "returns": {
+          "type": "Promise<{ name: string; value: string; }[]>",
+          "documentation": "array of all the request HTTP headers."
+        }
+      },
+      "headerValue": {
+        "kind": "method",
+        "name": "headerValue",
+        "signature": "headerValue(name: string)",
+        "documentation": "Retuns the value of the header matching the name. The name is case insensitive.",
+        "params": [
+          {
+            "name": "name",
+            "type": "string",
+            "documentation": "Header name to retrieve value for."
+          }
+        ],
+        "returns": {
+          "type": "Promise<string>",
+          "documentation": "value of the header matching the name."
+        }
+      },
+      "isNavigationRequest": {
+        "kind": "method",
+        "name": "isNavigationRequest",
+        "signature": "isNavigationRequest()",
+        "documentation": "",
+        "params": [],
+        "returns": {
+          "type": "boolean",
+          "documentation": "boolean stating whether the request is for a navigation"
+        }
+      },
+      "method": {
+        "kind": "method",
+        "name": "method",
+        "signature": "method()",
+        "documentation": "Request's method (GET, POST, etc.)",
+        "params": [],
+        "returns": {
+          "type": "string",
+          "documentation": "method name"
+        }
+      },
+      "postData": {
+        "kind": "method",
+        "name": "postData",
+        "signature": "postData()",
+        "documentation": "Contains the request's post body, if any.",
+        "params": [],
+        "returns": {
+          "type": "string",
+          "documentation": "post body"
+        }
+      },
+      "postDataBuffer": {
+        "kind": "method",
+        "name": "postDataBuffer",
+        "signature": "postDataBuffer()",
+        "documentation": "Request's post body in a binary form, if any.",
+        "params": [],
+        "returns": {
+          "type": "ArrayBuffer",
+          "documentation": "ArrayBuffer with request's post data"
+        }
+      },
+      "resourceType": {
+        "kind": "method",
+        "name": "resourceType",
+        "signature": "resourceType()",
+        "documentation": "Contains the request's resource type as it was perceived by the rendering engine. ResourceType will be one of the following: `document`, `stylesheet`, `image`, `media`, `font`, `script`, `texttrack`, `xhr`, `fetch`, `eventsource`, `websocket`, `manifest`, `other`.",
+        "params": [],
+        "returns": {
+          "type": "ResourceType",
+          "documentation": "type name"
+        }
+      },
+      "response": {
+        "kind": "method",
+        "name": "response",
+        "signature": "response()",
+        "documentation": "Returns the matching `Response` object, or `null` if the response was not received due to error.",
+        "params": [],
+        "returns": {
+          "type": "Promise<Response>",
+          "documentation": "`Response` object, or `null` if the response was not received due to error."
+        }
+      },
+      "size": {
+        "kind": "method",
+        "name": "size",
+        "signature": "size()",
+        "documentation": "Returns resource size information for given request.",
+        "params": [],
+        "returns": {
+          "type": "Promise<{ body: number; headers: number; }>",
+          "documentation": "size information for given request."
+        }
+      },
+      "timing": {
+        "kind": "method",
+        "name": "timing",
+        "signature": "timing()",
+        "documentation": "Returns resource timing information for given request. Most of the timing values become available upon the response, `responseEnd` becomes available when request finishes.",
+        "params": [],
+        "returns": {
+          "type": "ResourceTiming",
+          "documentation": "timing information for given request."
+        }
+      },
+      "url": {
+        "kind": "method",
+        "name": "url",
+        "signature": "url()",
+        "documentation": "URL of the request.",
+        "params": [],
+        "returns": {
+          "type": "string",
+          "documentation": "URL"
+        }
+      }
+    },
+    "signature": "Request"
+  },
+  "Response": {
+    "kind": "interface",
+    "name": "Response",
+    "documentation": "Response represents responses which are received by page.",
+    "members": {
+      "allHeaders": {
+        "kind": "method",
+        "name": "allHeaders",
+        "signature": "allHeaders()",
+        "documentation": "An object with HTTP headers associated with the response. All header names are lower-case.",
+        "params": [],
+        "returns": {
+          "type": "Promise<Record<string, string>>",
+          "documentation": "headers object."
+        }
+      },
+      "body": {
+        "kind": "method",
+        "name": "body",
+        "signature": "body()",
+        "documentation": "Returns the response body.",
+        "params": [],
+        "returns": {
+          "type": "Promise<ArrayBuffer>",
+          "documentation": "buffer with response body."
+        }
+      },
+      "frame": {
+        "kind": "method",
+        "name": "frame",
+        "signature": "frame()",
+        "documentation": "",
+        "params": [],
+        "returns": {
+          "type": "Frame",
+          "documentation": "Frame that initiated this response"
+        }
+      },
+      "headers": {
+        "kind": "method",
+        "name": "headers",
+        "signature": "headers()",
+        "documentation": "An object with HTTP headers associated with the response. All header names are lower-case.",
+        "params": [],
+        "returns": {
+          "type": "Record<string, string>",
+          "documentation": "headers object."
+        }
+      },
+      "headersArray": {
+        "kind": "method",
+        "name": "headersArray",
+        "signature": "headersArray()",
+        "documentation": "An array with all the request HTTP response headers. Unlike `Response.headers()`, header names are not lower-cased. Headers with multiple entries, such as `Set-Cookie`, appear in the array multiple times.",
+        "params": [],
+        "returns": {
+          "type": "Promise<{ name: string; value: string; }[]>",
+          "documentation": "array of all the request HTTP headers."
+        }
+      },
+      "headerValue": {
+        "kind": "method",
+        "name": "headerValue",
+        "signature": "headerValue(name: string)",
+        "documentation": "Returns the value of the header matching the name. The name is case insensitive. If multiple headers have the same name (except `Set-Cookie`), they are returned as a list separated by ``,``. For `Set-Cookie`, the `\\n` separator is used. If no headers are found, `null` is returned.",
+        "params": [
+          {
+            "name": "name",
+            "type": "string",
+            "documentation": "Header name to retrieve value for."
+          }
+        ],
+        "returns": {
+          "type": "Promise<string>",
+          "documentation": "header value for the given name."
+        }
+      },
+      "headerValues": {
+        "kind": "method",
+        "name": "headerValues",
+        "signature": "headerValues(name: string)",
+        "documentation": "Returns all values of the headers matching the name, for example `set-cookie`. The name is case insensitive.",
+        "params": [
+          {
+            "name": "name",
+            "type": "string",
+            "documentation": "Header name to retrieve values for."
+          }
+        ],
+        "returns": {
+          "type": "Promise<string[]>",
+          "documentation": "array of header values for the given name."
+        }
+      },
+      "json": {
+        "kind": "method",
+        "name": "json",
+        "signature": "json()",
+        "documentation": "Returns the JSON representation of response body. Throws if response body is not parsable via `JSON.parse`.",
+        "params": [],
+        "returns": {
+          "type": "Promise<any>",
+          "documentation": "representation of response body."
+        }
+      },
+      "ok": {
+        "kind": "method",
+        "name": "ok",
+        "signature": "ok()",
+        "documentation": "Contains a boolean stating whether the response was successful (status in the range 200-299) or not.",
+        "params": [],
+        "returns": {
+          "type": "boolean",
+          "documentation": "boolean stating whether the response was successful"
+        }
+      },
+      "request": {
+        "kind": "method",
+        "name": "request",
+        "signature": "request()",
+        "documentation": "The request that was used to produce the response.",
+        "params": [],
+        "returns": {
+          "type": "Request",
+          "documentation": "matching `Request` object"
+        }
+      },
+      "securityDetails": {
+        "kind": "method",
+        "name": "securityDetails",
+        "signature": "securityDetails()",
+        "documentation": "Security details associated with this response.",
+        "params": [],
+        "returns": {
+          "type": "Promise<SecurityDetailsObject>",
+          "documentation": "matching `SecurityDetailsObject`"
+        }
+      },
+      "serverAddr": {
+        "kind": "method",
+        "name": "serverAddr",
+        "signature": "serverAddr()",
+        "documentation": "Returns the IP address and port of the server for this response.",
+        "params": [],
+        "returns": {
+          "type": "Promise<{ ipAddress: string; port: number; }>",
+          "documentation": "IP address and port of the server"
+        }
+      },
+      "status": {
+        "kind": "method",
+        "name": "status",
+        "signature": "status()",
+        "documentation": "Contains the status code of the response (e.g., 200 for a success).",
+        "params": [],
+        "returns": {
+          "type": "number",
+          "documentation": "status code of the response"
+        }
+      },
+      "statusText": {
+        "kind": "method",
+        "name": "statusText",
+        "signature": "statusText()",
+        "documentation": "Contains the status text of the response (e.g. usually an \"OK\" for a success).",
+        "params": [],
+        "returns": {
+          "type": "string",
+          "documentation": "status text of the response"
+        }
+      },
+      "size": {
+        "kind": "method",
+        "name": "size",
+        "signature": "size()",
+        "documentation": "The size of the response body and the headers.",
+        "params": [],
+        "returns": {
+          "type": "Promise<{ body: number; headers: number; }>",
+          "documentation": "size of the response body and the headers."
+        }
+      },
+      "url": {
+        "kind": "method",
+        "name": "url",
+        "signature": "url()",
+        "documentation": "Contains the URL of the response.",
+        "params": [],
+        "returns": {
+          "type": "string",
+          "documentation": "URL of the response"
+        }
+      }
+    },
+    "signature": "Response"
+  },
+  "Touchscreen": {
+    "kind": "interface",
+    "name": "Touchscreen",
+    "documentation": "Touchscreen provides an api for interacting with a virtual touchscreen. It operates in main-frame CSS pixels relative to the top-left corner of the viewport.",
+    "members": {
+      "tap": {
+        "kind": "method",
+        "name": "tap",
+        "signature": "tap(x: number, y: number)",
+        "documentation": "Taps on the specified position (`x`,`y`), which internally dispatches a `touchstart` and `touchend` event.",
+        "params": [
+          {
+            "name": "x",
+            "type": "number",
+            "documentation": "The x position."
+          },
+          {
+            "name": "y",
+            "type": "number",
+            "documentation": "The y position."
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      }
+    },
+    "signature": "Touchscreen"
+  },
+  "Worker": {
+    "kind": "interface",
+    "name": "Worker",
+    "documentation": "The Worker represents a [WebWorker](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API).",
+    "members": {
+      "url": {
+        "kind": "method",
+        "name": "url",
+        "signature": "url()",
+        "documentation": "Get the URL of the web worker.",
+        "params": [],
+        "returns": {
+          "type": "string",
+          "documentation": "URL of the web worker."
+        }
+      }
+    },
+    "signature": "Worker"
+  }
+}

@@ -1,0 +1,748 @@
+{
+  "Options": {
+    "kind": "interface",
+    "name": "Options",
+    "documentation": "Program options. https://grafana.com/docs/k6/latest/using-k6/k6-options/",
+    "members": {
+      "batch": {
+        "kind": "property",
+        "name": "batch",
+        "signature": "batch?: number;",
+        "documentation": "Maximum parallel `http.batch()` connections per VU.",
+        "type": "number"
+      },
+      "batchPerHost": {
+        "kind": "property",
+        "name": "batchPerHost",
+        "signature": "batchPerHost?: number;",
+        "documentation": "Maximum parallel `http.batch()` host connections per VU.",
+        "type": "number"
+      },
+      "blacklistIPs": {
+        "kind": "property",
+        "name": "blacklistIPs",
+        "signature": "blacklistIPs?: string[];",
+        "documentation": "Blacklist IP ranges from being called.",
+        "type": "string[]"
+      },
+      "blockHostnames": {
+        "kind": "property",
+        "name": "blockHostnames",
+        "signature": "blockHostnames?: string[];",
+        "documentation": "Blacklist hostnames from being called. Wildcards are supported.",
+        "type": "string[]"
+      },
+      "discardResponseBodies": {
+        "kind": "property",
+        "name": "discardResponseBodies",
+        "signature": "discardResponseBodies?: boolean;",
+        "documentation": "Discard response bodies.",
+        "type": "boolean"
+      },
+      "dns": {
+        "kind": "property",
+        "name": "dns",
+        "signature": "dns?: { /** 0, inf, or any time duration(60s, 5m30s, 10m, 2h). */ ttl: string; select: \"first\" | \"random\" | \"roundRobin\"; policy: \"preferIPv4\" | \"preferIPv6\" | \"onlyIPv4\" | \"onlyIPv6\" | \"any\"; };",
+        "documentation": "DNS resolution behavior. https://grafana.com/docs/k6/latest/using-k6/k6-options#dns",
+        "type": "{ ttl: string; select: \"first\" | \"random\" | \"roundRobin\"; policy: \"preferIPv4\" | \"preferIPv6\" | \"onlyIPv4\" | \"onlyIPv6\" | \"any\"; }"
+      },
+      "duration": {
+        "kind": "property",
+        "name": "duration",
+        "signature": "duration?: string;",
+        "documentation": "Test duration.",
+        "type": "string"
+      },
+      "executionSegment": {
+        "kind": "property",
+        "name": "executionSegment",
+        "signature": "executionSegment?: string;",
+        "documentation": "Partition the test run in different segments. https://grafana.com/docs/k6/latest/using-k6/k6-options#execution-segment",
+        "type": "string"
+      },
+      "executionSegmentSequence": {
+        "kind": "property",
+        "name": "executionSegmentSequence",
+        "signature": "executionSegmentSequence?: string;",
+        "documentation": "Define the sequence segment to run. https://grafana.com/docs/k6/latest/using-k6/k6-options#execution-segment",
+        "type": "string"
+      },
+      "ext": {
+        "kind": "property",
+        "name": "ext",
+        "signature": "ext?: { [name: string]: CollectorOptions };",
+        "documentation": "Third party collector configuration.",
+        "type": "{ [name: string]: CollectorOptions; }"
+      },
+      "cloud": {
+        "kind": "property",
+        "name": "cloud",
+        "signature": "cloud?: CloudOptions;",
+        "documentation": "Cloud options",
+        "type": "CloudOptions"
+      },
+      "hosts": {
+        "kind": "property",
+        "name": "hosts",
+        "signature": "hosts?: { [name: string]: string };",
+        "documentation": "Static hostname mapping.",
+        "type": "{ [name: string]: string; }"
+      },
+      "httpDebug": {
+        "kind": "property",
+        "name": "httpDebug",
+        "signature": "httpDebug?: string;",
+        "documentation": "Log all HTTP requests and responses.",
+        "type": "string"
+      },
+      "insecureSkipTLSVerify": {
+        "kind": "property",
+        "name": "insecureSkipTLSVerify",
+        "signature": "insecureSkipTLSVerify?: boolean;",
+        "documentation": "Disable TLS verification. Insecure.",
+        "type": "boolean"
+      },
+      "iterations": {
+        "kind": "property",
+        "name": "iterations",
+        "signature": "iterations?: number;",
+        "documentation": "Iterations to execute.",
+        "type": "number"
+      },
+      "linger": {
+        "kind": "property",
+        "name": "linger",
+        "signature": "linger?: boolean;",
+        "documentation": "Persist the k6 process after test completion.",
+        "type": "boolean"
+      },
+      "maxRedirects": {
+        "kind": "property",
+        "name": "maxRedirects",
+        "signature": "maxRedirects?: number;",
+        "documentation": "Maximum HTTP redirects to follow.",
+        "type": "number"
+      },
+      "minIterationDuration": {
+        "kind": "property",
+        "name": "minIterationDuration",
+        "signature": "minIterationDuration?: string;",
+        "documentation": "Minimum test iteration duration.",
+        "type": "string"
+      },
+      "noConnectionReuse": {
+        "kind": "property",
+        "name": "noConnectionReuse",
+        "signature": "noConnectionReuse?: boolean;",
+        "documentation": "Disable keepalive connections.",
+        "type": "boolean"
+      },
+      "noCookiesReset": {
+        "kind": "property",
+        "name": "noCookiesReset",
+        "signature": "noCookiesReset?: boolean;",
+        "documentation": "This disables the default behavior of resetting the cookie jar after each VU iteration. If it's enabled, saved cookies will be persisted across VU iterations..",
+        "type": "boolean"
+      },
+      "noUsageReport": {
+        "kind": "property",
+        "name": "noUsageReport",
+        "signature": "noUsageReport?: boolean;",
+        "documentation": "Disable usage reports.",
+        "type": "boolean"
+      },
+      "noVUConnectionReuse": {
+        "kind": "property",
+        "name": "noVUConnectionReuse",
+        "signature": "noVUConnectionReuse?: boolean;",
+        "documentation": "Disable cross-VU TCP connection reuse.",
+        "type": "boolean"
+      },
+      "paused": {
+        "kind": "property",
+        "name": "paused",
+        "signature": "paused?: boolean;",
+        "documentation": "Start test in paused state.",
+        "type": "boolean"
+      },
+      "rps": {
+        "kind": "property",
+        "name": "rps",
+        "signature": "rps?: number;",
+        "documentation": "Maximum requests per second across all VUs.",
+        "type": "number"
+      },
+      "scenarios": {
+        "kind": "property",
+        "name": "scenarios",
+        "signature": "scenarios?: { [name: string]: Scenario };",
+        "documentation": "Scenario specifications.",
+        "type": "{ [name: string]: Scenario; }"
+      },
+      "setupTimeout": {
+        "kind": "property",
+        "name": "setupTimeout",
+        "signature": "setupTimeout?: string;",
+        "documentation": "Setup function timeout.",
+        "type": "string"
+      },
+      "stages": {
+        "kind": "property",
+        "name": "stages",
+        "signature": "stages?: Stage[];",
+        "documentation": "Test stage specifications. Program of target VU stages.",
+        "type": "Stage[]"
+      },
+      "summaryTrendStats": {
+        "kind": "property",
+        "name": "summaryTrendStats",
+        "signature": "summaryTrendStats?: string[];",
+        "documentation": "Define stats for trend metrics.",
+        "type": "string[]"
+      },
+      "systemTags": {
+        "kind": "property",
+        "name": "systemTags",
+        "signature": "systemTags?: string[];",
+        "documentation": "Which system tags to include in collected metrics.",
+        "type": "string[]"
+      },
+      "tags": {
+        "kind": "property",
+        "name": "tags",
+        "signature": "tags?: { [name: string]: string };",
+        "documentation": "Tags to set test wide across all metrics.",
+        "type": "{ [name: string]: string; }"
+      },
+      "teardownTimeout": {
+        "kind": "property",
+        "name": "teardownTimeout",
+        "signature": "teardownTimeout?: string;",
+        "documentation": "Teardown function timeout.",
+        "type": "string"
+      },
+      "thresholds": {
+        "kind": "property",
+        "name": "thresholds",
+        "signature": "thresholds?: { [name: string]: Threshold[] };",
+        "documentation": "Threshold specifications. Defines pass and fail conditions.",
+        "type": "{ [name: string]: Threshold[]; }"
+      },
+      "throw": {
+        "kind": "property",
+        "name": "throw",
+        "signature": "throw?: boolean;",
+        "documentation": "Throw error on failed HTTP request.",
+        "type": "boolean"
+      },
+      "tlsAuth": {
+        "kind": "property",
+        "name": "tlsAuth",
+        "signature": "tlsAuth?: Certificate[];",
+        "documentation": "TLS client certificates.",
+        "type": "Certificate[]"
+      },
+      "tlsCipherSuites": {
+        "kind": "property",
+        "name": "tlsCipherSuites",
+        "signature": "tlsCipherSuites?: CipherSuite[];",
+        "documentation": "Allowed TLS cipher suites.",
+        "type": "CipherSuite[]"
+      },
+      "tlsVersion": {
+        "kind": "property",
+        "name": "tlsVersion",
+        "signature": "tlsVersion?: string | { min: string; max: string };",
+        "documentation": "Allowed TLS version. Use `http.SSL_*` `http.TLS_*` constants.",
+        "type": "string | { min: string; max: string; }"
+      },
+      "userAgent": {
+        "kind": "property",
+        "name": "userAgent",
+        "signature": "userAgent?: string;",
+        "documentation": "User agent string to include in HTTP requests.",
+        "type": "string"
+      },
+      "vus": {
+        "kind": "property",
+        "name": "vus",
+        "signature": "vus?: number;",
+        "documentation": "Number of VUs to run concurrently.",
+        "type": "number"
+      },
+      "vusMax": {
+        "kind": "property",
+        "name": "vusMax",
+        "signature": "vusMax?: number;",
+        "documentation": "Maximum VUs. Preallocates VUs to enable faster scaling.",
+        "type": "number"
+      }
+    },
+    "signature": "Options"
+  },
+  "CollectorOptions": {
+    "kind": "interface",
+    "name": "CollectorOptions",
+    "documentation": "Third party collector configuration.",
+    "members": {},
+    "signature": "CollectorOptions"
+  },
+  "CloudOptions": {
+    "kind": "interface",
+    "name": "CloudOptions",
+    "documentation": "Options for the cloud.",
+    "members": {},
+    "signature": "CloudOptions"
+  },
+  "Stage": {
+    "kind": "interface",
+    "name": "Stage",
+    "documentation": "Test stage.",
+    "members": {
+      "duration": {
+        "kind": "property",
+        "name": "duration",
+        "signature": "duration: string;",
+        "documentation": "Stage duration.",
+        "type": "string"
+      },
+      "target": {
+        "kind": "property",
+        "name": "target",
+        "signature": "target: number;",
+        "documentation": "Target number of VUs.",
+        "type": "number"
+      }
+    },
+    "signature": "Stage"
+  },
+  "Threshold": {
+    "kind": "declaration",
+    "name": "Threshold",
+    "signature": "type Threshold = string | ObjectThreshold;",
+    "documentation": "Threshold specification. https://grafana.com/docs/k6/latest/using-k6/thresholds/"
+  },
+  "ObjectThreshold": {
+    "kind": "interface",
+    "name": "ObjectThreshold",
+    "documentation": "Object form threshold specification. https://grafana.com/docs/k6/latest/using-k6/thresholds/",
+    "members": {
+      "abortOnFail": {
+        "kind": "property",
+        "name": "abortOnFail",
+        "signature": "abortOnFail?: boolean;",
+        "documentation": "Abort test if threshold violated.",
+        "type": "boolean"
+      },
+      "delayAbortEval": {
+        "kind": "property",
+        "name": "delayAbortEval",
+        "signature": "delayAbortEval?: string;",
+        "documentation": "Duration to delay evaluation. Enables collecting additional metrics.",
+        "type": "string"
+      },
+      "threshold": {
+        "kind": "property",
+        "name": "threshold",
+        "signature": "threshold: string;",
+        "documentation": "Threshold expression.",
+        "type": "string"
+      }
+    },
+    "signature": "ObjectThreshold"
+  },
+  "Certificate": {
+    "kind": "interface",
+    "name": "Certificate",
+    "documentation": "TLS client certificate.",
+    "members": {
+      "cert": {
+        "kind": "property",
+        "name": "cert",
+        "signature": "cert: string;",
+        "documentation": "PEM encoded certificate.",
+        "type": "string"
+      },
+      "domains": {
+        "kind": "property",
+        "name": "domains",
+        "signature": "domains?: string[];",
+        "documentation": "Domains certificate is valid for.",
+        "type": "string[]"
+      },
+      "key": {
+        "kind": "property",
+        "name": "key",
+        "signature": "key: string;",
+        "documentation": "PEM encoded certificate key.",
+        "type": "string"
+      },
+      "password": {
+        "kind": "property",
+        "name": "password",
+        "signature": "password?: string;",
+        "documentation": "PEM passphrase.",
+        "type": "string"
+      }
+    },
+    "signature": "Certificate"
+  },
+  "ExecutorOptions": {
+    "kind": "declaration",
+    "name": "ExecutorOptions",
+    "signature": "type ExecutorOptions = | \"shared-iterations\" | \"per-vu-iterations\" | \"constant-vus\" | \"ramping-vus\" | \"constant-arrival-rate\" | \"ramping-arrival-rate\" | \"externally-controlled\";",
+    "documentation": ""
+  },
+  "BaseScenario": {
+    "kind": "class",
+    "name": "BaseScenario",
+    "documentation": "BaseScenario. https://grafana.com/docs/k6/latest/using-k6/scenarios/",
+    "constructors": [],
+    "members": {
+      "executor": {
+        "kind": "property",
+        "name": "executor",
+        "signature": "executor: ExecutorOptions;",
+        "documentation": "Executor type.  Options available: - `shared-iterations` - `per-vu-iterations` - `constant-vus` - `ramping-vus` - `constant-arrival-rate` - `ramping-arrival-rate` - `externally-controlled`",
+        "type": "ExecutorOptions"
+      },
+      "startTime": {
+        "kind": "property",
+        "name": "startTime",
+        "signature": "startTime?: string;",
+        "documentation": "Time offset since the start of the test, at which point this scenario should begin execution. Default value is 0s.",
+        "type": "string"
+      },
+      "gracefulStop": {
+        "kind": "property",
+        "name": "gracefulStop",
+        "signature": "gracefulStop?: string;",
+        "documentation": "Time to wait for iterations to finish executing before stopping them forcefully. See https://grafana.com/docs/k6/latest/using-k6/scenarios#graceful-stop-and-ramp-down/ Default value is 30s",
+        "type": "string"
+      },
+      "exec": {
+        "kind": "property",
+        "name": "exec",
+        "signature": "exec?: string;",
+        "documentation": "Name of exported JS function to execute. The default value is \"default\".",
+        "type": "string"
+      },
+      "env": {
+        "kind": "property",
+        "name": "env",
+        "signature": "env?: { [name: string]: string };",
+        "documentation": "Environment variables specific to this scenario.",
+        "type": "{ [name: string]: string; }"
+      },
+      "tags": {
+        "kind": "property",
+        "name": "tags",
+        "signature": "tags?: { [name: string]: string };",
+        "documentation": "Tags specific to this scenario.",
+        "type": "{ [name: string]: string; }"
+      },
+      "options": {
+        "kind": "property",
+        "name": "options",
+        "signature": "options?: ScenarioOptions;",
+        "documentation": "Additional options for each scenario",
+        "type": "ScenarioOptions"
+      }
+    },
+    "signature": "BaseScenario"
+  },
+  "SharedIterationsScenario": {
+    "kind": "interface",
+    "name": "SharedIterationsScenario",
+    "documentation": "A fixed amount of iterations are shared between a number of VUs. https://grafana.com/docs/k6/latest/using-k6/scenarios/executors/shared-iterations/",
+    "members": {
+      "executor": {
+        "kind": "property",
+        "name": "executor",
+        "signature": "executor: \"shared-iterations\";",
+        "documentation": "",
+        "type": "\"shared-iterations\""
+      },
+      "vus": {
+        "kind": "property",
+        "name": "vus",
+        "signature": "vus?: number;",
+        "documentation": "Number of VUs to run concurrently. The default value is 1.",
+        "type": "number"
+      },
+      "iterations": {
+        "kind": "property",
+        "name": "iterations",
+        "signature": "iterations?: number;",
+        "documentation": "Number of iterations to execute across all VUs. The default value is 1.",
+        "type": "number"
+      },
+      "maxDuration": {
+        "kind": "property",
+        "name": "maxDuration",
+        "signature": "maxDuration?: string;",
+        "documentation": "Maximum scenario duration before it's forcibly stopped (excluding gracefulStop). The default value is 10m.",
+        "type": "string"
+      }
+    },
+    "signature": "SharedIterationsScenario"
+  },
+  "PerVUIterationsScenario": {
+    "kind": "interface",
+    "name": "PerVUIterationsScenario",
+    "documentation": "Each VU executes an exact number of iterations. https://grafana.com/docs/k6/latest/using-k6/scenarios/executors/per-vu-iterations/",
+    "members": {
+      "executor": {
+        "kind": "property",
+        "name": "executor",
+        "signature": "executor: \"per-vu-iterations\";",
+        "documentation": "",
+        "type": "\"per-vu-iterations\""
+      },
+      "vus": {
+        "kind": "property",
+        "name": "vus",
+        "signature": "vus?: number;",
+        "documentation": "Number of VUs to run concurrently. The default value is 1.",
+        "type": "number"
+      },
+      "iterations": {
+        "kind": "property",
+        "name": "iterations",
+        "signature": "iterations?: number;",
+        "documentation": "Number of iterations to execute across per VU. The default value is 1.",
+        "type": "number"
+      },
+      "maxDuration": {
+        "kind": "property",
+        "name": "maxDuration",
+        "signature": "maxDuration?: string;",
+        "documentation": "Maximum scenario duration before it's forcibly stopped (excluding gracefulStop). The default value is 10m.",
+        "type": "string"
+      }
+    },
+    "signature": "PerVUIterationsScenario"
+  },
+  "ConstantVUsScenario": {
+    "kind": "interface",
+    "name": "ConstantVUsScenario",
+    "documentation": "A fixed number of VUs execute as many iterations as possible for a specified amount of time. https://grafana.com/docs/k6/latest/using-k6/scenarios/executors/constant-vus/",
+    "members": {
+      "executor": {
+        "kind": "property",
+        "name": "executor",
+        "signature": "executor: \"constant-vus\";",
+        "documentation": "",
+        "type": "\"constant-vus\""
+      },
+      "vus": {
+        "kind": "property",
+        "name": "vus",
+        "signature": "vus?: number;",
+        "documentation": "Number of VUs to run concurrently. The default value is 1.",
+        "type": "number"
+      },
+      "duration": {
+        "kind": "property",
+        "name": "duration",
+        "signature": "duration: string;",
+        "documentation": "Total scenario duration (excluding `gracefulStop`)",
+        "type": "string"
+      }
+    },
+    "signature": "ConstantVUsScenario"
+  },
+  "RampingVUsScenario": {
+    "kind": "interface",
+    "name": "RampingVUsScenario",
+    "documentation": "A variable number of VUs execute as many iterations as possible for a specified amount of time. https://grafana.com/docs/k6/latest/using-k6/scenarios/executors/ramping-vus/",
+    "members": {
+      "executor": {
+        "kind": "property",
+        "name": "executor",
+        "signature": "executor: \"ramping-vus\";",
+        "documentation": "",
+        "type": "\"ramping-vus\""
+      },
+      "stages": {
+        "kind": "property",
+        "name": "stages",
+        "signature": "stages: Stage[];",
+        "documentation": "Array of objects that specify the number of VUs to ramp up or down to.",
+        "type": "Stage[]"
+      },
+      "startVUs": {
+        "kind": "property",
+        "name": "startVUs",
+        "signature": "startVUs?: number;",
+        "documentation": "Number of VUs to run at test start. The default value is 1.",
+        "type": "number"
+      },
+      "gracefulRampDown": {
+        "kind": "property",
+        "name": "gracefulRampDown",
+        "signature": "gracefulRampDown?: string;",
+        "documentation": "Time to wait for an already started iteration to finish before stopping it during a ramp down. The default value is 30s.",
+        "type": "string"
+      }
+    },
+    "signature": "RampingVUsScenario"
+  },
+  "ConstantArrivalRateScenario": {
+    "kind": "interface",
+    "name": "ConstantArrivalRateScenario",
+    "documentation": "A fixed number of iterations are executed in a specified period of time. https://grafana.com/docs/k6/latest/using-k6/scenarios/executors/constant-arrival-rate/",
+    "members": {
+      "executor": {
+        "kind": "property",
+        "name": "executor",
+        "signature": "executor: \"constant-arrival-rate\";",
+        "documentation": "",
+        "type": "\"constant-arrival-rate\""
+      },
+      "duration": {
+        "kind": "property",
+        "name": "duration",
+        "signature": "duration: string;",
+        "documentation": "Total scenario duration (excluding `gracefulStop`)",
+        "type": "string"
+      },
+      "rate": {
+        "kind": "property",
+        "name": "rate",
+        "signature": "rate: number;",
+        "documentation": "Number of iterations to execute each `timeUnit` period.",
+        "type": "number"
+      },
+      "timeUnit": {
+        "kind": "property",
+        "name": "timeUnit",
+        "signature": "timeUnit?: string;",
+        "documentation": "Period of time to apply the `rate` value. The default value is 1s.",
+        "type": "string"
+      },
+      "preAllocatedVUs": {
+        "kind": "property",
+        "name": "preAllocatedVUs",
+        "signature": "preAllocatedVUs: number;",
+        "documentation": "Number of VUs to pre-allocate before test start in order to preserve runtime resources.",
+        "type": "number"
+      },
+      "maxVUs": {
+        "kind": "property",
+        "name": "maxVUs",
+        "signature": "maxVUs?: number;",
+        "documentation": "Maximum number of VUs to allow during the test run. The default value is the value of the `preAllocatedVUs` option.",
+        "type": "number"
+      }
+    },
+    "signature": "ConstantArrivalRateScenario"
+  },
+  "RampingArrivalRateScenario": {
+    "kind": "interface",
+    "name": "RampingArrivalRateScenario",
+    "documentation": "A variable number of iterations are executed in a specified period of time. https://grafana.com/docs/k6/latest/using-k6/scenarios/executors/ramping-arrival-rate/",
+    "members": {
+      "executor": {
+        "kind": "property",
+        "name": "executor",
+        "signature": "executor: \"ramping-arrival-rate\";",
+        "documentation": "",
+        "type": "\"ramping-arrival-rate\""
+      },
+      "maxVUs": {
+        "kind": "property",
+        "name": "maxVUs",
+        "signature": "maxVUs?: number;",
+        "documentation": "Maximum number of VUs to allow during the test run.",
+        "type": "number"
+      },
+      "stages": {
+        "kind": "property",
+        "name": "stages",
+        "signature": "stages: Stage[];",
+        "documentation": "Array of objects that specify the number of iterations to ramp up or down to.",
+        "type": "Stage[]"
+      },
+      "startRate": {
+        "kind": "property",
+        "name": "startRate",
+        "signature": "startRate?: number;",
+        "documentation": "Number of iterations to execute each `timeUnit` period at test start.",
+        "type": "number"
+      },
+      "timeUnit": {
+        "kind": "property",
+        "name": "timeUnit",
+        "signature": "timeUnit?: string;",
+        "documentation": "Period of time to apply the `startRate` the `stages` target value.. The default value is 1s.",
+        "type": "string"
+      },
+      "preAllocatedVUs": {
+        "kind": "property",
+        "name": "preAllocatedVUs",
+        "signature": "preAllocatedVUs: number;",
+        "documentation": "Number of VUs to pre-allocate before test start in order to preserve runtime resources.",
+        "type": "number"
+      }
+    },
+    "signature": "RampingArrivalRateScenario"
+  },
+  "ExternallyControlledScenario": {
+    "kind": "interface",
+    "name": "ExternallyControlledScenario",
+    "documentation": "Control and scale execution at runtime via k6's REST API or the CLI. https://grafana.com/docs/k6/latest/using-k6/scenarios/executors/externally-controlled/",
+    "members": {
+      "executor": {
+        "kind": "property",
+        "name": "executor",
+        "signature": "executor: \"externally-controlled\";",
+        "documentation": "",
+        "type": "\"externally-controlled\""
+      },
+      "vus": {
+        "kind": "property",
+        "name": "vus",
+        "signature": "vus?: number;",
+        "documentation": "Number of VUs to run concurrently. The default value is 1.",
+        "type": "number"
+      },
+      "duration": {
+        "kind": "property",
+        "name": "duration",
+        "signature": "duration: string;",
+        "documentation": "Total scenario duration (excluding `gracefulStop`)",
+        "type": "string"
+      },
+      "maxVUs": {
+        "kind": "property",
+        "name": "maxVUs",
+        "signature": "maxVUs?: number;",
+        "documentation": "Maximum number of VUs to allow during the test run.",
+        "type": "number"
+      }
+    },
+    "signature": "ExternallyControlledScenario"
+  },
+  "Scenario": {
+    "kind": "declaration",
+    "name": "Scenario",
+    "signature": "type Scenario = | SharedIterationsScenario | PerVUIterationsScenario | ConstantVUsScenario | RampingVUsScenario | ConstantArrivalRateScenario | RampingArrivalRateScenario | ExternallyControlledScenario;",
+    "documentation": ""
+  },
+  "ScenarioOptions": {
+    "kind": "interface",
+    "name": "ScenarioOptions",
+    "documentation": "",
+    "members": {
+      "browser": {
+        "kind": "property",
+        "name": "browser",
+        "signature": "browser?: any;",
+        "documentation": "Browser specific options",
+        "type": "any"
+      }
+    },
+    "signature": "ScenarioOptions"
+  }
+}

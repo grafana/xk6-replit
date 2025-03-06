@@ -1,0 +1,72 @@
+{
+  "check": {
+    "kind": "declaration",
+    "name": "check",
+    "signature": "function check<VT>(val: VT, sets: Checkers<VT>, tags?: object): boolean;",
+    "documentation": "Run checks on a value. https://grafana.com/docs/k6/latest/javascript-api/k6/check/"
+  },
+  "fail": {
+    "kind": "declaration",
+    "name": "fail",
+    "signature": "function fail(err?: string): never;",
+    "documentation": "Immediately throw an error, aborting the current script iteration. https://grafana.com/docs/k6/latest/javascript-api/k6/fail/"
+  },
+  "group": {
+    "kind": "declaration",
+    "name": "group",
+    "signature": "function group<RT>(name: string, fn: () => RT): RT;",
+    "documentation": "Run code inside a group. https://grafana.com/docs/k6/latest/javascript-api/k6/group/"
+  },
+  "randomSeed": {
+    "kind": "declaration",
+    "name": "randomSeed",
+    "signature": "function randomSeed(int: number): void;",
+    "documentation": "Set seed to get a reproducible pseudo-random number using Math.random. https://grafana.com/docs/k6/latest/javascript-api/k6/randomseed/"
+  },
+  "sleep": {
+    "kind": "declaration",
+    "name": "sleep",
+    "signature": "function sleep(t: number): void;",
+    "documentation": "Suspend VU execution for the specified duration. https://grafana.com/docs/k6/latest/javascript-api/k6/sleep/"
+  },
+  "Checker": {
+    "kind": "interface",
+    "name": "Checker",
+    "documentation": "Check procedure.",
+    "members": {},
+    "signature": "Checker"
+  },
+  "Checkers": {
+    "kind": "interface",
+    "name": "Checkers",
+    "documentation": "Named check procedures.",
+    "members": {},
+    "signature": "Checkers"
+  },
+  "JSONValue": {
+    "kind": "declaration",
+    "name": "JSONValue",
+    "signature": "type JSONValue = null | boolean | number | string | JSONArray | JSONObject;",
+    "documentation": "JavaScript value representable with JSON."
+  },
+  "JSONArray": {
+    "kind": "interface",
+    "name": "JSONArray",
+    "documentation": "Array representable with JSON.",
+    "members": {},
+    "signature": "JSONArray"
+  },
+  "JSONObject": {
+    "kind": "interface",
+    "name": "JSONObject",
+    "documentation": "Object representable with JSON.",
+    "members": {},
+    "signature": "JSONObject"
+  },
+  "default": {
+    "kind": "declaration",
+    "name": "default",
+    "signature": "* as default",
+    "documentation": ""
+  }
+}

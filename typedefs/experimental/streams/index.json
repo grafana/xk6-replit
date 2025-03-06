@@ -1,0 +1,257 @@
+{
+  "ReadableStream": {
+    "kind": "class",
+    "name": "ReadableStream",
+    "documentation": "This module provides an experimental implementation of the Streams API for k6. https://grafana.com/docs/k6/latest/javascript-api/k6-experimental/streams/\nThe ReadableStream object provides the API for creating and managing readable streams of raw data, bit by bit, as soon as it is available, without needing to generate a buffer, string, or blob.",
+    "constructors": [
+      {
+        "kind": "constructor",
+        "signature": "constructor(underlyingSource: UnderlyingSource, queuingStrategy: QueuingStrategy)",
+        "documentation": "The ReadableStream constructor returns a newly created ReadableStream object. https://grafana.com/docs/k6/latest/javascript-api/k6-experimental/streams/readablestream/",
+        "params": [
+          {
+            "name": "underlyingSource",
+            "type": "UnderlyingSource",
+            "documentation": "- defines the source of data for the stream."
+          },
+          {
+            "name": "queuingStrategy",
+            "type": "QueuingStrategy",
+            "documentation": "- defines the queuing strategy to adopt for the stream."
+          }
+        ]
+      }
+    ],
+    "members": {
+      "cancel": {
+        "kind": "method",
+        "name": "cancel",
+        "signature": "cancel(reason: any)",
+        "documentation": "Closes the stream and signals a reason for the closure. https://grafana.com/docs/k6/latest/javascript-api/k6-experimental/streams/readablestream/cancel/ Used when you’ve completely finished with the stream and don’t need any more data from it, even if chunks are enqueued waiting to be read. That data is lost after cancel is called, and the stream is not readable anymore. To close the stream without getting rid of enqueued chunks, use `ReadableStreamDefaultController.close()`. It returns a promise that is resolved with `undefined` when the stream is canceled.",
+        "params": [
+          {
+            "name": "reason",
+            "type": "any",
+            "documentation": "- the reason for canceling the stream."
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "getReader": {
+        "kind": "method",
+        "name": "getReader",
+        "signature": "getReader()",
+        "documentation": "Creates a reader and locks the stream to it. While the stream is locked, no other reader can be acquired until this one is released. https://grafana.com/docs/k6/latest/javascript-api/k6-experimental/streams/readablestream/getreader/",
+        "params": [],
+        "returns": {
+          "type": "ReadableStreamDefaultReader",
+          "documentation": ""
+        }
+      }
+    },
+    "signature": "ReadableStream"
+  },
+  "UnderlyingSource": {
+    "kind": "interface",
+    "name": "UnderlyingSource",
+    "documentation": "The object that defines the source of data for the stream.",
+    "members": {
+      "start": {
+        "kind": "property",
+        "name": "start",
+        "signature": "start?: (controller: ReadableStreamDefaultController) => void | Promise<void>;",
+        "documentation": "Called when the stream is created. It can be used to perform any setup tasks. The content of this method is to be defined by the user.",
+        "type": "(controller: ReadableStreamDefaultController) => void | Promise<void>"
+      },
+      "pull": {
+        "kind": "property",
+        "name": "pull",
+        "signature": "pull?: (controller: ReadableStreamDefaultController) => void | Promise<void>;",
+        "documentation": "Called repeatedly to fetch and queue data into the stream, until it reaches its high watermark. If `pull()` returns a promise, it won’t be called again until the promise is resolved.",
+        "type": "(controller: ReadableStreamDefaultController) => void | Promise<void>"
+      },
+      "cancel": {
+        "kind": "property",
+        "name": "cancel",
+        "signature": "cancel?: (reason?: any) => void | Promise<void>;",
+        "documentation": "Called when the stream is canceled. It can be used to release access to the stream source and perform any cleanup tasks. The reason parameter passed to this method is an optional human-readable value that represents the reason for canceling the stream.",
+        "type": "(reason?: any) => void | Promise<void>"
+      },
+      "type": {
+        "kind": "property",
+        "name": "type",
+        "signature": "type?: \"default\";",
+        "documentation": "Specifies the type of the underlying source. It can currently only receive the value 'default' which is its default value.",
+        "type": "\"default\""
+      }
+    },
+    "signature": "UnderlyingSource"
+  },
+  "ReadableStreamDefaultController": {
+    "kind": "interface",
+    "name": "ReadableStreamDefaultController",
+    "documentation": "The object that allows the user to control a ReadableStream’s state and internal queue. https://grafana.com/docs/k6/latest/javascript-api/k6-experimental/streams/readablestreamdefaultcontroller/",
+    "members": {
+      "close": {
+        "kind": "property",
+        "name": "close",
+        "signature": "close: () => void;",
+        "documentation": "Closes the associated stream. Readers can still read any previously enqueued chunks from the stream. Once those chunks are read, the stream closes, and no more data is available.",
+        "type": "() => void"
+      },
+      "enqueue": {
+        "kind": "property",
+        "name": "enqueue",
+        "signature": "enqueue: (chunk: any) => void;",
+        "documentation": "Enqueues a chunk of data into the associated stream.",
+        "type": "(chunk: any) => void"
+      },
+      "error": {
+        "kind": "property",
+        "name": "error",
+        "signature": "error: (reason: any) => void;",
+        "documentation": "Makes any future interactions with the associated stream to error.",
+        "type": "(reason: any) => void"
+      }
+    },
+    "signature": "ReadableStreamDefaultController"
+  },
+  "QueuingStrategy": {
+    "kind": "interface",
+    "name": "QueuingStrategy",
+    "documentation": "The object that defines the queuing strategy to adopt for the stream. Although the user can define a custom queueing strategy, the default behavior and recommended way to use the `ReadableStream` is to use a `CountQueuingStrategy` object.",
+    "members": {
+      "highWaterMark": {
+        "kind": "property",
+        "name": "highWaterMark",
+        "signature": "highWaterMark?: number;",
+        "documentation": "Represents the maximum number of chunks that the stream can hold in its internal queue. The default value is 1.",
+        "type": "number"
+      },
+      "size": {
+        "kind": "method",
+        "name": "size",
+        "signature": "size(chunk: any)",
+        "documentation": "Returns the size of the chunk passed as an argument. The default value is a function that returns 1.",
+        "params": [
+          {
+            "name": "chunk",
+            "type": "any",
+            "documentation": ""
+          }
+        ],
+        "returns": {
+          "type": "number",
+          "documentation": ""
+        }
+      }
+    },
+    "signature": "QueuingStrategy"
+  },
+  "CountQueuingStrategy": {
+    "kind": "class",
+    "name": "CountQueuingStrategy",
+    "documentation": "The CountQueuingStrategy object is the default QueuingStrategy for ReadableStream. It counts the number of chunks in the queue.",
+    "constructors": [
+      {
+        "kind": "constructor",
+        "signature": "constructor(options: { highWaterMark?: number; })",
+        "documentation": "The CountQueuingStrategy constructor returns a newly created CountQueuingStrategy object. https://grafana.com/docs/k6/latest/javascript-api/k6-experimental/streams/readablestream/countqueuingstrategy/",
+        "params": [
+          {
+            "name": "options",
+            "type": "{ highWaterMark?: number; }",
+            "documentation": "- an object with optional property `highWaterMark` that determines the maximum number of chunks that the queue can contain."
+          }
+        ]
+      }
+    ],
+    "members": {
+      "highWaterMark": {
+        "kind": "property",
+        "name": "highWaterMark",
+        "signature": "readonly highWaterMark: number;",
+        "documentation": "Represents the maximum number of chunks that the stream can hold in its internal queue. The default value is 1.",
+        "type": "number"
+      },
+      "size": {
+        "kind": "method",
+        "name": "size",
+        "signature": "size(chunk: any)",
+        "documentation": "Returns the size of the chunk passed as an argument. The default value is a function that returns 1.",
+        "params": [
+          {
+            "name": "chunk",
+            "type": "any",
+            "documentation": ""
+          }
+        ],
+        "returns": {
+          "type": "number",
+          "documentation": ""
+        }
+      }
+    },
+    "signature": "CountQueuingStrategy"
+  },
+  "ReadableStreamDefaultReader": {
+    "kind": "class",
+    "name": "ReadableStreamDefaultReader",
+    "documentation": "The object used to read stream data. https://grafana.com/docs/k6/latest/javascript-api/k6-experimental/streams/readablestreamdefaultreader/",
+    "constructors": [
+      {
+        "kind": "constructor",
+        "signature": "constructor(stream: ReadableStream)",
+        "documentation": "The ReadableStreamDefaultReader constructor returns a newly created ReadableStreamDefaultReader object. https://grafana.com/docs/k6/latest/javascript-api/k6-experimental/streams/readablestreamdefaultreader/",
+        "params": [
+          {
+            "name": "stream",
+            "type": "ReadableStream",
+            "documentation": "- defines the stream the reader will own."
+          }
+        ]
+      }
+    ],
+    "members": {
+      "cancel": {
+        "kind": "method",
+        "name": "cancel",
+        "signature": "cancel(reason: any)",
+        "documentation": "Closes the reader and signals a reason for the closure. https://grafana.com/docs/k6/latest/javascript-api/k6-experimental/streams/readablestreamdefaultreader/cancel/ Used when you’ve completely finished with the stream and don’t need any more data from it, even if chunks are enqueued waiting to be read. That data is lost after cancel is called, and the stream is not readable anymore. To close the stream without getting rid of enqueued chunks, use `ReadableStreamDefaultController.close()`. It returns a promise that is resolved with `undefined` when the stream is canceled.",
+        "params": [
+          {
+            "name": "reason",
+            "type": "any",
+            "documentation": "- the reason for canceling the stream."
+          }
+        ],
+        "returns": {
+          "type": "Promise<void>",
+          "documentation": ""
+        }
+      },
+      "read": {
+        "kind": "method",
+        "name": "read",
+        "signature": "read()",
+        "documentation": "Returns a promise providing access to the next chunk in the stream’s internal queue. https://grafana.com/docs/k6/latest/javascript-api/k6-experimental/streams/readablestreamdefaultreader/read/ - If the stream is closed and no more data is available, the promise resolves with an object of the form: `{ done: true, value: undefined }`. - If the stream is errored, the promise rejects with the error that caused the stream to error.",
+        "params": [],
+        "returns": {
+          "type": "Promise<{ done: false; value: any; } | { done: true; value: undefined; }>",
+          "documentation": ""
+        }
+      },
+      "releaseLock": {
+        "kind": "property",
+        "name": "releaseLock",
+        "signature": "readonly releaseLock: () => void;",
+        "documentation": "Releases the reader’s lock on the stream. https://grafana.com/docs/k6/latest/javascript-api/k6-experimental/streams/readablestreamdefaultreader/releaselock/ If the associated stream is errored as the lock is released, the reader will be errored as well. This method is useful when done with the stream and want to release the lock on it. If the reader’s lock is released as pending read operations are still in progress, the reader’s `ReadableStreamDefaultReader.read()` calls are immediately rejected with a `TypeError`.",
+        "type": "() => void"
+      }
+    },
+    "signature": "ReadableStreamDefaultReader"
+  }
+}

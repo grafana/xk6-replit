@@ -1,0 +1,38 @@
+{
+  "setTimeout": {
+    "kind": "declaration",
+    "name": "setTimeout",
+    "signature": "function setTimeout(functionRef: (...args: any[]) => void, delay: number, ...args: any[]): TimeoutID;",
+    "documentation": "This module provides setInterval, setTimeout and co.\nSet a timer that executes a function once the timer expires."
+  },
+  "clearTimeout": {
+    "kind": "declaration",
+    "name": "clearTimeout",
+    "signature": "function clearTimeout(timeoutID: TimeoutID): void;",
+    "documentation": "Cancels a timer previously set with setTimeout()."
+  },
+  "setInterval": {
+    "kind": "declaration",
+    "name": "setInterval",
+    "signature": "function setInterval(functionRef: (...args: any[]) => void, delay: number, ...args: any[]): IntervalID;",
+    "documentation": "Repeatedly execute a function, with a fixed time delay between each call."
+  },
+  "clearInterval": {
+    "kind": "declaration",
+    "name": "clearInterval",
+    "signature": "function clearInterval(intervalID: IntervalID): void;",
+    "documentation": "Cancels an interval previously set with setInterval()."
+  },
+  "TimeoutID": {
+    "kind": "declaration",
+    "name": "TimeoutID",
+    "signature": "type TimeoutID = number;",
+    "documentation": "Type alias for a timer id."
+  },
+  "IntervalID": {
+    "kind": "declaration",
+    "name": "IntervalID",
+    "signature": "type IntervalID = number;",
+    "documentation": "Type alias for a interval id."
+  }
+}

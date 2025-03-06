@@ -1,0 +1,108 @@
+{
+  "open": {
+    "kind": "declaration",
+    "name": "open",
+    "signature": "function open(path: string): Promise<File>;",
+    "documentation": "The k6 experimental filesystem module provides an API for handling file operations in your k6 tests. It allows you to read files within your test scripts.\nOpens a file and returns a promise that resolves to an instance of the `File` class. Note: As the k6 init context doesn't support 'await', use the following pattern: Example: ``` let fileHandle; (async function() { fileHandle = await open(\"example.txt\"); }()); ```"
+  },
+  "File": {
+    "kind": "class",
+    "name": "File",
+    "documentation": "Represents a file and provides methods to interact with file data. This class offers read-only access to file contents.",
+    "constructors": [],
+    "members": {
+      "path": {
+        "kind": "property",
+        "name": "path",
+        "signature": "path: string;",
+        "documentation": "The absolute path of the file. This is resolved relative to the k6 script.",
+        "type": "string"
+      },
+      "read": {
+        "kind": "method",
+        "name": "read",
+        "signature": "read(p: Uint8Array<ArrayBufferLike>)",
+        "documentation": "Reads the file into a specified buffer type and returns the number of bytes read. Resolves to `null` if there's nothing to read (EOF or empty file). Example: ``` const buffer = new Uint8Array(100); const bytesRead = await file.read(buffer); console.log(`Read ${bytesRead} bytes`); ```",
+        "params": [
+          {
+            "name": "p",
+            "type": "Uint8Array<ArrayBufferLike>",
+            "documentation": "- A Uint8Array buffer to read the file into."
+          }
+        ],
+        "returns": {
+          "type": "Promise<number>",
+          "documentation": "- Number of bytes read or `null`."
+        }
+      },
+      "seek": {
+        "kind": "method",
+        "name": "seek",
+        "signature": "seek(offset: number, whence: SeekMode)",
+        "documentation": "Moves the file pointer to a new location, based on `offset` and `whence`. Resolves to the new position within the file (in bytes). When using `SeekMode.Start`, the offset must be greater than or equal to zero. When using `SeekMode.Current`, the offset can be positive or negative. When using `SeekMode.End`, the offset must be less than or equal to zero. Example: ``` const newOffset = await file.seek(10, SeekMode.Start); console.log(`Pointer moved to position ${newOffset}`); ```",
+        "params": [
+          {
+            "name": "offset",
+            "type": "number",
+            "documentation": "- The offset to seek to."
+          },
+          {
+            "name": "whence",
+            "type": "SeekMode",
+            "documentation": "- The position from where offset is added (Start, Current, or End)."
+          }
+        ],
+        "returns": {
+          "type": "Promise<number>",
+          "documentation": "- The new position in the file."
+        }
+      },
+      "stat": {
+        "kind": "method",
+        "name": "stat",
+        "signature": "stat()",
+        "documentation": "Retrieves information about the file. Resolves to a `FileInfo` object describing the file. Example: ``` const fileInfo = await file.stat(); console.log(`File size: ${fileInfo.size} bytes`); ```",
+        "params": [],
+        "returns": {
+          "type": "Promise<FileInfo>",
+          "documentation": "- Information about the file."
+        }
+      }
+    },
+    "signature": "File"
+  },
+  "FileInfo": {
+    "kind": "interface",
+    "name": "FileInfo",
+    "documentation": "Contains information about a file, including its name and size.",
+    "members": {
+      "name": {
+        "kind": "property",
+        "name": "name",
+        "signature": "name: string;",
+        "documentation": "",
+        "type": "string"
+      },
+      "size": {
+        "kind": "property",
+        "name": "size",
+        "signature": "size: number;",
+        "documentation": "",
+        "type": "number"
+      }
+    },
+    "signature": "FileInfo"
+  },
+  "SeekMode": {
+    "kind": "declaration",
+    "name": "SeekMode",
+    "signature": "enum SeekMode { Start = 0, // Seek from the start of the file Current = 1, // Seek from the current file position. End = 2, // Seek from the end of the file }",
+    "documentation": "Enumeration for file seek modes."
+  },
+  "default": {
+    "kind": "declaration",
+    "name": "default",
+    "signature": "* as default",
+    "documentation": ""
+  }
+}

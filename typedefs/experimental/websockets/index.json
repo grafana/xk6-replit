@@ -1,0 +1,435 @@
+{
+  "WebSocket": {
+    "kind": "class",
+    "name": "WebSocket",
+    "documentation": "This module provides an experimental implementation of the WebSocket API for k6. https://grafana.com/docs/k6/latest/javascript-api/k6-experimental/websockets/\nThe Websocket object provides the API for creating and managing WebSocket connections as well as for sending and receiving data on the connection.",
+    "constructors": [
+      {
+        "kind": "constructor",
+        "signature": "constructor(url: string, protocols: null, params: Params)",
+        "documentation": "The Websocket constructor returns a newly created WebSocket object. https://grafana.com/docs/k6/latest/javascript-api/k6-experimental/websockets/websocket/",
+        "params": [
+          {
+            "name": "url",
+            "type": "string",
+            "documentation": "- The URL to which to connect; this should be the URL to which the WebSocket server will respond."
+          },
+          {
+            "name": "protocols",
+            "type": "null",
+            "documentation": "- Either a single protocol string or an array of protocol strings. The param is reserved for future use and will be presently ignored."
+          },
+          {
+            "name": "params",
+            "type": "Params",
+            "documentation": "- Used for setting various WebSocket connection parameters such as headers, cookie jar, compression, etc."
+          }
+        ]
+      }
+    ],
+    "members": {
+      "__brand": {
+        "kind": "property",
+        "name": "__brand",
+        "signature": "protected __brand: never;",
+        "documentation": "",
+        "type": "never"
+      },
+      "url": {
+        "kind": "property",
+        "name": "url",
+        "signature": "readonly url: string;",
+        "documentation": "The absolute URL to which the Websocket connection is established.",
+        "type": "string"
+      },
+      "readyState": {
+        "kind": "property",
+        "name": "readyState",
+        "signature": "readonly readyState: ReadyState;",
+        "documentation": "The current state of the Websocket connection.",
+        "type": "ReadyState"
+      },
+      "bufferedAmount": {
+        "kind": "property",
+        "name": "bufferedAmount",
+        "signature": "readonly bufferedAmount: number;",
+        "documentation": "The number of bytes of data that have been queued using calls to send() but not yet transmitted to the network. This value resets to zero once all queued data has been sent. This value does not reset to zero when the connection is closed; if you keep calling send(), this will continue to climb.",
+        "type": "number"
+      },
+      "binaryType": {
+        "kind": "property",
+        "name": "binaryType",
+        "signature": "binaryType: BinaryType;",
+        "documentation": "The type of binary data being transmitted over the connection.",
+        "type": "BinaryType"
+      },
+      "send": {
+        "kind": "method",
+        "name": "send",
+        "signature": "send(data: string | ArrayBuffer | Blob | ArrayBufferView<ArrayBufferLike>)",
+        "documentation": "Enqueues data to be transmitted to the server over the WebSocket connection. https://grafana.com/docs/k6/latest/javascript-api/k6-experimental/websockets/websocket/websocket-send/",
+        "params": [
+          {
+            "name": "data",
+            "type": "string | ArrayBuffer | Blob | ArrayBufferView<ArrayBufferLike>",
+            "documentation": "- the data to send to the server"
+          }
+        ],
+        "returns": {
+          "type": "void",
+          "documentation": ""
+        }
+      },
+      "addEventListener": {
+        "kind": "method",
+        "name": "addEventListener",
+        "signature": "addEventListener(event: EventName, listener: (event: MessageEvent | ErrorEvent) => void)",
+        "documentation": "Bind event names to event handlers to be executed when their respective event is received by the server. https://grafana.com/docs/k6/latest/javascript-api/k6-experimental/websockets/websocket/websocket-addeventlistener/",
+        "params": [
+          {
+            "name": "event",
+            "type": "EventName",
+            "documentation": "- the event to listen for"
+          },
+          {
+            "name": "listener",
+            "type": "(event: MessageEvent | ErrorEvent) => void",
+            "documentation": "- the callback to invoke when the event is emitted"
+          }
+        ],
+        "returns": {
+          "type": "void",
+          "documentation": ""
+        }
+      },
+      "close": {
+        "kind": "method",
+        "name": "close",
+        "signature": "close(code: number, reason: string)",
+        "documentation": "Closes the WebSocket connection or connection attempt, if any. https://grafana.com/docs/k6/latest/javascript-api/k6-experimental/websockets/websocket/websocket-close/",
+        "params": [
+          {
+            "name": "code",
+            "type": "number",
+            "documentation": "- An integer WebSocket connection close code value indicating a reason for closure."
+          },
+          {
+            "name": "reason",
+            "type": "string",
+            "documentation": "- A human-readable string WebSocket connection close reason. No longer than 123 bytes of UTF-8 text."
+          }
+        ],
+        "returns": {
+          "type": "void",
+          "documentation": ""
+        }
+      },
+      "ping": {
+        "kind": "method",
+        "name": "ping",
+        "signature": "ping()",
+        "documentation": "Sends a ping message over the WebSocket connection. https://grafana.com/docs/k6/latest/javascript-api/k6-experimental/websockets/websocket/websocket-ping/",
+        "params": [],
+        "returns": {
+          "type": "void",
+          "documentation": ""
+        }
+      },
+      "onmessage": {
+        "kind": "property",
+        "name": "onmessage",
+        "signature": "onmessage: (event?: MessageEvent) => void;",
+        "documentation": "Sets an event handler which is invoked when a message event happens. https://grafana.com/docs/k6/latest/javascript-api/k6-experimental/websockets/websocket/websocket-onmessage/",
+        "type": "(event?: MessageEvent) => void"
+      },
+      "onopen": {
+        "kind": "property",
+        "name": "onopen",
+        "signature": "onopen: () => void;",
+        "documentation": "Sets an event handler which is invoked when the WebSocket connection's opens. https://grafana.com/docs/k6/latest/javascript-api/k6-experimental/websockets/websocket/websocket-onopen/",
+        "type": "() => void"
+      },
+      "onclose": {
+        "kind": "property",
+        "name": "onclose",
+        "signature": "onclose: () => void;",
+        "documentation": "Sets an event handler which is invoked when the WebSocket connection's closes. https://grafana.com/docs/k6/latest/javascript-api/k6-experimental/websockets/websocket/websocket-onclose/",
+        "type": "() => void"
+      },
+      "onerror": {
+        "kind": "property",
+        "name": "onerror",
+        "signature": "onerror: (event?: ErrorEvent) => void;",
+        "documentation": "Sets an event handler which is invoked when errors occur. https://grafana.com/docs/k6/latest/javascript-api/k6-experimental/websockets/websocket/websocket-onerror/",
+        "type": "(event?: ErrorEvent) => void"
+      },
+      "onping": {
+        "kind": "property",
+        "name": "onping",
+        "signature": "onping: () => void;",
+        "documentation": "Sets an event handler which is invoked when a ping message is received. https://grafana.com/docs/k6/latest/javascript-api/k6-experimental/websockets/websocket/websocket-onping/",
+        "type": "() => void"
+      },
+      "onpong": {
+        "kind": "property",
+        "name": "onpong",
+        "signature": "onpong: () => void;",
+        "documentation": "Sets an event handler which is invoked when a pong message is received. https://grafana.com/docs/k6/latest/javascript-api/k6-experimental/websockets/websocket/websocket-onpong/",
+        "type": "() => void"
+      }
+    },
+    "signature": "WebSocket"
+  },
+  "BlobPart": {
+    "kind": "declaration",
+    "name": "BlobPart",
+    "signature": "type BlobPart = ArrayBuffer | ArrayBufferView | Blob | string;",
+    "documentation": ""
+  },
+  "BlobOptions": {
+    "kind": "interface",
+    "name": "BlobOptions",
+    "documentation": "",
+    "members": {
+      "type": {
+        "kind": "property",
+        "name": "type",
+        "signature": "type?: string | undefined;",
+        "documentation": "",
+        "type": "string"
+      }
+    },
+    "signature": "BlobOptions"
+  },
+  "Blob": {
+    "kind": "class",
+    "name": "Blob",
+    "documentation": "The Blob represents binary data and can be used to interact with it.",
+    "constructors": [
+      {
+        "kind": "constructor",
+        "signature": "constructor(blobParts: BlobPart[], options: BlobOptions)",
+        "documentation": "",
+        "params": [
+          {
+            "name": "blobParts",
+            "type": "BlobPart[]",
+            "documentation": ""
+          },
+          {
+            "name": "options",
+            "type": "BlobOptions",
+            "documentation": ""
+          }
+        ]
+      }
+    ],
+    "members": {
+      "type": {
+        "kind": "property",
+        "name": "type",
+        "signature": "readonly type: string;",
+        "documentation": "",
+        "type": "string"
+      },
+      "size": {
+        "kind": "property",
+        "name": "size",
+        "signature": "readonly size: number;",
+        "documentation": "",
+        "type": "number"
+      },
+      "arrayBuffer": {
+        "kind": "method",
+        "name": "arrayBuffer",
+        "signature": "arrayBuffer()",
+        "documentation": "",
+        "params": [],
+        "returns": {
+          "type": "Promise<ArrayBuffer>",
+          "documentation": ""
+        }
+      },
+      "bytes": {
+        "kind": "method",
+        "name": "bytes",
+        "signature": "bytes()",
+        "documentation": "",
+        "params": [],
+        "returns": {
+          "type": "Promise<Uint8Array<ArrayBufferLike>>",
+          "documentation": ""
+        }
+      },
+      "slice": {
+        "kind": "method",
+        "name": "slice",
+        "signature": "slice(start: number, end: number)",
+        "documentation": "",
+        "params": [
+          {
+            "name": "start",
+            "type": "number",
+            "documentation": ""
+          },
+          {
+            "name": "end",
+            "type": "number",
+            "documentation": ""
+          }
+        ],
+        "returns": {
+          "type": "Blob",
+          "documentation": ""
+        }
+      },
+      "stream": {
+        "kind": "method",
+        "name": "stream",
+        "signature": "stream()",
+        "documentation": "",
+        "params": [],
+        "returns": {
+          "type": "ReadableStream",
+          "documentation": ""
+        }
+      },
+      "text": {
+        "kind": "method",
+        "name": "text",
+        "signature": "text()",
+        "documentation": "",
+        "params": [],
+        "returns": {
+          "type": "Promise<string>",
+          "documentation": ""
+        }
+      }
+    },
+    "signature": "Blob"
+  },
+  "Params": {
+    "kind": "interface",
+    "name": "Params",
+    "documentation": "k6 specific WebSocket parameters. https://grafana.com/docs/k6/latest/javascript-api/k6-experimental/websockets/params/",
+    "members": {
+      "headers": {
+        "kind": "property",
+        "name": "headers",
+        "signature": "headers?: Record<string, string>;",
+        "documentation": "Request headers.",
+        "type": "Record<string, string>"
+      },
+      "compression": {
+        "kind": "property",
+        "name": "compression",
+        "signature": "compression?: CompressionAlgorithm;",
+        "documentation": "Compression algorithm. If the option is left unset, it defaults to no compression.",
+        "type": "CompressionAlgorithm"
+      },
+      "tags": {
+        "kind": "property",
+        "name": "tags",
+        "signature": "tags?: Record<string, number | string | boolean>;",
+        "documentation": "The custom metric tags.",
+        "type": "Record<string, string | number | boolean>"
+      },
+      "jar": {
+        "kind": "property",
+        "name": "jar",
+        "signature": "jar?: CookieJar;",
+        "documentation": "The cookie jar that will be used when making the initial HTTP request to establish the WebSocket connection. If empty, the default VU cookie jar will be used.",
+        "type": "CookieJar"
+      }
+    },
+    "signature": "Params"
+  },
+  "ReadyState": {
+    "kind": "declaration",
+    "name": "ReadyState",
+    "signature": "enum ReadyState { /** * Socket has been created. The connection is not yet open. */ Connecting = 0, /** * The connection is open and ready to communicate. */ Open = 1, /** * The connection is in the process of closing. */ Closing = 2, /** * The connection is closed or couldn't be opened. */ Closed = 3, }",
+    "documentation": "ReadyState describes the possible states of a WebSocket connection."
+  },
+  "BinaryType": {
+    "kind": "declaration",
+    "name": "BinaryType",
+    "signature": "enum BinaryType { Blob = \"blob\", ArrayBuffer = \"arraybuffer\", }",
+    "documentation": "BinaryType describes the possible types of binary data that can be transmitted over a Websocket connection."
+  },
+  "EventName": {
+    "kind": "declaration",
+    "name": "EventName",
+    "signature": "enum EventName { /** * Event fired when the connection is opened and ready to communicate. */ Open = \"open\", /** * Event fired when the connection has been closed. */ Close = \"close\", /** * Event fired when a connection has been closed due to an error. */ Error = \"error\", /** * Event fired when a message has been received from the server. */ Message = \"message\", /** * Event fired when a ping message has been received from the server. */ Ping = \"ping\", /** * Event fired when a pong message has been received from the server. */ Pong = \"pong\", }",
+    "documentation": "EventName describes the possible events that can be emitted by a Websocket connection."
+  },
+  "MessageEvent": {
+    "kind": "interface",
+    "name": "MessageEvent",
+    "documentation": "MessageEvent is a simple interface that holds the data of a message received from the server.",
+    "members": {
+      "data": {
+        "kind": "property",
+        "name": "data",
+        "signature": "data: string | ArrayBuffer | Blob;",
+        "documentation": "The data sent by the message emitter.",
+        "type": "string | ArrayBuffer | Blob"
+      },
+      "type": {
+        "kind": "property",
+        "name": "type",
+        "signature": "type: MessageType;",
+        "documentation": "the type of the event.",
+        "type": "MessageType"
+      },
+      "timestamp": {
+        "kind": "property",
+        "name": "timestamp",
+        "signature": "timestamp: number;",
+        "documentation": "The read-only property that returns the time (in milliseconds) at which the event was created.",
+        "type": "number"
+      }
+    },
+    "signature": "MessageEvent"
+  },
+  "MessageType": {
+    "kind": "declaration",
+    "name": "MessageType",
+    "signature": "enum MessageType { /** * The message is a text message. The text message payload is * interpreted as UTF-8 encodedtext data. */ Text = 1, /** * The message is a binary message. */ Binary = 2, /** * The message is a close control message. The optional message * payload contains a numeric code and a text reason. */ Close = 8, /** * The message is a ping control message. The optional message * payload is UTF-8 encoded text. */ PingMessage = 9, /** * The message is a pong control message. The optional message * payload is UTF-8 encoded text. */ PongMessage = 10, }",
+    "documentation": "WebSocket message types, as defined in RFC 6455, section 11.8."
+  },
+  "ErrorEvent": {
+    "kind": "interface",
+    "name": "ErrorEvent",
+    "documentation": "ErrorEvent is a simple interface that holds the data of an error event.",
+    "members": {
+      "type": {
+        "kind": "property",
+        "name": "type",
+        "signature": "type: MessageType;",
+        "documentation": "the type of the event.",
+        "type": "MessageType"
+      },
+      "error": {
+        "kind": "property",
+        "name": "error",
+        "signature": "error: string;",
+        "documentation": "The read-only property that returns the error message.",
+        "type": "string"
+      },
+      "timestamp": {
+        "kind": "property",
+        "name": "timestamp",
+        "signature": "timestamp: number;",
+        "documentation": "The read-only property that returns the time (in milliseconds) at which the event was created.",
+        "type": "number"
+      }
+    },
+    "signature": "ErrorEvent"
+  },
+  "CompressionAlgorithm": {
+    "kind": "declaration",
+    "name": "CompressionAlgorithm",
+    "signature": "enum CompressionAlgorithm { /** * Deflate compression algorithm. * k6 supports only this compression algorithm. */ Deflate = \"deflate\", }",
+    "documentation": "CompressionAlgorithm describes the possible compression algorithms."
+  }
+}

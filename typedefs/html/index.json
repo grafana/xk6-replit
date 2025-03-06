@@ -1,0 +1,3064 @@
+{
+  "parseHTML": {
+    "kind": "declaration",
+    "name": "parseHTML",
+    "signature": "function parseHTML(html: string): Selection;",
+    "documentation": "Parse an HTML string."
+  },
+  "Selection": {
+    "kind": "class",
+    "name": "Selection",
+    "documentation": "Represents a set of nodes in a DOM tree. https://grafana.com/docs/k6/latest/javascript-api/k6-html/selection/",
+    "constructors": [],
+    "members": {
+      "__brand": {
+        "kind": "property",
+        "name": "__brand",
+        "signature": "protected __brand: never;",
+        "documentation": "",
+        "type": "never"
+      },
+      "attr": {
+        "kind": "method",
+        "name": "attr",
+        "signature": "attr(name: string)",
+        "documentation": "Get the value of an attribute for the first element in the Selection. https://grafana.com/docs/k6/latest/javascript-api/k6-html/selection/selection-attr/",
+        "params": [
+          {
+            "name": "name",
+            "type": "string",
+            "documentation": "- Name of attribute to get."
+          }
+        ],
+        "returns": {
+          "type": "string",
+          "documentation": "value."
+        }
+      },
+      "children": {
+        "kind": "method",
+        "name": "children",
+        "signature": "children(selector: string)",
+        "documentation": "Get the children of each element in the set of matched elements, optionally filtered by a selector. https://grafana.com/docs/k6/latest/javascript-api/k6-html/selection/selection-children/",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "- Selector expression."
+          }
+        ],
+        "returns": {
+          "type": "Selection",
+          "documentation": "children."
+        }
+      },
+      "closest": {
+        "kind": "method",
+        "name": "closest",
+        "signature": "closest(selector: string)",
+        "documentation": "For each element in the set, get the first element that matches the selector by testing the element itself and traversing up through its ancestors in the DOM tree. https://grafana.com/docs/k6/latest/javascript-api/k6-html/selection/selection-closest/",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "- Selector expression."
+          }
+        ],
+        "returns": {
+          "type": "Selection",
+          "documentation": "nodes."
+        }
+      },
+      "contents": {
+        "kind": "method",
+        "name": "contents",
+        "signature": "contents()",
+        "documentation": "Get the children of each element in the set of matched elements, including text and comment nodes. https://grafana.com/docs/k6/latest/javascript-api/k6-html/selection/selection-contents/",
+        "params": [],
+        "returns": {
+          "type": "Selection",
+          "documentation": "nodes."
+        }
+      },
+      "data": {
+        "kind": "method",
+        "name": "data",
+        "signature": "data(key: string)",
+        "documentation": "Return the value at the named data store for the first element in the set of matched elements. https://grafana.com/docs/k6/latest/javascript-api/k6-html/selection/selection-data/",
+        "params": [
+          {
+            "name": "key",
+            "type": "string",
+            "documentation": "- A string naming the piece of data to set.\\"
+          }
+        ],
+        "returns": {
+          "type": "string",
+          "documentation": "value at the named data store."
+        }
+      },
+      "each": {
+        "kind": "method",
+        "name": "each",
+        "signature": "each(handler: Handler)",
+        "documentation": "Iterate over a Selection (k6/html), executing a function for each matched element. https://grafana.com/docs/k6/latest/javascript-api/k6-html/selection/selection-each/",
+        "params": [
+          {
+            "name": "handler",
+            "type": "Handler",
+            "documentation": "- Logic to execute for each element."
+          }
+        ],
+        "returns": {
+          "type": "void",
+          "documentation": ""
+        }
+      },
+      "eq": {
+        "kind": "method",
+        "name": "eq",
+        "signature": "eq(index: number)",
+        "documentation": "Reduce the set of matched elements to the one at the specified index. https://grafana.com/docs/k6/latest/javascript-api/k6-html/selection/selection-eq/",
+        "params": [
+          {
+            "name": "index",
+            "type": "number",
+            "documentation": "- An integer indicating the 0-based position of the element."
+          }
+        ],
+        "returns": {
+          "type": "Selection",
+          "documentation": "set of selected element."
+        }
+      },
+      "filter": {
+        "kind": "method",
+        "name": "filter",
+        "signature": "filter(selector: Selection)",
+        "documentation": "Reduce the set of matched elements to those that match the selector or pass the function's test. https://grafana.com/docs/k6/latest/javascript-api/k6-html/selection/selection-filter/",
+        "params": [
+          {
+            "name": "selector",
+            "type": "Selection",
+            "documentation": "- A selection to match elements against."
+          }
+        ],
+        "returns": {
+          "type": "Selection",
+          "documentation": "elements."
+        }
+      },
+      "find": {
+        "kind": "method",
+        "name": "find",
+        "signature": "find(selector: string)",
+        "documentation": "Find the selection descendants, filtered by a selector. https://grafana.com/docs/k6/latest/javascript-api/k6-html/selection/selection-find/",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "- Selector expression."
+          }
+        ],
+        "returns": {
+          "type": "Selection",
+          "documentation": "elements."
+        }
+      },
+      "first": {
+        "kind": "method",
+        "name": "first",
+        "signature": "first()",
+        "documentation": "Reduce the set of matched elements to the first. https://grafana.com/docs/k6/latest/javascript-api/k6-html/selection/selection-first/",
+        "params": [],
+        "returns": {
+          "type": "Selection",
+          "documentation": "set of first element."
+        }
+      },
+      "get": {
+        "kind": "method",
+        "name": "get",
+        "signature": "get(index: number)",
+        "documentation": "Retrieve the element matched by the selector. https://grafana.com/docs/k6/latest/javascript-api/k6-html/selection/selection-get/",
+        "params": [
+          {
+            "name": "index",
+            "type": "number",
+            "documentation": "- A zero-based integer indicating which element to retrieve."
+          }
+        ],
+        "returns": {
+          "type": "Element",
+          "documentation": "element."
+        }
+      },
+      "has": {
+        "kind": "method",
+        "name": "has",
+        "signature": "has(selector: string)",
+        "documentation": "Reduce the set of matched elements to those that have a descendant that matches the selector. https://grafana.com/docs/k6/latest/javascript-api/k6-html/selection/selection-has/",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "- Selector expression."
+          }
+        ],
+        "returns": {
+          "type": "Selection",
+          "documentation": "elements."
+        }
+      },
+      "html": {
+        "kind": "method",
+        "name": "html",
+        "signature": "html()",
+        "documentation": "Get the HTML contents of the first element. https://grafana.com/docs/k6/latest/javascript-api/k6-html/selection/selection-html/",
+        "params": [],
+        "returns": {
+          "type": "string",
+          "documentation": "HTML content of the first element."
+        }
+      },
+      "is": {
+        "kind": "method",
+        "name": "is",
+        "signature": "is(selector: Selection)",
+        "documentation": "Check the current matched set of elements against a selector or element and return true if at least one of these elements matches the given arguments. https://grafana.com/docs/k6/latest/javascript-api/k6-html/selection/selection-is/",
+        "params": [
+          {
+            "name": "selector",
+            "type": "Selection",
+            "documentation": "- A selection to match against."
+          }
+        ],
+        "returns": {
+          "type": "boolean",
+          "documentation": "selector matched at least one element."
+        }
+      },
+      "last": {
+        "kind": "method",
+        "name": "last",
+        "signature": "last()",
+        "documentation": "Reduce the set of matched elements to the final one. https://grafana.com/docs/k6/latest/javascript-api/k6-html/selection/selection-last/",
+        "params": [],
+        "returns": {
+          "type": "Selection",
+          "documentation": "set of last element."
+        }
+      },
+      "map": {
+        "kind": "method",
+        "name": "map",
+        "signature": "map(mapper: Mapper)",
+        "documentation": "Pass each element in the current matched set through a function, producing a new Array containing the return values. https://grafana.com/docs/k6/latest/javascript-api/k6-html/selection/selection-map/",
+        "params": [
+          {
+            "name": "mapper",
+            "type": "Mapper",
+            "documentation": "- Procedure to execute on each element."
+          }
+        ],
+        "returns": {
+          "type": "unknown[]",
+          "documentation": "return values."
+        }
+      },
+      "next": {
+        "kind": "method",
+        "name": "next",
+        "signature": "next(selector: string)",
+        "documentation": "Get the immediately following sibling of each element. https://grafana.com/docs/k6/latest/javascript-api/k6-html/selection/selection-next/",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "- Selector expression."
+          }
+        ],
+        "returns": {
+          "type": "Selection",
+          "documentation": "elements."
+        }
+      },
+      "nextAll": {
+        "kind": "method",
+        "name": "nextAll",
+        "signature": "nextAll(selector: string)",
+        "documentation": "Get all following siblings of each element, optionally filtered by a selector. https://grafana.com/docs/k6/latest/javascript-api/k6-html/selection/selection-nextall/",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "- Selector expression."
+          }
+        ],
+        "returns": {
+          "type": "Selection",
+          "documentation": "elements."
+        }
+      },
+      "nextUntil": {
+        "kind": "method",
+        "name": "nextUntil",
+        "signature": "nextUntil(selector: string)",
+        "documentation": "Get all following siblings of each element up to but not including the element matched by the selector. https://grafana.com/docs/k6/latest/javascript-api/k6-html/selection/selection-nextuntil/",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "- Selector expression."
+          }
+        ],
+        "returns": {
+          "type": "Selection",
+          "documentation": "elements."
+        }
+      },
+      "not": {
+        "kind": "method",
+        "name": "not",
+        "signature": "not(selector: Tester)",
+        "documentation": "Remove elements. https://grafana.com/docs/k6/latest/javascript-api/k6-html/selection/",
+        "params": [
+          {
+            "name": "selector",
+            "type": "Tester",
+            "documentation": "- A function used as a test for each element in the set."
+          }
+        ],
+        "returns": {
+          "type": "Selection",
+          "documentation": "with matched elements removed."
+        }
+      },
+      "parent": {
+        "kind": "method",
+        "name": "parent",
+        "signature": "parent(selector: string)",
+        "documentation": "Get the parent of each element, optionally filtered by a selector. https://grafana.com/docs/k6/latest/javascript-api/k6-html/selection/selection-parent/",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "- Selector expression."
+          }
+        ],
+        "returns": {
+          "type": "Selection",
+          "documentation": "elements."
+        }
+      },
+      "parents": {
+        "kind": "method",
+        "name": "parents",
+        "signature": "parents(selector: string)",
+        "documentation": "Get the ancestors of each element, optionally filtered by a selector. https://grafana.com/docs/k6/latest/javascript-api/k6-html/selection/selection-parents/",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "- Selector expression."
+          }
+        ],
+        "returns": {
+          "type": "Selection",
+          "documentation": "elements."
+        }
+      },
+      "parentsUntil": {
+        "kind": "method",
+        "name": "parentsUntil",
+        "signature": "parentsUntil(selector: string)",
+        "documentation": "Get the ancestors of each element, up to but not including the element matched by the selector. https://grafana.com/docs/k6/latest/javascript-api/k6-html/selection/selection-parentsuntil/",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "- Selector expression."
+          }
+        ],
+        "returns": {
+          "type": "Selection",
+          "documentation": "elements."
+        }
+      },
+      "prev": {
+        "kind": "method",
+        "name": "prev",
+        "signature": "prev(selector: string)",
+        "documentation": "Get the immediately preceding sibling of each element. https://grafana.com/docs/k6/latest/javascript-api/k6-html/selection/selection-prev/",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "- Selector expression."
+          }
+        ],
+        "returns": {
+          "type": "Selection",
+          "documentation": "elements."
+        }
+      },
+      "prevAll": {
+        "kind": "method",
+        "name": "prevAll",
+        "signature": "prevAll(selector: string)",
+        "documentation": "Get all preceding siblings of each element, optionally filtered by a selector. https://grafana.com/docs/k6/latest/javascript-api/k6-html/selection/selection-prevall/",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "- Selector expression."
+          }
+        ],
+        "returns": {
+          "type": "Selection",
+          "documentation": "elements."
+        }
+      },
+      "prevUntil": {
+        "kind": "method",
+        "name": "prevUntil",
+        "signature": "prevUntil(selector: string)",
+        "documentation": "Get all preceding siblings of each element up to but not including the element matched by the selector. https://grafana.com/docs/k6/latest/javascript-api/k6-html/selection/selection-prevuntil/",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "- Selector expression."
+          }
+        ],
+        "returns": {
+          "type": "Selection",
+          "documentation": "elements."
+        }
+      },
+      "serialize": {
+        "kind": "method",
+        "name": "serialize",
+        "signature": "serialize()",
+        "documentation": "Encode a set of form elements as a string in standard URL-encoded notation for submission. https://grafana.com/docs/k6/latest/javascript-api/k6-html/selection/selection-serialize/",
+        "params": [],
+        "returns": {
+          "type": "string",
+          "documentation": "representation of the form or form elements."
+        }
+      },
+      "serializeArray": {
+        "kind": "method",
+        "name": "serializeArray",
+        "signature": "serializeArray()",
+        "documentation": "Encode a set of form elements as an array of name-value objects. `[{ name: \"name\", value: \"value\" }, ... ]` https://grafana.com/docs/k6/latest/javascript-api/k6-html/selection/selection-serializearray/",
+        "params": [],
+        "returns": {
+          "type": "FormValue[]",
+          "documentation": "of name value objects of the form or form elements."
+        }
+      },
+      "serializeObject": {
+        "kind": "method",
+        "name": "serializeObject",
+        "signature": "serializeObject()",
+        "documentation": "Encode a set of form elements as an object. `{ inputName: \"value\", checkboxName: \"value\", ... }` https://grafana.com/docs/k6/latest/javascript-api/k6-html/selection/selection-serializeobject/",
+        "params": [],
+        "returns": {
+          "type": "{ [name: string]: string; }",
+          "documentation": "representation of the form or form elements, key is field name and value is field value."
+        }
+      },
+      "size": {
+        "kind": "method",
+        "name": "size",
+        "signature": "size()",
+        "documentation": "Return the number of elements in the selection. https://grafana.com/docs/k6/latest/javascript-api/k6-html/selection/selection-size/",
+        "params": [],
+        "returns": {
+          "type": "number",
+          "documentation": "number of elements in the selection."
+        }
+      },
+      "slice": {
+        "kind": "method",
+        "name": "slice",
+        "signature": "slice(start: number, end: number)",
+        "documentation": "Reduce the set of elements to a subset specified by a range of indices. https://grafana.com/docs/k6/latest/javascript-api/k6-html/selection/selection-slice/",
+        "params": [
+          {
+            "name": "start",
+            "type": "number",
+            "documentation": "- An integer indicating the 0-based position at which the elements begin to be selected."
+          },
+          {
+            "name": "end",
+            "type": "number",
+            "documentation": "- An integer indicating the 0-based position at which the elements stop being selected."
+          }
+        ],
+        "returns": {
+          "type": "Selection",
+          "documentation": "elements."
+        }
+      },
+      "text": {
+        "kind": "method",
+        "name": "text",
+        "signature": "text()",
+        "documentation": "Get the text content of the selection. https://grafana.com/docs/k6/latest/javascript-api/k6-html/selection/selection-text/",
+        "params": [],
+        "returns": {
+          "type": "string",
+          "documentation": "content."
+        }
+      },
+      "toArray": {
+        "kind": "method",
+        "name": "toArray",
+        "signature": "toArray()",
+        "documentation": "Retrieve all the elements contained in the selection as an array. https://grafana.com/docs/k6/latest/javascript-api/k6-html/selection/selection-toarray/",
+        "params": [],
+        "returns": {
+          "type": "Selection[]",
+          "documentation": "unary selection of each element."
+        }
+      },
+      "val": {
+        "kind": "method",
+        "name": "val",
+        "signature": "val()",
+        "documentation": "Get the current value of the first element. https://grafana.com/docs/k6/latest/javascript-api/k6-html/selection/selection-val/",
+        "params": [],
+        "returns": {
+          "type": "string",
+          "documentation": "value of the first element."
+        }
+      }
+    },
+    "signature": "Selection"
+  },
+  "FormValue": {
+    "kind": "interface",
+    "name": "FormValue",
+    "documentation": "Form field value.",
+    "members": {
+      "name": {
+        "kind": "property",
+        "name": "name",
+        "signature": "name: string;",
+        "documentation": "Field name.",
+        "type": "string"
+      },
+      "value": {
+        "kind": "property",
+        "name": "value",
+        "signature": "value: string;",
+        "documentation": "Field value.",
+        "type": "string"
+      }
+    },
+    "signature": "FormValue"
+  },
+  "Tester": {
+    "kind": "interface",
+    "name": "Tester",
+    "documentation": "Test procedure.",
+    "members": {},
+    "signature": "Tester"
+  },
+  "Handler": {
+    "kind": "interface",
+    "name": "Handler",
+    "documentation": "Handle procedure.",
+    "members": {},
+    "signature": "Handler"
+  },
+  "Mapper": {
+    "kind": "interface",
+    "name": "Mapper",
+    "documentation": "Map procedure.",
+    "members": {},
+    "signature": "Mapper"
+  },
+  "Attribute": {
+    "kind": "class",
+    "name": "Attribute",
+    "documentation": "HTML attribute.",
+    "constructors": [],
+    "members": {
+      "__brand": {
+        "kind": "property",
+        "name": "__brand",
+        "signature": "protected __brand: never;",
+        "documentation": "",
+        "type": "never"
+      },
+      "name": {
+        "kind": "property",
+        "name": "name",
+        "signature": "name: string;",
+        "documentation": "Name.",
+        "type": "string"
+      },
+      "ownerElement": {
+        "kind": "property",
+        "name": "ownerElement",
+        "signature": "ownerElement: Element;",
+        "documentation": "Owning element.",
+        "type": "Element"
+      },
+      "value": {
+        "kind": "property",
+        "name": "value",
+        "signature": "value: string;",
+        "documentation": "Value.",
+        "type": "string"
+      },
+      "localName": {
+        "kind": "method",
+        "name": "localName",
+        "signature": "localName()",
+        "documentation": "Local part of qualified name.",
+        "params": [],
+        "returns": {
+          "type": "string",
+          "documentation": ""
+        }
+      },
+      "namespaceURI": {
+        "kind": "method",
+        "name": "namespaceURI",
+        "signature": "namespaceURI()",
+        "documentation": "Namespace URI.",
+        "params": [],
+        "returns": {
+          "type": "string",
+          "documentation": ""
+        }
+      },
+      "prefix": {
+        "kind": "method",
+        "name": "prefix",
+        "signature": "prefix()",
+        "documentation": "Namespace prefix.",
+        "params": [],
+        "returns": {
+          "type": "string",
+          "documentation": ""
+        }
+      }
+    },
+    "signature": "Attribute"
+  },
+  "NodeType": {
+    "kind": "declaration",
+    "name": "NodeType",
+    "signature": "enum NodeType { ElementNode = 1, TextNode = 3, CommentNode = 8, DocumentNode = 9, DoctypeNode = 10, }",
+    "documentation": "Node type."
+  },
+  "Element": {
+    "kind": "class",
+    "name": "Element",
+    "documentation": "HTML node. https://grafana.com/docs/k6/latest/javascript-api/k6-html/element/",
+    "constructors": [],
+    "members": {
+      "__brand": {
+        "kind": "property",
+        "name": "__brand",
+        "signature": "protected __brand: never;",
+        "documentation": "",
+        "type": "never"
+      },
+      "attributes": {
+        "kind": "method",
+        "name": "attributes",
+        "signature": "attributes()",
+        "documentation": "Dictionary of element attributes.",
+        "params": [],
+        "returns": {
+          "type": "{ [name: string]: Attribute; }",
+          "documentation": ""
+        }
+      },
+      "childElementCount": {
+        "kind": "method",
+        "name": "childElementCount",
+        "signature": "childElementCount()",
+        "documentation": "Count of child elements.",
+        "params": [],
+        "returns": {
+          "type": "number",
+          "documentation": ""
+        }
+      },
+      "childNodes": {
+        "kind": "method",
+        "name": "childNodes",
+        "signature": "childNodes()",
+        "documentation": "Child nodes.",
+        "params": [],
+        "returns": {
+          "type": "Element[]",
+          "documentation": ""
+        }
+      },
+      "children": {
+        "kind": "method",
+        "name": "children",
+        "signature": "children()",
+        "documentation": "Child elements.",
+        "params": [],
+        "returns": {
+          "type": "Element[]",
+          "documentation": ""
+        }
+      },
+      "classList": {
+        "kind": "method",
+        "name": "classList",
+        "signature": "classList()",
+        "documentation": "Class names.",
+        "params": [],
+        "returns": {
+          "type": "string[]",
+          "documentation": ""
+        }
+      },
+      "className": {
+        "kind": "method",
+        "name": "className",
+        "signature": "className()",
+        "documentation": "Class value.",
+        "params": [],
+        "returns": {
+          "type": "string",
+          "documentation": "string with all class names."
+        }
+      },
+      "contains": {
+        "kind": "method",
+        "name": "contains",
+        "signature": "contains(element: Element)",
+        "documentation": "Check whether contains element.",
+        "params": [
+          {
+            "name": "element",
+            "type": "Element",
+            "documentation": "- Possibly contained element."
+          }
+        ],
+        "returns": {
+          "type": "boolean",
+          "documentation": "contains element. Self containment returns `true`."
+        }
+      },
+      "firstChild": {
+        "kind": "method",
+        "name": "firstChild",
+        "signature": "firstChild()",
+        "documentation": "First child node.",
+        "params": [],
+        "returns": {
+          "type": "Element",
+          "documentation": ""
+        }
+      },
+      "firstElementChild": {
+        "kind": "method",
+        "name": "firstElementChild",
+        "signature": "firstElementChild()",
+        "documentation": "First child element.",
+        "params": [],
+        "returns": {
+          "type": "Element",
+          "documentation": ""
+        }
+      },
+      "getAttribute": {
+        "kind": "method",
+        "name": "getAttribute",
+        "signature": "getAttribute(name: string)",
+        "documentation": "Get attribute value.",
+        "params": [
+          {
+            "name": "name",
+            "type": "string",
+            "documentation": "- Attribute name."
+          }
+        ],
+        "returns": {
+          "type": "string",
+          "documentation": "value."
+        }
+      },
+      "getAttributeNode": {
+        "kind": "method",
+        "name": "getAttributeNode",
+        "signature": "getAttributeNode(name: string)",
+        "documentation": "Get attribute node.",
+        "params": [
+          {
+            "name": "name",
+            "type": "string",
+            "documentation": "- Attribute name."
+          }
+        ],
+        "returns": {
+          "type": "Attribute",
+          "documentation": "node."
+        }
+      },
+      "getElementsByClassName": {
+        "kind": "method",
+        "name": "getElementsByClassName",
+        "signature": "getElementsByClassName(name: string)",
+        "documentation": "Get descendant elements in class.",
+        "params": [
+          {
+            "name": "name",
+            "type": "string",
+            "documentation": "- Class name."
+          }
+        ],
+        "returns": {
+          "type": "Element[]",
+          "documentation": "elements in class."
+        }
+      },
+      "getElementsByTagName": {
+        "kind": "method",
+        "name": "getElementsByTagName",
+        "signature": "getElementsByTagName(name: string)",
+        "documentation": "Get descendant elements with tag name.",
+        "params": [
+          {
+            "name": "name",
+            "type": "string",
+            "documentation": "- Tag name."
+          }
+        ],
+        "returns": {
+          "type": "Element[]",
+          "documentation": "elements with tag name."
+        }
+      },
+      "hasAttribute": {
+        "kind": "method",
+        "name": "hasAttribute",
+        "signature": "hasAttribute(name: string)",
+        "documentation": "Check whether has attribute.",
+        "params": [
+          {
+            "name": "name",
+            "type": "string",
+            "documentation": "- Attribute name."
+          }
+        ],
+        "returns": {
+          "type": "boolean",
+          "documentation": "has attribute."
+        }
+      },
+      "hasAttributes": {
+        "kind": "method",
+        "name": "hasAttributes",
+        "signature": "hasAttributes()",
+        "documentation": "Whether has any attributes.",
+        "params": [],
+        "returns": {
+          "type": "boolean",
+          "documentation": ""
+        }
+      },
+      "hasChildNodes": {
+        "kind": "method",
+        "name": "hasChildNodes",
+        "signature": "hasChildNodes()",
+        "documentation": "Whether has any child nodes.",
+        "params": [],
+        "returns": {
+          "type": "boolean",
+          "documentation": ""
+        }
+      },
+      "id": {
+        "kind": "method",
+        "name": "id",
+        "signature": "id()",
+        "documentation": "Identifier value.",
+        "params": [],
+        "returns": {
+          "type": "string",
+          "documentation": ""
+        }
+      },
+      "innerHTML": {
+        "kind": "method",
+        "name": "innerHTML",
+        "signature": "innerHTML()",
+        "documentation": "Inner HTML. Markup of content.",
+        "params": [],
+        "returns": {
+          "type": "string",
+          "documentation": ""
+        }
+      },
+      "isDefaultNamespace": {
+        "kind": "method",
+        "name": "isDefaultNamespace",
+        "signature": "isDefaultNamespace()",
+        "documentation": "Whether has the default namespace.",
+        "params": [],
+        "returns": {
+          "type": "boolean",
+          "documentation": ""
+        }
+      },
+      "isEqualNode": {
+        "kind": "method",
+        "name": "isEqualNode",
+        "signature": "isEqualNode(node: Element)",
+        "documentation": "Check whether node is equal.",
+        "params": [
+          {
+            "name": "node",
+            "type": "Element",
+            "documentation": "- Node to check."
+          }
+        ],
+        "returns": {
+          "type": "boolean",
+          "documentation": "node has equal HTML representation."
+        }
+      },
+      "isSameNode": {
+        "kind": "method",
+        "name": "isSameNode",
+        "signature": "isSameNode(node: Element)",
+        "documentation": "Check whether node is identical.",
+        "params": [
+          {
+            "name": "node",
+            "type": "Element",
+            "documentation": "- Node to check."
+          }
+        ],
+        "returns": {
+          "type": "boolean",
+          "documentation": "node is self."
+        }
+      },
+      "lang": {
+        "kind": "method",
+        "name": "lang",
+        "signature": "lang()",
+        "documentation": "Value of `lang` attribute.",
+        "params": [],
+        "returns": {
+          "type": "string",
+          "documentation": ""
+        }
+      },
+      "lastChild": {
+        "kind": "method",
+        "name": "lastChild",
+        "signature": "lastChild()",
+        "documentation": "Last child node.",
+        "params": [],
+        "returns": {
+          "type": "Element",
+          "documentation": ""
+        }
+      },
+      "lastElementChild": {
+        "kind": "method",
+        "name": "lastElementChild",
+        "signature": "lastElementChild()",
+        "documentation": "Last child element.",
+        "params": [],
+        "returns": {
+          "type": "Element",
+          "documentation": ""
+        }
+      },
+      "matches": {
+        "kind": "method",
+        "name": "matches",
+        "signature": "matches(selector: string)",
+        "documentation": "Check whether matches selector.",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "- Selector expression."
+          }
+        ],
+        "returns": {
+          "type": "boolean",
+          "documentation": "matches selector."
+        }
+      },
+      "namespaceURI": {
+        "kind": "method",
+        "name": "namespaceURI",
+        "signature": "namespaceURI()",
+        "documentation": "Namespace URI.",
+        "params": [],
+        "returns": {
+          "type": "string",
+          "documentation": ""
+        }
+      },
+      "nextElementSibling": {
+        "kind": "method",
+        "name": "nextElementSibling",
+        "signature": "nextElementSibling()",
+        "documentation": "Next sibling element.",
+        "params": [],
+        "returns": {
+          "type": "Element",
+          "documentation": ""
+        }
+      },
+      "nextSibling": {
+        "kind": "method",
+        "name": "nextSibling",
+        "signature": "nextSibling()",
+        "documentation": "Next sibling node.",
+        "params": [],
+        "returns": {
+          "type": "Element",
+          "documentation": ""
+        }
+      },
+      "nodeName": {
+        "kind": "method",
+        "name": "nodeName",
+        "signature": "nodeName()",
+        "documentation": "Node name.",
+        "params": [],
+        "returns": {
+          "type": "string",
+          "documentation": ""
+        }
+      },
+      "nodeType": {
+        "kind": "method",
+        "name": "nodeType",
+        "signature": "nodeType()",
+        "documentation": "Node type.",
+        "params": [],
+        "returns": {
+          "type": "NodeType",
+          "documentation": ""
+        }
+      },
+      "nodeValue": {
+        "kind": "method",
+        "name": "nodeValue",
+        "signature": "nodeValue()",
+        "documentation": "Node value.",
+        "params": [],
+        "returns": {
+          "type": "string",
+          "documentation": ""
+        }
+      },
+      "ownerDocument": {
+        "kind": "method",
+        "name": "ownerDocument",
+        "signature": "ownerDocument()",
+        "documentation": "Owning document node.",
+        "params": [],
+        "returns": {
+          "type": "Element",
+          "documentation": ""
+        }
+      },
+      "parentElement": {
+        "kind": "method",
+        "name": "parentElement",
+        "signature": "parentElement()",
+        "documentation": "Parent element.",
+        "params": [],
+        "returns": {
+          "type": "Element",
+          "documentation": ""
+        }
+      },
+      "parentNode": {
+        "kind": "method",
+        "name": "parentNode",
+        "signature": "parentNode()",
+        "documentation": "Parent node.",
+        "params": [],
+        "returns": {
+          "type": "Element",
+          "documentation": ""
+        }
+      },
+      "previousElementSibling": {
+        "kind": "method",
+        "name": "previousElementSibling",
+        "signature": "previousElementSibling()",
+        "documentation": "Previous sibling element.",
+        "params": [],
+        "returns": {
+          "type": "Element",
+          "documentation": ""
+        }
+      },
+      "previousSibling": {
+        "kind": "method",
+        "name": "previousSibling",
+        "signature": "previousSibling()",
+        "documentation": "Previous sibling node.",
+        "params": [],
+        "returns": {
+          "type": "Element",
+          "documentation": ""
+        }
+      },
+      "querySelector": {
+        "kind": "method",
+        "name": "querySelector",
+        "signature": "querySelector(selector: string)",
+        "documentation": "Select a single descendant element.",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "- Selector expression."
+          }
+        ],
+        "returns": {
+          "type": "Element",
+          "documentation": "matched element."
+        }
+      },
+      "querySelectorAll": {
+        "kind": "method",
+        "name": "querySelectorAll",
+        "signature": "querySelectorAll(selector: string)",
+        "documentation": "Select descendant elements.",
+        "params": [
+          {
+            "name": "selector",
+            "type": "string",
+            "documentation": "- Selector expression."
+          }
+        ],
+        "returns": {
+          "type": "Element[]",
+          "documentation": "matched elements."
+        }
+      },
+      "textContent": {
+        "kind": "method",
+        "name": "textContent",
+        "signature": "textContent()",
+        "documentation": "Text content.",
+        "params": [],
+        "returns": {
+          "type": "string",
+          "documentation": ""
+        }
+      },
+      "toString": {
+        "kind": "method",
+        "name": "toString",
+        "signature": "toString()",
+        "documentation": "String representation, eg `[object html.Node]`.",
+        "params": [],
+        "returns": {
+          "type": "string",
+          "documentation": ""
+        }
+      }
+    },
+    "signature": "Element"
+  },
+  "AnchorElement": {
+    "kind": "class",
+    "name": "AnchorElement",
+    "documentation": "HTML <a> element. https://grafana.com/docs/k6/latest/javascript-api/k6-html/element/",
+    "constructors": [],
+    "members": {
+      "__brand": {
+        "kind": "property",
+        "name": "__brand",
+        "signature": "protected __brand: never;",
+        "documentation": "",
+        "type": "never"
+      }
+    },
+    "signature": "AnchorElement",
+    "extends": "HrefElement"
+  },
+  "AreaElement": {
+    "kind": "class",
+    "name": "AreaElement",
+    "documentation": "HTML <area> element. https://grafana.com/docs/k6/latest/javascript-api/k6-html/element/",
+    "constructors": [],
+    "members": {
+      "__brand": {
+        "kind": "property",
+        "name": "__brand",
+        "signature": "protected __brand: never;",
+        "documentation": "",
+        "type": "never"
+      }
+    },
+    "signature": "AreaElement",
+    "extends": "HrefElement"
+  },
+  "AudioElement": {
+    "kind": "class",
+    "name": "AudioElement",
+    "documentation": "HTML <audio> element. https://grafana.com/docs/k6/latest/javascript-api/k6-html/element/",
+    "constructors": [],
+    "members": {
+      "__brand": {
+        "kind": "property",
+        "name": "__brand",
+        "signature": "protected __brand: never;",
+        "documentation": "",
+        "type": "never"
+      }
+    },
+    "signature": "AudioElement",
+    "extends": "MediaElement"
+  },
+  "BaseElement": {
+    "kind": "class",
+    "name": "BaseElement",
+    "documentation": "HTML <base> element. https://grafana.com/docs/k6/latest/javascript-api/k6-html/element/",
+    "constructors": [],
+    "members": {
+      "__brand": {
+        "kind": "property",
+        "name": "__brand",
+        "signature": "protected __brand: never;",
+        "documentation": "",
+        "type": "never"
+      }
+    },
+    "signature": "BaseElement",
+    "extends": "Element"
+  },
+  "ButtonElement": {
+    "kind": "class",
+    "name": "ButtonElement",
+    "documentation": "HTML <button> element. https://grafana.com/docs/k6/latest/javascript-api/k6-html/element/",
+    "constructors": [],
+    "members": {
+      "__brand": {
+        "kind": "property",
+        "name": "__brand",
+        "signature": "protected __brand: never;",
+        "documentation": "",
+        "type": "never"
+      },
+      "value": {
+        "kind": "method",
+        "name": "value",
+        "signature": "value()",
+        "documentation": "Value of `value` attribute if exists. Otherwise markup of content.",
+        "params": [],
+        "returns": {
+          "type": "string",
+          "documentation": ""
+        }
+      }
+    },
+    "signature": "ButtonElement",
+    "extends": "FormFieldElement"
+  },
+  "CanvasElement": {
+    "kind": "class",
+    "name": "CanvasElement",
+    "documentation": "HTML <canvas> element. https://grafana.com/docs/k6/latest/javascript-api/k6-html/element/",
+    "constructors": [],
+    "members": {
+      "__brand": {
+        "kind": "property",
+        "name": "__brand",
+        "signature": "protected __brand: never;",
+        "documentation": "",
+        "type": "never"
+      },
+      "height": {
+        "kind": "method",
+        "name": "height",
+        "signature": "height()",
+        "documentation": "Coordinate space height in CSS pixels.",
+        "params": [],
+        "returns": {
+          "type": "number",
+          "documentation": ""
+        }
+      },
+      "width": {
+        "kind": "method",
+        "name": "width",
+        "signature": "width()",
+        "documentation": "Coordinate space width in CSS pixels.",
+        "params": [],
+        "returns": {
+          "type": "number",
+          "documentation": ""
+        }
+      }
+    },
+    "signature": "CanvasElement",
+    "extends": "Element"
+  },
+  "DataElement": {
+    "kind": "class",
+    "name": "DataElement",
+    "documentation": "HTML <data> element. https://grafana.com/docs/k6/latest/javascript-api/k6-html/element/",
+    "constructors": [],
+    "members": {
+      "__brand": {
+        "kind": "property",
+        "name": "__brand",
+        "signature": "protected __brand: never;",
+        "documentation": "",
+        "type": "never"
+      }
+    },
+    "signature": "DataElement",
+    "extends": "Element"
+  },
+  "DataListElement": {
+    "kind": "class",
+    "name": "DataListElement",
+    "documentation": "HTML <datalist> element. https://grafana.com/docs/k6/latest/javascript-api/k6-html/element/",
+    "constructors": [],
+    "members": {
+      "__brand": {
+        "kind": "property",
+        "name": "__brand",
+        "signature": "protected __brand: never;",
+        "documentation": "",
+        "type": "never"
+      },
+      "options": {
+        "kind": "method",
+        "name": "options",
+        "signature": "options()",
+        "documentation": "Contained <option> elements.",
+        "params": [],
+        "returns": {
+          "type": "OptionElement[]",
+          "documentation": ""
+        }
+      }
+    },
+    "signature": "DataListElement",
+    "extends": "Element"
+  },
+  "DelElement": {
+    "kind": "class",
+    "name": "DelElement",
+    "documentation": "HTML <del> element. https://grafana.com/docs/k6/latest/javascript-api/k6-html/element/",
+    "constructors": [],
+    "members": {
+      "__brand": {
+        "kind": "property",
+        "name": "__brand",
+        "signature": "protected __brand: never;",
+        "documentation": "",
+        "type": "never"
+      }
+    },
+    "signature": "DelElement",
+    "extends": "ModElement"
+  },
+  "EmbedElement": {
+    "kind": "class",
+    "name": "EmbedElement",
+    "documentation": "HTML <embed> element. https://grafana.com/docs/k6/latest/javascript-api/k6-html/element/",
+    "constructors": [],
+    "members": {
+      "__brand": {
+        "kind": "property",
+        "name": "__brand",
+        "signature": "protected __brand: never;",
+        "documentation": "",
+        "type": "never"
+      }
+    },
+    "signature": "EmbedElement",
+    "extends": "Element"
+  },
+  "FieldSetElement": {
+    "kind": "class",
+    "name": "FieldSetElement",
+    "documentation": "HTML <fieldset> element. https://grafana.com/docs/k6/latest/javascript-api/k6-html/element/",
+    "constructors": [],
+    "members": {
+      "__brand": {
+        "kind": "property",
+        "name": "__brand",
+        "signature": "protected __brand: never;",
+        "documentation": "",
+        "type": "never"
+      },
+      "elements": {
+        "kind": "method",
+        "name": "elements",
+        "signature": "elements()",
+        "documentation": "Grouped elements.",
+        "params": [],
+        "returns": {
+          "type": "Element[]",
+          "documentation": ""
+        }
+      },
+      "form": {
+        "kind": "method",
+        "name": "form",
+        "signature": "form()",
+        "documentation": "Containing <form> element.",
+        "params": [],
+        "returns": {
+          "type": "FormElement",
+          "documentation": ""
+        }
+      },
+      "type": {
+        "kind": "method",
+        "name": "type",
+        "signature": "type()",
+        "documentation": "Field set type. Always `fieldset`.",
+        "params": [],
+        "returns": {
+          "type": "string",
+          "documentation": ""
+        }
+      },
+      "validity": {
+        "kind": "method",
+        "name": "validity",
+        "signature": "validity()",
+        "documentation": "Validity states. Unimplemented. Always `undefined`.",
+        "params": [],
+        "returns": {
+          "type": "undefined",
+          "documentation": ""
+        }
+      }
+    },
+    "signature": "FieldSetElement",
+    "extends": "Element"
+  },
+  "FormElement": {
+    "kind": "class",
+    "name": "FormElement",
+    "documentation": "HTML <form> element. https://grafana.com/docs/k6/latest/javascript-api/k6-html/element/",
+    "constructors": [],
+    "members": {
+      "__brand": {
+        "kind": "property",
+        "name": "__brand",
+        "signature": "protected __brand: never;",
+        "documentation": "",
+        "type": "never"
+      },
+      "elements": {
+        "kind": "method",
+        "name": "elements",
+        "signature": "elements()",
+        "documentation": "Contained form control elements.",
+        "params": [],
+        "returns": {
+          "type": "Element[]",
+          "documentation": ""
+        }
+      },
+      "length": {
+        "kind": "method",
+        "name": "length",
+        "signature": "length()",
+        "documentation": "Number of contained form control elements.",
+        "params": [],
+        "returns": {
+          "type": "number",
+          "documentation": ""
+        }
+      },
+      "method": {
+        "kind": "method",
+        "name": "method",
+        "signature": "method()",
+        "documentation": "Form submission HTTP method.",
+        "params": [],
+        "returns": {
+          "type": "string",
+          "documentation": ""
+        }
+      }
+    },
+    "signature": "FormElement",
+    "extends": "Element"
+  },
+  "FormFieldElement": {
+    "kind": "class",
+    "name": "FormFieldElement",
+    "documentation": "HTML form field element. https://grafana.com/docs/k6/latest/javascript-api/k6-html/element/",
+    "constructors": [],
+    "members": {
+      "__brand": {
+        "kind": "property",
+        "name": "__brand",
+        "signature": "protected __brand: never;",
+        "documentation": "",
+        "type": "never"
+      },
+      "form": {
+        "kind": "method",
+        "name": "form",
+        "signature": "form()",
+        "documentation": "Owning <form> element.",
+        "params": [],
+        "returns": {
+          "type": "FormElement",
+          "documentation": ""
+        }
+      },
+      "formAction": {
+        "kind": "method",
+        "name": "formAction",
+        "signature": "formAction()",
+        "documentation": "Form submission action URI.",
+        "params": [],
+        "returns": {
+          "type": "string",
+          "documentation": ""
+        }
+      },
+      "formEnctype": {
+        "kind": "method",
+        "name": "formEnctype",
+        "signature": "formEnctype()",
+        "documentation": "Form submission encoding.",
+        "params": [],
+        "returns": {
+          "type": "string",
+          "documentation": ""
+        }
+      },
+      "formMethod": {
+        "kind": "method",
+        "name": "formMethod",
+        "signature": "formMethod()",
+        "documentation": "Form submission HTTP method.",
+        "params": [],
+        "returns": {
+          "type": "string",
+          "documentation": ""
+        }
+      },
+      "formNoValidate": {
+        "kind": "method",
+        "name": "formNoValidate",
+        "signature": "formNoValidate()",
+        "documentation": "Whether form submits without validation.",
+        "params": [],
+        "returns": {
+          "type": "boolean",
+          "documentation": ""
+        }
+      },
+      "formTarget": {
+        "kind": "method",
+        "name": "formTarget",
+        "signature": "formTarget()",
+        "documentation": "Form submission response display location.",
+        "params": [],
+        "returns": {
+          "type": "string",
+          "documentation": ""
+        }
+      },
+      "labels": {
+        "kind": "method",
+        "name": "labels",
+        "signature": "labels()",
+        "documentation": "Associated <label> elements.",
+        "params": [],
+        "returns": {
+          "type": "LabelElement[]",
+          "documentation": ""
+        }
+      },
+      "name": {
+        "kind": "method",
+        "name": "name",
+        "signature": "name()",
+        "documentation": "Form field name.",
+        "params": [],
+        "returns": {
+          "type": "string",
+          "documentation": ""
+        }
+      }
+    },
+    "signature": "FormFieldElement",
+    "extends": "Element"
+  },
+  "HrefElement": {
+    "kind": "class",
+    "name": "HrefElement",
+    "documentation": "HTML hyperlink element. https://grafana.com/docs/k6/latest/javascript-api/k6-html/element/",
+    "constructors": [],
+    "members": {
+      "__brand": {
+        "kind": "property",
+        "name": "__brand",
+        "signature": "protected __brand: never;",
+        "documentation": "",
+        "type": "never"
+      },
+      "hash": {
+        "kind": "method",
+        "name": "hash",
+        "signature": "hash()",
+        "documentation": "`#` prefixed URL fragment identifier.",
+        "params": [],
+        "returns": {
+          "type": "string",
+          "documentation": ""
+        }
+      },
+      "host": {
+        "kind": "method",
+        "name": "host",
+        "signature": "host()",
+        "documentation": "URL hostname plus `:` delimited port if nonempty. `hostname[:port]`",
+        "params": [],
+        "returns": {
+          "type": "string",
+          "documentation": ""
+        }
+      },
+      "hostname": {
+        "kind": "method",
+        "name": "hostname",
+        "signature": "hostname()",
+        "documentation": "URL hostname.",
+        "params": [],
+        "returns": {
+          "type": "string",
+          "documentation": ""
+        }
+      },
+      "origin": {
+        "kind": "method",
+        "name": "origin",
+        "signature": "origin()",
+        "documentation": "Unicode serialization of URL origin.",
+        "params": [],
+        "returns": {
+          "type": "string",
+          "documentation": ""
+        }
+      },
+      "password": {
+        "kind": "method",
+        "name": "password",
+        "signature": "password()",
+        "documentation": "URL password.",
+        "params": [],
+        "returns": {
+          "type": "string",
+          "documentation": ""
+        }
+      },
+      "pathname": {
+        "kind": "method",
+        "name": "pathname",
+        "signature": "pathname()",
+        "documentation": "`/` prefixed URL path.",
+        "params": [],
+        "returns": {
+          "type": "string",
+          "documentation": ""
+        }
+      },
+      "port": {
+        "kind": "method",
+        "name": "port",
+        "signature": "port()",
+        "documentation": "URL port number. Empty string if unspecified.",
+        "params": [],
+        "returns": {
+          "type": "string",
+          "documentation": ""
+        }
+      },
+      "protocol": {
+        "kind": "method",
+        "name": "protocol",
+        "signature": "protocol()",
+        "documentation": "`:` suffixed URL protocol scheme.",
+        "params": [],
+        "returns": {
+          "type": "string",
+          "documentation": ""
+        }
+      },
+      "relList": {
+        "kind": "method",
+        "name": "relList",
+        "signature": "relList()",
+        "documentation": "Link types.",
+        "params": [],
+        "returns": {
+          "type": "string[]",
+          "documentation": ""
+        }
+      },
+      "search": {
+        "kind": "method",
+        "name": "search",
+        "signature": "search()",
+        "documentation": "`?` prefixed URL query string.",
+        "params": [],
+        "returns": {
+          "type": "string",
+          "documentation": ""
+        }
+      },
+      "text": {
+        "kind": "method",
+        "name": "text",
+        "signature": "text()",
+        "documentation": "Text content.",
+        "params": [],
+        "returns": {
+          "type": "string",
+          "documentation": ""
+        }
+      },
+      "username": {
+        "kind": "method",
+        "name": "username",
+        "signature": "username()",
+        "documentation": "URL username.",
+        "params": [],
+        "returns": {
+          "type": "string",
+          "documentation": ""
+        }
+      }
+    },
+    "signature": "HrefElement",
+    "extends": "Element"
+  },
+  "IFrameElement": {
+    "kind": "class",
+    "name": "IFrameElement",
+    "documentation": "HTML <iframe> element. https://grafana.com/docs/k6/latest/javascript-api/k6-html/element/",
+    "constructors": [],
+    "members": {
+      "__brand": {
+        "kind": "property",
+        "name": "__brand",
+        "signature": "protected __brand: never;",
+        "documentation": "",
+        "type": "never"
+      }
+    },
+    "signature": "IFrameElement",
+    "extends": "Element"
+  },
+  "ImageElement": {
+    "kind": "class",
+    "name": "ImageElement",
+    "documentation": "HTML <img> element. https://grafana.com/docs/k6/latest/javascript-api/k6-html/element/",
+    "constructors": [],
+    "members": {
+      "__brand": {
+        "kind": "property",
+        "name": "__brand",
+        "signature": "protected __brand: never;",
+        "documentation": "",
+        "type": "never"
+      }
+    },
+    "signature": "ImageElement",
+    "extends": "Element"
+  },
+  "InputElement": {
+    "kind": "class",
+    "name": "InputElement",
+    "documentation": "HTML <input> element. https://grafana.com/docs/k6/latest/javascript-api/k6-html/element/",
+    "constructors": [],
+    "members": {
+      "__brand": {
+        "kind": "property",
+        "name": "__brand",
+        "signature": "protected __brand: never;",
+        "documentation": "",
+        "type": "never"
+      },
+      "form": {
+        "kind": "method",
+        "name": "form",
+        "signature": "form()",
+        "documentation": "Owning <form> element.",
+        "params": [],
+        "returns": {
+          "type": "FormElement",
+          "documentation": ""
+        }
+      }
+    },
+    "signature": "InputElement",
+    "extends": "FormFieldElement"
+  },
+  "InsElement": {
+    "kind": "class",
+    "name": "InsElement",
+    "documentation": "HTML <ins> element. https://grafana.com/docs/k6/latest/javascript-api/k6-html/element/",
+    "constructors": [],
+    "members": {
+      "__brand": {
+        "kind": "property",
+        "name": "__brand",
+        "signature": "protected __brand: never;",
+        "documentation": "",
+        "type": "never"
+      }
+    },
+    "signature": "InsElement",
+    "extends": "ModElement"
+  },
+  "KeygenElement": {
+    "kind": "class",
+    "name": "KeygenElement",
+    "documentation": "HTML <keygen> element. https://grafana.com/docs/k6/latest/javascript-api/k6-html/element/",
+    "constructors": [],
+    "members": {
+      "__brand": {
+        "kind": "property",
+        "name": "__brand",
+        "signature": "protected __brand: never;",
+        "documentation": "",
+        "type": "never"
+      },
+      "form": {
+        "kind": "method",
+        "name": "form",
+        "signature": "form()",
+        "documentation": "Owning <form> element.",
+        "params": [],
+        "returns": {
+          "type": "FormElement",
+          "documentation": ""
+        }
+      },
+      "labels": {
+        "kind": "method",
+        "name": "labels",
+        "signature": "labels()",
+        "documentation": "Associated <label> elements.",
+        "params": [],
+        "returns": {
+          "type": "LabelElement[]",
+          "documentation": ""
+        }
+      }
+    },
+    "signature": "KeygenElement",
+    "extends": "Element"
+  },
+  "LabelElement": {
+    "kind": "class",
+    "name": "LabelElement",
+    "documentation": "HTML <label> element. https://grafana.com/docs/k6/latest/javascript-api/k6-html/element/",
+    "constructors": [],
+    "members": {
+      "__brand": {
+        "kind": "property",
+        "name": "__brand",
+        "signature": "protected __brand: never;",
+        "documentation": "",
+        "type": "never"
+      },
+      "control": {
+        "kind": "method",
+        "name": "control",
+        "signature": "control()",
+        "documentation": "Associated form control element.",
+        "params": [],
+        "returns": {
+          "type": "Element",
+          "documentation": ""
+        }
+      },
+      "form": {
+        "kind": "method",
+        "name": "form",
+        "signature": "form()",
+        "documentation": "Owning <form> element.",
+        "params": [],
+        "returns": {
+          "type": "FormElement",
+          "documentation": ""
+        }
+      }
+    },
+    "signature": "LabelElement",
+    "extends": "Element"
+  },
+  "LegendElement": {
+    "kind": "class",
+    "name": "LegendElement",
+    "documentation": "HTML <legend> element. https://grafana.com/docs/k6/latest/javascript-api/k6-html/element/",
+    "constructors": [],
+    "members": {
+      "__brand": {
+        "kind": "property",
+        "name": "__brand",
+        "signature": "protected __brand: never;",
+        "documentation": "",
+        "type": "never"
+      },
+      "form": {
+        "kind": "method",
+        "name": "form",
+        "signature": "form()",
+        "documentation": "Owning <form> element.",
+        "params": [],
+        "returns": {
+          "type": "FormElement",
+          "documentation": ""
+        }
+      }
+    },
+    "signature": "LegendElement",
+    "extends": "Element"
+  },
+  "LiElement": {
+    "kind": "class",
+    "name": "LiElement",
+    "documentation": "HTML <li> element. https://grafana.com/docs/k6/latest/javascript-api/k6-html/element/",
+    "constructors": [],
+    "members": {
+      "__brand": {
+        "kind": "property",
+        "name": "__brand",
+        "signature": "protected __brand: never;",
+        "documentation": "",
+        "type": "never"
+      }
+    },
+    "signature": "LiElement",
+    "extends": "Element"
+  },
+  "LinkElement": {
+    "kind": "class",
+    "name": "LinkElement",
+    "documentation": "HTML <link> element. https://grafana.com/docs/k6/latest/javascript-api/k6-html/element/",
+    "constructors": [],
+    "members": {
+      "__brand": {
+        "kind": "property",
+        "name": "__brand",
+        "signature": "protected __brand: never;",
+        "documentation": "",
+        "type": "never"
+      },
+      "relList": {
+        "kind": "method",
+        "name": "relList",
+        "signature": "relList()",
+        "documentation": "Link types.",
+        "params": [],
+        "returns": {
+          "type": "string[]",
+          "documentation": ""
+        }
+      }
+    },
+    "signature": "LinkElement",
+    "extends": "Element"
+  },
+  "MapElement": {
+    "kind": "class",
+    "name": "MapElement",
+    "documentation": "HTML <map> element. https://grafana.com/docs/k6/latest/javascript-api/k6-html/element/",
+    "constructors": [],
+    "members": {
+      "__brand": {
+        "kind": "property",
+        "name": "__brand",
+        "signature": "protected __brand: never;",
+        "documentation": "",
+        "type": "never"
+      },
+      "areas": {
+        "kind": "method",
+        "name": "areas",
+        "signature": "areas()",
+        "documentation": "Associated <area> elements.",
+        "params": [],
+        "returns": {
+          "type": "Element[]",
+          "documentation": ""
+        }
+      },
+      "images": {
+        "kind": "method",
+        "name": "images",
+        "signature": "images()",
+        "documentation": "Associated <img> and <object> elements.",
+        "params": [],
+        "returns": {
+          "type": "Element[]",
+          "documentation": ""
+        }
+      }
+    },
+    "signature": "MapElement",
+    "extends": "Element"
+  },
+  "MediaElement": {
+    "kind": "class",
+    "name": "MediaElement",
+    "documentation": "HTML media element. https://grafana.com/docs/k6/latest/javascript-api/k6-html/element/",
+    "constructors": [],
+    "members": {
+      "__brand": {
+        "kind": "property",
+        "name": "__brand",
+        "signature": "protected __brand: never;",
+        "documentation": "",
+        "type": "never"
+      },
+      "textTracks": {
+        "kind": "method",
+        "name": "textTracks",
+        "signature": "textTracks()",
+        "documentation": "Contained <track> elements.",
+        "params": [],
+        "returns": {
+          "type": "TrackElement[]",
+          "documentation": ""
+        }
+      }
+    },
+    "signature": "MediaElement",
+    "extends": "Element"
+  },
+  "MetaElement": {
+    "kind": "class",
+    "name": "MetaElement",
+    "documentation": "HTML <meta> element. https://grafana.com/docs/k6/latest/javascript-api/k6-html/element/",
+    "constructors": [],
+    "members": {
+      "__brand": {
+        "kind": "property",
+        "name": "__brand",
+        "signature": "protected __brand: never;",
+        "documentation": "",
+        "type": "never"
+      }
+    },
+    "signature": "MetaElement",
+    "extends": "Element"
+  },
+  "MeterElement": {
+    "kind": "class",
+    "name": "MeterElement",
+    "documentation": "HTML <meter> element. https://grafana.com/docs/k6/latest/javascript-api/k6-html/element/",
+    "constructors": [],
+    "members": {
+      "__brand": {
+        "kind": "property",
+        "name": "__brand",
+        "signature": "protected __brand: never;",
+        "documentation": "",
+        "type": "never"
+      },
+      "labels": {
+        "kind": "method",
+        "name": "labels",
+        "signature": "labels()",
+        "documentation": "Associated <label> elements.",
+        "params": [],
+        "returns": {
+          "type": "LabelElement[]",
+          "documentation": ""
+        }
+      }
+    },
+    "signature": "MeterElement",
+    "extends": "Element"
+  },
+  "ModElement": {
+    "kind": "class",
+    "name": "ModElement",
+    "documentation": "HTML modification element. https://grafana.com/docs/k6/latest/javascript-api/k6-html/element/",
+    "constructors": [],
+    "members": {
+      "__brand": {
+        "kind": "property",
+        "name": "__brand",
+        "signature": "protected __brand: never;",
+        "documentation": "",
+        "type": "never"
+      }
+    },
+    "signature": "ModElement",
+    "extends": "Element"
+  },
+  "ObjectElement": {
+    "kind": "class",
+    "name": "ObjectElement",
+    "documentation": "HTML <object> element. https://grafana.com/docs/k6/latest/javascript-api/k6-html/element/",
+    "constructors": [],
+    "members": {
+      "__brand": {
+        "kind": "property",
+        "name": "__brand",
+        "signature": "protected __brand: never;",
+        "documentation": "",
+        "type": "never"
+      },
+      "form": {
+        "kind": "method",
+        "name": "form",
+        "signature": "form()",
+        "documentation": "Owning <form> element.",
+        "params": [],
+        "returns": {
+          "type": "FormElement",
+          "documentation": ""
+        }
+      }
+    },
+    "signature": "ObjectElement",
+    "extends": "Element"
+  },
+  "OListElement": {
+    "kind": "class",
+    "name": "OListElement",
+    "documentation": "HTML <ol> element. https://grafana.com/docs/k6/latest/javascript-api/k6-html/element/",
+    "constructors": [],
+    "members": {
+      "__brand": {
+        "kind": "property",
+        "name": "__brand",
+        "signature": "protected __brand: never;",
+        "documentation": "",
+        "type": "never"
+      }
+    },
+    "signature": "OListElement",
+    "extends": "Element"
+  },
+  "OptGroupElement": {
+    "kind": "class",
+    "name": "OptGroupElement",
+    "documentation": "HTML <optgroup> element. https://grafana.com/docs/k6/latest/javascript-api/k6-html/element/",
+    "constructors": [],
+    "members": {
+      "__brand": {
+        "kind": "property",
+        "name": "__brand",
+        "signature": "protected __brand: never;",
+        "documentation": "",
+        "type": "never"
+      }
+    },
+    "signature": "OptGroupElement",
+    "extends": "Element"
+  },
+  "OptionElement": {
+    "kind": "class",
+    "name": "OptionElement",
+    "documentation": "HTML <option> element. https://grafana.com/docs/k6/latest/javascript-api/k6-html/element/",
+    "constructors": [],
+    "members": {
+      "__brand": {
+        "kind": "property",
+        "name": "__brand",
+        "signature": "protected __brand: never;",
+        "documentation": "",
+        "type": "never"
+      },
+      "disabled": {
+        "kind": "method",
+        "name": "disabled",
+        "signature": "disabled()",
+        "documentation": "Whether disabled.",
+        "params": [],
+        "returns": {
+          "type": "boolean",
+          "documentation": ""
+        }
+      },
+      "form": {
+        "kind": "method",
+        "name": "form",
+        "signature": "form()",
+        "documentation": "Owning <form> element.",
+        "params": [],
+        "returns": {
+          "type": "FormElement",
+          "documentation": ""
+        }
+      },
+      "index": {
+        "kind": "method",
+        "name": "index",
+        "signature": "index()",
+        "documentation": "Index in containing options list.",
+        "params": [],
+        "returns": {
+          "type": "number",
+          "documentation": ""
+        }
+      },
+      "label": {
+        "kind": "method",
+        "name": "label",
+        "signature": "label()",
+        "documentation": "`label` attribute value.",
+        "params": [],
+        "returns": {
+          "type": "string",
+          "documentation": ""
+        }
+      },
+      "text": {
+        "kind": "method",
+        "name": "text",
+        "signature": "text()",
+        "documentation": "Text content.",
+        "params": [],
+        "returns": {
+          "type": "string",
+          "documentation": ""
+        }
+      },
+      "value": {
+        "kind": "method",
+        "name": "value",
+        "signature": "value()",
+        "documentation": "`value` attribute value.",
+        "params": [],
+        "returns": {
+          "type": "string",
+          "documentation": ""
+        }
+      }
+    },
+    "signature": "OptionElement",
+    "extends": "Element"
+  },
+  "OutputElement": {
+    "kind": "class",
+    "name": "OutputElement",
+    "documentation": "HTML <output> element. https://grafana.com/docs/k6/latest/javascript-api/k6-html/element/",
+    "constructors": [],
+    "members": {
+      "__brand": {
+        "kind": "property",
+        "name": "__brand",
+        "signature": "protected __brand: never;",
+        "documentation": "",
+        "type": "never"
+      },
+      "defaultValue": {
+        "kind": "method",
+        "name": "defaultValue",
+        "signature": "defaultValue()",
+        "documentation": "Default value.",
+        "params": [],
+        "returns": {
+          "type": "string",
+          "documentation": ""
+        }
+      },
+      "form": {
+        "kind": "method",
+        "name": "form",
+        "signature": "form()",
+        "documentation": "Owning <form> element.",
+        "params": [],
+        "returns": {
+          "type": "FormElement",
+          "documentation": ""
+        }
+      },
+      "labels": {
+        "kind": "method",
+        "name": "labels",
+        "signature": "labels()",
+        "documentation": "Associated <label> elements.",
+        "params": [],
+        "returns": {
+          "type": "LabelElement[]",
+          "documentation": ""
+        }
+      },
+      "value": {
+        "kind": "method",
+        "name": "value",
+        "signature": "value()",
+        "documentation": "Text content.",
+        "params": [],
+        "returns": {
+          "type": "string",
+          "documentation": ""
+        }
+      }
+    },
+    "signature": "OutputElement",
+    "extends": "Element"
+  },
+  "ParamElement": {
+    "kind": "class",
+    "name": "ParamElement",
+    "documentation": "HTML <param> element. https://grafana.com/docs/k6/latest/javascript-api/k6-html/element/",
+    "constructors": [],
+    "members": {
+      "__brand": {
+        "kind": "property",
+        "name": "__brand",
+        "signature": "protected __brand: never;",
+        "documentation": "",
+        "type": "never"
+      }
+    },
+    "signature": "ParamElement",
+    "extends": "Element"
+  },
+  "PreElement": {
+    "kind": "class",
+    "name": "PreElement",
+    "documentation": "HTML <pre> element. https://grafana.com/docs/k6/latest/javascript-api/k6-html/element/",
+    "constructors": [],
+    "members": {
+      "__brand": {
+        "kind": "property",
+        "name": "__brand",
+        "signature": "protected __brand: never;",
+        "documentation": "",
+        "type": "never"
+      }
+    },
+    "signature": "PreElement",
+    "extends": "Element"
+  },
+  "ProgressElement": {
+    "kind": "class",
+    "name": "ProgressElement",
+    "documentation": "HTML <progress> element. https://grafana.com/docs/k6/latest/javascript-api/k6-html/element/",
+    "constructors": [],
+    "members": {
+      "__brand": {
+        "kind": "property",
+        "name": "__brand",
+        "signature": "protected __brand: never;",
+        "documentation": "",
+        "type": "never"
+      },
+      "labels": {
+        "kind": "method",
+        "name": "labels",
+        "signature": "labels()",
+        "documentation": "Associated <label> elements.",
+        "params": [],
+        "returns": {
+          "type": "LabelElement[]",
+          "documentation": ""
+        }
+      },
+      "max": {
+        "kind": "method",
+        "name": "max",
+        "signature": "max()",
+        "documentation": "Work required.",
+        "params": [],
+        "returns": {
+          "type": "number",
+          "documentation": ""
+        }
+      },
+      "position": {
+        "kind": "method",
+        "name": "position",
+        "signature": "position()",
+        "documentation": "Progress bar position. `value/max`",
+        "params": [],
+        "returns": {
+          "type": "number",
+          "documentation": ""
+        }
+      },
+      "value": {
+        "kind": "method",
+        "name": "value",
+        "signature": "value()",
+        "documentation": "Work completed.",
+        "params": [],
+        "returns": {
+          "type": "number",
+          "documentation": ""
+        }
+      }
+    },
+    "signature": "ProgressElement",
+    "extends": "Element"
+  },
+  "QuoteElement": {
+    "kind": "class",
+    "name": "QuoteElement",
+    "documentation": "HTML <q> element. https://grafana.com/docs/k6/latest/javascript-api/k6-html/element/",
+    "constructors": [],
+    "members": {
+      "__brand": {
+        "kind": "property",
+        "name": "__brand",
+        "signature": "protected __brand: never;",
+        "documentation": "",
+        "type": "never"
+      }
+    },
+    "signature": "QuoteElement",
+    "extends": "Element"
+  },
+  "ScriptElement": {
+    "kind": "class",
+    "name": "ScriptElement",
+    "documentation": "HTML <script> element. https://grafana.com/docs/k6/latest/javascript-api/k6-html/element/",
+    "constructors": [],
+    "members": {
+      "__brand": {
+        "kind": "property",
+        "name": "__brand",
+        "signature": "protected __brand: never;",
+        "documentation": "",
+        "type": "never"
+      },
+      "text": {
+        "kind": "method",
+        "name": "text",
+        "signature": "text()",
+        "documentation": "Source code.",
+        "params": [],
+        "returns": {
+          "type": "string",
+          "documentation": ""
+        }
+      }
+    },
+    "signature": "ScriptElement",
+    "extends": "Element"
+  },
+  "SelectElement": {
+    "kind": "class",
+    "name": "SelectElement",
+    "documentation": "HTML <select> element. https://grafana.com/docs/k6/latest/javascript-api/k6-html/element/",
+    "constructors": [],
+    "members": {
+      "__brand": {
+        "kind": "property",
+        "name": "__brand",
+        "signature": "protected __brand: never;",
+        "documentation": "",
+        "type": "never"
+      },
+      "form": {
+        "kind": "method",
+        "name": "form",
+        "signature": "form()",
+        "documentation": "Owning <form> element.",
+        "params": [],
+        "returns": {
+          "type": "FormElement",
+          "documentation": ""
+        }
+      },
+      "labels": {
+        "kind": "method",
+        "name": "labels",
+        "signature": "labels()",
+        "documentation": "Associated <label> elements.",
+        "params": [],
+        "returns": {
+          "type": "LabelElement[]",
+          "documentation": ""
+        }
+      },
+      "length": {
+        "kind": "method",
+        "name": "length",
+        "signature": "length()",
+        "documentation": "Number of contained <option> elements.",
+        "params": [],
+        "returns": {
+          "type": "number",
+          "documentation": ""
+        }
+      },
+      "options": {
+        "kind": "method",
+        "name": "options",
+        "signature": "options()",
+        "documentation": "Contained <option> elements.",
+        "params": [],
+        "returns": {
+          "type": "OptionElement[]",
+          "documentation": ""
+        }
+      },
+      "selectedIndex": {
+        "kind": "method",
+        "name": "selectedIndex",
+        "signature": "selectedIndex()",
+        "documentation": "First selected <option> element index.",
+        "params": [],
+        "returns": {
+          "type": "number",
+          "documentation": ""
+        }
+      },
+      "selectedOptions": {
+        "kind": "method",
+        "name": "selectedOptions",
+        "signature": "selectedOptions()",
+        "documentation": "Selected <option> elements.",
+        "params": [],
+        "returns": {
+          "type": "OptionElement[]",
+          "documentation": ""
+        }
+      },
+      "size": {
+        "kind": "method",
+        "name": "size",
+        "signature": "size()",
+        "documentation": "Number of visible rows.",
+        "params": [],
+        "returns": {
+          "type": "number",
+          "documentation": ""
+        }
+      },
+      "type": {
+        "kind": "method",
+        "name": "type",
+        "signature": "type()",
+        "documentation": "Select type. `select-one` or `select-multiple`.",
+        "params": [],
+        "returns": {
+          "type": "string",
+          "documentation": ""
+        }
+      },
+      "value": {
+        "kind": "method",
+        "name": "value",
+        "signature": "value()",
+        "documentation": "First selected <option> element value.",
+        "params": [],
+        "returns": {
+          "type": "string",
+          "documentation": ""
+        }
+      }
+    },
+    "signature": "SelectElement",
+    "extends": "Element"
+  },
+  "SourceElement": {
+    "kind": "class",
+    "name": "SourceElement",
+    "documentation": "HTML <source> element. https://grafana.com/docs/k6/latest/javascript-api/k6-html/element/",
+    "constructors": [],
+    "members": {
+      "__brand": {
+        "kind": "property",
+        "name": "__brand",
+        "signature": "protected __brand: never;",
+        "documentation": "",
+        "type": "never"
+      }
+    },
+    "signature": "SourceElement",
+    "extends": "Element"
+  },
+  "StyleElement": {
+    "kind": "class",
+    "name": "StyleElement",
+    "documentation": "HTML <style> element. https://grafana.com/docs/k6/latest/javascript-api/k6-html/element/",
+    "constructors": [],
+    "members": {
+      "__brand": {
+        "kind": "property",
+        "name": "__brand",
+        "signature": "protected __brand: never;",
+        "documentation": "",
+        "type": "never"
+      },
+      "type": {
+        "kind": "method",
+        "name": "type",
+        "signature": "type()",
+        "documentation": "`type` attribute value.",
+        "params": [],
+        "returns": {
+          "type": "string",
+          "documentation": ""
+        }
+      }
+    },
+    "signature": "StyleElement",
+    "extends": "Element"
+  },
+  "TableBodyElement": {
+    "kind": "class",
+    "name": "TableBodyElement",
+    "documentation": "HTML <tbody> element. https://grafana.com/docs/k6/latest/javascript-api/k6-html/element/",
+    "constructors": [],
+    "members": {
+      "__brand": {
+        "kind": "property",
+        "name": "__brand",
+        "signature": "protected __brand: never;",
+        "documentation": "",
+        "type": "never"
+      }
+    },
+    "signature": "TableBodyElement",
+    "extends": "TableSectionElement"
+  },
+  "TableCellElement": {
+    "kind": "class",
+    "name": "TableCellElement",
+    "documentation": "HTML table cell element. https://grafana.com/docs/k6/latest/javascript-api/k6-html/element/",
+    "constructors": [],
+    "members": {
+      "__brand": {
+        "kind": "property",
+        "name": "__brand",
+        "signature": "protected __brand: never;",
+        "documentation": "",
+        "type": "never"
+      },
+      "cellIndex": {
+        "kind": "method",
+        "name": "cellIndex",
+        "signature": "cellIndex()",
+        "documentation": "Index in containing row.",
+        "params": [],
+        "returns": {
+          "type": "number",
+          "documentation": ""
+        }
+      }
+    },
+    "signature": "TableCellElement",
+    "extends": "Element"
+  },
+  "TableColElement": {
+    "kind": "class",
+    "name": "TableColElement",
+    "documentation": "HTML <col> element. https://grafana.com/docs/k6/latest/javascript-api/k6-html/element/",
+    "constructors": [],
+    "members": {
+      "__brand": {
+        "kind": "property",
+        "name": "__brand",
+        "signature": "protected __brand: never;",
+        "documentation": "",
+        "type": "never"
+      },
+      "span": {
+        "kind": "method",
+        "name": "span",
+        "signature": "span()",
+        "documentation": "Number of consecutive columns spanned.",
+        "params": [],
+        "returns": {
+          "type": "number",
+          "documentation": ""
+        }
+      }
+    },
+    "signature": "TableColElement",
+    "extends": "Element"
+  },
+  "TableDataCellElement": {
+    "kind": "class",
+    "name": "TableDataCellElement",
+    "documentation": "HTML <td> element. https://grafana.com/docs/k6/latest/javascript-api/k6-html/element/",
+    "constructors": [],
+    "members": {
+      "__brand": {
+        "kind": "property",
+        "name": "__brand",
+        "signature": "protected __brand: never;",
+        "documentation": "",
+        "type": "never"
+      }
+    },
+    "signature": "TableDataCellElement",
+    "extends": "TableCellElement"
+  },
+  "TableElement": {
+    "kind": "class",
+    "name": "TableElement",
+    "documentation": "HTML <table> element. https://grafana.com/docs/k6/latest/javascript-api/k6-html/element/",
+    "constructors": [],
+    "members": {
+      "__brand": {
+        "kind": "property",
+        "name": "__brand",
+        "signature": "protected __brand: never;",
+        "documentation": "",
+        "type": "never"
+      },
+      "caption": {
+        "kind": "method",
+        "name": "caption",
+        "signature": "caption()",
+        "documentation": "First child <caption> element.",
+        "params": [],
+        "returns": {
+          "type": "Element",
+          "documentation": ""
+        }
+      },
+      "rows": {
+        "kind": "method",
+        "name": "rows",
+        "signature": "rows()",
+        "documentation": "Contained <tr> elements.",
+        "params": [],
+        "returns": {
+          "type": "Element[]",
+          "documentation": ""
+        }
+      },
+      "tBodies": {
+        "kind": "method",
+        "name": "tBodies",
+        "signature": "tBodies()",
+        "documentation": "Contained <tbody> elements.",
+        "params": [],
+        "returns": {
+          "type": "Element[]",
+          "documentation": ""
+        }
+      },
+      "tFoot": {
+        "kind": "method",
+        "name": "tFoot",
+        "signature": "tFoot()",
+        "documentation": "First child <tfoot> element.",
+        "params": [],
+        "returns": {
+          "type": "Element",
+          "documentation": ""
+        }
+      },
+      "tHead": {
+        "kind": "method",
+        "name": "tHead",
+        "signature": "tHead()",
+        "documentation": "First child <thead> element.",
+        "params": [],
+        "returns": {
+          "type": "Element",
+          "documentation": ""
+        }
+      }
+    },
+    "signature": "TableElement",
+    "extends": "Element"
+  },
+  "TableFootElement": {
+    "kind": "class",
+    "name": "TableFootElement",
+    "documentation": "HTML <tfoot> element. https://grafana.com/docs/k6/latest/javascript-api/k6-html/element/",
+    "constructors": [],
+    "members": {
+      "__brand": {
+        "kind": "property",
+        "name": "__brand",
+        "signature": "protected __brand: never;",
+        "documentation": "",
+        "type": "never"
+      }
+    },
+    "signature": "TableFootElement",
+    "extends": "TableSectionElement"
+  },
+  "TableHeadElement": {
+    "kind": "class",
+    "name": "TableHeadElement",
+    "documentation": "HTML <thead> element. https://grafana.com/docs/k6/latest/javascript-api/k6-html/element/",
+    "constructors": [],
+    "members": {
+      "__brand": {
+        "kind": "property",
+        "name": "__brand",
+        "signature": "protected __brand: never;",
+        "documentation": "",
+        "type": "never"
+      }
+    },
+    "signature": "TableHeadElement",
+    "extends": "TableSectionElement"
+  },
+  "TableHeaderCellElement": {
+    "kind": "class",
+    "name": "TableHeaderCellElement",
+    "documentation": "HTML <th> element. https://grafana.com/docs/k6/latest/javascript-api/k6-html/element/",
+    "constructors": [],
+    "members": {
+      "__brand": {
+        "kind": "property",
+        "name": "__brand",
+        "signature": "protected __brand: never;",
+        "documentation": "",
+        "type": "never"
+      }
+    },
+    "signature": "TableHeaderCellElement",
+    "extends": "TableCellElement"
+  },
+  "TableRowElement": {
+    "kind": "class",
+    "name": "TableRowElement",
+    "documentation": "HTML <tr> element. https://grafana.com/docs/k6/latest/javascript-api/k6-html/element/",
+    "constructors": [],
+    "members": {
+      "__brand": {
+        "kind": "property",
+        "name": "__brand",
+        "signature": "protected __brand: never;",
+        "documentation": "",
+        "type": "never"
+      },
+      "cells": {
+        "kind": "method",
+        "name": "cells",
+        "signature": "cells()",
+        "documentation": "Contained table cell elements.",
+        "params": [],
+        "returns": {
+          "type": "TableCellElement[]",
+          "documentation": ""
+        }
+      },
+      "rowIndex": {
+        "kind": "method",
+        "name": "rowIndex",
+        "signature": "rowIndex()",
+        "documentation": "Index in containing table.",
+        "params": [],
+        "returns": {
+          "type": "number",
+          "documentation": ""
+        }
+      },
+      "sectionRowIndex": {
+        "kind": "method",
+        "name": "sectionRowIndex",
+        "signature": "sectionRowIndex()",
+        "documentation": "Index in containing table section.",
+        "params": [],
+        "returns": {
+          "type": "number",
+          "documentation": ""
+        }
+      }
+    },
+    "signature": "TableRowElement",
+    "extends": "Element"
+  },
+  "TableSectionElement": {
+    "kind": "class",
+    "name": "TableSectionElement",
+    "documentation": "HTML table section element. https://grafana.com/docs/k6/latest/javascript-api/k6-html/element/",
+    "constructors": [],
+    "members": {
+      "__brand": {
+        "kind": "property",
+        "name": "__brand",
+        "signature": "protected __brand: never;",
+        "documentation": "",
+        "type": "never"
+      },
+      "rows": {
+        "kind": "method",
+        "name": "rows",
+        "signature": "rows()",
+        "documentation": "Contained <tr> elements.",
+        "params": [],
+        "returns": {
+          "type": "Element[]",
+          "documentation": ""
+        }
+      }
+    },
+    "signature": "TableSectionElement",
+    "extends": "Element"
+  },
+  "TextAreaElement": {
+    "kind": "class",
+    "name": "TextAreaElement",
+    "documentation": "HTML <textarea> element. https://grafana.com/docs/k6/latest/javascript-api/k6-html/element/",
+    "constructors": [],
+    "members": {
+      "__brand": {
+        "kind": "property",
+        "name": "__brand",
+        "signature": "protected __brand: never;",
+        "documentation": "",
+        "type": "never"
+      },
+      "form": {
+        "kind": "method",
+        "name": "form",
+        "signature": "form()",
+        "documentation": "Owning <form> element.",
+        "params": [],
+        "returns": {
+          "type": "FormElement",
+          "documentation": ""
+        }
+      },
+      "labels": {
+        "kind": "method",
+        "name": "labels",
+        "signature": "labels()",
+        "documentation": "Associated <label> elements.",
+        "params": [],
+        "returns": {
+          "type": "LabelElement[]",
+          "documentation": ""
+        }
+      },
+      "length": {
+        "kind": "method",
+        "name": "length",
+        "signature": "length()",
+        "documentation": "Byte length of current text value.",
+        "params": [],
+        "returns": {
+          "type": "number",
+          "documentation": ""
+        }
+      }
+    },
+    "signature": "TextAreaElement",
+    "extends": "Element"
+  },
+  "TimeElement": {
+    "kind": "class",
+    "name": "TimeElement",
+    "documentation": "HTML <time> element. https://grafana.com/docs/k6/latest/javascript-api/k6-html/element/",
+    "constructors": [],
+    "members": {
+      "__brand": {
+        "kind": "property",
+        "name": "__brand",
+        "signature": "protected __brand: never;",
+        "documentation": "",
+        "type": "never"
+      }
+    },
+    "signature": "TimeElement",
+    "extends": "Element"
+  },
+  "TitleElement": {
+    "kind": "class",
+    "name": "TitleElement",
+    "documentation": "HTML <title> element. https://grafana.com/docs/k6/latest/javascript-api/k6-html/element/",
+    "constructors": [],
+    "members": {
+      "__brand": {
+        "kind": "property",
+        "name": "__brand",
+        "signature": "protected __brand: never;",
+        "documentation": "",
+        "type": "never"
+      },
+      "text": {
+        "kind": "method",
+        "name": "text",
+        "signature": "text()",
+        "documentation": "Title text.",
+        "params": [],
+        "returns": {
+          "type": "string",
+          "documentation": ""
+        }
+      }
+    },
+    "signature": "TitleElement",
+    "extends": "Element"
+  },
+  "TrackElement": {
+    "kind": "class",
+    "name": "TrackElement",
+    "documentation": "HTML <track> element. https://grafana.com/docs/k6/latest/javascript-api/k6-html/element/",
+    "constructors": [],
+    "members": {
+      "__brand": {
+        "kind": "property",
+        "name": "__brand",
+        "signature": "protected __brand: never;",
+        "documentation": "",
+        "type": "never"
+      }
+    },
+    "signature": "TrackElement",
+    "extends": "Element"
+  },
+  "UListElement": {
+    "kind": "class",
+    "name": "UListElement",
+    "documentation": "HTML <ul> element. https://grafana.com/docs/k6/latest/javascript-api/k6-html/element/",
+    "constructors": [],
+    "members": {
+      "__brand": {
+        "kind": "property",
+        "name": "__brand",
+        "signature": "protected __brand: never;",
+        "documentation": "",
+        "type": "never"
+      }
+    },
+    "signature": "UListElement",
+    "extends": "Element"
+  },
+  "VideoElement": {
+    "kind": "class",
+    "name": "VideoElement",
+    "documentation": "HTML <video> element. https://grafana.com/docs/k6/latest/javascript-api/k6-html/element/",
+    "constructors": [],
+    "members": {
+      "__brand": {
+        "kind": "property",
+        "name": "__brand",
+        "signature": "protected __brand: never;",
+        "documentation": "",
+        "type": "never"
+      }
+    },
+    "signature": "VideoElement",
+    "extends": "MediaElement"
+  }
+}

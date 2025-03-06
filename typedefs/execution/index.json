@@ -1,0 +1,187 @@
+{
+  "scenario": {
+    "kind": "variable",
+    "name": "scenario",
+    "documentation": "",
+    "signature": "scenario",
+    "type": "{ name: string; executor: string; startTime: number; progress: number; iterationInInstance: number; iterationInTest: number; }",
+    "members": {
+      "name": {
+        "kind": "property",
+        "name": "name",
+        "signature": "name: string;",
+        "documentation": "The assigned name of the running scenario.",
+        "type": "string"
+      },
+      "executor": {
+        "kind": "property",
+        "name": "executor",
+        "signature": "executor: string;",
+        "documentation": "The name of the running Executor type.",
+        "type": "string"
+      },
+      "startTime": {
+        "kind": "property",
+        "name": "startTime",
+        "signature": "startTime: number;",
+        "documentation": "The Unix timestamp in milliseconds when the scenario started.",
+        "type": "number"
+      },
+      "progress": {
+        "kind": "property",
+        "name": "progress",
+        "signature": "progress: number;",
+        "documentation": "Percentage in a 0 to 1 interval of the scenario progress.",
+        "type": "number"
+      },
+      "iterationInInstance": {
+        "kind": "property",
+        "name": "iterationInInstance",
+        "signature": "iterationInInstance: number;",
+        "documentation": "The unique and zero-based sequential number of the current iteration in the scenario, across the current instance.",
+        "type": "number"
+      },
+      "iterationInTest": {
+        "kind": "property",
+        "name": "iterationInTest",
+        "signature": "iterationInTest: number;",
+        "documentation": "The unique and zero-based sequential number of the current iteration in the scenario.",
+        "type": "number"
+      }
+    }
+  },
+  "instance": {
+    "kind": "variable",
+    "name": "instance",
+    "documentation": "",
+    "signature": "instance",
+    "type": "{ iterationsInterrupted: number; iterationsCompleted: number; vusActive: number; vusInitialized: number; currentTestRunDuration: number; }",
+    "members": {
+      "iterationsInterrupted": {
+        "kind": "property",
+        "name": "iterationsInterrupted",
+        "signature": "iterationsInterrupted: number;",
+        "documentation": "The number of prematurely interrupted iterations in the current instance.",
+        "type": "number"
+      },
+      "iterationsCompleted": {
+        "kind": "property",
+        "name": "iterationsCompleted",
+        "signature": "iterationsCompleted: number;",
+        "documentation": "The number of completed iterations in the current instance.",
+        "type": "number"
+      },
+      "vusActive": {
+        "kind": "property",
+        "name": "vusActive",
+        "signature": "vusActive: number;",
+        "documentation": "The number of active VUs.",
+        "type": "number"
+      },
+      "vusInitialized": {
+        "kind": "property",
+        "name": "vusInitialized",
+        "signature": "vusInitialized: number;",
+        "documentation": "The number of currently initialized VUs.",
+        "type": "number"
+      },
+      "currentTestRunDuration": {
+        "kind": "property",
+        "name": "currentTestRunDuration",
+        "signature": "currentTestRunDuration: number;",
+        "documentation": "The time passed from the start of the current test run in milliseconds.",
+        "type": "number"
+      }
+    }
+  },
+  "test": {
+    "kind": "variable",
+    "name": "test",
+    "documentation": "",
+    "signature": "test",
+    "type": "{ abort(input?: string): void; options: Options; }",
+    "members": {
+      "abort": {
+        "kind": "method",
+        "name": "abort",
+        "signature": "abort(input: string)",
+        "documentation": "Aborts the test run with the exit code 108. https://grafana.com/docs/k6/latest/javascript-api/k6-execution/#test",
+        "params": [
+          {
+            "name": "input",
+            "type": "string",
+            "documentation": "- Aborted message."
+          }
+        ],
+        "returns": {
+          "type": "void",
+          "documentation": ""
+        }
+      },
+      "options": {
+        "kind": "property",
+        "name": "options",
+        "signature": "options: Options;",
+        "documentation": "",
+        "type": "Options"
+      }
+    }
+  },
+  "vu": {
+    "kind": "variable",
+    "name": "vu",
+    "documentation": "",
+    "signature": "vu",
+    "type": "{ iterationInInstance: number; iterationInScenario: number; idInInstance: number; idInTest: number; tags: Record<string, string | number | boolean>; metrics: { tags: Record<string, string | number | boolean>; metadata: Record<string, string | number | boolean>; }; }",
+    "members": {
+      "iterationInInstance": {
+        "kind": "property",
+        "name": "iterationInInstance",
+        "signature": "iterationInInstance: number;",
+        "documentation": "The identifier of the iteration in the current instance.",
+        "type": "number"
+      },
+      "iterationInScenario": {
+        "kind": "property",
+        "name": "iterationInScenario",
+        "signature": "iterationInScenario: number;",
+        "documentation": "The identifier of the iteration in the current scenario.",
+        "type": "number"
+      },
+      "idInInstance": {
+        "kind": "property",
+        "name": "idInInstance",
+        "signature": "idInInstance: number;",
+        "documentation": "The identifier of the VU across the instance.",
+        "type": "number"
+      },
+      "idInTest": {
+        "kind": "property",
+        "name": "idInTest",
+        "signature": "idInTest: number;",
+        "documentation": "The globally unique (across the whole test run) identifier of the VU.",
+        "type": "number"
+      },
+      "tags": {
+        "kind": "property",
+        "name": "tags",
+        "signature": "tags: Record<string, number | string | boolean>;",
+        "documentation": "Map to set or get VU tags.",
+        "type": "Record<string, string | number | boolean>"
+      },
+      "metrics": {
+        "kind": "property",
+        "name": "metrics",
+        "signature": "metrics: { /** * Map to set or get VU tags. */ tags: Record<string, number | string | boolean>; /** * Map to set or get VU metadata. */ metadata: Record<string, number | string | boolean>; };",
+        "documentation": "",
+        "type": "{ tags: Record<string, string | number | boolean>; metadata: Record<string, string | number | boolean>; }"
+      }
+    }
+  },
+  "default": {
+    "kind": "declaration",
+    "name": "default",
+    "signature": "* as default",
+    "documentation": ""
+  }
+}

@@ -1,0 +1,133 @@
+{
+  "Metric": {
+    "kind": "class",
+    "name": "Metric",
+    "documentation": "Custom metric.",
+    "constructors": [
+      {
+        "kind": "constructor",
+        "signature": "constructor(name: string, isTime: boolean)",
+        "documentation": "",
+        "params": [
+          {
+            "name": "name",
+            "type": "string",
+            "documentation": "- Metric name."
+          },
+          {
+            "name": "isTime",
+            "type": "boolean",
+            "documentation": "- Whether values are time values."
+          }
+        ]
+      }
+    ],
+    "members": {
+      "__brand": {
+        "kind": "property",
+        "name": "__brand",
+        "signature": "protected __brand: never;",
+        "documentation": "",
+        "type": "never"
+      },
+      "name": {
+        "kind": "property",
+        "name": "name",
+        "signature": "name: string;",
+        "documentation": "The name of the custom metric.",
+        "type": "string"
+      },
+      "add": {
+        "kind": "method",
+        "name": "add",
+        "signature": "add(value: number | boolean, tags: { [name: string]: string; })",
+        "documentation": "Add value.",
+        "params": [
+          {
+            "name": "value",
+            "type": "number | boolean",
+            "documentation": "- Value to add."
+          },
+          {
+            "name": "tags",
+            "type": "{ [name: string]: string; }",
+            "documentation": "- Tags to attach to data point."
+          }
+        ],
+        "returns": {
+          "type": "void",
+          "documentation": ""
+        }
+      }
+    },
+    "signature": "Metric"
+  },
+  "Counter": {
+    "kind": "class",
+    "name": "Counter",
+    "documentation": "Cumulative counter. https://grafana.com/docs/k6/latest/javascript-api/k6-metrics/counter/",
+    "constructors": [],
+    "members": {
+      "__brand": {
+        "kind": "property",
+        "name": "__brand",
+        "signature": "protected __brand: never;",
+        "documentation": "",
+        "type": "never"
+      }
+    },
+    "signature": "Counter",
+    "extends": "Metric"
+  },
+  "Gauge": {
+    "kind": "class",
+    "name": "Gauge",
+    "documentation": "Gauge. Holds only latest value. https://grafana.com/docs/k6/latest/javascript-api/k6-metrics/gauge/",
+    "constructors": [],
+    "members": {
+      "__brand": {
+        "kind": "property",
+        "name": "__brand",
+        "signature": "protected __brand: never;",
+        "documentation": "",
+        "type": "never"
+      }
+    },
+    "signature": "Gauge",
+    "extends": "Metric"
+  },
+  "Rate": {
+    "kind": "class",
+    "name": "Rate",
+    "documentation": "Tracks percentage of nonzero values. https://grafana.com/docs/k6/latest/javascript-api/k6-metrics/rate/",
+    "constructors": [],
+    "members": {
+      "__brand": {
+        "kind": "property",
+        "name": "__brand",
+        "signature": "protected __brand: never;",
+        "documentation": "",
+        "type": "never"
+      }
+    },
+    "signature": "Rate",
+    "extends": "Metric"
+  },
+  "Trend": {
+    "kind": "class",
+    "name": "Trend",
+    "documentation": "Calculates summary statistics. https://grafana.com/docs/k6/latest/javascript-api/k6-metrics/trend/",
+    "constructors": [],
+    "members": {
+      "__brand": {
+        "kind": "property",
+        "name": "__brand",
+        "signature": "protected __brand: never;",
+        "documentation": "",
+        "type": "never"
+      }
+    },
+    "signature": "Trend",
+    "extends": "Metric"
+  }
+}

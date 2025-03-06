@@ -1,0 +1,26 @@
+{
+  "b64decode": {
+    "kind": "declaration",
+    "name": "b64decode",
+    "signature": "function b64decode(input: string, encoding: Base64Variant, format: \"s\"): string;",
+    "documentation": "Base64 decode a string. https://grafana.com/docs/k6/latest/javascript-api/k6-encoding/b64decode/"
+  },
+  "b64encode": {
+    "kind": "declaration",
+    "name": "b64encode",
+    "signature": "function b64encode(input: string | ArrayBuffer, encoding?: Base64Variant): string;",
+    "documentation": "Base64 encode a string. https://grafana.com/docs/k6/latest/javascript-api/k6-encoding/b64encode/"
+  },
+  "Base64Variant": {
+    "kind": "declaration",
+    "name": "Base64Variant",
+    "signature": "type Base64Variant = \"std\" | \"rawstd\" | \"url\" | \"rawurl\";",
+    "documentation": "Base64 variant."
+  },
+  "default": {
+    "kind": "declaration",
+    "name": "default",
+    "signature": "* as default",
+    "documentation": ""
+  }
+}

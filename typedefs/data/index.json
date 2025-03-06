@@ -1,0 +1,9 @@
+{
+  "SharedArray": {
+    "kind": "variable",
+    "name": "SharedArray",
+    "documentation": "",
+    "signature": "SharedArray",
+    "type": "{ new (name: string, callback: () => []): []; new <T>(name: string, callback: () => T[]): T[]; }"
+  }
+}

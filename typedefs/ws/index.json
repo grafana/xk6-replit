@@ -1,0 +1,339 @@
+{
+  "connect": {
+    "kind": "declaration",
+    "name": "connect",
+    "signature": "function connect(url: string, params: Params | null, callback: Executor): Response;",
+    "documentation": "Open WebSocket connection. https://grafana.com/docs/k6/latest/javascript-api/k6-ws/connect/"
+  },
+  "Params": {
+    "kind": "interface",
+    "name": "Params",
+    "documentation": "Request parameters.",
+    "members": {
+      "headers": {
+        "kind": "property",
+        "name": "headers",
+        "signature": "headers?: { [name: string]: string };",
+        "documentation": "Request headers.",
+        "type": "{ [name: string]: string; }"
+      },
+      "compression": {
+        "kind": "property",
+        "name": "compression",
+        "signature": "compression?: string;",
+        "documentation": "Compression algorithm. The only supported algorithm is `deflate`. If the option is left unset or empty, it defaults to no compression.",
+        "type": "string"
+      },
+      "tags": {
+        "kind": "property",
+        "name": "tags",
+        "signature": "tags?: { [name: string]: string };",
+        "documentation": "Response time metric tags.",
+        "type": "{ [name: string]: string; }"
+      },
+      "jar": {
+        "kind": "property",
+        "name": "jar",
+        "signature": "jar?: CookieJar;",
+        "documentation": "The cookie jar that will be used when making the initial HTTP request to establish the WebSocket connection. If empty, the default VU cookie jar will be used.",
+        "type": "CookieJar"
+      }
+    },
+    "signature": "Params"
+  },
+  "Executor": {
+    "kind": "interface",
+    "name": "Executor",
+    "documentation": "Socket executor.",
+    "members": {},
+    "signature": "Executor"
+  },
+  "Response": {
+    "kind": "interface",
+    "name": "Response",
+    "documentation": "HTTP response to connection request.",
+    "members": {
+      "url": {
+        "kind": "property",
+        "name": "url",
+        "signature": "url: string;",
+        "documentation": "Fetched URL. May differ from request URL due to redirects.",
+        "type": "string"
+      },
+      "status": {
+        "kind": "property",
+        "name": "status",
+        "signature": "status: number;",
+        "documentation": "HTTP status code.",
+        "type": "number"
+      },
+      "headers": {
+        "kind": "property",
+        "name": "headers",
+        "signature": "headers: { [name: string]: string };",
+        "documentation": "Response headers.",
+        "type": "{ [name: string]: string; }"
+      },
+      "body": {
+        "kind": "property",
+        "name": "body",
+        "signature": "body: string;",
+        "documentation": "Response body.",
+        "type": "string"
+      },
+      "error": {
+        "kind": "property",
+        "name": "error",
+        "signature": "error: string;",
+        "documentation": "Non-HTTP error message.",
+        "type": "string"
+      }
+    },
+    "signature": "Response"
+  },
+  "Socket": {
+    "kind": "class",
+    "name": "Socket",
+    "documentation": "Created socket. https://grafana.com/docs/k6/latest/javascript-api/k6-ws/socket/",
+    "constructors": [],
+    "members": {
+      "__brand": {
+        "kind": "property",
+        "name": "__brand",
+        "signature": "protected __brand: never;",
+        "documentation": "",
+        "type": "never"
+      },
+      "close": {
+        "kind": "method",
+        "name": "close",
+        "signature": "close(code: number)",
+        "documentation": "Close connection. https://grafana.com/docs/k6/latest/javascript-api/k6-ws/socket/socket-close/",
+        "params": [
+          {
+            "name": "code",
+            "type": "number",
+            "documentation": "- WebSocket status code."
+          }
+        ],
+        "returns": {
+          "type": "void",
+          "documentation": ""
+        }
+      },
+      "on": {
+        "kind": "method",
+        "name": "on",
+        "signature": "on(event: ET, handler: EventHandler<ET>)",
+        "documentation": "Listen to event. https://grafana.com/docs/k6/latest/javascript-api/k6-ws/socket/socket-on/",
+        "params": [
+          {
+            "name": "event",
+            "type": "ET",
+            "documentation": "- Event type."
+          },
+          {
+            "name": "handler",
+            "type": "EventHandler<ET>",
+            "documentation": "- Event handler."
+          }
+        ],
+        "returns": {
+          "type": "void",
+          "documentation": ""
+        }
+      },
+      "ping": {
+        "kind": "method",
+        "name": "ping",
+        "signature": "ping()",
+        "documentation": "Send ping. https://grafana.com/docs/k6/latest/javascript-api/k6-ws/socket/socket-ping/",
+        "params": [],
+        "returns": {
+          "type": "void",
+          "documentation": ""
+        }
+      },
+      "send": {
+        "kind": "method",
+        "name": "send",
+        "signature": "send(data: string)",
+        "documentation": "Send data. https://grafana.com/docs/k6/latest/javascript-api/k6-ws/socket/socket-send/",
+        "params": [
+          {
+            "name": "data",
+            "type": "string",
+            "documentation": "- Data to send."
+          }
+        ],
+        "returns": {
+          "type": "void",
+          "documentation": ""
+        }
+      },
+      "sendBinary": {
+        "kind": "method",
+        "name": "sendBinary",
+        "signature": "sendBinary(data: ArrayBuffer)",
+        "documentation": "Send data.",
+        "params": [
+          {
+            "name": "data",
+            "type": "ArrayBuffer",
+            "documentation": "- Data to send."
+          }
+        ],
+        "returns": {
+          "type": "void",
+          "documentation": ""
+        }
+      },
+      "setInterval": {
+        "kind": "method",
+        "name": "setInterval",
+        "signature": "setInterval(handler: TimerHandler, interval: number)",
+        "documentation": "Call a function repeatedly, while the WebSocket connection is open. https://grafana.com/docs/k6/latest/javascript-api/k6-ws/socket/socket-setinterval/",
+        "params": [
+          {
+            "name": "handler",
+            "type": "TimerHandler",
+            "documentation": "- The function to call every `interval` milliseconds."
+          },
+          {
+            "name": "interval",
+            "type": "number",
+            "documentation": "- Milliseconds between two calls to `callback`."
+          }
+        ],
+        "returns": {
+          "type": "void",
+          "documentation": ""
+        }
+      },
+      "setTimeout": {
+        "kind": "method",
+        "name": "setTimeout",
+        "signature": "setTimeout(handler: TimerHandler, delay: number)",
+        "documentation": "Call a function at a later time, if the WebSocket connection is still open then. https://grafana.com/docs/k6/latest/javascript-api/k6-ws/socket/socket-settimeout/",
+        "params": [
+          {
+            "name": "handler",
+            "type": "TimerHandler",
+            "documentation": "- The function to call when `delay` has expired."
+          },
+          {
+            "name": "delay",
+            "type": "number",
+            "documentation": "- Delay in milliseconds."
+          }
+        ],
+        "returns": {
+          "type": "void",
+          "documentation": ""
+        }
+      }
+    },
+    "signature": "Socket"
+  },
+  "EventType": {
+    "kind": "declaration",
+    "name": "EventType",
+    "signature": "type EventType = \"close\" | \"error\" | \"message\" | \"open\" | \"ping\" | \"pong\" | \"binaryMessage\";",
+    "documentation": "Event type."
+  },
+  "TimerHandler": {
+    "kind": "interface",
+    "name": "TimerHandler",
+    "documentation": "Timer handler.",
+    "members": {},
+    "signature": "TimerHandler"
+  },
+  "EventHandler": {
+    "kind": "declaration",
+    "name": "EventHandler",
+    "signature": "type EventHandler<ET extends EventType> = ET extends \"close\" ? CloseEventHandler : ET extends \"error\" ? ErrorEventHandler : ET extends \"message\" ? MessageEventHandler : ET extends \"binaryMessage\" ? BinaryMessageEventHandler : ET extends \"open\" ? OpenEventHandler : ET extends \"ping\" ? PingEventHandler : ET extends \"pong\" ? PongEventHandler : never;",
+    "documentation": "Event handler. Signature varies with event type."
+  },
+  "CloseEventHandler": {
+    "kind": "interface",
+    "name": "CloseEventHandler",
+    "documentation": "Close event handler.",
+    "members": {},
+    "signature": "CloseEventHandler"
+  },
+  "ErrorEventHandler": {
+    "kind": "interface",
+    "name": "ErrorEventHandler",
+    "documentation": "Error event handler.",
+    "members": {},
+    "signature": "ErrorEventHandler"
+  },
+  "MessageEventHandler": {
+    "kind": "interface",
+    "name": "MessageEventHandler",
+    "documentation": "Message event handler.",
+    "members": {},
+    "signature": "MessageEventHandler"
+  },
+  "BinaryMessageEventHandler": {
+    "kind": "interface",
+    "name": "BinaryMessageEventHandler",
+    "documentation": "BinaryMessage event handler.",
+    "members": {},
+    "signature": "BinaryMessageEventHandler"
+  },
+  "OpenEventHandler": {
+    "kind": "interface",
+    "name": "OpenEventHandler",
+    "documentation": "Open event handler.",
+    "members": {},
+    "signature": "OpenEventHandler"
+  },
+  "PingEventHandler": {
+    "kind": "interface",
+    "name": "PingEventHandler",
+    "documentation": "Ping event handler.",
+    "members": {},
+    "signature": "PingEventHandler"
+  },
+  "PongEventHandler": {
+    "kind": "interface",
+    "name": "PongEventHandler",
+    "documentation": "Pong event handler.",
+    "members": {},
+    "signature": "PongEventHandler"
+  },
+  "WebSocketError": {
+    "kind": "class",
+    "name": "WebSocketError",
+    "documentation": "Error.",
+    "constructors": [],
+    "members": {
+      "__brand": {
+        "kind": "property",
+        "name": "__brand",
+        "signature": "protected __brand: never;",
+        "documentation": "",
+        "type": "never"
+      },
+      "error": {
+        "kind": "method",
+        "name": "error",
+        "signature": "error()",
+        "documentation": "Error message.",
+        "params": [],
+        "returns": {
+          "type": "string",
+          "documentation": ""
+        }
+      }
+    },
+    "signature": "WebSocketError"
+  },
+  "default": {
+    "kind": "declaration",
+    "name": "default",
+    "signature": "* as default",
+    "documentation": ""
+  }
+}

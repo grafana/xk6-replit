@@ -1,0 +1,580 @@
+{
+  "Response": {
+    "kind": "interface",
+    "name": "Response",
+    "documentation": "gRPC response.",
+    "members": {
+      "status": {
+        "kind": "property",
+        "name": "status",
+        "signature": "status: number;",
+        "documentation": "",
+        "type": "number"
+      },
+      "message": {
+        "kind": "property",
+        "name": "message",
+        "signature": "message: object;",
+        "documentation": "",
+        "type": "object"
+      },
+      "headers": {
+        "kind": "property",
+        "name": "headers",
+        "signature": "headers: object;",
+        "documentation": "",
+        "type": "object"
+      },
+      "trailers": {
+        "kind": "property",
+        "name": "trailers",
+        "signature": "trailers: object;",
+        "documentation": "",
+        "type": "object"
+      },
+      "error": {
+        "kind": "property",
+        "name": "error",
+        "signature": "error: object;",
+        "documentation": "",
+        "type": "object"
+      }
+    },
+    "signature": "Response"
+  },
+  "ConnectParams": {
+    "kind": "interface",
+    "name": "ConnectParams",
+    "documentation": "",
+    "members": {
+      "plaintext": {
+        "kind": "property",
+        "name": "plaintext",
+        "signature": "plaintext?: boolean;",
+        "documentation": "If `true` will connect to the gRPC server using plaintext i.e. insecure.",
+        "type": "boolean"
+      },
+      "reflect": {
+        "kind": "property",
+        "name": "reflect",
+        "signature": "reflect?: boolean;",
+        "documentation": "If `true` connection will try to use the gRPC server reflection protocol. https://github.com/grpc/grpc/blob/master/doc/server-reflection.md",
+        "type": "boolean"
+      },
+      "reflectMetadata": {
+        "kind": "property",
+        "name": "reflectMetadata",
+        "signature": "reflectMetadata?: object;",
+        "documentation": "Metadata to send with reflection request.",
+        "type": "object"
+      },
+      "timeout": {
+        "kind": "property",
+        "name": "timeout",
+        "signature": "timeout?: string | number;",
+        "documentation": "Connection timeout to use.",
+        "type": "string | number"
+      },
+      "maxReceiveSize": {
+        "kind": "property",
+        "name": "maxReceiveSize",
+        "signature": "maxReceiveSize?: number;",
+        "documentation": "Maximum message size in bytes the client can receive.",
+        "type": "number"
+      },
+      "maxSendSize": {
+        "kind": "property",
+        "name": "maxSendSize",
+        "signature": "maxSendSize?: number;",
+        "documentation": "Maximum message size in bytes the client can send.",
+        "type": "number"
+      },
+      "tls": {
+        "kind": "property",
+        "name": "tls",
+        "signature": "tls?: TLSParams;",
+        "documentation": "TLS settings of the connection.",
+        "type": "TLSParams"
+      }
+    },
+    "signature": "ConnectParams"
+  },
+  "TLSParams": {
+    "kind": "interface",
+    "name": "TLSParams",
+    "documentation": "",
+    "members": {
+      "cert": {
+        "kind": "property",
+        "name": "cert",
+        "signature": "cert: string;",
+        "documentation": "PEM formatted client certificate.",
+        "type": "string"
+      },
+      "key": {
+        "kind": "property",
+        "name": "key",
+        "signature": "key: string;",
+        "documentation": "PEM formatted client private key.",
+        "type": "string"
+      },
+      "password": {
+        "kind": "property",
+        "name": "password",
+        "signature": "password?: string;",
+        "documentation": "Password for decrypting the client's private key.",
+        "type": "string"
+      },
+      "cacerts": {
+        "kind": "property",
+        "name": "cacerts",
+        "signature": "cacerts?: string | string[];",
+        "documentation": "PEM formatted string/strings of the certificate authorities.",
+        "type": "string | string[]"
+      }
+    },
+    "signature": "TLSParams"
+  },
+  "Params": {
+    "kind": "interface",
+    "name": "Params",
+    "documentation": "",
+    "members": {
+      "metadata": {
+        "kind": "property",
+        "name": "metadata",
+        "signature": "metadata?: object;",
+        "documentation": "Object with key-value pairs representing custom metadata the user would like to add to the request.",
+        "type": "object"
+      },
+      "tags": {
+        "kind": "property",
+        "name": "tags",
+        "signature": "tags?: object;",
+        "documentation": "Key-value pairs where the keys are names of tags and the values are tag values",
+        "type": "object"
+      },
+      "timeout": {
+        "kind": "property",
+        "name": "timeout",
+        "signature": "timeout?: string | number;",
+        "documentation": "Request timeout to use.",
+        "type": "string | number"
+      },
+      "discardResponseMessage": {
+        "kind": "property",
+        "name": "discardResponseMessage",
+        "signature": "discardResponseMessage?: boolean;",
+        "documentation": "Specify if response messages should be discarded.",
+        "type": "boolean"
+      }
+    },
+    "signature": "Params"
+  },
+  "GrpcError": {
+    "kind": "interface",
+    "name": "GrpcError",
+    "documentation": "",
+    "members": {
+      "code": {
+        "kind": "property",
+        "name": "code",
+        "signature": "code: number;",
+        "documentation": "",
+        "type": "number"
+      },
+      "details": {
+        "kind": "property",
+        "name": "details",
+        "signature": "details: string[] | object[];",
+        "documentation": "",
+        "type": "string[] | object[]"
+      },
+      "message": {
+        "kind": "property",
+        "name": "message",
+        "signature": "message: string;",
+        "documentation": "",
+        "type": "string"
+      }
+    },
+    "signature": "GrpcError"
+  },
+  "Client": {
+    "kind": "class",
+    "name": "Client",
+    "documentation": "gRPC client to interact with a gRPC server. https://grafana.com/docs/k6/latest/javascript-api/k6-net-grpc/client/",
+    "constructors": [
+      {
+        "kind": "constructor",
+        "signature": "constructor()",
+        "documentation": "",
+        "params": []
+      }
+    ],
+    "members": {
+      "__brand": {
+        "kind": "property",
+        "name": "__brand",
+        "signature": "protected __brand: never;",
+        "documentation": "",
+        "type": "never"
+      },
+      "connect": {
+        "kind": "method",
+        "name": "connect",
+        "signature": "connect(address: string, params: ConnectParams)",
+        "documentation": "Opens a connection to a gRPC server.",
+        "params": [
+          {
+            "name": "address",
+            "type": "string",
+            "documentation": ""
+          },
+          {
+            "name": "params",
+            "type": "ConnectParams",
+            "documentation": ""
+          }
+        ],
+        "returns": {
+          "type": "void",
+          "documentation": ""
+        }
+      },
+      "load": {
+        "kind": "method",
+        "name": "load",
+        "signature": "load(importPaths: string[], protoFiles: string[])",
+        "documentation": "Loads and parses the protocol buffer descriptors.",
+        "params": [
+          {
+            "name": "importPaths",
+            "type": "string[]",
+            "documentation": ""
+          },
+          {
+            "name": "protoFiles",
+            "type": "string[]",
+            "documentation": ""
+          }
+        ],
+        "returns": {
+          "type": "void",
+          "documentation": ""
+        }
+      },
+      "loadProtoset": {
+        "kind": "method",
+        "name": "loadProtoset",
+        "signature": "loadProtoset(protosetPath: string)",
+        "documentation": "Loads a protoset and parses the protocol buffer descriptors",
+        "params": [
+          {
+            "name": "protosetPath",
+            "type": "string",
+            "documentation": ""
+          }
+        ],
+        "returns": {
+          "type": "void",
+          "documentation": ""
+        }
+      },
+      "invoke": {
+        "kind": "method",
+        "name": "invoke",
+        "signature": "invoke(url: string, request: object, params: Params)",
+        "documentation": "Invokes an unary RPC request.",
+        "params": [
+          {
+            "name": "url",
+            "type": "string",
+            "documentation": ""
+          },
+          {
+            "name": "request",
+            "type": "object",
+            "documentation": ""
+          },
+          {
+            "name": "params",
+            "type": "Params",
+            "documentation": ""
+          }
+        ],
+        "returns": {
+          "type": "Response",
+          "documentation": ""
+        }
+      },
+      "asyncInvoke": {
+        "kind": "method",
+        "name": "asyncInvoke",
+        "signature": "asyncInvoke(url: string, request: object, params: Params)",
+        "documentation": "Asynchronously invokes an unary RPC request.",
+        "params": [
+          {
+            "name": "url",
+            "type": "string",
+            "documentation": ""
+          },
+          {
+            "name": "request",
+            "type": "object",
+            "documentation": ""
+          },
+          {
+            "name": "params",
+            "type": "Params",
+            "documentation": ""
+          }
+        ],
+        "returns": {
+          "type": "Promise<Response>",
+          "documentation": ""
+        }
+      },
+      "close": {
+        "kind": "method",
+        "name": "close",
+        "signature": "close()",
+        "documentation": "Close the connection.",
+        "params": [],
+        "returns": {
+          "type": "void",
+          "documentation": ""
+        }
+      }
+    },
+    "signature": "Client"
+  },
+  "StreamEvent": {
+    "kind": "declaration",
+    "name": "StreamEvent",
+    "signature": "type StreamEvent = /** * Event fired when data has been received from the server. */ | \"data\" /** * Event fired when a stream has been closed due to an error. */ | \"error\" /** * Event fired when the stream closes. */ | \"end\";",
+    "documentation": "StreamEvent describes the possible events that can be emitted by a gRPC stream."
+  },
+  "StreamMessageMetadata": {
+    "kind": "interface",
+    "name": "StreamMessageMetadata",
+    "documentation": "StreamMessageMetadata handles gRPC stream messages's metadata",
+    "members": {
+      "ts": {
+        "kind": "property",
+        "name": "ts",
+        "signature": "ts: number;",
+        "documentation": "Contains the timestamp of the original event (for example, when a message has been received).",
+        "type": "number"
+      }
+    },
+    "signature": "StreamMessageMetadata"
+  },
+  "Stream": {
+    "kind": "class",
+    "name": "Stream",
+    "documentation": "Stream allows you to use streaming RPCs.",
+    "constructors": [
+      {
+        "kind": "constructor",
+        "signature": "constructor(client: Client, url: string, params: Params)",
+        "documentation": "The gRPC stream constructor, representing a single gRPC stream.",
+        "params": [
+          {
+            "name": "client",
+            "type": "Client",
+            "documentation": "- the gRPC client to use, it must be connected."
+          },
+          {
+            "name": "url",
+            "type": "string",
+            "documentation": "- the RPC method to call."
+          },
+          {
+            "name": "params",
+            "type": "Params",
+            "documentation": "- the parameters to use for the RPC call."
+          }
+        ]
+      }
+    ],
+    "members": {
+      "on": {
+        "kind": "method",
+        "name": "on",
+        "signature": "on(event: StreamEvent, listener: (data: object | GrpcError, metadata: StreamMessageMetadata) => void)",
+        "documentation": "Set up handler functions for various events on the gRPC stream.",
+        "params": [
+          {
+            "name": "event",
+            "type": "StreamEvent",
+            "documentation": "- the event to listen for"
+          },
+          {
+            "name": "listener",
+            "type": "(data: object | GrpcError, metadata: StreamMessageMetadata) => void",
+            "documentation": "- the callback to invoke when the event is emitted"
+          }
+        ],
+        "returns": {
+          "type": "void",
+          "documentation": ""
+        }
+      },
+      "write": {
+        "kind": "method",
+        "name": "write",
+        "signature": "write(request: object)",
+        "documentation": "Writes a request to the stream.",
+        "params": [
+          {
+            "name": "request",
+            "type": "object",
+            "documentation": "- the request (message) to send to the server"
+          }
+        ],
+        "returns": {
+          "type": "void",
+          "documentation": ""
+        }
+      },
+      "end": {
+        "kind": "method",
+        "name": "end",
+        "signature": "end()",
+        "documentation": "Signals to the server that the client has finished sending messages.",
+        "params": [],
+        "returns": {
+          "type": "void",
+          "documentation": ""
+        }
+      }
+    },
+    "signature": "Stream"
+  },
+  "StatusOK": {
+    "kind": "variable",
+    "name": "StatusOK",
+    "documentation": "",
+    "signature": "StatusOK",
+    "type": "number"
+  },
+  "StatusCanceled": {
+    "kind": "variable",
+    "name": "StatusCanceled",
+    "documentation": "",
+    "signature": "StatusCanceled",
+    "type": "number"
+  },
+  "StatusUnknown": {
+    "kind": "variable",
+    "name": "StatusUnknown",
+    "documentation": "",
+    "signature": "StatusUnknown",
+    "type": "number"
+  },
+  "StatusInvalidArgument": {
+    "kind": "variable",
+    "name": "StatusInvalidArgument",
+    "documentation": "",
+    "signature": "StatusInvalidArgument",
+    "type": "number"
+  },
+  "StatusDeadlineExceeded": {
+    "kind": "variable",
+    "name": "StatusDeadlineExceeded",
+    "documentation": "",
+    "signature": "StatusDeadlineExceeded",
+    "type": "number"
+  },
+  "StatusNotFound": {
+    "kind": "variable",
+    "name": "StatusNotFound",
+    "documentation": "",
+    "signature": "StatusNotFound",
+    "type": "number"
+  },
+  "StatusAlreadyExists": {
+    "kind": "variable",
+    "name": "StatusAlreadyExists",
+    "documentation": "",
+    "signature": "StatusAlreadyExists",
+    "type": "number"
+  },
+  "StatusPermissionDenied": {
+    "kind": "variable",
+    "name": "StatusPermissionDenied",
+    "documentation": "",
+    "signature": "StatusPermissionDenied",
+    "type": "number"
+  },
+  "StatusResourceExhausted": {
+    "kind": "variable",
+    "name": "StatusResourceExhausted",
+    "documentation": "",
+    "signature": "StatusResourceExhausted",
+    "type": "number"
+  },
+  "StatusFailedPrecondition": {
+    "kind": "variable",
+    "name": "StatusFailedPrecondition",
+    "documentation": "",
+    "signature": "StatusFailedPrecondition",
+    "type": "number"
+  },
+  "StatusAborted": {
+    "kind": "variable",
+    "name": "StatusAborted",
+    "documentation": "",
+    "signature": "StatusAborted",
+    "type": "number"
+  },
+  "StatusOutOfRange": {
+    "kind": "variable",
+    "name": "StatusOutOfRange",
+    "documentation": "",
+    "signature": "StatusOutOfRange",
+    "type": "number"
+  },
+  "StatusUnimplemented": {
+    "kind": "variable",
+    "name": "StatusUnimplemented",
+    "documentation": "",
+    "signature": "StatusUnimplemented",
+    "type": "number"
+  },
+  "StatusInternal": {
+    "kind": "variable",
+    "name": "StatusInternal",
+    "documentation": "",
+    "signature": "StatusInternal",
+    "type": "number"
+  },
+  "StatusUnavailable": {
+    "kind": "variable",
+    "name": "StatusUnavailable",
+    "documentation": "",
+    "signature": "StatusUnavailable",
+    "type": "number"
+  },
+  "StatusDataLoss": {
+    "kind": "variable",
+    "name": "StatusDataLoss",
+    "documentation": "",
+    "signature": "StatusDataLoss",
+    "type": "number"
+  },
+  "StatusUnauthenticated": {
+    "kind": "variable",
+    "name": "StatusUnauthenticated",
+    "documentation": "",
+    "signature": "StatusUnauthenticated",
+    "type": "number"
+  },
+  "default": {
+    "kind": "declaration",
+    "name": "default",
+    "signature": "* as default",
+    "documentation": ""
+  }
+}

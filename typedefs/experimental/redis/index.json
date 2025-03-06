@@ -1,0 +1,1095 @@
+{
+  "Client": {
+    "kind": "class",
+    "name": "Client",
+    "documentation": "This module provides a redis client allowing users to interact with redis, directly from their k6 scripts. https://grafana.com/docs/k6/latest/javascript-api/k6-experimental/redis/\n`Client` is a Redis client for interacting with a Redis server or cluster. This client provides a promise-based API, enabling asynchronous operations with the Redis server. It supports a wide range of configurations, including single-node connections, cluster mode, and connections through Redis Sentinel. The client can be configured either by passing a `RedisClientOptions` object for fine-grained configuration, or by using a `RedisConnectionURL` string for simpler setups. For more information on the k6 Redis module, visit: https://grafana.com/docs/k6/latest/javascript-api/k6-experimental/redis/client",
+    "constructors": [
+      {
+        "kind": "constructor",
+        "signature": "constructor(options: RedisClientOptions | `redis://${string}` | `redis://${string}/${number}` | `redis://${string}:${number}` | `redis://${string}:${number}/${number}` | `redis://${string}:${string}@${string}` | `redis://${string}:${string}@${string}/${number}` | `redis://${string}:${string}@${string}:${number}` | `redis://${string}:${string}@${string}:${number}/${number}` | `redis://${string}@${string}` | `redis://${string}@${string}/${number}` | `redis://${string}@${string}:${number}` | `redis://${string}@${string}:${number}/${number}` | `rediss://${string}` | `rediss://${string}/${number}` | `rediss://${string}:${number}` | `rediss://${string}:${number}/${number}` | `rediss://${string}:${string}@${string}` | `rediss://${string}:${string}@${string}/${number}` | `rediss://${string}:${string}@${string}:${number}` | `rediss://${string}:${string}@${string}:${number}/${number}` | `rediss://${string}@${string}` | `rediss://${string}@${string}/${number}` | `rediss://${string}@${string}:${number}` | `rediss://${string}@${string}:${number}/${number}`)",
+        "documentation": "Creates a new instance of the Redis client. The client can be configured in two ways: 1. By providing an object of `RedisClientOptions`, allowing detailed configuration including authentication, connection settings, client behaviors, and cluster or sentinel setups. 2. By providing a `RedisConnectionURL` string, suitable for straightforward configurations. The URL should follow the format: redis[s]://[[username][:password]@][host][:port][/db-number] Example usage: ``` // Using RedisClientOptions const client = new Client({ socket: { host: 'localhost', port: 6379 }, password: 'yourpassword' }); // Using RedisConnectionURL const client = new Client('redis://user:password@localhost:6379/0'); ```",
+        "params": [
+          {
+            "name": "options",
+            "type": "RedisClientOptions | `redis://${string}` | `redis://${string}/${number}` | `redis://${string}:${number}` | `redis://${string}:${number}/${number}` | `redis://${string}:${string}@${string}` | `redis://${string}:${string}@${string}/${number}` | `redis://${string}:${string}@${string}:${number}` | `redis://${string}:${string}@${string}:${number}/${number}` | `redis://${string}@${string}` | `redis://${string}@${string}/${number}` | `redis://${string}@${string}:${number}` | `redis://${string}@${string}:${number}/${number}` | `rediss://${string}` | `rediss://${string}/${number}` | `rediss://${string}:${number}` | `rediss://${string}:${number}/${number}` | `rediss://${string}:${string}@${string}` | `rediss://${string}:${string}@${string}/${number}` | `rediss://${string}:${string}@${string}:${number}` | `rediss://${string}:${string}@${string}:${number}/${number}` | `rediss://${string}@${string}` | `rediss://${string}@${string}/${number}` | `rediss://${string}@${string}:${number}` | `rediss://${string}@${string}:${number}/${number}`",
+            "documentation": "- The configuration options for the client, either as a `RedisClientOptions` object or a `RedisConnectionURL` string."
+          }
+        ]
+      }
+    ],
+    "members": {
+      "__brand": {
+        "kind": "property",
+        "name": "__brand",
+        "signature": "protected __brand: never;",
+        "documentation": "",
+        "type": "never"
+      },
+      "set": {
+        "kind": "method",
+        "name": "set",
+        "signature": "set(key: string, value: string | number | boolean, expiration: number)",
+        "documentation": "Sets the value of a key, with a time to live (ttl) value equal to the provided expiration. If the key already exists, it is overwritten. https://grafana.com/docs/k6/latest/javascript-api/k6-experimental/redis/client/client-set",
+        "params": [
+          {
+            "name": "key",
+            "type": "string",
+            "documentation": "- key to set"
+          },
+          {
+            "name": "value",
+            "type": "string | number | boolean",
+            "documentation": "- value to set"
+          },
+          {
+            "name": "expiration",
+            "type": "number",
+            "documentation": "- time to live in seconds. `0` means no expiration."
+          }
+        ],
+        "returns": {
+          "type": "Promise<string>",
+          "documentation": "promise that resolves to \"OK\" if the operation succeeded."
+        }
+      },
+      "get": {
+        "kind": "method",
+        "name": "get",
+        "signature": "get(key: string)",
+        "documentation": "Gets the value of a key. https://grafana.com/docs/k6/latest/javascript-api/k6-experimental/redis/client/client-get",
+        "params": [
+          {
+            "name": "key",
+            "type": "string",
+            "documentation": "- key to get"
+          }
+        ],
+        "returns": {
+          "type": "Promise<string>",
+          "documentation": "promise that resolves to the value of the key."
+        }
+      },
+      "getSet": {
+        "kind": "method",
+        "name": "getSet",
+        "signature": "getSet(key: string, value: string | number | boolean)",
+        "documentation": "Atomically sets the value of a key and returns the value previously stored at that key. https://grafana.com/docs/k6/latest/javascript-api/k6-experimental/redis/client/client-getset",
+        "params": [
+          {
+            "name": "key",
+            "type": "string",
+            "documentation": "- key to get and set"
+          },
+          {
+            "name": "value",
+            "type": "string | number | boolean",
+            "documentation": "- value to set"
+          }
+        ],
+        "returns": {
+          "type": "Promise<string>",
+          "documentation": "promise that resolves to the old value of the key."
+        }
+      },
+      "del": {
+        "kind": "method",
+        "name": "del",
+        "signature": "del(keys: string[])",
+        "documentation": "Removes the specified keys. A key is ignored if it does not exist. https://grafana.com/docs/k6/latest/javascript-api/k6-experimental/redis/client/client-del",
+        "params": [
+          {
+            "name": "keys",
+            "type": "string[]",
+            "documentation": "- keys to delete"
+          }
+        ],
+        "returns": {
+          "type": "Promise<number>",
+          "documentation": "promise that resolves to the number of keys that were removed."
+        }
+      },
+      "getDel": {
+        "kind": "method",
+        "name": "getDel",
+        "signature": "getDel(key: string)",
+        "documentation": "Get the value of a key and delete it. https://grafana.com/docs/k6/latest/javascript-api/k6-experimental/redis/client/client-getdel",
+        "params": [
+          {
+            "name": "key",
+            "type": "string",
+            "documentation": "- the key to get and delete"
+          }
+        ],
+        "returns": {
+          "type": "Promise<string>",
+          "documentation": "promise that resolves to the value of the key that was deleted."
+        }
+      },
+      "exists": {
+        "kind": "method",
+        "name": "exists",
+        "signature": "exists(keys: string[])",
+        "documentation": "Returns the number of the provided keys arguments that exist. https://grafana.com/docs/k6/latest/javascript-api/k6-experimental/redis/client/client-exists",
+        "params": [
+          {
+            "name": "keys",
+            "type": "string[]",
+            "documentation": "- the keys to check the existence of"
+          }
+        ],
+        "returns": {
+          "type": "Promise<number>",
+          "documentation": "promise that resolves to the number of keys that exist."
+        }
+      },
+      "incr": {
+        "kind": "method",
+        "name": "incr",
+        "signature": "incr(key: string)",
+        "documentation": "Increments the numerical value stored at key by one. If the key does not exist, it is set to 0 before performing the operation. If the key exists but cannot be treated as a number, the returned promise will be rejected. https://grafana.com/docs/k6/latest/javascript-api/k6-experimental/redis/client/client-incr",
+        "params": [
+          {
+            "name": "key",
+            "type": "string",
+            "documentation": "- key to increment the value of"
+          }
+        ],
+        "returns": {
+          "type": "Promise<number>",
+          "documentation": "promise that resolves to the value of the key after the increment."
+        }
+      },
+      "incrBy": {
+        "kind": "method",
+        "name": "incrBy",
+        "signature": "incrBy(key: string, increment: number)",
+        "documentation": "Increments the numerical value stored at key by the provided increment. If the key does not exist, it is set to 0 before performing the operation. If the key exists but cannot be treated as a number, the returned promise will be rejected. https://grafana.com/docs/k6/latest/javascript-api/k6-experimental/redis/client/client-incrby",
+        "params": [
+          {
+            "name": "key",
+            "type": "string",
+            "documentation": "- key to increment the value of"
+          },
+          {
+            "name": "increment",
+            "type": "number",
+            "documentation": "- amount to increment the value of the key by"
+          }
+        ],
+        "returns": {
+          "type": "Promise<number>",
+          "documentation": "promise that resolves to the value of the key after the increment."
+        }
+      },
+      "decr": {
+        "kind": "method",
+        "name": "decr",
+        "signature": "decr(key: string)",
+        "documentation": "Decrements the numerical value stored at key by one. If the key does not exist, it is set to 0 before performing the operation. If the key exists but cannot be treated as a number, the returned promise will be rejected. https://grafana.com/docs/k6/latest/javascript-api/k6-experimental/redis/client/client-decr",
+        "params": [
+          {
+            "name": "key",
+            "type": "string",
+            "documentation": "- key to decrement the value of"
+          }
+        ],
+        "returns": {
+          "type": "Promise<number>",
+          "documentation": "promise that resolves to the value of the key after the decrement."
+        }
+      },
+      "decrBy": {
+        "kind": "method",
+        "name": "decrBy",
+        "signature": "decrBy(key: string, decrement: number)",
+        "documentation": "Decrements the numerical value stored at key by the provided decrement. If the key does not exist, it is set to 0 before performing the operation. If the key exists but cannot be treated as a number, the returned promise will be rejected. https://grafana.com/docs/k6/latest/javascript-api/k6-experimental/redis/client/client-decrby",
+        "params": [
+          {
+            "name": "key",
+            "type": "string",
+            "documentation": "- key to decrement the value of"
+          },
+          {
+            "name": "decrement",
+            "type": "number",
+            "documentation": "- amount to decrement the value of the key by"
+          }
+        ],
+        "returns": {
+          "type": "Promise<number>",
+          "documentation": "promise that resolves to the value of the key after the decrement."
+        }
+      },
+      "randomKey": {
+        "kind": "method",
+        "name": "randomKey",
+        "signature": "randomKey()",
+        "documentation": "Returns a random key from the keyspace. If the database is empty, the returned promise will be rejected. https://grafana.com/docs/k6/latest/javascript-api/k6-experimental/redis/client/client-randomkey",
+        "params": [],
+        "returns": {
+          "type": "Promise<string>",
+          "documentation": "promise that resolves to a random key."
+        }
+      },
+      "mget": {
+        "kind": "method",
+        "name": "mget",
+        "signature": "mget(keys: string[])",
+        "documentation": "Returns the values of all the specified keys. https://grafana.com/docs/k6/latest/javascript-api/k6-experimental/redis/client/client-mget",
+        "params": [
+          {
+            "name": "keys",
+            "type": "string[]",
+            "documentation": "- the keys to get the values of"
+          }
+        ],
+        "returns": {
+          "type": "Promise<any[]>",
+          "documentation": "promise that resolves to an array of the values of the keys."
+        }
+      },
+      "expire": {
+        "kind": "method",
+        "name": "expire",
+        "signature": "expire(key: string, seconds: number)",
+        "documentation": "Sets a timeout on a key. After the timeout has expired, the key will automatically be deleted. Calling expire with a non-positive timeout value will result in the being deleted rather than expired. https://grafana.com/docs/k6/latest/javascript-api/k6-experimental/redis/client/client-expire",
+        "params": [
+          {
+            "name": "key",
+            "type": "string",
+            "documentation": "- key to set the time to live of"
+          },
+          {
+            "name": "seconds",
+            "type": "number",
+            "documentation": "- value to set the time to live of the key to (in seconds)"
+          }
+        ],
+        "returns": {
+          "type": "Promise<boolean>",
+          "documentation": "promise that resolves to true if the operation succeeded, false otherwise."
+        }
+      },
+      "ttl": {
+        "kind": "method",
+        "name": "ttl",
+        "signature": "ttl(key: string)",
+        "documentation": "Returns the remaining time to live of a key that has a timeout. https://grafana.com/docs/k6/latest/javascript-api/k6-experimental/redis/client/client-ttl",
+        "params": [
+          {
+            "name": "key",
+            "type": "string",
+            "documentation": "- the key to get the time to live of"
+          }
+        ],
+        "returns": {
+          "type": "Promise<number>",
+          "documentation": "promise that resolves to the time to live of the key, in seconds."
+        }
+      },
+      "persist": {
+        "kind": "method",
+        "name": "persist",
+        "signature": "persist(key: string)",
+        "documentation": "Removes the existing timeout on a key. https://grafana.com/docs/k6/latest/javascript-api/k6-experimental/redis/client/client-persist",
+        "params": [
+          {
+            "name": "key",
+            "type": "string",
+            "documentation": "- the key to remove the timeout of."
+          }
+        ],
+        "returns": {
+          "type": "Promise<boolean>",
+          "documentation": "promise that resolves to true if the operation succeeded, false otherwise."
+        }
+      },
+      "lpush": {
+        "kind": "method",
+        "name": "lpush",
+        "signature": "lpush(key: string, values: (string | number | boolean)[])",
+        "documentation": "Prepends values to a list, creating the list if it does not already exist. If the key exists but does not hold a list, the returned promise will be rejected. https://grafana.com/docs/k6/latest/javascript-api/k6-experimental/redis/client/client-lpush",
+        "params": [
+          {
+            "name": "key",
+            "type": "string",
+            "documentation": "- key holding the list to prepend to"
+          },
+          {
+            "name": "values",
+            "type": "(string | number | boolean)[]",
+            "documentation": "- values to prepend to the list"
+          }
+        ],
+        "returns": {
+          "type": "Promise<number>",
+          "documentation": "promise that resolves to the number of elements in the list after the prepend operation."
+        }
+      },
+      "rpush": {
+        "kind": "method",
+        "name": "rpush",
+        "signature": "rpush(key: string, values: (string | number | boolean)[])",
+        "documentation": "Appends values to a list, creating the list if it does not already exist. If the key exists but does not hold a list, the returned promise will be rejected. https://grafana.com/docs/k6/latest/javascript-api/k6-experimental/redis/client/client-rpush",
+        "params": [
+          {
+            "name": "key",
+            "type": "string",
+            "documentation": "- key holding the list to append to"
+          },
+          {
+            "name": "values",
+            "type": "(string | number | boolean)[]",
+            "documentation": "- values to append to the list"
+          }
+        ],
+        "returns": {
+          "type": "Promise<number>",
+          "documentation": "promise that resolves to the number of elements in the list after the append operation."
+        }
+      },
+      "lpop": {
+        "kind": "method",
+        "name": "lpop",
+        "signature": "lpop(key: string)",
+        "documentation": "Removes and returns the value at the head of the list stored at key. https://grafana.com/docs/k6/latest/javascript-api/k6-experimental/redis/client/client-lpop",
+        "params": [
+          {
+            "name": "key",
+            "type": "string",
+            "documentation": "- key holding the list to pop the head of"
+          }
+        ],
+        "returns": {
+          "type": "Promise<string>",
+          "documentation": "promise that resolves to the value that was popped."
+        }
+      },
+      "rpop": {
+        "kind": "method",
+        "name": "rpop",
+        "signature": "rpop(key: string)",
+        "documentation": "Removes and returns the value at the tail of the list stored at key. https://grafana.com/docs/k6/latest/javascript-api/k6-experimental/redis/client/client-rpop",
+        "params": [
+          {
+            "name": "key",
+            "type": "string",
+            "documentation": "- key holding the list to pop the tail of"
+          }
+        ],
+        "returns": {
+          "type": "Promise<string>",
+          "documentation": "promise that resolves to the value that was popped."
+        }
+      },
+      "lrange": {
+        "kind": "method",
+        "name": "lrange",
+        "signature": "lrange(key: string, start: number, stop: number)",
+        "documentation": "Returns the elements stored in the list from start to end. The offsets are zero-based. These offsets can be negative numbers indicating offsets starting at the end of the list. https://grafana.com/docs/k6/latest/javascript-api/k6-experimental/redis/client/client-lrange",
+        "params": [
+          {
+            "name": "key",
+            "type": "string",
+            "documentation": "- key holding the list to get the range of"
+          },
+          {
+            "name": "start",
+            "type": "number",
+            "documentation": "- index of the first element to return"
+          },
+          {
+            "name": "stop",
+            "type": "number",
+            "documentation": "- index of the last element to return"
+          }
+        ],
+        "returns": {
+          "type": "Promise<string[]>",
+          "documentation": "promise that resolves to an array of the values in the specified range."
+        }
+      },
+      "lindex": {
+        "kind": "method",
+        "name": "lindex",
+        "signature": "lindex(key: string, index: number)",
+        "documentation": "Returns the element at the specified in the list stored at key. The offsets are zero-based. These offsets can be negative numbers indicating offsets starting at the end of the list. https://grafana.com/docs/k6/latest/javascript-api/k6-experimental/redis/client/client-lindex",
+        "params": [
+          {
+            "name": "key",
+            "type": "string",
+            "documentation": "- key holding the list to get the element of"
+          },
+          {
+            "name": "index",
+            "type": "number",
+            "documentation": "- index of the element to get"
+          }
+        ],
+        "returns": {
+          "type": "Promise<string>",
+          "documentation": "promise that resolves to the value of the element at the specified index."
+        }
+      },
+      "lset": {
+        "kind": "method",
+        "name": "lset",
+        "signature": "lset(key: string, index: number, element: string)",
+        "documentation": "Sets the value of an element in the list stored at key to new value. https://grafana.com/docs/k6/latest/javascript-api/k6-experimental/redis/client/client-lset",
+        "params": [
+          {
+            "name": "key",
+            "type": "string",
+            "documentation": "- key holding the list to set the element of"
+          },
+          {
+            "name": "index",
+            "type": "number",
+            "documentation": "- index of the element to set"
+          },
+          {
+            "name": "element",
+            "type": "string",
+            "documentation": "- value to set the element to"
+          }
+        ],
+        "returns": {
+          "type": "Promise<string>",
+          "documentation": "promise that resolves to the 'OK' string if the operation succeeded"
+        }
+      },
+      "lrem": {
+        "kind": "method",
+        "name": "lrem",
+        "signature": "lrem(key: string, count: number, value: string)",
+        "documentation": "Removes the first `count` occurrences of `value` from the list stored at `key`. If the `count` is positive, elements are removed the from head of the list (from left to right) If the `count` is 0, all occurrences of `value` are removed. If the `count` is negative, elements are removed from the tail of the list (from right to left). https://grafana.com/docs/k6/latest/javascript-api/k6-experimental/redis/client/client-lrem",
+        "params": [
+          {
+            "name": "key",
+            "type": "string",
+            "documentation": "- key holding the list to remove the element of"
+          },
+          {
+            "name": "count",
+            "type": "number",
+            "documentation": "- the number of elements matching the value to remove"
+          },
+          {
+            "name": "value",
+            "type": "string",
+            "documentation": "- the value to remove"
+          }
+        ],
+        "returns": {
+          "type": "Promise<number>",
+          "documentation": "promise that resolves to the number of elements removed."
+        }
+      },
+      "llen": {
+        "kind": "method",
+        "name": "llen",
+        "signature": "llen(key: string)",
+        "documentation": "Returns the length of the list stored at the key. If the key does not exist, it is interpreted as an empty list and 0 is returned. https://grafana.com/docs/k6/latest/javascript-api/k6-experimental/redis/client/client-llen",
+        "params": [
+          {
+            "name": "key",
+            "type": "string",
+            "documentation": "- key holding the list to get the length  of"
+          }
+        ],
+        "returns": {
+          "type": "Promise<number>",
+          "documentation": "promise that resolves to the length of the list."
+        }
+      },
+      "hset": {
+        "kind": "method",
+        "name": "hset",
+        "signature": "hset(key: string, field: string, value: string | number | boolean)",
+        "documentation": "Sets the value of a hash field to the specified value. If the key does not exist, a new key holding a hash is created. If the field already exists, it is overwritten. https://grafana.com/docs/k6/latest/javascript-api/k6-experimental/redis/client/client-hset",
+        "params": [
+          {
+            "name": "key",
+            "type": "string",
+            "documentation": "- key holding the hash to set the field's value of"
+          },
+          {
+            "name": "field",
+            "type": "string",
+            "documentation": "- field to set the value of"
+          },
+          {
+            "name": "value",
+            "type": "string | number | boolean",
+            "documentation": "- value to set the field to"
+          }
+        ],
+        "returns": {
+          "type": "Promise<number>",
+          "documentation": "promise that resolves to the the number of fields that were changed."
+        }
+      },
+      "hsetnx": {
+        "kind": "method",
+        "name": "hsetnx",
+        "signature": "hsetnx(key: string, field: string, value: string)",
+        "documentation": "Sets the value of a hash field to the specified value, if and only if the field does not yet exist. If the key does not exist, a new key holding a hash is created. If the field already exists, the returned promise will be rejected. https://grafana.com/docs/k6/latest/javascript-api/k6-experimental/redis/client/client-hsetnx",
+        "params": [
+          {
+            "name": "key",
+            "type": "string",
+            "documentation": "- key holding the hash to set the field's value of"
+          },
+          {
+            "name": "field",
+            "type": "string",
+            "documentation": "- field to set the value of"
+          },
+          {
+            "name": "value",
+            "type": "string",
+            "documentation": "- value to set the field to"
+          }
+        ],
+        "returns": {
+          "type": "Promise<boolean>",
+          "documentation": "promise that resolves to true if the hash field was set, false otherwise."
+        }
+      },
+      "hget": {
+        "kind": "method",
+        "name": "hget",
+        "signature": "hget(key: string, field: string)",
+        "documentation": "Returns the value of the specified hash field. https://grafana.com/docs/k6/latest/javascript-api/k6-experimental/redis/client/client-hget",
+        "params": [
+          {
+            "name": "key",
+            "type": "string",
+            "documentation": "- key holding the hash to get the field's value of"
+          },
+          {
+            "name": "field",
+            "type": "string",
+            "documentation": "- field to get the value of"
+          }
+        ],
+        "returns": {
+          "type": "Promise<string>",
+          "documentation": "promise that resolves to the value of the hash field."
+        }
+      },
+      "hdel": {
+        "kind": "method",
+        "name": "hdel",
+        "signature": "hdel(key: string, fields: string[])",
+        "documentation": "Deletes the specified fields from the hash stored at key. https://grafana.com/docs/k6/latest/javascript-api/k6-experimental/redis/client/client-hdel",
+        "params": [
+          {
+            "name": "key",
+            "type": "string",
+            "documentation": "- key holding the hash to delete the fields of"
+          },
+          {
+            "name": "fields",
+            "type": "string[]",
+            "documentation": "- fields to delete from the hash"
+          }
+        ],
+        "returns": {
+          "type": "Promise<number>",
+          "documentation": "promise that resolves to the number of fields that were deleted."
+        }
+      },
+      "hgetall": {
+        "kind": "method",
+        "name": "hgetall",
+        "signature": "hgetall(key: string)",
+        "documentation": "Returns all fields and values of the hash stored at key. https://grafana.com/docs/k6/latest/javascript-api/k6-experimental/redis/client/client-hgetall",
+        "params": [
+          {
+            "name": "key",
+            "type": "string",
+            "documentation": "- the key holding the hash to get the fields of"
+          }
+        ],
+        "returns": {
+          "type": "Promise<{ [key: string]: string; }>",
+          "documentation": "promise that resolves to an object of field/value pairs."
+        }
+      },
+      "hkeys": {
+        "kind": "method",
+        "name": "hkeys",
+        "signature": "hkeys(key: string)",
+        "documentation": "Returns all fields of the hash stored at key. https://grafana.com/docs/k6/latest/javascript-api/k6-experimental/redis/client/client-hkeys",
+        "params": [
+          {
+            "name": "key",
+            "type": "string",
+            "documentation": "- the key holding the hash to get the fields of"
+          }
+        ],
+        "returns": {
+          "type": "Promise<string[]>",
+          "documentation": "promise that resolves to an array of field names."
+        }
+      },
+      "hvals": {
+        "kind": "method",
+        "name": "hvals",
+        "signature": "hvals(key: string)",
+        "documentation": "Returns all values of the hash stored at key. https://grafana.com/docs/k6/latest/javascript-api/k6-experimental/redis/client/client-hvals",
+        "params": [
+          {
+            "name": "key",
+            "type": "string",
+            "documentation": "- the key holding the hash to get the fields' values of"
+          }
+        ],
+        "returns": {
+          "type": "Promise<string[]>",
+          "documentation": "promise that resolves to an array of field values."
+        }
+      },
+      "hlen": {
+        "kind": "method",
+        "name": "hlen",
+        "signature": "hlen(key: string)",
+        "documentation": "Return the number of fields contained in the hash stored at key. https://grafana.com/docs/k6/latest/javascript-api/k6-experimental/redis/client/client-hlen",
+        "params": [
+          {
+            "name": "key",
+            "type": "string",
+            "documentation": "- the key holding the hash to get the number of fields of"
+          }
+        ],
+        "returns": {
+          "type": "Promise<number>",
+          "documentation": "promise that resolves to the number of fields in the hash."
+        }
+      },
+      "hincrby": {
+        "kind": "method",
+        "name": "hincrby",
+        "signature": "hincrby(key: string, field: string, increment: number)",
+        "documentation": "Increments the numberical value stored at the hash field by the specified amount. If the key does not exist, a new key holding a hash is created. If the field does not exist, it is set to 0 before the operation is performed. If the field does not hold a nummerical value, the returned promise will be rejected. https://grafana.com/docs/k6/latest/javascript-api/k6-experimental/redis/client/client-hincrby",
+        "params": [
+          {
+            "name": "key",
+            "type": "string",
+            "documentation": "- the key holding the hash to get the number of fields of"
+          },
+          {
+            "name": "field",
+            "type": "string",
+            "documentation": "- the hash's field to increment the value of"
+          },
+          {
+            "name": "increment",
+            "type": "number",
+            "documentation": "- the amount to increment the value by"
+          }
+        ],
+        "returns": {
+          "type": "Promise<number>",
+          "documentation": "promise that resolves to the value of the field after the increment."
+        }
+      },
+      "sadd": {
+        "kind": "method",
+        "name": "sadd",
+        "signature": "sadd(key: string, members: (string | number | boolean)[])",
+        "documentation": "Adds the specified elements to the set stored at key. Specified elements that are already a member of the set are ignored. If the key does not exist, a new set is created before adding the specified elements. https://grafana.com/docs/k6/latest/javascript-api/k6-experimental/redis/client/client-sadd",
+        "params": [
+          {
+            "name": "key",
+            "type": "string",
+            "documentation": "- the key holding the set to add a member to"
+          },
+          {
+            "name": "members",
+            "type": "(string | number | boolean)[]",
+            "documentation": "- the members to add to the set"
+          }
+        ],
+        "returns": {
+          "type": "Promise<number>",
+          "documentation": "promise that resolves to the number of members that were added to the set; excluding those that were already present."
+        }
+      },
+      "srem": {
+        "kind": "method",
+        "name": "srem",
+        "signature": "srem(key: string, members: (string | number | boolean)[])",
+        "documentation": "Removes the specified members from the set stored at key. Specified members that are not a member of this set are ignored. If key does not exist, it is treated as an empty set and this command returns 0. https://grafana.com/docs/k6/latest/javascript-api/k6-experimental/redis/client/client-srem",
+        "params": [
+          {
+            "name": "key",
+            "type": "string",
+            "documentation": "- the key holding the set to remove a member from"
+          },
+          {
+            "name": "members",
+            "type": "(string | number | boolean)[]",
+            "documentation": "- the members to remove from the set"
+          }
+        ],
+        "returns": {
+          "type": "Promise<number>",
+          "documentation": "promise that resolves to the number of members that were removed from the set."
+        }
+      },
+      "sismember": {
+        "kind": "method",
+        "name": "sismember",
+        "signature": "sismember(key: string, member: string | number | boolean)",
+        "documentation": "Returns whether or not the specified member is a member of the set stored at key. https://grafana.com/docs/k6/latest/javascript-api/k6-experimental/redis/client/client-sismember",
+        "params": [
+          {
+            "name": "key",
+            "type": "string",
+            "documentation": "- the key holding the set to check the belonging of"
+          },
+          {
+            "name": "member",
+            "type": "string | number | boolean",
+            "documentation": "- the member to check the belonging of"
+          }
+        ],
+        "returns": {
+          "type": "Promise<boolean>",
+          "documentation": "promise that resolves to true if the member is a member of the set, false otherwise."
+        }
+      },
+      "smembers": {
+        "kind": "method",
+        "name": "smembers",
+        "signature": "smembers(key: string)",
+        "documentation": "Returns the members of the set stored at key. https://grafana.com/docs/k6/latest/javascript-api/k6-experimental/redis/client/client-smembers",
+        "params": [
+          {
+            "name": "key",
+            "type": "string",
+            "documentation": "- the key holding the set to get the members of"
+          }
+        ],
+        "returns": {
+          "type": "Promise<string[]>",
+          "documentation": "promise that resolves to an array of members in the set."
+        }
+      },
+      "srandmember": {
+        "kind": "method",
+        "name": "srandmember",
+        "signature": "srandmember(key: string)",
+        "documentation": "Returns a random member of the set value stored at key. https://grafana.com/docs/k6/latest/javascript-api/k6-experimental/redis/client/client-srandmember",
+        "params": [
+          {
+            "name": "key",
+            "type": "string",
+            "documentation": "- the key holding the set to get the random member of"
+          }
+        ],
+        "returns": {
+          "type": "Promise<string>",
+          "documentation": "promise that resolves to a random member of the set."
+        }
+      },
+      "spop": {
+        "kind": "method",
+        "name": "spop",
+        "signature": "spop(key: string)",
+        "documentation": "Pops a random member from the set stored at key. https://grafana.com/docs/k6/latest/javascript-api/k6-experimental/redis/client/client-spop",
+        "params": [
+          {
+            "name": "key",
+            "type": "string",
+            "documentation": "- the key holding the set to pop the random member of"
+          }
+        ],
+        "returns": {
+          "type": "Promise<string>",
+          "documentation": "promise that resolves to the popped member."
+        }
+      }
+    },
+    "signature": "Client"
+  },
+  "RedisConnectionURL": {
+    "kind": "declaration",
+    "name": "RedisConnectionURL",
+    "signature": "type RedisConnectionURL = `${RedisProtocol}://${RedisUserInfo}${string}${RedisPort}${RedisDbNumber}`;",
+    "documentation": "Represents a Redis connection URL. The URL follows the format: redis[s]://[[username][:password]@][host][:port][/db-number] - `RedisProtocol` indicates the protocol used ('redis' for standard connections, 'rediss' for secure TLS connections). - `RedisUserInfo` optionally includes the username and password for authentication. - The `host` is the IP address or hostname of the Redis server. - `RedisPort` is the port on which the Redis server is listening (optional, defaults to 6379 if not specified). - `RedisDbNumber` specifies a particular database number to connect to (optional)."
+  },
+  "RedisProtocol": {
+    "kind": "declaration",
+    "name": "RedisProtocol",
+    "signature": "type RedisProtocol = \"redis\" | \"rediss\";",
+    "documentation": "Represents the protocol part of a Redis URL. - `redis`: Standard, non-encrypted connections. - `rediss`: Secure connections using TLS."
+  },
+  "RedisUserInfo": {
+    "kind": "declaration",
+    "name": "RedisUserInfo",
+    "signature": "type RedisUserInfo = `${string}:${string}@` | `${string}@` | \"\";",
+    "documentation": "Represents the user authentication information part of a Redis URL. Formats: - `username:password@`: Both username and password are provided for authentication. - `username@`: Only username is provided, no password. - `\"\": No authentication information is included."
+  },
+  "RedisHost": {
+    "kind": "declaration",
+    "name": "RedisHost",
+    "signature": "type RedisHost = string;",
+    "documentation": ""
+  },
+  "RedisPort": {
+    "kind": "declaration",
+    "name": "RedisPort",
+    "signature": "type RedisPort = `:${number}` | \"\";",
+    "documentation": "Represents the port part of a Redis URL. - `:number`: The port number on which the Redis server is listening. - `\"\": No port is specified, implying the default port (usually 6379)."
+  },
+  "RedisDbNumber": {
+    "kind": "declaration",
+    "name": "RedisDbNumber",
+    "signature": "type RedisDbNumber = `/${number}` | \"\";",
+    "documentation": "Represents the database number part of a Redis URL. - `/${number}`: Specifies the database number to connect to. - `\"\": No database number is specified, implying the default database (usually 0)."
+  },
+  "RedisClientOptions": {
+    "kind": "interface",
+    "name": "RedisClientOptions",
+    "documentation": "Represents the configuration options for a Redis client. These options define how the client connects to and interacts with a Redis server or cluster, including authentication, connection settings, and specific Redis features.",
+    "members": {
+      "socket": {
+        "kind": "property",
+        "name": "socket",
+        "signature": "socket: SocketOptions;",
+        "documentation": "Socket connection options for the Redis client. This includes the host, port, and other socket-level settings such as timeouts and TLS configuration.",
+        "type": "SocketOptions"
+      },
+      "username": {
+        "kind": "property",
+        "name": "username",
+        "signature": "username?: string;",
+        "documentation": "Optional username for client authentication. This is used when the Redis server is configured with ACLs (Access Control Lists), requiring a username for authentication in addition to a password.",
+        "type": "string"
+      },
+      "password": {
+        "kind": "property",
+        "name": "password",
+        "signature": "password?: string;",
+        "documentation": "Optional password for client authentication. If the Redis server is secured with a password, this must be provided to establish a connection.",
+        "type": "string"
+      },
+      "clientName": {
+        "kind": "property",
+        "name": "clientName",
+        "signature": "clientName?: string;",
+        "documentation": "Optional name to assign to the client connection. This can be used for identifying and tracking connections on the Redis server. It's useful for debugging and monitoring purposes.",
+        "type": "string"
+      },
+      "database": {
+        "kind": "property",
+        "name": "database",
+        "signature": "database?: number;",
+        "documentation": "The ID of the database to be selected after connecting to the Redis server. Redis supports multiple databases (numbered from 0), allowing separate datasets on the same server instance. This option is typically used when connecting to a single-node setup.",
+        "type": "number"
+      },
+      "masterName": {
+        "kind": "property",
+        "name": "masterName",
+        "signature": "masterName?: string;",
+        "documentation": "The name of the master instance to connect to when using Redis Sentinel. Sentinel manages failover in a Redis deployment, and specifying a master name allows the client to connect to the current master. This option is required when connecting through Redis Sentinel.",
+        "type": "string"
+      },
+      "sentinelUsername": {
+        "kind": "property",
+        "name": "sentinelUsername",
+        "signature": "sentinelUsername?: string;",
+        "documentation": "Optional username for client authentication with Redis Sentinel. If the Sentinel servers are secured with ACLs, this username is used for authentication.",
+        "type": "string"
+      },
+      "sentinelPassword": {
+        "kind": "property",
+        "name": "sentinelPassword",
+        "signature": "sentinelPassword?: string;",
+        "documentation": "Optional password for client authentication with Redis Sentinel. If the Sentinel servers are secured with a password, it must be provided to connect successfully.",
+        "type": "string"
+      },
+      "cluster": {
+        "kind": "property",
+        "name": "cluster",
+        "signature": "cluster?: ClusterOptions;",
+        "documentation": "Optional configuration for connecting to a Redis Cluster. If the client is connecting to a Redis Cluster, this option provides cluster-specific settings such as node addresses and routing options.",
+        "type": "ClusterOptions"
+      }
+    },
+    "signature": "RedisClientOptions"
+  },
+  "SocketOptions": {
+    "kind": "interface",
+    "name": "SocketOptions",
+    "documentation": "Represents the configuration options for a socket connection to a Redis server. These options allow fine-tuning of the connection properties, timeouts, and TLS settings.",
+    "members": {
+      "host": {
+        "kind": "property",
+        "name": "host",
+        "signature": "host: string;",
+        "documentation": "The IP address or hostname of the Redis server. This should be a valid, resolvable address or hostname used to establish the connection.",
+        "type": "string"
+      },
+      "port": {
+        "kind": "property",
+        "name": "port",
+        "signature": "port?: number;",
+        "documentation": "The port number on which the Redis server is listening. If omitted, a default port (typically 6379 for Redis) will be used.",
+        "type": "number"
+      },
+      "tls": {
+        "kind": "property",
+        "name": "tls",
+        "signature": "tls?: TLSOptions;",
+        "documentation": "Optional configuration for TLS (Transport Layer Security). This is used to establish a secure, encrypted connection to the Redis server. If provided, the connection will use TLS; otherwise, it will be a regular, non-encrypted connection.",
+        "type": "TLSOptions"
+      },
+      "dialTimeout": {
+        "kind": "property",
+        "name": "dialTimeout",
+        "signature": "dialTimeout?: number;",
+        "documentation": "The maximum amount of time, in milliseconds, to wait for a connection attempt to the Redis server to succeed. If the connection is not established within this time frame, the attempt will be aborted. This helps in avoiding long waits if the server is not reachable.",
+        "type": "number"
+      },
+      "readTimeout": {
+        "kind": "property",
+        "name": "readTimeout",
+        "signature": "readTimeout?: number;",
+        "documentation": "The maximum amount of time, in milliseconds, the client will wait for a read operation to complete. A value of `-1` indicates no timeout, meaning the client will wait indefinitely. Setting a read timeout can prevent indefinitely blocking operations if the server becomes unresponsive.",
+        "type": "number"
+      },
+      "writeTimeout": {
+        "kind": "property",
+        "name": "writeTimeout",
+        "signature": "writeTimeout?: number;",
+        "documentation": "The maximum amount of time, in milliseconds, the client will wait for a write operation to complete. A value of `-1` indicates no timeout, allowing the client to wait indefinitely. Similar to readTimeout, this can prevent blocking in case of server issues.",
+        "type": "number"
+      },
+      "poolSize": {
+        "kind": "property",
+        "name": "poolSize",
+        "signature": "poolSize?: number;",
+        "documentation": "The maximum number of socket connections that can be kept open in the pool. A larger pool size can handle more concurrent connections, but also uses more resources.",
+        "type": "number"
+      },
+      "minIdleConns": {
+        "kind": "property",
+        "name": "minIdleConns",
+        "signature": "minIdleConns?: number;",
+        "documentation": "The minimum number of idle connections that the pool maintains for faster access. Keeping some connections idle can improve performance by avoiding the need to establish new connections.",
+        "type": "number"
+      },
+      "maxConnAge": {
+        "kind": "property",
+        "name": "maxConnAge",
+        "signature": "maxConnAge?: number;",
+        "documentation": "The maximum amount of time, in milliseconds, a connection can stay idle in the pool before being closed. This can help in cycling connections and preventing stale connections.",
+        "type": "number"
+      },
+      "poolTimeout": {
+        "kind": "property",
+        "name": "poolTimeout",
+        "signature": "poolTimeout?: number;",
+        "documentation": "The maximum amount of time, in milliseconds, to wait for a connection from the pool. If no connections are available within this time frame, the request for a connection will fail. This prevents indefinite blocking when all connections are in use.",
+        "type": "number"
+      },
+      "idleTimeout": {
+        "kind": "property",
+        "name": "idleTimeout",
+        "signature": "idleTimeout?: number;",
+        "documentation": "The maximum amount of time, in milliseconds, a connection can be idle in the pool before being considered for closure. This helps in keeping the pool fresh and closing unused connections.",
+        "type": "number"
+      },
+      "idleCheckFrequency": {
+        "kind": "property",
+        "name": "idleCheckFrequency",
+        "signature": "idleCheckFrequency?: number;",
+        "documentation": "The frequency, in milliseconds, at which the client checks for idle connections in the pool. A value of `-1` disables these checks. Regularly checking for idle connections helps in maintaining a healthy connection pool.",
+        "type": "number"
+      }
+    },
+    "signature": "SocketOptions"
+  },
+  "TLSOptions": {
+    "kind": "interface",
+    "name": "TLSOptions",
+    "documentation": "Represents the options for configuring TLS (Transport Layer Security) for a Redis connection. This configuration is essential for establishing a secure connection using SSL/TLS, which ensures data is encrypted during transmission.",
+    "members": {
+      "ca": {
+        "kind": "property",
+        "name": "ca",
+        "signature": "ca: ArrayBuffer[];",
+        "documentation": "Specifies one or multiple Certificate Authority (CA) certificates to use for validating the server certificate. The CA certificates are essential for ensuring that the server's certificate is issued by a trusted authority. This is an array of ArrayBuffer, where each ArrayBuffer represents a CA certificate in a binary format.",
+        "type": "ArrayBuffer[]"
+      },
+      "cert": {
+        "kind": "property",
+        "name": "cert",
+        "signature": "cert?: ArrayBuffer;",
+        "documentation": "An optional client certificate used for mutual TLS authentication. Providing a client certificate is part of mutual TLS (mTLS), where both the client and the server authenticate each other. This property should be an ArrayBuffer representing the client's certificate in a binary format. If this property is omitted, the client will not use a certificate for authentication.",
+        "type": "ArrayBuffer"
+      },
+      "key": {
+        "kind": "property",
+        "name": "key",
+        "signature": "key?: ArrayBuffer;",
+        "documentation": "An optional private key associated with the client certificate. This key is required if a client certificate is provided (via the `cert` property). The private key must correspond to the public key in the client certificate and should be in a binary format represented by an ArrayBuffer. If this property is omitted but a client certificate is provided, the connection attempt will fail due to the lack of a corresponding private key.",
+        "type": "ArrayBuffer"
+      }
+    },
+    "signature": "TLSOptions"
+  },
+  "ClusterOptions": {
+    "kind": "interface",
+    "name": "ClusterOptions",
+    "documentation": "Represents the configuration options for a Redis Cluster client. These options define the behavior of the client when connecting to and interacting with a Redis Cluster.",
+    "members": {
+      "maxRedirects": {
+        "kind": "property",
+        "name": "maxRedirects",
+        "signature": "maxRedirects?: number;",
+        "documentation": "The maximum number of redirects the client will follow when a command is redirected. In a Redis Cluster, certain commands may be redirected to other nodes. This option limits the number of such redirections. If this value is not set, a default value (typically defined by the client library) will be used.",
+        "type": "number"
+      },
+      "readOnly": {
+        "kind": "property",
+        "name": "readOnly",
+        "signature": "readOnly?: boolean;",
+        "documentation": "Determines if the client operates in read-only mode. When set to true, the client sends read commands to replica nodes, potentially improving read scalability. This is useful in a cluster setup where you want to distribute read operations across multiple replicas.",
+        "type": "boolean"
+      },
+      "routeByLatency": {
+        "kind": "property",
+        "name": "routeByLatency",
+        "signature": "routeByLatency?: boolean;",
+        "documentation": "Enables routing read commands by latency. when true, the client attempts to route read commands to the node with the lowest latency. This can optimize read performance by utilizing the fastest available node.",
+        "type": "boolean"
+      },
+      "routeRandomly": {
+        "kind": "property",
+        "name": "routeRandomly",
+        "signature": "routeRandomly?: boolean;",
+        "documentation": "Enables random routing for read commands. When true, read commands are sent to random nodes in the cluster, potentially distributing the load more evenly. This can be beneficial in scenarios where distributing read operations evenly is more important than routing based on latency.",
+        "type": "boolean"
+      },
+      "nodes": {
+        "kind": "property",
+        "name": "nodes",
+        "signature": "nodes: RedisConnectionURL[] | SocketOptions[];",
+        "documentation": "A list of nodes in the Redis Cluster. This can either be a list of connection URLs or a list of socket options for each node. The client uses this list to initially connect to the cluster and discover other nodes. Each node can be specified as a `RedisConnectionURL` string (e.g., 'redis://host:port') or as a `SocketOptions` object defining host and port.",
+        "type": "(`redis://${string}` | `redis://${string}/${number}` | `redis://${string}:${number}` | `redis://${string}:${number}/${number}` | `redis://${string}:${string}@${string}` | `redis://${string}:${string}@${string}/${number}` | `redis://${string}:${string}@${string}:${number}` | `redis://${string}:${string}@${string}:${number}/${number}` | `redis://${string}@${string}` | `redis://${string}@${string}/${number}` | `redis://${string}@${string}:${number}` | `redis://${string}@${string}:${number}/${number}` | `rediss://${string}` | `rediss://${string}/${number}` | `rediss://${string}:${number}` | `rediss://${string}:${number}/${number}` | `rediss://${string}:${string}@${string}` | `rediss://${string}:${string}@${string}/${number}` | `rediss://${string}:${string}@${string}:${number}` | `rediss://${string}:${string}@${string}:${number}/${number}` | `rediss://${string}@${string}` | `rediss://${string}@${string}/${number}` | `rediss://${string}@${string}:${number}` | `rediss://${string}@${string}:${number}/${number}`)[] | SocketOptions[]"
+      }
+    },
+    "signature": "ClusterOptions"
+  },
+  "default": {
+    "kind": "declaration",
+    "name": "default",
+    "signature": "default _default;",
+    "documentation": ""
+  }
+}
