@@ -62,7 +62,11 @@ var replit; // replit module will be injected by the module itself
                 if (result !== undefined) {
                     // Fall back to .toString() if it's a primitive or can't be stringified
                     // Or do a quick test to see if it's an object
-                    replit.highlight(typeof result === "object" ? _inspect(result) : result.toString());
+                    if (typeof result === "object") {
+                        replit.highlight(_inspect(result), "json");
+                    } else {
+                        replit.highlight(result.toString(), "javascript");
+                    }
                 } else {
                     replit.log("undefined")
                 }

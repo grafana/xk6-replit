@@ -25,7 +25,7 @@ type API struct {
 	Log       func(msg string)
 	Warn      func(msg string)
 	Error     func(msg string)
-	Highlight func(msg string)
+	Highlight func(msg, lang string)
 
 	// Read from JS code
 	Repl sobek.Value `js:"run"`
@@ -75,8 +75,8 @@ func NewAPI(vu modules.VU) *API {
 	api.Error = func(msg string) {
 		color.Red(msg)
 	}
-	api.Highlight = func(msg string) {
-		fmt.Println(highlight(msg, "javascript"))
+	api.Highlight = func(msg string, lang string) {
+		fmt.Println(highlight(msg, lang))
 	}
 
 	rt := vu.Runtime()
