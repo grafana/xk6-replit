@@ -34,7 +34,7 @@ You can use REPLIT in two different ways: either from within an existing k6 scri
 
 You can drop into a REPL from within an existing k6 test by doing the following:
 1. Import from `k6/x/replit`.
-2. Use the `replit.with` function to block the script execution.
+2. Use the `replit.run` function to block the script execution.
 3. Optionally pass an object containing the context you want to interact with (including variables, modules, etc.).
 4. Run REPLIT.
 
@@ -60,7 +60,7 @@ export default async function () {
 > Your exported default function will need to be `async` for `replit` to work.
 
 > [!TIP]
-> You can add as many `replit.with` calls as you want in your script, and you can pass different contexts to each one.
+> You can add as many `replit.run` calls as you want in your script, and you can pass different contexts to each one.
 
 To run the script, use either `./replit my_script.js` (in case you downloaded the REPLIT binary) or `./k6 run my_script.js` (if you built `k6` locally using xk6). You will then be able to do the following:
 
