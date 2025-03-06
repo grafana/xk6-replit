@@ -39,51 +39,59 @@ var replit; // replit module will be injected by the module itself
             args.push(v);
         }
 
+        // Let, const, and var are not allowed in the REPL context.
+        // However, we automatically remove them when they are used,
+        // and warn the user once about it.
+        let illegalVarAssignment = {pattern: /^(let|const|var)\s+/, matched: false, warned: false};
+
         while (true) {
             try {
-                var input = replit.read();
+                var input = replit.read().trim();
                 if (input === "exit") {
                     break;
+                }
+
+                illegalVarAssignment.matched = false;
+                if (input.match(illegalVarAssignment.pattern)) {
+                    input = input.replace(illegalVarAssignment.pattern, "");
+                    illegalVarAssignment.matched = true;
                 }
 
                 // FIXME: See comment in replit.go readMultiLine.
 
                 var fn = undefined;
                 try {
-                    // Input was an expression
-                    fn = AsyncFunction(...params.concat(["return " + input]));
+                    fn = AsyncFunction(...params.concat(["return " + input])); // Input was an expression
                 } catch (error) {
-                    // Input was a statement
-                    fn = AsyncFunction(...params.concat([input]));
+                    fn = AsyncFunction(...params.concat([input]));             // Input was a statement
                 }
 
                 var result = await fn(...args); // the user's code result
+                global._ = result;              // Easily access the last expression result with '_'.
 
-                if (result !== undefined) {
-                    // Fall back to .toString() if it's a primitive or can't be stringified
-                    // Or do a quick test to see if it's an object
-                    if (typeof result === "object") {
-                        replit.highlight(_inspect(result), "json");
-                    } else {
-                        replit.highlight(result.toString(), "javascript");
-                    }
+                // Do a quick check to see if it's an object, if so, pretty print it
+                // Otherwise, fall back to stringifying it if it's not undefined.
+                if (typeof result === "object") {
+                    replit.highlight(_inspect(result), "json");
+                } else if (result !== undefined) {
+                    replit.highlight(result.toString(), "javascript");
                 } else {
                     replit.log("undefined")
                 }
 
-                // Easily access the last expression result with '_'.
-                global._ = result;
+                if (illegalVarAssignment.matched && !illegalVarAssignment.warned) {
+                    // A long output can easily push the warning out of the screen.
+                    // So, we warn the user about illegal variable assignment here.
+                    replit.warn("Variable assignment with `let`, `const`, or `var` has no effect in the REPL context.");
+                    replit.warn("For convenience, REPLIT automatically removes `let`, `const`, or `var` from assignments.");
+                    replit.log("Hint: in order to assign a variable globally, use `foo = 123`.");
+                    illegalVarAssignment.warned = true;
+                }
             } catch (error) {
                 if (error.toString() == "GoError: EOF") {
                     break;
                 }
                 replit.error(error.toString());
-            }
-
-            input = input.trim();
-            if (input.startsWith("let ") || input.startsWith("const ") || input.startsWith("var ")) {
-                replit.warn("Variable assignment had no effect in REPL context.");
-                replit.log("Hint: in order to assign a variable globally, use `foo = 123`.");
             }
         }
     };
