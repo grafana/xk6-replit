@@ -1,3 +1,6 @@
+
+<img width="1711" alt="Screenshot 2025-03-06 at 8 27 28 PM" src="https://github.com/user-attachments/assets/419aecb8-2283-48f2-9720-0d320cbdfc32" />
+
 # REPLIT
 
 Your [REPL](https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop) to [k6](https://github.com/grafana/k6).
