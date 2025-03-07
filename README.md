@@ -69,7 +69,12 @@ export default async function () {
 > [!TIP]
 > You can add as many `replit.run` calls as you want in your script, and you can pass different contexts to each one.
 
-To run the script, use either `./replit my_script.js` (in case you downloaded the REPLIT binary) or `./k6 run -q --no-summary my_script.js` (if you built `k6` locally using xk6). You will then be able to do the following:
+To run the script, use either:
+
+* `./replit my_script.js` (in case you downloaded the REPLIT binary) or:
+* `./k6 run -q --no-summary my_script.js` (if you built `k6` locally using xk6).
+
+You will then be able to do the following:
 
 ```bash
 >>> result
