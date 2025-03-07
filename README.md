@@ -17,7 +17,7 @@ There's two ways of getting REPLIT:
 
 ### Via prebuilt `replit` binaries
 
-You can find REPLIT binaries in the [releases](https://github.com/grafana/xk6-replit/releases/tag/v0.1) section. These binaries simply wrap an extended `k6` binary with some additional utilities and pre-set CLI arguments.
+You can find REPLIT binaries in the [releases](https://github.com/grafana/xk6-replit/releases) section. These binaries simply wrap an extended `k6` binary with some additional utilities and pre-set CLI arguments.
 
 ### Via xk6
 
