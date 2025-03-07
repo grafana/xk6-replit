@@ -73,10 +73,12 @@ var replit; // replit module will be injected by the module itself
                 // Otherwise, fall back to stringifying it if it's not undefined.
                 if (typeof result === "object") {
                     replit.highlight(_inspect(result), "json");
+                } else if (typeof result === "string") {
+                    replit.highlight(`'${result}'`, "javascript")
                 } else if (result !== undefined) {
                     replit.highlight(result.toString(), "javascript");
                 } else {
-                    replit.log("undefined")
+                    replit.highlight("undefined", "javascript")
                 }
 
                 if (illegalVarAssignment.matched && !illegalVarAssignment.warned) {
