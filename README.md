@@ -13,7 +13,7 @@ REPLIT allows you to interact with your k6 script in real-time, inspecting varia
 
 ## Demo
 
-[![asciicast](https://asciinema.org/a/hmvuItrnsDnpH9IQrzuRO3KGW.svg)](https://asciinema.org/a/hmvuItrnsDnpH9IQrzuRO3KGW)
+![demo](https://github.com/user-attachments/assets/9b3ba9c9-97e2-4dce-b40e-e2bd56dd51db)
 
 ## Install REPLIT
 
