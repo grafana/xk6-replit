@@ -1,5 +1,6 @@
 
-<img width="1711" alt="Screenshot 2025-03-06 at 8 27 28 PM" src="https://github.com/user-attachments/assets/419aecb8-2283-48f2-9720-0d320cbdfc32" />
+<img width="822" alt="Screenshot 2025-03-07 at 2 54 54 PM" src="https://github.com/user-attachments/assets/9f0ee123-e369-440a-ba25-17af102229d4" />
+
 
 # REPLIT
 
