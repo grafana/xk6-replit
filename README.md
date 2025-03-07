@@ -11,6 +11,10 @@ REPLIT allows you to interact with your k6 script in real-time, inspecting varia
 - Instead of running the whole script, you send each script line through the REPL.
 - Benefit: Interactive environment to speed up test creation process. It also helps while learning the k6 APIs.
 
+## Demo
+
+[![asciicast](https://asciinema.org/a/hmvuItrnsDnpH9IQrzuRO3KGW.svg)](https://asciinema.org/a/hmvuItrnsDnpH9IQrzuRO3KGW)
+
 ## Install REPLIT
 
 There's two ways of getting REPLIT:
