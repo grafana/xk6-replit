@@ -1,7 +1,6 @@
 
 <img width="822" alt="Screenshot 2025-03-07 at 2 54 54 PM" src="https://github.com/user-attachments/assets/9f0ee123-e369-440a-ba25-17af102229d4" />
 
-
 # REPLIT
 
 A [REPL](https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop) (Read-Evaluate-Print Loop) for Grafana [k6](https://github.com/grafana/k6)!
@@ -29,7 +28,7 @@ This short demo shows interacting with the official k6/http module in real time.
 - Allows us to come up with test scripts much quicker.
 - Allows us to experiment and learn k6 APIs more conveniently.
 
-# REPLIT
+## REPLIT
 
 - We built REPLIT as a k6 extension.
 - It also runs as a standalone cross-platform executable without any dependencies.
@@ -38,6 +37,43 @@ This short demo shows interacting with the official k6/http module in real time.
 - Syntax-highlighting different forms of output.
 - Runs modern async/await expressions with no problems.
 - It can be dropped into any existing script with a single replit.run() call.
+
+## Features
+
+### Explore any k6 module APIs
+
+You can explore any k6 module just by including it in the context object passed to `replit.run`. See the [examples](./examples) folder for module exploration examples.
+
+### Colorized output
+
+REPLIT colorizes the output, making it easier to read and understand. It outputs differently depending on the output type (e.g., objects, strings, etc.). For objects, it uses JSON syntax highlighting, and for others, it uses JavaScript syntax highlighting.
+
+### Multi-line input
+
+REPLIT supports multi-line input. It waits to execute the code until your input is compilable. This allows you to copy and paste code snippets directly into the REPL.
+
+```bash
+>>> await new Promise(
+...     resolve
+... ) => setTimeout(resolve, 1000))
+```
+
+> [!TIP]
+> You can use `await` to wait for promises to resolve.
+
+### Auto-completion
+
+REPLIT also supports auto-completion, so you can press `Tab` to see the relevant commands you previously typed in (from the history).
+
+```bash
+>>> result <- pressed the tab key
+result                        result.timings                result.blocked
+>>> result.timings
+{ ... }
+```
+
+> [!TIP]
+> Press CTRL+D (or CMD+D on macOS) to exit the REPL and continue running the script.
 
 ----
 
@@ -58,6 +94,8 @@ cd xk6-replit
 xk6 build --with github.com/grafana/xk6-replit=.
 ./k6 version
 ```
+
+---
 
 ## Use REPLIT
 
@@ -117,41 +155,3 @@ You will then be able to do the following:
 ### REPLIT Standalone
 
 In order to run REPLIT as as a standalone application (for example, to experiment with different k6 JS libraries), download one of the REPLIT binaries and run it without any arguments (`./replit`).
-
-## Features
-
-### Explore any k6 module APIs
-
-You can explore any k6 module just by including it in the context object passed to `replit.run`. See the [examples](./examples) folder for module exploration examples.
-
-### Colorized output
-
-REPLIT colorizes the output, making it easier to read and understand. It outputs differently depending on the output type (e.g., objects, strings, etc.). For objects, it uses JSON syntax highlighting, and for others, it uses JavaScript syntax highlighting.
-
-### Multi-line input
-
-REPLIT supports multi-line input. It waits to execute the code until your input is compilable. This allows you to copy and paste code snippets directly into the REPL.
-
-```bash
->>> await new Promise(
-...     resolve
-... ) => setTimeout(resolve, 1000))
-```
-
-> [!TIP]
-> You can use `await` to wait for promises to resolve.
-
-### Auto-completion
-
-REPLIT also supports auto-completion, so you can press `Tab` to see the relevant commands you previously typed in (from the history).
-
-```bash
->>> result <- pressed the tab key
-result                        result.timings                result.blocked
->>> result.timings
-{ ... }
-```
-
-> [!TIP]
-> Press CTRL+D (or CMD+D on macOS) to exit the REPL and continue running the script.
-
