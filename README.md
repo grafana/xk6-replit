@@ -4,17 +4,42 @@
 
 # REPLIT
 
-Your [REPL](https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop) to [k6](https://github.com/grafana/k6).
+A [REPL](https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop) (Read-Evaluate-Print Loop) for Grafana [k6](https://github.com/grafana/k6)!
 
-REPLIT allows you to interact with your k6 script in real-time, inspecting variables, and running code snippets. This approach can be useful for debugging, testing, and learning k6 APIs.
+REPLIT provides an interactive shell where you can explore and learn k6 APIs quickly, write new tests iteratively, interact with your web browser, and troubleshoot running tests in real time—all with just one function call.
 
-- You write and send commands to k6 to execute and receive execution results.
-- Instead of running the whole script, you send each script line through the REPL.
-- Benefit: Interactive environment to speed up test creation process. It also helps while learning the k6 APIs.
+It makes test authoring for reliability testing more enjoyable and effective.
 
-## Demo
+## Short demo
+
+This short demo shows interacting with the official k6/http module in real time. It talks to a running k6 program and executes commands from the command line.
 
 ![demo](https://github.com/user-attachments/assets/9b3ba9c9-97e2-4dce-b40e-e2bd56dd51db)
+
+## A typical workflow of developing a k6 script today can be time-consuming
+
+- Often editing scripts and rerunning them all over until we make them work.
+- Wait for the results. Repeat.
+- 🥱 This cycle can be time-consuming, disrupt focus, and be unproductive.
+
+# So, we thought, why doesn’t k6 have a REPL?
+
+- A REPL shortens the loop from coding to seeing results in real time.
+- Saving time and increasing productivity, creativity, and efficiency.
+- Allows us to come up with test scripts much quicker.
+- Allows us to experiment and learn k6 APIs more conveniently.
+
+# REPLIT
+
+- We built REPLIT as a k6 extension.
+- It also runs as a standalone cross-platform executable without any dependencies.
+- REPLIT supports bash-like navigation keys (e.g., up, down, Ctrl-E).
+- Automatically stores previously entered input in history.
+- Syntax-highlighting different forms of output.
+- Runs modern async/await expressions with no problems.
+- It can be dropped into any existing script with a single replit.run() call.
+
+----
 
 ## Install REPLIT
 
