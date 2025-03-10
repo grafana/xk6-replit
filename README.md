@@ -21,14 +21,14 @@ This short demo shows interacting with the official k6/http module in real time.
 - Wait for the results. Repeat.
 - 🥱 This cycle can be time-consuming, disrupt focus, and be unproductive.
 
-# So, we thought, why doesn’t k6 have a REPL?
+## So, we thought, why doesn’t k6 have a REPL?
 
 - A REPL shortens the loop from coding to seeing results in real time.
 - Saving time and increasing productivity, creativity, and efficiency.
 - Allows us to come up with test scripts much quicker.
 - Allows us to experiment and learn k6 APIs more conveniently.
 
-## REPLIT
+## Features
 
 - We built REPLIT as a k6 extension.
 - It also runs as a standalone cross-platform executable without any dependencies.
@@ -37,8 +37,6 @@ This short demo shows interacting with the official k6/http module in real time.
 - Syntax-highlighting different forms of output.
 - Runs modern async/await expressions with no problems.
 - It can be dropped into any existing script with a single replit.run() call.
-
-## Features
 
 ### Explore any k6 module APIs
 
