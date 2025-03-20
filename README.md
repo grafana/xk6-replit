@@ -9,6 +9,9 @@ REPLIT provides an interactive shell where you can explore and learn k6 APIs qui
 
 It makes test authoring for reliability testing more enjoyable and effective.
 
+> [!WARNING]  
+> This extension is experimental and not officially supported by Grafana k6. As such, no official support will be available. Please use it with that understanding, and feel free to share any feedback or suggestions!
+
 ## Short demo
 
 This short demo shows interacting with the official k6/http module in real time. It talks to a running k6 program and executes commands from the command line.
