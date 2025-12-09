@@ -11,7 +11,7 @@
   "description": "",
   "dependencies": {
     "comment-parser": "^1.4.1",
-    "ts-morph": "^25.0.1",
+    "ts-morph": "^27.0.0",
     "typescript-json-schema": "^0.65.1"
   },
   "devDependencies": {
