@@ -3,7 +3,7 @@ module github.com/grafana/xk6-replit
 go 1.24.0
 
 require (
-	github.com/alecthomas/chroma v0.10.0
+	github.com/alecthomas/chroma/v2 v2.20.0
 	github.com/chzyer/readline v1.5.1
 	github.com/fatih/color v1.18.0
 	github.com/grafana/sobek v0.0.0-20251209155516-22d1085c20a8

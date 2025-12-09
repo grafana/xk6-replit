@@ -8,7 +8,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/alecthomas/chroma/quick"
+	"github.com/alecthomas/chroma/v2/quick"
 	"github.com/chzyer/readline"
 	"github.com/fatih/color"
 	"github.com/grafana/sobek"
