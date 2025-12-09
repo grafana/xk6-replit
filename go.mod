@@ -6,13 +6,13 @@ require (
 	github.com/alecthomas/chroma v0.10.0
 	github.com/chzyer/readline v1.5.1
 	github.com/fatih/color v1.18.0
-	github.com/grafana/sobek v0.0.0-20241024150027-d91f02b05e9b
+	github.com/grafana/sobek v0.0.0-20251209155516-22d1085c20a8
 	go.k6.io/k6 v0.57.0
 )
 
 require (
 	github.com/cenkalti/backoff/v4 v4.3.0 // indirect
-	github.com/dlclark/regexp2 v1.11.4 // indirect
+	github.com/dlclark/regexp2 v1.11.5 // indirect
 	github.com/evanw/esbuild v0.24.2 // indirect
 	github.com/go-logr/logr v1.4.2 // indirect
 	github.com/go-logr/stdr v1.2.2 // indirect
