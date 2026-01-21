@@ -6,7 +6,7 @@ require (
 	github.com/alecthomas/chroma v0.10.0
 	github.com/chzyer/readline v1.5.1
 	github.com/fatih/color v1.18.0
-	github.com/grafana/sobek v0.0.0-20251209155516-22d1085c20a8
+	github.com/grafana/sobek v0.0.0-20260121195222-d8d9202018c5
 	go.k6.io/k6 v1.5.0
 )
 
