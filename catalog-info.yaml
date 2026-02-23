@@ -1,0 +1,14 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: xk6-replit
+  title: xk6-replit
+  description: |
+    REPLIT provides an interactive shell where you can explore and learn k6 APIs quickly, write new tests iteratively, interact with your web browser, and troubleshoot running tests in real time—all with just one function call.
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+    github.com/project-slug: grafana/xk6-replit
+spec:
+  type: tool
+  owner: group:default/k6-core
+  lifecycle: production
