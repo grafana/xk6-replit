@@ -12,7 +12,7 @@ import (
 	"github.com/chzyer/readline"
 	"github.com/fatih/color"
 	"github.com/grafana/sobek"
-	"go.k6.io/k6/js/modules"
+	"go.k6.io/k6/v2/js/modules"
 )
 
 //go:embed replit.js

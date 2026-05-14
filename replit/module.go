@@ -1,7 +1,7 @@
 package replit
 
 import (
-	"go.k6.io/k6/js/modules"
+	"go.k6.io/k6/v2/js/modules"
 )
 
 // ----------------------------- [ RootModule ] -----------------------------
